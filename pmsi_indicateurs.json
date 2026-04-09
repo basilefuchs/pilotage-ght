@@ -1,0 +1,1141 @@
+[
+  {
+    "indicateur": "Indice de Complexité des Cas (ICC)",
+    "definition": "L'Indice de Complexité des Cas (ICC) mesure la complexité moyenne des cas traités dans un établissement ou un GHT, en pondérant les séjours par leur groupe homogène de malades (GHM) et les comorbidités associées. Cet indicateur est particulièrement pertinent pour les CHU, qui prennent en charge des pathologies plus complexes.",
+    "calcul": "L'ICC est calculé comme suit : Où : - **Poids GHM** : Poids relatif du GHM (issu de la tarification T2A). - **Facteurs de comorbidité** : Coefficients liés aux pathologies associées (CMA, CIM-10).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**ICC moyen en CHU** : 1,5",
+      "2,0 (vs 1,0"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Indice de Complexité",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "Tarification T2A - GHM",
+        "url": "https://www.atih.sante.fr/tarification"
+      }
+    ]
+  },
+  {
+    "indicateur": "Coût par Pathologie",
+    "definition": "Le coût par pathologie mesure le coût moyen de prise en charge pour une pathologie donnée, incluant les frais de séjour, les actes médicaux, et les examens complémentaires. Cet indicateur est essentiel pour le pilotage financier des GHT.",
+    "calcul": "Le coût par pathologie est calculé comme suit :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Coûts par Pathologie",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse Financière",
+        "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Séjours avec Actes Innovants",
+    "definition": "Le taux de séjours avec actes innovants mesure la proportion de séjours incluant des actes médicaux ou chirurgicaux innovants, tels que la chirurgie robotique, les nouvelles technologies d'imagerie, ou les thérapeutiques de pointe. Cet indicateur évalue l'accès aux innovations dans les établissements.",
+    "calcul": "Le taux de séjours avec actes innovants est calculé comme suit : **Critères d'actes innovants** : - Actes de chirurgie robotique (codes CCAM spécifiques). - Techniques d'imagerie interventionnelle avancées. - Thérapeutiques innovantes (ex : CAR-T cells).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux moyen en CHU** : 5",
+      "**Spécialités cibles** : Urologie (robotique), Hématologie (CAR"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ANAP - Actes Innovants",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ATIH - CCAM",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Complications par GHM",
+    "definition": "Le taux de complications par GHM mesure la proportion de séjours pour lesquels des complications spécifiques au groupe homogène de malades (GHM) sont survenues. Ces complications sont identifiées via des codes CIM-10 spécifiques et reflètent la qualité des prises en charge pour des pathologies données.",
+    "calcul": "Le taux de complications par GHM est calculé comme suit : **Critères de complications** : - Codes CIM-10 spécifiques (ex : infections post-op, complications de procédures). - Exclusion des complications présentes à l'admission.",
+    "utilite": [],
+    "sources": [
+      "**PMSI MCO** : Données issues des RSS, incluant les diagnostics associés (CIM"
+    ],
+    "exemples": [
+      "**GHM \"Prothèse totale de hanche\"** : Taux de complications = 2",
+      "**GHM \"Pontage coronarien\"** : Taux de complications = 5",
+      "**Variation inter"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Complications par GHM",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Qualité des Soins",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indicateurs PMSI et SNDS pour le Monitoring des GHT avec CHU",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "SNDS - Données de Santé",
+        "url": "https://www.snds.gouv.fr/"
+      },
+      {
+        "text": "DGOS - Indicateurs",
+        "url": "https://solidarites-sante.gouv.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Collaboration entre Établissements (GHT)",
+    "definition": "La collaboration entre établissements mesure le niveau de coordination et de mutualisation des ressources au sein d'un Groupement Hospitalier de Territoire (GHT). Cet indicateur évalue la capacité des établissements à travailler ensemble pour optimiser les parcours de soins et les ressources.",
+    "calcul": "La collaboration peut être mesurée via plusieurs sous-indicateurs :",
+    "utilite": [],
+    "sources": [
+      "**PMSI** : Suivi des orientations inter"
+    ],
+    "exemples": [
+      "**Nombre moyen de protocoles communs** : 5",
+      "**Taux de patients orientés** : 10"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ARS - Collaboration Territoriale",
+        "url": "https://www.ars.sante.fr/"
+      },
+      {
+        "text": "ATIH - Mutualisation des Ressources",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Couverture Territoriale",
+    "definition": "La couverture territoriale mesure la capacité d'un GHT à répondre aux besoins de santé de la population sur son territoire. Cet indicateur évalue l'adéquation entre l'offre de soins et les besoins identifiés.",
+    "calcul": "La couverture territoriale peut être mesurée via plusieurs sous-indicateurs :",
+    "utilite": [
+      "**Planification territoriale** : Identifier les zones sous"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Taux de couverture en médecine** : 2"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ARS - Couverture Territoriale",
+        "url": "https://www.ars.sante.fr/"
+      },
+      {
+        "text": "INSEE - Données Territoriales",
+        "url": "https://www.insee.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Séjours avec Erreurs de Codage",
+    "definition": "Le taux de séjours avec erreurs de codage mesure la proportion de séjours présentant des erreurs dans le codage des diagnostics, des actes, ou des autres éléments du Résumé de Sortie Standardisé (RSS). Cet indicateur évalue la qualité du codage et son impact sur la tarification et les analyses.",
+    "calcul": "Le taux d'erreurs de codage est calculé comme suit : **Types d'erreurs** : - Erreurs de diagnostics (CIM-10). - Erreurs d'actes (CCAM). - Erreurs de groupage (GHM).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : 5"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ANAP - Qualité du Codage",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ATIH - OVALIDE",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Nombre de GHM Rares ou Complexes",
+    "definition": "Le nombre de GHM rares ou complexes mesure le volume de séjours pour des groupes homogènes de malades (GHM) peu fréquents ou particulièrement complexes. Cet indicateur est spécifique aux CHU, qui ont une mission de recours pour ces pathologies.",
+    "calcul": "Le nombre de GHM rares ou complexes est calculé comme suit : **Critères de rareté/complexité** : - GHM avec un volume annuel national < 1 000 séjours. - GHM avec un poids relatif élevé (ex : > 5). - GHM nécessitant des plateaux techniques spécifiques (ex : greffes, chirurgie robotique).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Volume annuel par CHU** : 500"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - GHM Rares",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "Filières Maladies Rares",
+        "url": "https://www.filières-maladiesrares.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux d'Hospitalisation Ambulatoire (MCO)",
+    "definition": "Le taux d'hospitalisation ambulatoire mesure la proportion de séjours réalisés en ambulatoire (sans nuitée) par rapport au total des séjours en Médecine, Chirurgie, Obstétrique (MCO). Cet indicateur est un marqueur de modernisation des pratiques hospitalières.",
+    "calcul": "Le taux d'hospitalisation ambulatoire est calculé comme suit :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : ~50"
+    ],
+    "limites": [
+      "Nécessite une organisation spécifique (circuits dédiés, coordination ville"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Hospitalisation Ambulatoire",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Chirurgie Ambulatoire",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Surcoût",
+    "definition": "Le taux de surcoût mesure la proportion de séjours avec un coût supérieur à la moyenne attendue pour un groupe homogène de malades (GHM) donné. Cet indicateur, issu des Patient Safety Indicators (PSI), peut refléter des complications, des prises en charge non optimisées, ou des variations de pratiques.",
+    "calcul": "Le taux de surcoût est calculé comme suit : **Critères de surcoût** : - Coût du séjour > moyenne nationale + 2 écarts-types pour le GHM. - Exclusion des séjours avec complications documentées (CIM-10).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : 3"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "DREES - PSI",
+        "url": "https://drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ATIH - Tarification T2A",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Séjours de Niveau 3 et 4",
+    "definition": "Le taux de séjours de niveau 3 et 4 mesure la proportion de séjours avec un niveau de sévérité élevé, reflétant la complexité des prises en charge. Ces niveaux, définis dans le cadre du PMSI, correspondent à des séjours nécessitant des ressources importantes (ex : réanimation, soins intensifs).",
+    "calcul": "Le taux de séjours de niveau 3 et 4 est calculé comme suit : **Critères de niveau** : - **Niveau 3** : Séjours avec des actes lourds ou des comorbidités multiples. - **Niveau 4** : Séjours en réanimation ou avec des pathologies très complexes.",
+    "utilite": [
+      "**Allocation des ressources** : Justifier des moyens supplémentaires pour les niveaux 3"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Taux moyen en CHU** : 15",
+      "25% (vs 5",
+      "**Variation par service** : Réanimation (100%), Chirurgie cardiaque (50"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ANAP - Niveaux de Sévérité",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ATIH - PMSI",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Rotation des Lits",
+    "definition": "Le taux de rotation des lits mesure le nombre moyen de patients différents occupant un lit sur une période donnée (généralement un an). Cet indicateur évalue l'efficacité de l'utilisation des lits et la fluidité des parcours de soins.",
+    "calcul": "Le taux de rotation des lits est calculé comme suit :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen (MCO)** : ~50",
+      "**Variation par service** : Plus élevé en chirurgie (ex : 70",
+      "80) qu'en médecine (ex : 40"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Taux de Rotation des Lits",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des Capacités",
+        "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      }
+    ]
+  },
+  {
+    "indicateur": "Répartition de l'Activité par Domaine PMSI",
+    "definition": "La répartition de l'activité par domaine PMSI mesure la ventilation des séjours selon les grands domaines d'activité définis par le PMSI (ex : Orthopédie, Digestif, Cardiologie). Cet indicateur permet d'analyser la spécialisation des établissements et leur positionnement territorial.",
+    "calcul": "La répartition est calculée comme suit : **Domaines PMSI principaux** : - Orthopédie - Digestif - Cardiologie - Neurologie - Pédiatrie - etc.",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [
+      {
+        "text": "ANAP - Analyse d'Activité",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ATIH - Domaines PMSI",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Activité en Soins de Suite et Réadaptation (SSR)",
+    "definition": "L'activité en Soins de Suite et Réadaptation (SSR) mesure le volume et la nature des prises en charge en SSR, incluant la réadaptation fonctionnelle, les soins de suite post-aigus, et les soins palliatifs. Cet indicateur est spécifique au champ SSR du PMSI.",
+    "calcul": "L'activité en SSR peut être mesurée via plusieurs sous-indicateurs :",
+    "utilite": [
+      "**Coordination avec le MCO** : Fluidité des parcours post"
+    ],
+    "sources": [],
+    "exemples": [
+      "**DMS en SSR** : ~30",
+      "**Taux d'occupation SSR** : 80"
+    ],
+    "limites": [
+      "Dépend des filières de prise en charge post"
+    ],
+    "references": [
+      {
+        "text": "ATIH - PMSI SSR",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Parcours de Réadaptation",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Mortalité à 30 Jours Post-Sortie",
+    "definition": "Le taux de mortalité à 30 jours post-sortie mesure la proportion de patients décédés dans les 30 jours suivant leur sortie de l'hôpital, quels que soient le lieu et la cause du décès. Cet indicateur complète le taux de mortalité hospitalière en incluant les décès survenant après la sortie, notamment à domicile ou en établissement médico-social.",
+    "calcul": "Le taux de mortalité à 30 jours post-sortie est calculé comme suit : **Critères d'inclusion** : - Décès toutes causes confondues. - Patients sortis vivants de l'hôpital (exclusion des décès hospitaliers).",
+    "utilite": [
+      "**Coordination post"
+    ],
+    "sources": [
+      "**SNDS** : Données de décès (Causes Médicales de Décès"
+    ],
+    "exemples": [
+      "**Taux national moyen** : 3",
+      "**Pathologies à risque** : Insuffisance cardiaque (8",
+      "12%), cancers avancés (15",
+      "**Objectif** : Réduction via des programmes de suivi post"
+    ],
+    "limites": [
+      "Nécessite un chaînage PMSI",
+      "Peut être influencé par des facteurs socio"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Mortalité Post-Sortie",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "SNDS - Causes de Décès",
+        "url": "https://www.snds.gouv.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indice de Lourdeur des Cas (ILC)",
+    "definition": "L'Indice de Lourdeur des Cas (ILC) mesure la lourdeur moyenne des cas traités dans un établissement ou un GHT, en pondérant les séjours par leur groupe homogène de malades (GHM) et les actes réalisés (CCAM). Cet indicateur est particulièrement utile pour évaluer la complexité des prises en charge et ajuster les ressources en conséquence.",
+    "calcul": "L'ILC est calculé comme suit : Où : - **Points ISF** : Points de l'échelle nationale de coût (issus de la tarification T2A). - **Poids GHM** : Poids relatif du GHM (référentiel ATIH).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**ILC moyen en CHU** : 1,8",
+      "2,5 (vs 1,2"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Indice de Lourdeur",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "Tarification T2A - Points ISF",
+        "url": "https://www.atih.sante.fr/tarification"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux d'Hospitalisation Complète (MCO)",
+    "definition": "Le taux d'hospitalisation complète mesure la proportion de séjours en hospitalisation complète par rapport au total des séjours en Médecine, Chirurgie, Obstétrique (MCO). Cet indicateur reflète l'intensité de la prise en charge hospitalière.",
+    "calcul": "Le taux d'hospitalisation complète est calculé comme suit :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : ~60"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Hospitalisation Complète",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Activité MCO",
+        "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indicateurs PMSI Pertinents pour un GHT avec CHU",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Indicateurs PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Qualité des Soins",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ANAP - Pilotage des GHT",
+        "url": "https://www.anap.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indicateurs PMSI pour le Monitoring des GHT avec CHU",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DGOS - Indicateurs",
+        "url": "https://solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "HAS - Qualité",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ANAP - Performance",
+        "url": "https://www.anap.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Prolongation de Séjour",
+    "definition": "Le taux de prolongation de séjour mesure la proportion de séjours dépassant significativement la durée attendue pour un groupe homogène de malades (GHM) donné. Cet indicateur, issu des Patient Safety Indicators (PSI), peut refléter des complications, des retards dans la prise en charge, ou des difficultés de sortie.",
+    "calcul": "Le taux de prolongation de séjour est calculé comme suit : **Critères de prolongation** : - Durée de séjour > percentile 90 de la distribution pour le GHM. - Exclusion des séjours avec complications documentées (CIM-10).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : 5"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "DREES - PSI",
+        "url": "https://drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ATIH - Durée de Séjour",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Réadmissions Non Programmes (30 jours)",
+    "definition": "Le taux de réadmissions non programmées mesure la proportion de patients réhospitalisés de manière non planifiée dans les 30 jours suivant leur sortie initiale. Cet indicateur est un marqueur clé de la qualité des soins et de la continuité des parcours.",
+    "calcul": "Le taux de réadmissions non programmées est calculé comme suit : **Exclusions** : Les réadmissions programmées (ex : chimiothérapie, chirurgie en deux temps) sont exclues.",
+    "utilite": [
+      "**Qualité des soins** : Un taux élevé peut indiquer des problèmes de prise en charge initiale ou de suivi post",
+      "**Coordination ville"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : 10",
+      "**Objectifs** : Réduction des réadmissions évitables (ex : programmes de suivi post",
+      "**Variation par pathologie** : Insuffisance cardiaque (20",
+      "25%), BPCO (15"
+    ],
+    "limites": [
+      "Peut être influencé par des facteurs socio"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Réadmissions",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Parcours de Soins",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Réadmissions Évitables",
+    "definition": "Le taux de réadmissions évitables mesure la proportion de réadmissions non programmées dans les 30 jours suivant la sortie initiale, identifiées comme potentiellement évitables par des modèles prédictifs. Cet indicateur est un marqueur clé de la qualité des soins et de l'efficacité de la coordination post-hospitalisation.",
+    "calcul": "Le taux de réadmissions évitables est calculé comme suit : **Critères d'évitabilité** : - Modèles prédictifs basés sur des algorithmes (ex : LACE, HOSPITAL). - Exclusion des réadmissions pour des pathologies non liées au séjour initial.",
+    "utilite": [
+      "**Coordination ville",
+      "hôpital** : Évaluer l'efficacité des dispositifs de suivi post"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : 5",
+      "**Pathologies cibles** : Insuffisance cardiaque (15",
+      "20%), BPCO (10"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Réadmissions",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Parcours de Soins",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux d'Événements Indésirables Graves (EIG)",
+    "definition": "Le taux d'événements indésirables graves (EIG) mesure la proportion de séjours au cours desquels un événement indésirable grave est survenu, tel que défini par la Haute Autorité de Santé (HAS). Ces événements incluent les erreurs médicamenteuses, les chutes, les infections nosocomiales graves, etc.",
+    "calcul": "Le taux d'EIG est calculé comme suit : **Critères d'EIG** : - Événements ayant entraîné un préjudice significatif pour le patient. - Événements évitables (ex : erreur de médicament, chute avec fracture).",
+    "utilite": [],
+    "sources": [
+      "**PMSI** : Codes CIM"
+    ],
+    "exemples": [
+      "**Taux national moyen** : 1",
+      "**Services à risque** : Réanimation (3",
+      "5%), Urgences (2"
+    ],
+    "limites": [
+      "Sous",
+      "Dépend de la définition des EIG (variabilité inter"
+    ],
+    "references": [
+      {
+        "text": "HAS - Sécurité des Soins",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH - Événements Indésirables",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Activité en Hospitalisation à Domicile (HAD)",
+    "definition": "L'activité en Hospitalisation à Domicile (HAD) mesure le volume et la nature des prises en charge réalisées à domicile, en alternative à l'hospitalisation traditionnelle. Cet indicateur est spécifique au champ HAD du PMSI.",
+    "calcul": "L'activité en HAD peut être mesurée via plusieurs sous-indicateurs :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**DMS en HAD** : ~20",
+      "**Part de l'HAD** : 5"
+    ],
+    "limites": [
+      "Nécessite une organisation spécifique (coordination ville"
+    ],
+    "references": [
+      {
+        "text": "ATIH - PMSI HAD",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Hospitalisation à Domicile",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Décès Prématurés",
+    "definition": "Le taux de décès prématurés mesure la proportion de décès survenant pendant l'hospitalisation pour des pathologies ou procédures à faible mortalité attendue. Cet indicateur, issu des Patient Safety Indicators (PSI), est un marqueur de la sécurité des soins et de la qualité des prises en charge.",
+    "calcul": "Le taux de décès prématurés est calculé comme suit : **Pathologies cibles** : - Séjours pour des pathologies ou procédures avec un taux de mortalité attendu < 1% (ex : appendicectomie, hernie inguinale). - Exclusion des patients avec comorbidités sévères (score de Charlson élevé).",
+    "utilite": [],
+    "sources": [
+      "**PMSI MCO** : Données issues des RSS, incluant les diagnostics (CIM"
+    ],
+    "exemples": [
+      "**Taux national moyen** : 0,1"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "DREES - PSI",
+        "url": "https://drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ATIH - Mortalité Hospitalière",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Mutualisation des Ressources Territoriales",
+    "definition": "Le taux de mutualisation des ressources territoriales mesure le niveau de partage des ressources (équipements, plateaux techniques, personnel) entre les établissements d'un Groupement Hospitalier de Territoire (GHT). Cet indicateur évalue l'efficacité de la collaboration territoriale.",
+    "calcul": "Le taux de mutualisation est calculé comme suit : **Exemples de ressources mutualisées** : - Équipements lourds (IRM, scanners). - Blocs opératoires. - Plateaux techniques spécialisés (ex : radiologie interventionnelle).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : 30",
+      "**Ressources cibles** : IRM (60",
+      "80%), blocs opératoires (40"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ANAP - Mutualisation Territoriale",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ATIH - PMSI",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Délai d'Attente",
+    "definition": "Le délai d'attente mesure le temps moyen entre la demande de consultation ou d'hospitalisation et la réalisation effective de l'acte. Cet indicateur est crucial pour évaluer l'accessibilité aux soins et la satisfaction des patients.",
+    "calcul": "Le délai d'attente est calculé comme suit :",
+    "utilite": [],
+    "sources": [
+      "**Logiciels de rendez",
+      "vous** : Données issues des systèmes de gestion des rendez"
+    ],
+    "exemples": [
+      "**Délai moyen pour une consultation spécialisée** : 30",
+      "**Délai moyen pour une hospitalisation programmée** : 15"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "HAS - Accès aux Soins",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH - Délais d'Attente",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux d'Occupation",
+    "definition": "Le taux d'occupation mesure le pourcentage de lits occupés par rapport à la capacité totale d'un établissement ou d'un GHT sur une période donnée. Cet indicateur reflète l'utilisation des ressources hospitalières.",
+    "calcul": "Le taux d'occupation est calculé comme suit :",
+    "utilite": [
+      "**Gestion des capacités** : Permet d'identifier les périodes de surcharge ou de sous"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Taux d'occupation cible** : 80",
+      "**Variation saisonnière** : Peut atteindre 90"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Taux d'Occupation",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des Capacités",
+        "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      }
+    ]
+  },
+  {
+    "indicateur": "Délai Moyen entre Diagnostic et Traitement Chirurgical (Cancer)",
+    "definition": "Le délai moyen entre le diagnostic et le traitement chirurgical mesure le temps écoulé entre la confirmation du diagnostic de cancer et la réalisation de l'intervention chirurgicale. Cet indicateur est crucial pour évaluer l'accès rapide aux soins en cancérologie.",
+    "calcul": "Le délai moyen est calculé comme suit : **Critères de calcul** : - Diagnostic confirmé par anatomopathologie (date du compte-rendu). - Intervention chirurgicale à visée curative (codes CCAM spécifiques).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Délai national moyen** : 20"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "DREES - Délais en Cancérologie",
+        "url": "https://drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "INCa - Parcours en Cancérologie",
+        "url": "https://www.e-cancer.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Nombre de GHM Concourant à 80% des Séjours",
+    "definition": "Le nombre de GHM concourant à 80% des séjours mesure la concentration de l'activité hospitalière sur un nombre restreint de groupes homogènes de malades (GHM). Cet indicateur, inspiré de la loi de Pareto, permet d'identifier les GHM dominants qui représentent la majorité de l'activité.",
+    "calcul": "Le nombre de GHM concourant à 80% des séjours est calculé comme suit :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Nombre moyen de GHM** : 20",
+      "**Variation par spécialité** : Chirurgie (15",
+      "25 GHM), Médecine (25"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ANAP - Analyse d'Activité",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ATIH - GHM",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de GHM de Recours",
+    "definition": "Le taux de GHM de recours mesure la proportion de séjours pour des groupes homogènes de malades (GHM) nécessitant des plateaux techniques spécialisés ou une expertise spécifique, non disponibles dans tous les établissements. Cet indicateur évalue la mission de recours des CHU et des établissements de référence.",
+    "calcul": "Le taux de GHM de recours est calculé comme suit : **Critères de GHM de recours** : - GHM nécessitant des équipements spécifiques (ex : chirurgie robotique, greffes). - GHM avec un faible volume national (ex : maladies rares). - Référentiel ATIH des GHM de recours.",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux moyen en CHU** : 10"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ANAP - GHM de Recours",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ATIH - Référentiels",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Activité en Psychiatrie (PSY)",
+    "definition": "L'activité en psychiatrie mesure le volume et la nature des prises en charge en psychiatrie, incluant les hospitalisations complètes, les hospitalisations à temps partiel, et les consultations. Cet indicateur est spécifique au champ Psychiatrie du PMSI.",
+    "calcul": "L'activité en psychiatrie peut être mesurée via plusieurs sous-indicateurs :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**DMS en psychiatrie** : ~30",
+      "**Part de l'HTP** : 20"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - PMSI Psychiatrie",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Parcours en Santé Mentale",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Parcours Optimisés",
+    "definition": "Le taux de parcours optimisés mesure la proportion de parcours de soins respectant les délais et étapes clés définis par les référentiels (ex : délai diagnostic-traitement, coordination entre acteurs). Cet indicateur évalue l'efficacité de l'organisation des soins et la fluidité des parcours.",
+    "calcul": "Le taux de parcours optimisés est calculé comme suit : **Critères d'optimisation** : - Respect des délais (ex : < 30 jours pour un parcours cancérologie). - Coordination entre acteurs (ville, hôpital, SSR). - Absence de rupture dans le parcours.",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Parcours cancérologie** : Taux d'optimisation = 60",
+      "**Parcours AVC** : Taux d'optimisation = 50"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "HAS - Parcours de Soins",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "INCa - Parcours en Cancérologie",
+        "url": "https://www.e-cancer.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Durée Médiane de Séjour par GHM",
+    "definition": "La durée médiane de séjour par GHM mesure le temps médian passé à l'hôpital pour un groupe homogène de malades (GHM) donné. Contrairement à la durée moyenne, la médiane est moins sensible aux valeurs extrêmes (séjours très longs), offrant une vision plus robuste de la durée typique de séjour.",
+    "calcul": "La durée médiane de séjour est calculée comme suit : **Méthode** : 1. Classer les durées de séjour par ordre croissant pour le GHM. 2. Identifier la valeur centrale (50ème percentile).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Variation inter"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Durée de Séjour",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Parcours de Soins",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Valorisation des GHM",
+    "definition": "Le taux de valorisation des GHM mesure la proportion de groupes homogènes de malades (GHM) correctement valorisés, c'est-à-dire sans erreur de codage ou de groupage. Cet indicateur évalue la qualité du codage et son impact sur la tarification.",
+    "calcul": "Le taux de valorisation est calculé comme suit : **Critères de valorisation** : - Absence d'erreurs de codage (diagnostics, actes). - Conformité aux règles de groupage PMSI.",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : 90"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ANAP - Valorisation PMSI",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ATIH - OVALIDE",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Séjours avec Comorbidités Multiples",
+    "definition": "Le taux de séjours avec comorbidités multiples mesure la proportion de séjours pour lesquels les patients présentent trois comorbidités ou plus, codées selon la Classification Internationale des Maladies (CIM-10). Cet indicateur est un marqueur de la complexité des prises en charge et de la charge en soins associée.",
+    "calcul": "Le taux de séjours avec comorbidités multiples est calculé comme suit : **Critères de comorbidités** : - Diagnostics associés (CIM-10) en dehors du diagnostic principal. - Exclusion des complications post-opératoires (sauf si présentes à l'admission).",
+    "utilite": [],
+    "sources": [
+      "**PMSI MCO** : Données issues des RSS, incluant les diagnostics associés (CIM"
+    ],
+    "exemples": [
+      "**Taux moyen en CHU** : 20",
+      "30% (vs 10",
+      "**Variation par service** : Médecine interne (40",
+      "50%), Gériatrie (35"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Comorbidités",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "CIM-10 - Classification",
+        "url": "https://www.who.int/standards/classifications/classification-of-diseases"
+      }
+    ]
+  },
+  {
+    "indicateur": "Efficacité des Parcours de Soins",
+    "definition": "L'efficacité des parcours de soins mesure la capacité d'un établissement ou d'un GHT à assurer une prise en charge coordonnée et sans rupture pour les patients. Cet indicateur évalue la fluidité et la qualité de la coordination entre les différents acteurs et services.",
+    "calcul": "L'efficacité des parcours de soins peut être mesurée via plusieurs sous-indicateurs :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Délai moyen diagnostic"
+    ],
+    "limites": [
+      "Mesure complexe nécessitant des données multi"
+    ],
+    "references": [
+      {
+        "text": "HAS - Parcours de Soins",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH - Coordination Territoriale",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Conformité aux Parcours de Soins",
+    "definition": "Le taux de conformité aux parcours de soins mesure la proportion de séjours conformes aux parcours types définis par les référentiels de bonnes pratiques (ex : parcours cancérologie, parcours AVC). Cet indicateur évalue la qualité de l'organisation des soins et le respect des recommandations.",
+    "calcul": "Le taux de conformité aux parcours de soins est calculé comme suit : **Critères de conformité** : - Respect des étapes clés (ex : délais, examens, consultations). - Coordination entre acteurs (ville, hôpital, SSR).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Parcours cancérologie** : Taux de conformité = 70",
+      "**Parcours AVC** : Taux de conformité = 60"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "HAS - Parcours de Soins",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "INCa - Parcours en Cancérologie",
+        "url": "https://www.e-cancer.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Couverture des Besoins Territoriaux",
+    "definition": "Le taux de couverture des besoins territoriaux mesure l'adéquation entre l'offre de soins du Groupement Hospitalier de Territoire (GHT) et les besoins estimés de la population du territoire. Cet indicateur évalue la capacité du GHT à répondre aux besoins en santé de sa population.",
+    "calcul": "Le taux de couverture est calculé comme suit : **Méthode de calcul** : 1. Estimer les besoins du territoire (données démographiques, morbidité). 2. Mesurer l'offre du GHT (nombre de lits, actes, séjours). 3. Calculer le ratio offre/besoins par spécialité.",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : 80",
+      "**Spécialités cibles** : Médecine (90",
+      "110%), Chirurgie (70"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ANAP - Couverture Territoriale",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ARS - Données Territoriales",
+        "url": "https://www.ars.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Réinterventions Chirurgicales",
+    "definition": "Le taux de réinterventions chirurgicales mesure la proportion de patients nécessitant une réintervention non programmée dans les 30 jours suivant une intervention chirurgicale initiale. Cet indicateur est un marqueur de la qualité des prises en charge chirurgicales et de la sécurité des soins.",
+    "calcul": "Le taux de réinterventions chirurgicales est calculé comme suit : **Critères de réintervention** : - Réinterventions non programmées (ex : hémorragie, infection, échec technique). - Exclusion des réinterventions programmées (ex : chirurgie en deux temps).",
+    "utilite": [
+      "**Sécurité des patients** : Réduire les complications post"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : 2",
+      "**Chirurgies à risque** : Chirurgie digestive (3",
+      "6%), orthopédie (2"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "DREES - Analyse Chirurgicale",
+        "url": "https://drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ATIH - CCAM",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Séjours avec Actes Lourds (CCAM)",
+    "definition": "Le taux de séjours avec actes lourds mesure la proportion de séjours incluant des actes médicaux ou chirurgicaux complexes, classés comme \"lourds\" dans la Classification Commune des Actes Médicaux (CCAM). Cet indicateur reflète la technicité et la complexité des prises en charge.",
+    "calcul": "Le taux de séjours avec actes lourds est calculé comme suit : **Critères d'actes lourds** : - Actes avec un coefficient CCAM > seuil (ex : > 50). - Actes nécessitant des plateaux techniques spécifiques (ex : chirurgie robotique, imagerie interventionnelle).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux moyen en CHU** : 15",
+      "25% (vs 5",
+      "**Variation par service** : Neurochirurgie (40",
+      "50%), Cardiologie interventionnelle (30"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - CCAM",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "Tarification T2A - Actes Lourds",
+        "url": "https://www.atih.sante.fr/tarification"
+      }
+    ]
+  },
+  {
+    "indicateur": "Durée Moyenne de Séjour (DMS)",
+    "definition": "La Durée Moyenne de Séjour (DMS) mesure le nombre moyen de jours passés par un patient à l'hôpital pour un séjour donné. Cet indicateur est crucial pour évaluer l'efficacité de la gestion des lits et des ressources hospitalières.",
+    "calcul": "La DMS est calculée comme suit :",
+    "utilite": [
+      "**Comparaison inter"
+    ],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Durée Moyenne de Séjour",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Indicateurs GHT",
+        "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Séjours Chirurgicaux pour Cancer",
+    "definition": "Le taux de séjours chirurgicaux pour cancer mesure la proportion de séjours incluant une intervention chirurgicale dans la prise en charge des cancers. Cet indicateur évalue l'accès à la chirurgie dans le parcours de soins en cancérologie.",
+    "calcul": "Le taux de séjours chirurgicaux pour cancer est calculé comme suit : **Critères de séjours chirurgicaux** : - Codes CIM-10 pour les cancers (C00-D48). - Codes CCAM pour les actes chirurgicaux (ex : tumorectomie, colectomie).",
+    "utilite": [],
+    "sources": [
+      "**PMSI MCO** : Données issues des RSS, incluant les diagnostics (CIM"
+    ],
+    "exemples": [
+      "**Taux national moyen** : 50",
+      "**Cancers cibles** : Sein (70",
+      "80%), Côlon (60"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "DREES - Observation des Cancers",
+        "url": "https://drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "INCa - Parcours en Cancérologie",
+        "url": "https://www.e-cancer.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Mortalité Hospitalière Ajustée",
+    "definition": "Le taux de mortalité hospitalière ajustée mesure la proportion de décès survenant à l'hôpital, corrigée par des facteurs de risque (âge, comorbidités, sévérité des cas). Cet indicateur est essentiel pour évaluer la qualité et la sécurité des soins, notamment dans les CHU où les cas sont plus complexes.",
+    "calcul": "Le taux de mortalité ajustée est calculé comme suit : Où : - **Décès attendus** : Calculés via des modèles prédictifs (ex : modèle SMR - Standardized Mortality Ratio). - **Facteurs d'ajustement** : Âge, GHM, comorbidités (CMA), score de sévérité (ex : SAPS II en réanimation).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national ajusté** : ~2",
+      "**Réanimation** : 8"
+    ],
+    "limites": [
+      "Ne prend pas en compte les décès post"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Mortalité Hospitalière",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Indicateurs de Qualité",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Recours au CHU",
+    "definition": "Le taux de recours au CHU mesure la proportion de patients résidents du territoire du GHT qui sont pris en charge par le Centre Hospitalier Universitaire (CHU) pour des soins spécialisés ou complexes. Cet indicateur évalue l'attractivité et la complémentarité entre le CHU et les autres établissements du GHT.",
+    "calcul": "Le taux de recours au CHU est calculé comme suit :",
+    "utilite": [
+      "**Coordination GHT"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Taux de recours moyen** : 30"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Flux de Patients",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ANAP - Coordination GHT",
+        "url": "https://www.anap.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Nombre de Séjours",
+    "definition": "Le nombre de séjours mesure le volume total d'hospitalisations dans un établissement ou un GHT sur une période donnée. Cet indicateur est fondamental pour évaluer l'activité globale et la charge de travail.",
+    "calcul": "Le nombre de séjours est calculé comme suit :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Nombre de Séjours",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Activité Hospitalière",
+        "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Réadmission",
+    "definition": "Le taux de réadmission mesure la proportion de patients réhospitalisés dans un délai donné (généralement 30 jours) après leur sortie initiale. Cet indicateur est un marqueur de la qualité des soins et de la continuité des parcours de santé.",
+    "calcul": "Le taux de réadmission est calculé comme suit :",
+    "utilite": [
+      "**Qualité des soins** : Un taux élevé peut indiquer des problèmes de prise en charge initiale ou de suivi post"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : ~10",
+      "**Objectifs** : Réduction des réadmissions évitables (ex : programmes de suivi post"
+    ],
+    "limites": [
+      "Peut être influencé par des facteurs socio"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Taux de Réadmission",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Indicateurs de Qualité",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Recours à l'HAD dans les Territoires",
+    "definition": "Le taux de recours à l'HAD (Hospitalisation à Domicile) mesure la proportion de patients orientés vers l'HAD après un séjour en Médecine, Chirurgie, Obstétrique (MCO). Cet indicateur évalue la fluidité des parcours et l'accès aux alternatives à l'hospitalisation complète.",
+    "calcul": "Le taux de recours à l'HAD est calculé comme suit : **Critères de relais HAD** : - Patients éligibles à l'HAD (ex : soins complexes, palliatifs). - Orientation documentée dans le PMSI (chaînage des séjours).",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**Taux national moyen** : 5",
+      "**Pathologies cibles** : Cancers (15",
+      "20%), soins palliatifs (25"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ANAP - Recours à l'HAD",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ATIH - PMSI HAD",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  }
+]
