@@ -63,6 +63,43 @@
     ]
   },
   {
+    "indicateur": "Taux de Séjours avec Actes CCAM Valorisés",
+    "definition": "Le **taux de séjours avec actes CCAM valorisés** mesure la proportion de séjours incluant au moins un acte de la Classification Commune des Actes Médicaux (CCAM) **facturable** dans le cadre de la tarification T2A. Cet indicateur évalue l'**exhaustivité du codage des actes** et l'**optimisation de la valorisation financière** des séjours. Un taux élevé reflète une bonne pratique de codage et une maximisation des recettes liées aux actes.",
+    "calcul": "### Critères d'inclusion des actes CCAM Un acte est considéré comme **valorisé** s'il remplit les conditions suivantes : - Code CCAM **valide** (présent dans la nomenclature en vigueur). - Acte **réalisé** pendant le séjour (date compatible avec la durée de séjour). - Acte **autorisé** pour le type de séjour (hospitalisation complète, partielle, ou ambulatoire). - Acte **codé dans le RSS** (présent dans le Résumé de Sortie Standardisé). ### Exclusions - Actes **non facturables** (ex : actes de prévention non tarifés en sus). - Actes **erronés ou incomplets** (codes invalides, dates aberrantes). - Actes **déjà inclus dans le GHM** (certains actes sont valorisés via le GHM et non en sus).",
+    "utilite": [
+      "**Optimisation des recettes** : Identifier les séjours sous"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Taux moyen national (MCO)** : ~60",
+      "Chirurgie : 85",
+      "Médecine : 40",
+      "Obstétrique : 70",
+      "SSR : 30",
+      "<30% : Risque de sous",
+      ">90% : Audit pour vérifier l'absence de sur"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Classification CCAM",
+        "url": "https://www.atih.sante.fr/codage-et-tarification/la-classification-commune-des-actes-medicaux-ccam"
+      },
+      {
+        "text": "ATIH - Règles de valorisation des actes CCAM",
+        "url": "https://www.atih.sante.fr/tarification/la-tarification-a-l-activite/les-supplements"
+      },
+      {
+        "text": "ScanSanté - Analyse des actes CCAM",
+        "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      },
+      {
+        "text": "Guide de codage CCAM - ATIH",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux de Complications par GHM",
     "definition": "Le taux de complications par GHM mesure la proportion de séjours pour lesquels des complications spécifiques au groupe homogène de malades (GHM) sont survenues. Ces complications sont identifiées via des codes CIM-10 spécifiques et reflètent la qualité des prises en charge pour des pathologies données.",
     "calcul": "Le taux de complications par GHM est calculé comme suit : **Critères de complications** : - Codes CIM-10 spécifiques (ex : infections post-op, complications de procédures). - Exclusion des complications présentes à l'admission.",
@@ -88,25 +125,46 @@
     ]
   },
   {
-    "indicateur": "Indicateurs PMSI et SNDS pour le Monitoring des GHT avec CHU",
-    "definition": "",
-    "calcul": "",
+    "indicateur": "Nombre Moyen de Diagnostics Associés par Séjour",
+    "definition": "Le **nombre moyen de diagnostics associés par séjour** mesure la complexité médicale des patients pris en charge en calculant le nombre moyen de **diagnostics secondaires et associés** (hors diagnostic principal) codés par séjour. Cet indicateur reflète la **charge en comorbidités** et la **sévérité globale** des cas, influençant la durée de séjour, les ressources nécessaires et la tarification (via les CMA - Comorbidités Majeures Associées).",
+    "calcul": "### Composantes des diagnostics associées Dans le PMSI, les diagnostics sont classés en : - **Diagnostic principal (DP)** : 1 par séjour (non inclus dans ce calcul). - **Diagnostics secondaires (DS)** : Pathologies ou affections associées au DP. - **Diagnostics associés (DA)** : Comorbidités ou complications survenues pendant le séjour. ### Méthode de décompte - Chaque code CIM-10 (hors DP) compte pour **1 diagnostic associé**. - Les **CMA (Comorbidités Majeures Associées)** sont incluses dans ce décompte. - Les codes **Z** (ex : Z51.2 - Chimiothérapie) sont comptabilisés s'ils sont pertinents.",
     "utilite": [],
-    "sources": [],
-    "exemples": [],
-    "limites": [],
+    "sources": [
+      "**PMSI MCO/SSR/PSY** : Données issues des Résumés de Sortie Standardisés (RSS), incluant tous les codes CIM",
+      "**Base CIM"
+    ],
+    "exemples": [
+      "Médecine interne : 4,0",
+      "Chirurgie orthopédique : 1,5",
+      "Réanimation : 5,0",
+      "Obstétrique : 0,5",
+      "65"
+    ],
+    "limites": [
+      "**Qualité du codage** : Sous",
+      "**Codes CIM",
+      "10 non spécifiques** : Certains codes (ex : R68.8"
+    ],
     "references": [
       {
-        "text": "ATIH - PMSI",
+        "text": "ATIH - Codage CIM-10 en PMSI",
+        "url": "https://www.atih.sante.fr/codage-et-tarification/la-classification-internationale-des-maladies-cim-10"
+      },
+      {
+        "text": "ATIH - Comorbidités Majeures Associées (CMA)",
+        "url": "https://www.atih.sante.fr/tarification/la-tarification-a-l-activite/les-comorbidites-majeures-associees-cma"
+      },
+      {
+        "text": "ScanSanté - Analyse des diagnostics",
+        "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      },
+      {
+        "text": "Guide de codage CIM-10 - ATIH",
         "url": "https://www.atih.sante.fr/"
       },
       {
-        "text": "SNDS - Données de Santé",
-        "url": "https://www.snds.gouv.fr/"
-      },
-      {
-        "text": "DGOS - Indicateurs",
-        "url": "https://solidarites-sante.gouv.fr/"
+        "text": "OMS - Classification CIM-10",
+        "url": "https://icd.who.int/fr"
       }
     ]
   },
@@ -196,6 +254,40 @@
       {
         "text": "Filières Maladies Rares",
         "url": "https://www.filières-maladiesrares.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indice de Diversité des GHM",
+    "definition": "L'**Indice de Diversité des GHM** mesure le degré de variété des groupes homogènes de malades (GHM) pris en charge dans un établissement ou un GHT. Cet indicateur permet d'évaluer si l'activité est concentrée sur quelques pathologies ou, au contraire, très diversifiée. Une forte diversité peut refléter une offre de soins large (typique des CHU), tandis qu'une faible diversité peut indiquer une spécialisation (ex : clinique de chirurgie orthopédique).",
+    "calcul": "L'indice de diversité des GHM est calculé à partir de la répartition des séjours par GHM, en utilisant des indices écologiques classiques : ### 1. Indice de Shannon (H') **Interprétation** : Plus H' est élevé, plus la diversité est grande. ### 2. Indice de Simpson (D) **Interprétation** : D proche de 1 = diversité très élevée ; D proche de 0 = diversité faible. ### 3. Nombre équivalent de GHM (e^H') **Interprétation** : Nombre théorique de GHM également répartis qui donneraient la même diversité.",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**CHU de référence** : Indice de Shannon (H') ~4,5 à 5,0 (e^H' ~ 90",
+      "**Clinique spécialisée (ex : chirurgie orthopédique)** : H' ~1,5 à 2,5 (e^H' ~ 5"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Clé de groupage des GHM",
+        "url": "https://www.atih.sante.fr/tarification/la-tarification-a-l-activite/les-groupes-homogenes-de-malades-ghm"
+      },
+      {
+        "text": "ScanSanté - Analyse des volumes par GHM",
+        "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      },
+      {
+        "text": "Indice de Shannon - Wikipedia",
+        "url": "https://fr.wikipedia.org/wiki/Indice_de_diversit%C3%A9_de_Shannon"
+      },
+      {
+        "text": "Indice de Simpson - Ecologie numérique",
+        "url": "https://www.ecologie-numerique.fr/"
+      },
+      {
+        "text": "Guide d'analyse PMSI - ATIH",
+        "url": "https://www.atih.sante.fr/"
       }
     ]
   },
@@ -411,56 +503,6 @@
     ]
   },
   {
-    "indicateur": "Indicateurs PMSI Pertinents pour un GHT avec CHU",
-    "definition": "",
-    "calcul": "",
-    "utilite": [],
-    "sources": [],
-    "exemples": [],
-    "limites": [],
-    "references": [
-      {
-        "text": "ATIH - Indicateurs PMSI",
-        "url": "https://www.atih.sante.fr/"
-      },
-      {
-        "text": "HAS - Qualité des Soins",
-        "url": "https://www.has-sante.fr/"
-      },
-      {
-        "text": "ANAP - Pilotage des GHT",
-        "url": "https://www.anap.fr/"
-      }
-    ]
-  },
-  {
-    "indicateur": "Indicateurs PMSI pour le Monitoring des GHT avec CHU",
-    "definition": "",
-    "calcul": "",
-    "utilite": [],
-    "sources": [],
-    "exemples": [],
-    "limites": [],
-    "references": [
-      {
-        "text": "ATIH - PMSI",
-        "url": "https://www.atih.sante.fr/"
-      },
-      {
-        "text": "DGOS - Indicateurs",
-        "url": "https://solidarites-sante.gouv.fr/"
-      },
-      {
-        "text": "HAS - Qualité",
-        "url": "https://www.has-sante.fr/"
-      },
-      {
-        "text": "ANAP - Performance",
-        "url": "https://www.anap.fr/"
-      }
-    ]
-  },
-  {
     "indicateur": "Taux de Prolongation de Séjour",
     "definition": "Le taux de prolongation de séjour mesure la proportion de séjours dépassant significativement la durée attendue pour un groupe homogène de malades (GHM) donné. Cet indicateur, issu des Patient Safety Indicators (PSI), peut refléter des complications, des retards dans la prise en charge, ou des difficultés de sortie.",
     "calcul": "Le taux de prolongation de séjour est calculé comme suit : **Critères de prolongation** : - Durée de séjour > percentile 90 de la distribution pour le GHM. - Exclusion des séjours avec complications documentées (CIM-10).",
@@ -478,6 +520,41 @@
       {
         "text": "ATIH - Durée de Séjour",
         "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Activité en Médecine, Chirurgie, Obstétrique (MCO)",
+    "definition": "L'activité en Médecine, Chirurgie, Obstétrique (MCO) mesure le volume et la nature des prises en charge en hospitalisation complète ou partielle dans les disciplines de médecine, chirurgie et obstétrique. Ce champ représente la majorité de l'activité hospitalière en France et est au cœur du PMSI pour l'évaluation de l'activité, la tarification (T2A) et le pilotage des établissements.",
+    "calcul": "L'activité MCO peut être mesurée via plusieurs sous-indicateurs principaux :",
+    "utilite": [
+      "**Benchmarking inter"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Taux d'ambulatoire** : 30"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - PMSI MCO",
+        "url": "https://www.atih.sante.fr/les-champs-du-pmsi/mco"
+      },
+      {
+        "text": "ATIH - Tarification T2A",
+        "url": "https://www.atih.sante.fr/tarification/la-tarification-a-l-activite"
+      },
+      {
+        "text": "ScanSanté - Activité MCO par GHT",
+        "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      },
+      {
+        "text": "Notice Technique PMSI MCO 2024",
+        "url": "https://www.solimed.fr/wp/index.php/2023/12/20/notice-technique-pmsi-2024-interchamps/"
+      },
+      {
+        "text": "ANAP - Optimisation de l'activité MCO",
+        "url": "https://www.anap.fr/"
       }
     ]
   },
