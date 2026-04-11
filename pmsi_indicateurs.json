@@ -100,6 +100,43 @@
     ]
   },
   {
+    "indicateur": "Case-Mix Index (CMI)",
+    "definition": "Le Case-Mix Index (CMI), ou indice de complexité du casemix, mesure la lourdeur économique moyenne des séjours pris en charge par un établissement ou un GHT, en pondérant chaque GHM par son poids relatif (coefficient de pondération tarifaire). Un CMI élevé indique que l'établissement traite des cas plus complexes et plus coûteux que la moyenne nationale, tandis qu'un CMI proche de 1 signale une activité dans la norme. Cet indicateur est central pour l'analyse médico-économique : il permet de comprendre pourquoi les recettes T2A diffèrent entre établissements, indépendamment du volume d'activité.",
+    "calcul": "Le Case-Mix Index est calculé comme suit : **Précisions méthodologiques** : - Les poids relatifs des GHM sont publiés annuellement par l'ATIH dans le cadre de la classification T2A. Ils expriment le coût relatif d'un GHM par rapport au coût moyen national d'un séjour (CMI national = 1 par construction). - Le CMI peut être calculé pour l'ensemble des séjours MCO ou par segment (chirurgie, médecine, obstétrique) et par unité fonctionnelle. - Une variante fréquente utilise les tarifs GHM publiés plutôt que les poids relatifs ATIH, donnant un CMI en valeur monétaire (recette moyenne par séjour). - Le CMI est également calculable en SSR (via les GME et leurs pondérations) et en psychiatrie (GHJ/GHS). - L'analyse de décomposition du CMI distingue l'effet « casemix » (nature des pathologies traitées) de l'effet « DMS » (durée de séjour relative au GHM), permettant d'identifier les leviers d'amélioration.",
+    "utilite": [
+      "**Analyse médico"
+    ],
+    "sources": [
+      "**ATIH",
+      "**Tableaux de bord EPRD / ERRD** : intègrent le CMI comme indicateur de suivi de l'activité médico"
+    ],
+    "exemples": [
+      "**Cliniques privées** : CMI variable selon la spécialisation ; souvent élevé en chirurgie orthopédique et cardiologie interventionnelle (1,2",
+      "**Variation intra"
+    ],
+    "limites": [
+      "Le CMI est dépendant de la qualité du codage PMSI : un codage insuffisant des comorbidités et complications (CC/CMA) sous"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Classification GHM et poids relatifs",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Case-Mix Index par établissement",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "DGOS - Guide méthodologique de production des recettes MCO (T2A)",
+        "url": "https://sante.gouv.fr/"
+      },
+      {
+        "text": "HAS - Indicateurs de performance médico-économique",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux de Complications par GHM",
     "definition": "Le taux de complications par GHM mesure la proportion de séjours pour lesquels des complications spécifiques au groupe homogène de malades (GHM) sont survenues. Ces complications sont identifiées via des codes CIM-10 spécifiques et reflètent la qualité des prises en charge pour des pathologies données.",
     "calcul": "Le taux de complications par GHM est calculé comme suit : **Critères de complications** : - Codes CIM-10 spécifiques (ex : infections post-op, complications de procédures). - Exclusion des complications présentes à l'admission.",
@@ -165,6 +202,63 @@
       {
         "text": "OMS - Classification CIM-10",
         "url": "https://icd.who.int/fr"
+      }
+    ]
+  },
+  {
+    "indicateur": "Score de Vulnérabilité Sociale des Patients",
+    "definition": "Le score de vulnérabilité sociale des patients est un indicateur construit à partir des codes Z de la CIM-10 renseignés dans les diagnostics associés (DA) du PMSI MCO, identifiant les patients présentant des facteurs de vulnérabilité sociale documentés lors de leur hospitalisation : problèmes de logement, isolement social, difficultés économiques, problèmes familiaux, absence de protection sociale, situation irrégulière. Ces codes Z, dits « facteurs influant sur l'état de santé et le recours aux services de santé », sont sous-utilisés en France mais constituent une mine d'informations sur la charge médico-sociale que le GHT doit absorber. Un score élevé sur un service ou un territoire révèle une patientèle socialement fragilisée nécessitant une coordination renforcée avec les travailleurs sociaux, les structures médico-sociales et les dispositifs de droit commun.",
+    "calcul": "Le score de vulnérabilité sociale est calculé à deux niveaux : **Niveau 1 — Indicateur de présence binaire :** **Niveau 2 — Score composite (0-10 points) :** | Domaine | Codes CIM-10 | Poids | |---|---|---| | Logement précaire / sans domicile | Z59.0 (SDF), Z59.1 (logement inadéquat), Z59.2 (mésentente au domicile) | +3 | | Isolement social | Z60.2 (vie seule), Z60.3 (difficulté d'acculturation), Z60.4 (exclusion sociale) | +2 | | Difficultés économiques | Z59.5 (extrême pauvreté), Z59.6 (faibles revenus), Z59.7 (précarité ressources) | +3 | | Problèmes familiaux | Z63.0 (problèmes conjugaux), Z63.4 (disparition membre famille), Z63.6 (parent absent) | +1 | | Absence / rupture de protection sociale | Z59.4 (absence de soins appropriés), Z76.0 (demande de soins répétée injustifiée) | +1 | | **Score total** | | **0-10** | **Précisions méthodologiques** : - Les codes Z de vulnérabilité sociale sont identifiés dans les DA uniquement (le DP est réservé au motif médical principal d'hospitalisation). - Le codage de ces codes Z est très hétérogène entre établissements et entre services — un taux faible peut refléter un sous-codage plutôt qu'une faible prévalence réelle. - La liste des codes Z pertinents peut être complétée par des codes connexes : Z55 (problèmes liés à l'éducation), Z56 (problèmes liés à l'emploi), Z57 (exposition professionnelle). - L'indicateur peut être croisé avec le FDep (indice de défavorisation géographique) pour distinguer la vulnérabilité individuelle (codes Z) de la vulnérabilité contextuelle (zone de résidence défavorisée).",
+    "utilite": [
+      "**Identification des patients nécessitant une intervention médico",
+      "sociale** : les patients avec un score de vulnérabilité élevé doivent bénéficier d'un bilan social dès l'admission et d'une coordination renforcée à la sortie (assistante sociale, PASS, CCAS, SIAO pour les sans",
+      "**Dimensionnement du travail social hospitalier** : quantifier la charge médico",
+      "**Analyse territoriale intra",
+      "GHT** : comparer les scores de vulnérabilité sociale entre les établissements et entre les bassins de vie du GHT pour identifier les zones de concentration de la précarité et adapter les ressources médico",
+      "**Dialogue avec les collectivités et le médico"
+    ],
+    "sources": [
+      "**PMSI MCO** : codes Z de la CIM"
+    ],
+    "exemples": [
+      "**Taux de séjours avec au moins un code Z de vulnérabilité sociale** : 2",
+      "8 % dans les établissements qui codent activement ces diagnostics ; probablement 15",
+      "**Services avec taux de vulnérabilité élevé** : psychiatrie adulte (15",
+      "30 % de patients vulnérables documentés), médecine interne et gériatrie (10",
+      "20 %), UHCD/urgences (8",
+      "**Z59.0 (sans domicile fixe)** : 0,5",
+      "**Taux de réadmission à 30j** : 25",
+      "40 % chez les patients avec score de vulnérabilité ≥ 4, contre 10",
+      "**Sous",
+      "codage estimé** : des études comparant le codage Z avec les données des assistantes sociales montrent que seuls 20"
+    ],
+    "limites": [
+      "**Sous",
+      "codage massif** : le codage des codes Z de vulnérabilité sociale est très variable selon les établissements et les cultures de service — un faible score peut refléter un sous",
+      "**Dépendance aux pratiques locales** : un établissement qui forme activement ses équipes au codage des codes Z affichera un score plus élevé qu'un établissement identique qui ne code pas ces facteurs — les comparaisons inter",
+      "**Granularité insuffisante** : les codes Z CIM",
+      "La pondération des codes Z dans le score composite est arbitraire et non validée cliniquement en France — une validation locale sur des données médico"
+    ],
+    "references": [
+      {
+        "text": "OMS - CIM-10 codes Z : facteurs influant sur l'état de santé",
+        "url": "https://icd.who.int/browse10/2019/en#/Z55-Z65"
+      },
+      {
+        "text": "HAS - Précarité et santé : outils d'identification et prise en charge",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH - Codage des diagnostics associés dans le PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DREES - Précarité et recours aux soins hospitaliers",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "FNARS / Fédération des acteurs de la solidarité - Santé et précarité",
+        "url": "https://www.federationsolidarite.org/"
       }
     ]
   },
@@ -237,6 +331,49 @@
     ]
   },
   {
+    "indicateur": "Taux d'Activité Non Programmée",
+    "definition": "Le taux d'activité non programmée mesure la proportion des séjours MCO dont l'admission n'était pas planifiée à l'avance, c'est-à-dire issus d'un passage aux urgences, d'un transfert non anticipé ou d'une admission directe en urgence. Identifié dans le PMSI par le mode d'entrée (code 8 = urgences, code 6 = transfert), cet indicateur reflète la pression exercée par l'activité urgente et non planifiée sur l'organisation hospitalière du GHT. Un taux élevé contraint la capacité à programmer de l'activité chirurgicale et médicale élective, pèse sur les ressources humaines et matérielles, et est associé à une moindre efficience (DMS plus longue, taux d'ambulatoire plus faible, IP-DMS plus élevé). À l'inverse, un taux très faible peut signaler un établissement peu accessible pour les urgences de son territoire. Cet indicateur macro est déclinable par CMD, par GHM, par service ou par établissement du GHT.",
+    "calcul": "Le taux d'activité non programmée est calculé comme suit : **Sous-indicateurs dérivés :** **Précisions méthodologiques** : - Le mode d'entrée est codé dans le PMSI MCO par le RSS pour chaque séjour (champ obligatoire). - La distinction entre transfert programmé et non programmé n'est pas directement disponible dans le PMSI : une approximation consiste à considérer comme non programmé tout transfert sans séjour planifié identifiable dans les 30 jours précédents (chaînage NIR crypté). - L'analyse temporelle (jour de la semaine, heure d'admission) est possible via les dates et heures d'entrée du PMSI pour affiner la compréhension des flux urgents. - L'indicateur exclut les séances (dialyse, chimiothérapie, séances de radiothérapie) pour ne porter que sur les séjours avec nuitée ou ambulatoire complet.",
+    "utilite": [
+      "**Benchmarking intra",
+      "**Déclinaison par filière** : un taux de chirurgie non programmée élevé en orthopédie signale des traumatismes fréquents occupant les salles au détriment de la chirurgie élective ; en digestif, il peut révéler un sous",
+      "**Impact sur l'efficience** : l'activité non programmée est systématiquement associée à une DMS plus longue, un CMI plus élevé et un IP"
+    ],
+    "sources": [
+      "**ATIH"
+    ],
+    "exemples": [
+      "**Taux d'activité non programmée moyen** : 40",
+      "**CHU** : 50",
+      "**CHG de proximité** : 45",
+      "**Cliniques privées** : 15",
+      "**Chirurgie orthopédique** : taux de chirurgie non programmée de 30",
+      "45 % (traumatologie) vs 5",
+      "**Médecine interne / gériatrie** : 70",
+      "**Variation hebdomadaire** : pic d'admissions non programmées le lundi (suite au week",
+      "end) et creux le vendredi (anticipation des week"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Guide méthodologique PMSI MCO : modes d'entrée et de sortie",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des modes d'admission par établissement",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "DREES - Les urgences hospitalières en chiffres",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ANAP - Gestion de l'activité programmée et non programmée",
+        "url": "https://www.anap.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Nombre de GHM Rares ou Complexes",
     "definition": "Le nombre de GHM rares ou complexes mesure le volume de séjours pour des groupes homogènes de malades (GHM) peu fréquents ou particulièrement complexes. Cet indicateur est spécifique aux CHU, qui ont une mission de recours pour ces pathologies.",
     "calcul": "Le nombre de GHM rares ou complexes est calculé comme suit : **Critères de rareté/complexité** : - GHM avec un volume annuel national < 1 000 séjours. - GHM avec un poids relatif élevé (ex : > 5). - GHM nécessitant des plateaux techniques spécifiques (ex : greffes, chirurgie robotique).",
@@ -254,6 +391,122 @@
       {
         "text": "Filières Maladies Rares",
         "url": "https://www.filières-maladiesrares.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "APR-DRG — Sévérité de la Maladie et Risque de Mortalité (Belgique / Pays-Bas)",
+    "definition": "L'APR-DRG (All Patient Refined Diagnosis-Related Groups) est une classification médico-économique développée par 3M Health Information Systems, utilisée en Belgique, aux Pays-Bas, en Espagne et dans plusieurs États américains comme alternative ou complément aux DRG/GHM classiques. Sa caractéristique centrale est d'attribuer à chaque séjour, en plus du groupe diagnostique (équivalent du GHM français), deux niveaux de sous-classification indépendants : le **SOI (Severity of Illness — sévérité de la maladie)** sur une échelle de 1 à 4 (mineur, modéré, majeur, extrême) et le **ROM (Risk of Mortality — risque de mortalité)** sur la même échelle. Ces deux dimensions capturent la complexité clinique intra-groupe que les GHM/DRG classiques ne peuvent pas distinguer : deux séjours dans le même GHM peuvent avoir des SOI/ROM radicalement différents, justifiant des ressources et des résultats très différents. En Belgique, l'APR-DRG est le système officiel de financement hospitalier depuis 1995 et fournit le référentiel le plus granulaire disponible pour l'ajustement au risque en Europe.",
+    "calcul": "L'APR-DRG est un algorithme propriétaire 3M basé sur les codes CIM-10 : **Étape 1 — Attribution du groupe de base (équivalent GHM) :** **Étape 2 — Attribution du SOI (Severity of Illness) :** **Étape 3 — Attribution du ROM (Risk of Mortality) :** **Indicateurs dérivés du SOI/ROM :**",
+    "utilite": [
+      "**Ajustement au risque intra",
+      "**Identification du sous",
+      "financement T2A** : un établissement traitant beaucoup de patients SOI=3/4 dans un GHM finançant au niveau SOI=2 est sous",
+      "**Adoption en Belgique** : l'expérience belge de 30 ans avec l'APR"
+    ],
+    "sources": [
+      "**PMSI MCO** : codes CIM",
+      "10 (DP, DR, DA) et codes CCAM — données d'entrée de l'algorithme APR",
+      "**Logiciel APR",
+      "DRG 3M** : algorithme propriétaire, disponible sur licence commerciale auprès de 3M France ; traite les fichiers RSS/RSA PMSI pour attribuer le groupe APR",
+      "**Référence belge** : SPF Santé Publique Belgique, *APR",
+      "**Référence académique** : Averill R.F. et al., *All Patient Refined Diagnosis Related Groups (APR",
+      "**ATIH** : pour la correspondance entre les groupes APR"
+    ],
+    "exemples": [
+      "**CHU vs CHG** : les CHU présentent 2 à 3 fois plus de séjours SOI 3",
+      "**DMS par SOI (pneumonie, APR",
+      "DRG 139)** : SOI 1 : 3,5 jours ; SOI 2 : 5,2 jours ; SOI 3 : 8,1 jours ; SOI 4 : 14,7 jours — illustration de l'hétérogénéité intra",
+      "**ROM et mortalité** : ROM 1 : mortalité <0,5 % ; ROM 2 : 1",
+      "3 % ; ROM 3 : 5",
+      "12 % ; ROM 4 : 20",
+      "**Indice de sévérité moyen (ISM)** : CHU de référence ~2,8",
+      "3,2 ; CHG de grande taille ~2,0",
+      "2,4 ; CHG de proximité ~1,5",
+      "1,9 ; clinique privée spécialisée ~1,8"
+    ],
+    "limites": [
+      "**Licence commerciale** : contrairement aux indicateurs AHRQ open",
+      "source, l'APR",
+      "**Boîte noire algorithmique** : l'algorithme APR",
+      "**Dépendance au codage des DA** : comme tous les indicateurs basés sur les comorbidités CIM",
+      "**Non standardisé en France** : l'APR",
+      "**Interactions complexes** : l'attribution du SOI repose sur des règles d'interaction entre comorbidités qui peuvent produire des résultats contre"
+    ],
+    "references": [
+      {
+        "text": "3M Health Information Systems - APR-DRG Documentation",
+        "url": "https://www.3m.com/3M/en_US/health-information-systems-us/drive-value-based-care/patient-classification-methodologies/apr-drgs/"
+      },
+      {
+        "text": "SPF Santé Publique Belgique - Financement APR-DRG",
+        "url": "https://www.health.belgium.be/"
+      },
+      {
+        "text": "Averill R.F. et al., APR-DRGs Methodology Overview, 3M HIS, 1995",
+        "url": "https://www.hcup-us.ahrq.gov/db/nation/nis/APR-DRGsV20MethodologyOverviewandBibliography.pdf"
+      },
+      {
+        "text": "ATIH - Classification GHM et comparaison internationale",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "IRDES - Comparaisons internationales des systèmes de classification hospitalière",
+        "url": "https://www.irdes.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "OCDE — Mortalité à 30 Jours après IDM et AVC",
+    "definition": "Les indicateurs de mortalité à 30 jours après infarctus du myocarde (IDM) et accident vasculaire cérébral (AVC) font partie du programme de benchmarking international de l'OCDE (*Health at a Glance*), calculés dans plus de 40 pays sur des données administratives hospitalières standardisées. Ils mesurent la proportion de patients hospitalisés pour un IDM ou un AVC ischémique/hémorragique qui décèdent dans les 30 jours suivant l'admission, que le décès survienne en cours d'hospitalisation ou après la sortie. Ces indicateurs sont considérés comme des marqueurs de la qualité globale du système de soins pour ces deux pathologies temps-dépendantes — ils intègrent la rapidité de la prise en charge, la qualité des soins aigus, la disponibilité des plateaux techniques (coronarographie, thrombolyse/thrombectomie) et la qualité du suivi post-hospitalier immédiat. La France les calcule annuellement via la DREES et les transmet à l'OCDE.",
+    "calcul": "**1. Mortalité à 30 jours après IDM (infarctus du myocarde aigu) :** **2. Mortalité à 30 jours après AVC ischémique :** **3. Mortalité à 30 jours après AVC hémorragique :** **Ajustement sur le risque (méthode OCDE) :**",
+    "utilite": [
+      "**Positionnement international du GHT** : les taux de mortalité à 30 jours OCDE permettent de situer la performance du GHT dans un référentiel de 40 pays — au",
+      "**Évaluation des filières cardiologique et neurovasculaire** : la mortalité à 30 jours après IDM et AVC est le marqueur de résultat le plus robuste pour évaluer la performance globale des filières USIC (Unité de Soins Intensifs Cardiologiques) et UNV (Unité Neuro",
+      "**Impact des délais de prise en charge** : une réduction du délai de revascularisation (IDM) ou de thrombolyse/thrombectomie (AVC) se traduit directement par une baisse de la mortalité à 30 jours — cet indicateur mesure l'efficacité des protocoles temps"
+    ],
+    "sources": [
+      "**PMSI MCO** : diagnostic principal (I21, I22, I63, I60, I61), mode de sortie (décès = 9), mode d'entrée, âge, sexe, diagnostics associés (Charlson/Elixhauser) — pour la mortalité intra",
+      "**SNDS / CépiDc** : chaînage avec les données d'état civil pour les décès post",
+      "**ScanSanté** : mortalité intra",
+      "**OCDE"
+    ],
+    "exemples": [
+      "**Mortalité à 30j après AVC ischémique — France** : 10,2 % (OCDE 2022, standardisé). Meilleurs pays : Pays",
+      "**Mortalité à 30j après AVC hémorragique — France** : 28",
+      "**Variation inter",
+      "établissements France** : mortalité intra",
+      "hospitalière après IDM de 3",
+      "**Impact des UNV** : les établissements disposant d'une UNV labellisée affichent une mortalité à 30j après AVC ischémique 15",
+      "**Effet week",
+      "end IDM** : mortalité 20",
+      "30 % supérieure pour les IDM admis le week"
+    ],
+    "limites": [
+      "Les décès post",
+      "sortie (nécessaires pour la définition complète OCDE) ne sont accessibles qu'au travers du SNDS — les GHT ne disposant pas de cet accès ne peuvent calculer qu'une approximation (mortalité intra",
+      "Les petits volumes d'IDM et d'AVC dans les établissements périphériques du GHT rendent les taux annuels instables (intervalles de confiance larges) — une agrégation sur 3"
+    ],
+    "references": [
+      {
+        "text": "OCDE - Health at a Glance : 30-day mortality for AMI and stroke",
+        "url": "https://www.oecd.org/health/health-at-a-glance.htm"
+      },
+      {
+        "text": "DREES - Mortalité à 30 jours après IDM et AVC en France",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ScanSanté - Mortalité hospitalière après IDM et AVC",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "CépiDc INSERM - Données de mortalité post-hospitalière",
+        "url": "https://www.cepidc.inserm.fr/"
+      },
+      {
+        "text": "Société Française de Cardiologie - Registre FAST-MI",
+        "url": "https://www.sfcardio.fr/"
       }
     ]
   },
@@ -292,6 +545,63 @@
     ]
   },
   {
+    "indicateur": "Taux d'Actes Diagnostiques Redondants",
+    "definition": "Le taux d'actes diagnostiques redondants mesure la proportion de séjours MCO comportant au moins deux actes diagnostiques de même nature (imagerie, endoscopie, biopsie) réalisés dans un délai court au sein du même séjour ou entre deux séjours successifs du même patient, sans qu'une évolution clinique documentée ne le justifie. Ces actes redondants signalent des dysfonctionnements organisationnels : transfert inter-établissements sans transmission des résultats, absence d'accès au dossier patient partagé, réalisation d'un second acte par habitude ou méfiance envers l'acte antérieur, ou défaut de coordination entre les équipes médicales. La redondance diagnostique génère des surcoûts directs, une irradiation inutile pour le patient (imagerie) et un allongement de la durée de séjour.",
+    "calcul": "Le taux d'actes diagnostiques redondants est calculé comme suit : **Familles d'actes diagnostiques traceurs et délais de redondance :** | Famille d'actes | Codes CCAM (exemples) | Délai de redondance retenu | |---|---|---| | Scanner thoracique | ZBQK002, ZZQN002 (TDM thorax) | ≤ 7 jours | | Scanner abdomino-pelvien | ZZQK002 (TDM abdomen) | ≤ 7 jours | | IRM cérébrale | BZQK002 (IRM encéphale) | ≤ 14 jours | | Fibroscopie gastrique | HGED004, HGEH001 | ≤ 30 jours | | Coloscopie | HHQE003, HHQE001 | ≤ 30 jours | | Coronarographie diagnostique | DKJB001, DKJB002 | ≤ 30 jours | | Bronchoscopie | GEJE001, GEJB001 | ≤ 14 jours | | Ponction-biopsie hépatique | HHHB001 | ≤ 90 jours | **Précisions méthodologiques** : - La redondance intra-séjour est identifiée directement sur le RSS : deux codes CCAM identiques (ou de la même famille) dans le même séjour sans date différenciatrice justifiée. - La redondance inter-séjours nécessite le chaînage PMSI par patient (NIR crypté) pour comparer les actes du séjour courant avec ceux des séjours précédents dans la fenêtre temporelle retenue. - Certaines redondances sont cliniquement justifiées (évolution pathologique documentée, procédure diagnostique incomplète, contrôle post-thérapeutique) : leur exclusion nécessite une règle métier basée sur les diagnostics associés (ex. : nouveau DP entre les deux actes). - L'analyse est réalisée par service, par établissement et par type d'acte pour identifier les foyers de redondance les plus fréquents.",
+    "utilite": [
+      "**Détection des défauts de coordination et de transmission** : les actes redondants liés à des transferts inter",
+      "**Réduction des coûts directs** : chaque acte diagnostique redondant est un coût évitable (scanner ~150",
+      "400 €, coloscopie ~250",
+      "450 €, coronarographie ~800",
+      "**Évaluation du dossier patient partagé intra"
+    ],
+    "sources": [
+      "**PMSI MCO",
+      "Actes CCAM** : codes d'actes diagnostiques par séjour, pour la détection de la redondance intra",
+      "**Chaînage PMSI (NIR crypté)** : historique des séjours du patient pour la détection de la redondance inter",
+      "**ATIH",
+      "Référentiel CCAM** : classification des actes par famille et par sous"
+    ],
+    "exemples": [
+      "**Scanner abdomino",
+      "pelvien redondant (≤ 7 jours)** : 3",
+      "8 % des séjours comportant un scanner abdomino",
+      "**Coloscopie redondante (≤ 30 jours)** : 2",
+      "5 % des séjours avec coloscopie, principalement liés à des transferts inter",
+      "établissements sans transmission du compte",
+      "**IRM cérébrale redondante** : 4",
+      "**Coronarographie redondante** : 1",
+      "**Coût total estimé des actes redondants** : 50",
+      "**Réduction post",
+      "DPI partagé** : des études montrent une réduction de 20",
+      "35 % des actes d'imagerie redondants après déploiement d'un dossier patient partagé inter"
+    ],
+    "limites": [
+      "Le chaînage inter",
+      "séjours pour la détection des redondances inter",
+      "Les actes diagnostiques réalisés en ville (radiologie libérale, endoscopie ambulatoire) avant l'hospitalisation ne sont pas visibles dans le PMSI MCO seul, conduisant à une sous",
+      "L'indicateur peut déclencher des comportements défensifs (sous"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Référentiel CCAM et actes diagnostiques",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Recommandations sur le bon usage de l'imagerie diagnostique",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "SNDS - Croisement PMSI et DCIR pour les redondances ville-hôpital",
+        "url": "https://www.snds.gouv.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des actes CCAM par établissement",
+        "url": "https://www.scansante.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux d'Hospitalisation Ambulatoire (MCO)",
     "definition": "Le taux d'hospitalisation ambulatoire mesure la proportion de séjours réalisés en ambulatoire (sans nuitée) par rapport au total des séjours en Médecine, Chirurgie, Obstétrique (MCO). Cet indicateur est un marqueur de modernisation des pratiques hospitalières.",
     "calcul": "Le taux d'hospitalisation ambulatoire est calculé comme suit :",
@@ -315,6 +625,60 @@
     ]
   },
   {
+    "indicateur": "Indice de Saisonnalité et de Tension Capacitaire",
+    "definition": "L'indice de saisonnalité et de tension capacitaire analyse les variations temporelles de l'activité hospitalière — hebdomadaires, mensuelles et saisonnières — calculées depuis les dates de séjour PMSI, pour identifier les périodes de pic et de creux d'activité par CMD, GHM ou service. Il permet de distinguer la saisonnalité structurelle (liée à l'épidémiologie des pathologies et aux comportements de recours) de la saisonnalité organisationnelle (liée aux fermetures de lits, aux congés du personnel, aux programmations chirurgicales). La confrontation des pics d'activité avec les capacités disponibles révèle les périodes de tension capacitaire réelle et permet d'anticiper les besoins en lits, en personnel et en plateaux techniques.",
+    "calcul": "L'indice de saisonnalité est calculé à partir des dates d'entrée des séjours PMSI : **Indice de saisonnalité mensuelle (IS mensuel) :** **Indice de saisonnalité hebdomadaire :** **Indice de tension capacitaire (ITC) :** **Précisions méthodologiques** : - Les dates d'entrée et de sortie des RSS sont disponibles directement dans le PMSI MCO pour l'ensemble des établissements. - L'analyse distingue les séjours programmés (mode d'entrée ≠ 8) des séjours non programmés (urgences, mode d'entrée = 8) : la saisonnalité des urgences est structurelle (épidémies hivernales, accidents estivaux) tandis que celle de la chirurgie programmée est partiellement maîtrisable. - La décomposition par CMD permet d'identifier les spécialités portant la saisonnalité (CMD 4 pneumologie en hiver, CMD 8 orthopédie en été, CMD 5 cardiologie en hiver). - Le calcul sur plusieurs années (3-5 ans) permet de lisser les aléas et de dégager les tendances structurelles.",
+    "utilite": [
+      "**Planification des activités de chirurgie programmée** : lisser l'activité chirurgicale programmée sur les périodes creuses (janvier",
+      "février, octobre",
+      "**Gestion des épidémies saisonnières** : modéliser l'impact des épidémies de grippe, de bronchiolite et de gastro",
+      "**Benchmarking intra",
+      "GHT** : comparer les indices de saisonnalité entre les établissements du GHT pour identifier ceux qui absorbent disproportionnellement les pics saisonniers et ajuster les coopérations inter"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Saisonnalité hivernale** : IS mensuel de 115",
+      "130 en janvier",
+      "février pour les CMD respiratoires (CMD 4) et cardiovasculaires (CMD 5), contre 70",
+      "**Saisonnalité estivale** : IS de 110",
+      "125 en juillet",
+      "**Chirurgie programmée** : IS de 60",
+      "75 en août (fermetures de blocs opératoires) et 105",
+      "115 en septembre",
+      "octobre (rattrapage post",
+      "**Creux du week",
+      "end** : nombre d'entrées le samedi et dimanche représentant 30",
+      "40 % du volume d'une journée de semaine pour la chirurgie programmée, mais 80",
+      "**ITC critique (>1,3)** : observé en janvier",
+      "février dans la plupart des GHT avec des services de médecine interne et de gériatrie, coïncidant avec les épidémies grippales et les réductions de capacité post",
+      "**Impact d'une épidémie de grippe** : augmentation de 15",
+      "25 % des entrées MCO en médecine pendant 4"
+    ],
+    "limites": [
+      "L'indice de saisonnalité sur une seule année est très sensible aux événements exceptionnels (épidémie, grève, travaux) ; le calcul sur 3",
+      "La granularité hebdomadaire du PMSI (dates de séjour) ne permet pas une analyse infra",
+      "hebdomadaire (par heure ou par demi"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Fichiers PMSI MCO et dates de séjour",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "SAE - Statistique Annuelle des Établissements : capacités et ouvertures de lits",
+        "url": "https://www.sae-diffusion.sante.gouv.fr/"
+      },
+      {
+        "text": "Santé Publique France - Surveillance épidémiologique saisonnière",
+        "url": "https://www.santepubliquefrance.fr/"
+      },
+      {
+        "text": "ANAP - Gestion des lits et pilotage capacitaire",
+        "url": "https://www.anap.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux de Surcoût",
     "definition": "Le taux de surcoût mesure la proportion de séjours avec un coût supérieur à la moyenne attendue pour un groupe homogène de malades (GHM) donné. Cet indicateur, issu des Patient Safety Indicators (PSI), peut refléter des complications, des prises en charge non optimisées, ou des variations de pratiques.",
     "calcul": "Le taux de surcoût est calculé comme suit : **Critères de surcoût** : - Coût du séjour > moyenne nationale + 2 écarts-types pour le GHM. - Exclusion des séjours avec complications documentées (CIM-10).",
@@ -332,6 +696,103 @@
       {
         "text": "ATIH - Tarification T2A",
         "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Primo-Hospitalisation",
+    "definition": "Le taux de primo-hospitalisation mesure la proportion de patients hospitalisés dans le GHT pour la première fois sur une période de référence, par opposition aux patients déjà connus des établissements du groupement (hospitalisés au moins une fois dans les 3 ou 5 années précédentes). Cet indicateur évalue simultanément deux dimensions stratégiques : la capacité du GHT à **capter de nouveaux patients** sur son territoire (attractivité) et la **fidélisation** des patients existants (continuité de la relation de soins). Un taux de primo-hospitalisation élevé peut signaler une forte attractivité ou, à l'inverse, un fort renouvellement de patientèle lié à une faible fidélisation. Croisé avec le taux de fuite et les parts de marché, il complète le tableau de bord stratégique du GHT sur sa dynamique de patientèle.",
+    "calcul": "Le taux de primo-hospitalisation est calculé par chaînage longitudinal des séjours PMSI : **Construction depuis le PMSI :** **Sous-indicateurs dérivés :** **Précisions méthodologiques** : - La fenêtre de référence de 5 ans est recommandée pour limiter les faux positifs (patients hospitalisés avant la fenêtre d'observation mais connus du GHT) tout en restant réaliste. - Le chaînage nécessite le NIR crypté disponible dans le PMSI — réalisable localement par le DIM sur les fichiers RSA du GHT sans nécessiter l'accès complet au SNDS. - L'analyse doit distinguer les primo-hospitalisations vraies (nouveaux patients du territoire) des primo-hospitalisations liées à la fuite inversée (patients habituellement soignés ailleurs et revenant au GHT pour une pathologie spécifique). - Pour les GHT disposant d'un DPI partagé avec identifiant patient commun, le chaînage peut être réalisé directement depuis le système d'information sans passer par le NIR crypté.",
+    "utilite": [
+      "**Évaluation de l'attractivité** : un taux de primo",
+      "**Mesure de la fidélisation** : un fort taux de primo",
+      "**Segmentation marketing médical** : identifier les médecins adresseurs qui génèrent le plus de primo",
+      "**Détection des opportunités de développement** : les zones géographiques générant peu de primo"
+    ],
+    "sources": [
+      "**ScanSanté** : ne permet pas directement le calcul du taux de primo"
+    ],
+    "exemples": [
+      "**Taux de primo",
+      "hospitalisation global** : 20",
+      "35 % des patients hospitalisés chaque année sont de nouveaux patients (primo",
+      "**Variation par CMD** : CMD 8 (orthopédie) et CMD 6 (digestif) ont des taux de primo",
+      "**Taux de retour à 1 an** : 40",
+      "60 % des primo",
+      "hospitalisés reviennent dans le GHT dans l'année suivante pour une pathologie chronique (cardiologie, oncologie) ; 15",
+      "**Variation par zone géographique** : les zones périphériques du territoire génèrent davantage de primo",
+      "**Impact d'une nouvelle autorisation** : l'ouverture d'une activité de chirurgie bariatrique ou de cardiologie interventionnelle génère typiquement une vague de primo",
+      "hospitalisations les 12"
+    ],
+    "limites": [
+      "La définition de la fenêtre de référence (3 ou 5 ans) est arbitraire et influence significativement le taux : une fenêtre courte surestime les primo",
+      "hospitalisations, une fenêtre longue les sous",
+      "Le chaînage par NIR crypté dans le PMSI local ne couvre que les séjours dans les établissements du GHT : un patient hospitalisé 4 fois dans une clinique privée concurrente et pour la première fois au GHT sera comptabilisé comme primo",
+      "L'indicateur est sensible aux changements de périmètre du GHT (intégration d'un nouvel établissement) qui génèrent mécaniquement une vague de primo",
+      "La notion de « patient connu » se limite aux séjours hospitaliers — un patient suivi depuis 10 ans en consultation externe sans hospitalisation sera comptabilisé comme primo",
+      "Les patients ayant changé de NIR (changement de situation administrative, erreurs d'identité) peuvent être comptabilisés comme primo",
+      "hospitalisés à tort — la qualité de l'identito"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Chaînage PMSI et identifiant patient (NIR crypté)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ANAP - Analyse de la patientèle et pilotage stratégique hospitalier",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse territoriale des flux de patients",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "SNDS - Trajectoires longitudinales des patients",
+        "url": "https://www.snds.gouv.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Pertinence des Actes CCAM",
+    "definition": "Le taux de pertinence des actes CCAM mesure la proportion d'actes chirurgicaux ou techniques réalisés au sein du GHT qui sont conformes aux référentiels de bonnes pratiques (recommandations HAS, sociétés savantes, seuils d'Evidence-Based Medicine), par opposition aux actes réalisés hors indications validées (sur-traitement) ou aux actes non réalisés alors qu'ils seraient indiqués (sous-traitement). Cet indicateur s'appuie sur la détection de signaux de non-pertinence dans le PMSI : actes réalisés pour des diagnostics ne correspondant pas aux indications recommandées, volumes d'actes anormalement élevés ou faibles par rapport aux standards nationaux, ou actes effectués dans des contextes cliniques inadaptés (ex. : arthroscopie du genou pour arthrose avancée sans arthrite associée).",
+    "calcul": "Le taux de pertinence des actes CCAM est calculé comme suit : **Signaux de non-pertinence détectables dans le PMSI :** | Acte | Signal de non-pertinence | Code CIM-10 / CCAM | |---|---|---| | Arthroscopie du genou | DP = gonarthrose sans chondrocalcinose ni corps étranger | M17 sans M11, M23 | | Hystérectomie | Absence de pathologie maligne ou de fibrome symptomatique | Sans C53-C55, D25 | | Césarienne | Taux > 21 % dans un établissement sans facteur de risque documenté | QXGA | | Appendicectomie | DMS > 5 jours (peut signaler une appendicite perforée non anticipée) | K35-K37 | | Amygdalectomie enfant | Âge < 2 ans sans contexte d'apnée du sommeil | Sans G47.3 | | Pose de stent coronaire | Sans IDM ou angor instable documenté | Sans I20-I21 | **Précisions méthodologiques** : - La pertinence est définie par croisement du code CCAM de l'acte avec le diagnostic principal (DP) et les diagnostics associés (DA) du séjour. - Les seuils de volume (taux d'actes pour 100 000 habitants) sont comparés aux références nationales ScanSanté pour détecter les outliers positifs et négatifs. - L'analyse s'appuie sur les listes de pertinence publiées par la HAS (programme PREMS/PROMS, indicateurs de pertinence des soins) et par les sociétés savantes. - Les actes « à risque de non-pertinence » sont identifiés en priorité : arthroscopies, hystérectomies, chirurgie du rachis, endoscopies répétées, hospitalisations pour actes réalisables en ambulatoire.",
+    "utilite": [
+      "**Réduction du sur",
+      "**Détection du sous",
+      "**Formation et accompagnement des équipes médicales** : les résultats du taux de pertinence servent de base aux revues de pratiques professionnelles (RMM, staff médico",
+      "**Optimisation médico"
+    ],
+    "sources": [
+      "**PMSI MCO** : codes CCAM des actes + codes CIM",
+      "**HAS",
+      "**Référence méthodologique** : Programme national de pertinence des soins, DREES/HAS, 2019"
+    ],
+    "exemples": [
+      "**Arthroscopie du genou** : 20",
+      "**Hystérectomie** : taux national 180",
+      "**Césarienne** : taux national ~21 %, avec des établissements dépassant 30",
+      "**Chirurgie du rachis** : 15"
+    ],
+    "limites": [
+      "La pertinence ne peut pas être déterminée avec certitude depuis le seul PMSI : l'absence d'un code de comorbidité ne signifie pas son absence clinique réelle (sous",
+      "L'indicateur peut stigmatiser des pratiques légitimes pour des sous"
+    ],
+    "references": [
+      {
+        "text": "HAS - Programme national de pertinence des soins",
+        "url": "https://www.has-sante.fr/jcms/p_3322944/fr/programme-national-de-pertinence-des-soins"
+      },
+      {
+        "text": "DREES - Études sur la pertinence des hospitalisations",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ATIH - Actes CCAM et diagnostics associés dans le PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Taux de recours aux actes chirurgicaux",
+        "url": "https://www.scansante.fr/"
       }
     ]
   },
@@ -384,6 +845,162 @@
     ]
   },
   {
+    "indicateur": "Taux de Recours Ajusté sur la Précarité (FDep)",
+    "definition": "Le taux de recours ajusté sur la précarité croise les taux d'hospitalisation PMSI avec l'indice de défavorisation sociale FDep (French Deprivation Index), calculé à l'échelle des communes ou des IRIS par l'INSEE et l'INSERM. Cet indicateur révèle les inégalités sociales d'accès aux soins hospitaliers : une population défavorisée peut avoir un taux de recours plus élevé pour les hospitalisations potentiellement évitables (signe de mauvaise prise en charge ambulatoire) et simultanément un taux de recours plus faible pour les soins programmés et les actes préventifs (signe de renoncement aux soins). Le FDep est un score composite basé sur le revenu médian, le taux de bacheliers, le taux d'ouvriers et le taux de chômage par unité géographique.",
+    "calcul": "Le taux de recours ajusté sur la précarité est calculé en deux étapes : **Étape 1 — Calcul du FDep par commune ou IRIS :** **Étape 2 — Croisement avec les taux de recours PMSI :** **Indicateurs dérivés :** **Précisions méthodologiques** : - Le code postal de résidence du patient dans le PMSI est apparié à la commune INSEE, puis au quintile FDep correspondant. - L'analyse est stratifiée par type de séjour : hospitalisations potentiellement évitables (HPE), chirurgie programmée, cancérologie, soins palliatifs, urgences. - Les taux sont standardisés par âge et sexe pour isoler l'effet de la précarité de celui de la structure démographique.",
+    "utilite": [
+      "**Détection des inégalités sociales d'accès aux soins** : identifier les segments d'activité où les populations défavorisées du territoire du GHT sont sous",
+      "ou sur"
+    ],
+    "sources": [
+      "**FDep — French Deprivation Index** : indice disponible au niveau communal et infra"
+    ],
+    "exemples": [
+      "**Chirurgie de la cataracte** : taux de recours 20",
+      "**Urgences** : taux de passage aux urgences 30"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "Rey G. et al., The FDep index: a validated French deprivation index, European Journal of Public Health, 2009",
+        "url": "https://doi.org/10.1093/eurpub/ckp029"
+      },
+      {
+        "text": "INSERM CépiDc - FDep, indice de défavorisation française",
+        "url": "https://www.cepidc.inserm.fr/"
+      },
+      {
+        "text": "INSEE - Données infra-communales IRIS",
+        "url": "https://www.insee.fr/"
+      },
+      {
+        "text": "DREES - Inégalités sociales de recours aux soins hospitaliers",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "SNDS - Croisement données PMSI et précarité",
+        "url": "https://www.snds.gouv.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indice d'Efficience du Bloc Opératoire",
+    "definition": "L'indice d'efficience du bloc opératoire est un indicateur composite mesurant la performance organisationnelle et économique des salles d'opération d'un établissement du GHT. Il agrège plusieurs dimensions : le taux d'occupation des salles (temps opératoire réel vs temps ouvert), le ratio actes programmés/urgents, le taux d'annulation des interventions programmées et la durée moyenne de vacation utilisée. Le bloc opératoire représente généralement 40-60 % des charges d'un établissement chirurgical et conditionne directement la capacité du GHT à développer son activité chirurgicale, à réduire les délais d'attente et à améliorer sa rentabilité T2A.",
+    "calcul": "L'indice d'efficience du bloc opératoire est calculé à partir de plusieurs sous-indicateurs : **1. Taux d'occupation des salles (TOS) :** **2. Taux d'annulation des interventions programmées :** **3. Ratio programmé / urgences :** **4. Estimation depuis le PMSI (proxy) :** **Précisions méthodologiques** : - Les données précises du bloc (horodatages d'entrée/sortie de salle) sont issues des logiciels de gestion du bloc (DIANE, BOW, Axya) et non directement du PMSI. - Le PMSI permet néanmoins des proxies robustes : nombre d'actes CCAM par jour et par établissement, répartition programmé/urgences via le mode d'entrée (code 8 = urgences), distribution hebdomadaire et mensuelle des actes. - L'analyse PMSI permet également d'identifier les « séjours sans acte » (séjours MCO sans code CCAM associé) pouvant signaler des dysfonctionnements de codage ou des annulations non tracées. - L'indice composite peut être calculé en agrégeant les sous-indicateurs pondérés selon les priorités du GHT.",
+    "utilite": [
+      "**Benchmarking intra"
+    ],
+    "sources": [
+      "**PMSI MCO",
+      "**HAS"
+    ],
+    "exemples": [
+      "**Taux d'occupation des salles (TOS) moyen** : 65",
+      "75 % dans les établissements publics français, contre 75",
+      "**Taux d'annulation** : 8",
+      "**Ratio programmé/urgences** : 70",
+      "80 % de chirurgie programmée dans les CHG, contre 50",
+      "**Gain potentiel d'une optimisation** : une amélioration du TOS de 65 % à 80 % sur un bloc de 6 salles représente l'équivalent d'une salle supplémentaire, soit +15",
+      "**Coût d'une salle de bloc par heure** : 500"
+    ],
+    "limites": [
+      "Les comparaisons inter",
+      "L'amélioration de l'efficience du bloc peut générer des tensions en aval (lits d'hospitalisation, SSR) si elle n'est pas accompagnée d'une organisation cohérente du parcours post"
+    ],
+    "references": [
+      {
+        "text": "HAS - Manuel de certification des établissements de santé (critère bloc opératoire)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH - Actes CCAM et activité chirurgicale dans le PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "SAE - Statistique Annuelle des Établissements de santé",
+        "url": "https://www.sae-diffusion.sante.gouv.fr/"
+      },
+      {
+        "text": "ANAP - Bloc opératoire : organisation et performance",
+        "url": "https://www.anap.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indice de Spécialisation (Quotient de Localisation)",
+    "definition": "L'indice de spécialisation, également appelé quotient de localisation (QL) ou location quotient, mesure la surreprésentation ou la sous-représentation d'un domaine d'activité au sein du GHT par rapport à la moyenne nationale (ou régionale). Un indice supérieur à 1 indique que le GHT réalise proportionnellement plus d'activité dans ce domaine que la moyenne de référence, témoignant d'une spécialisation ; un indice inférieur à 1 signale une sous-activité relative. Cet indicateur permet d'identifier le positionnement stratégique réel du GHT et de détecter les spécialités de recours émergentes ou en déclin.",
+    "calcul": "L'indice de spécialisation est calculé comme suit : **Précisions méthodologiques** : - Les domaines d'activité sont définis par les Catégories Majeures de Diagnostic (CMD) du PMSI, les racines de GHM, ou des regroupements cliniques personnalisés (ex. : cancérologie, cardiologie, neurologie). - Un IS > 1,2 est généralement interprété comme une spécialisation significative ; un IS < 0,8 comme une sous-spécialisation. - L'indicateur peut être calculé en nombre de séjours, en journées ou en valorisation T2A pour pondérer par la lourdeur économique des cas. - La référence nationale (dénominateur) peut être remplacée par la moyenne régionale (ARS) ou par un groupe de GHT comparables pour des benchmarkings plus fins. - L'analyse longitudinale (évolution de l'IS sur 3-5 ans) permet de détecter les spécialisations émergentes ou les décrochages d'activité.",
+    "utilite": [
+      "**Planification des recrutements médicaux** : prioriser les efforts de recrutement dans les domaines sous"
+    ],
+    "sources": [
+      "**ATIH"
+    ],
+    "exemples": [
+      "**IS < 0,6 (sous",
+      "spécialisation significative)** : souvent observé en neurochirurgie, cardiologie interventionnelle ou réanimation spécialisée pour les GHT non"
+    ],
+    "limites": [
+      "Les recompositions d'offre (fermetures, fusions) peuvent modifier brutalement l'IS sans changement de pratique du GHT lui"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Tableaux de bord PMSI et structure d'activité",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Comparaison inter-établissements",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "DREES - Géographie de la santé et offre de soins",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "INSEE - Méthode des quotients de localisation",
+        "url": "https://www.insee.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Fuite et d'Attractivité",
+    "definition": "Le taux de fuite mesure la proportion de patients résidant sur le territoire du GHT qui sont hospitalisés dans des établissements extérieurs au GHT. À l'inverse, le taux d'attractivité mesure la proportion de séjours réalisés au sein du GHT pour des patients résidant hors de son territoire. Ces deux indicateurs sont complémentaires : un fort taux de fuite signale une perte de parts de marché et un déficit d'offre ou de confiance, tandis qu'un fort taux d'attractivité témoigne du rayonnement du GHT au-delà de son territoire de référence.",
+    "calcul": "Les taux de fuite et d'attractivité sont calculés comme suit : **Précisions méthodologiques** : - Le territoire de référence est défini par les codes postaux ou les communes rattachées au GHT. - L'analyse est réalisée par domaine d'activité (MCO, SSR, HAD, PSY) et par segment (chirurgie, médecine, obstétrique, cancérologie, etc.). - La variable de résidence du patient est issue du code postal du RSS/RUM dans le PMSI. - Les séjours en établissements privés du territoire sont inclus dans le dénominateur du taux de fuite pour mesurer la fuite réelle hors territoire.",
+    "utilite": [
+      "**Rayonnement du GHT** : évaluer la capacité du GHT à attirer des patients au",
+      "**Pilotage par établissement** : décomposer les flux par site du GHT pour optimiser les coopérations intra"
+    ],
+    "sources": [
+      "**INSEE** : zonages infra"
+    ],
+    "exemples": [
+      "**Taux de fuite moyen** : 15",
+      "**Taux d'attractivité moyen** : 10",
+      "20 % pour un GHT non",
+      "**Fuite chirurgicale** : souvent plus élevée (20",
+      "40 %) que la fuite médicale (10",
+      "**Fuite vers le CHU** : structurellement élevée pour les GHM de niveau 3"
+    ],
+    "limites": [
+      "La définition du territoire de référence est structurante : un périmètre trop large sous",
+      "Le PMSI ne couvre pas les soins de ville ni les consultations externes non suivies d'hospitalisation, sous"
+    ],
+    "references": [
+      {
+        "text": "ScanSanté - Analyse des flux de patients",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "ATIH - Guide méthodologique PMSI MCO",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DREES - Études sur les bassins de vie hospitaliers",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Répartition de l'Activité par Domaine PMSI",
     "definition": "La répartition de l'activité par domaine PMSI mesure la ventilation des séjours selon les grands domaines d'activité définis par le PMSI (ex : Orthopédie, Digestif, Cardiologie). Cet indicateur permet d'analyser la spécialisation des établissements et leur positionnement territorial.",
     "calcul": "La répartition est calculée comme suit : **Domaines PMSI principaux** : - Orthopédie - Digestif - Cardiologie - Neurologie - Pédiatrie - etc.",
@@ -399,6 +1016,53 @@
       {
         "text": "ATIH - Domaines PMSI",
         "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Recours aux Soins Palliatifs par Pathologie Causale",
+    "definition": "Le taux de recours aux soins palliatifs par pathologie causale mesure la proportion de patients atteints d'une pathologie grave à pronostic limité (cancer, insuffisance d'organe terminale, maladie neurodégénérative) qui bénéficient d'une prise en charge palliative identifiée dans le PMSI, que ce soit en séjour dédié (GHM soins palliatifs), en séjour MCO avec codage Z51.5 (séance de soins palliatifs), ou en HAD avec mode de prise en charge principal « soins palliatifs ». Cet indicateur évalue la structuration de la filière palliative du GHT, l'adéquation entre les besoins de la population et l'offre de soins palliatifs disponible, et le respect des recommandations HAS sur l'accès précoce aux soins palliatifs pour les patients en phase avancée ou terminale.",
+    "calcul": "Le taux de recours aux soins palliatifs est calculé comme suit : **Identification des séjours palliatifs dans le PMSI :** | Source PMSI | Critère d'identification | |---|---| | MCO - GHM soins palliatifs | GHM 23Z02Z (soins palliatifs sans acte) ou 23Z03Z (avec acte) | | MCO - Codage Z51.5 en DP | Séjour dont le diagnostic principal est Z51.5 (soins palliatifs) | | MCO - Codage Z51.5 en DA | Séjour avec Z51.5 en diagnostic associé (palliatif non dominant) | | HAD | Mode de prise en charge principal (MPC) = 21 (soins palliatifs) | | SSR | GME de soins palliatifs (actes cotés en soins de confort/accompagnement) | **Pathologies causales analysées :** - Cancers (C00-C97) : poumon, colorectal, sein, prostate, pancréas, hémopathies - Insuffisance cardiaque terminale (I50 + stade IV NYHA proxy) - BPCO terminale (J44 + insuffisance respiratoire chronique J96.1) - Insuffisance rénale terminale sous dialyse (N18.5-N18.6) - Maladies neurodégénératives (G20, G35, G12.2)",
+    "utilite": [
+      "**Analyse géographique intra"
+    ],
+    "sources": [
+      "**ATIH"
+    ],
+    "exemples": [
+      "**Cancer du pancréas** : taux de recours aux soins palliatifs de 40",
+      "**Cancer du poumon au stade IV** : 30",
+      "50 % des séjours comportent un codage palliatif, mais ce taux est très variable selon les établissements (5",
+      "**Insuffisance cardiaque terminale** : taux de recours aux soins palliatifs très faible (5",
+      "15 %), malgré un pronostic comparable à de nombreux cancers — signalant un sous",
+      "**BPCO terminale** : taux de recours palliatif encore plus faible (2",
+      "**Séjours HAD palliative** : représentent 25",
+      "**Lits USP pour 1 million d'habitants** : objectif plan soins palliatifs 2021"
+    ],
+    "limites": [
+      "Le codage Z51.5 est sous",
+      "La comparaison inter"
+    ],
+    "references": [
+      {
+        "text": "HAS - Recommandations sur les soins palliatifs et l'accès précoce",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH - GHM soins palliatifs et activité HAD palliative",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "SFAP - Société Française d'Accompagnement et de Soins Palliatifs",
+        "url": "https://www.sfap.org/"
+      },
+      {
+        "text": "ScanSanté - Analyse des GHM soins palliatifs",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "Plan national soins palliatifs et soins d'accompagnement 2021-2024",
+        "url": "https://sante.gouv.fr/"
       }
     ]
   },
@@ -425,6 +1089,58 @@
       {
         "text": "HAS - Parcours de Réadaptation",
         "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Sortie Contre Avis Médical",
+    "definition": "Le taux de sortie contre avis médical (SAM) mesure la proportion de séjours MCO se terminant par une sortie décidée par le patient contre l'avis de l'équipe soignante, avant que la prise en charge médicale ne soit considérée comme achevée. Dans le PMSI, ce mode de sortie est codé avec le code 7 (« sortie contre avis médical ») dans le champ « mode de sortie » du RSS. La sortie contre avis médical est un signal de rupture de soins majeur : elle est associée à des taux de réadmission 2 à 3 fois supérieurs à la moyenne, à une mortalité à 30 jours significativement plus élevée et à des coûts indirects importants (traitements incomplets, complications évitables). Elle constitue également un indicateur de la qualité de la relation thérapeutique, de l'accessibilité des soins et de la vulnérabilité médico-sociale des patients.",
+    "calcul": "Le taux de sortie contre avis médical est calculé comme suit : **Sous-indicateurs dérivés :** **Précisions méthodologiques** : - Le code de mode de sortie 7 est obligatoire dans le PMSI MCO — il est en théorie systématiquement renseigné, mais des erreurs de codage (confusion avec transfert non prévu) peuvent fausser les comparaisons. - L'analyse par CMD est essentielle : les SAM en psychiatrie (CMD 19-20) et en addictologie ont un profil et des déterminants très différents des SAM en médecine somatique (CMD 5, 6, 7). - Le chaînage par NIR crypté (SNDS) permet d'identifier les patients avec SAM répétés et de calculer les taux de réadmission post-SAM dans tous les établissements du territoire.",
+    "utilite": [
+      "**Signal qualité sur la relation thérapeutique** : un taux de SAM élevé dans un service peut refléter des problèmes d'information des patients, de communication soignant",
+      "**Pilotage médico"
+    ],
+    "sources": [
+      "**SNDS (PMSI + DCIR)** : pour le chaînage des réadmissions post"
+    ],
+    "exemples": [
+      "**Taux de SAM moyen national MCO** : 0,5",
+      "**Psychiatrie (CMD 19",
+      "20)** : taux de SAM de 3",
+      "**Médecine interne / addictologie** : 2",
+      "**Chirurgie élective** : 0,1",
+      "**Urgences (hospitalisations issues des urgences)** : 1",
+      "**Taux de réadmission à 30j post",
+      "SAM** : 25",
+      "**Mortalité à 30j post",
+      "SAM** : 5",
+      "**SAM répétés (≥ 2 sur 12 mois)** : 20"
+    ],
+    "limites": [
+      "Le code de mode de sortie 7 peut être sous",
+      "utilisé ou mal utilisé dans certains établissements (confusion avec d'autres modes de sortie non prévus, résistance des équipes à documenter un SAM) — un audit de codage est recommandé avant toute comparaison inter",
+      "Le suivi post"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Guide méthodologique PMSI MCO : modes de sortie",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des modes de sortie par établissement",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "HAS - Bientraitance et droits des patients hospitalisés",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "SNDS - Chaînage post-SAM et réadmissions",
+        "url": "https://www.snds.gouv.fr/"
+      },
+      {
+        "text": "DREES - Droits des patients et modes de sortie hospitaliers",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
       }
     ]
   },
@@ -503,6 +1219,130 @@
     ]
   },
   {
+    "indicateur": "Indice de Dépendance au CHU",
+    "definition": "L'indice de dépendance au CHU mesure la proportion de séjours transférés par le GHT vers le CHU de référence qui auraient pu être pris en charge localement, eu égard aux capacités et aux autorisations du GHT. Il se distingue du simple taux de recours au CHU en tentant d'isoler les transferts structurels (GHM de haute complexité nécessitant un plateau technique de référence) des transferts évitables (GHM accessibles au GHT mais orientés vers le CHU par habitude, défaut d'organisation ou absence de compétence disponible localement).",
+    "calcul": "L'indice de dépendance au CHU est calculé comme suit : **Précisions méthodologiques** : - Les transferts sont identifiés dans le PMSI par le mode d'entrée (= transfert) et le FINESS de l'établissement d'origine. - Les GHM « dans le champ d'autorisation du GHT » sont ceux correspondant aux autorisations d'activité détenues par au moins un établissement du GHT. - Une variante consiste à calculer la part des séjours transférés vers le CHU pour des GHM de niveau 1-2 (faible à modérée complexité) dans le total des transferts. - L'analyse peut être affinée par spécialité (chirurgie, cardiologie, neurologie, etc.) pour identifier les filières les plus dépendantes.",
+    "utilite": [
+      "**Optimisation des conventions CHU"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Transferts structurels (inévitables)** : représentent généralement 50",
+      "**Transferts potentiellement évitables** : 30",
+      "**Variation par spécialité** : neurologie (60",
+      "80 % de transferts structurels), chirurgie orthopédique (20"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH - Guide méthodologique PMSI MCO (modes d'entrée et de sortie)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des flux inter-établissements",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "Ministère de la Santé - Répertoire Opérationnel des Ressources (ROR)",
+        "url": "https://esante.gouv.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indice de Continuité du Parcours Patient au sein du GHT",
+    "definition": "L'indice de continuité du parcours patient mesure la proportion de patients dont l'ensemble du parcours de soins (MCO → SSR → HAD, ou toute combinaison multi-séjours) reste au sein des établissements du GHT, sans recours à des structures extérieures au groupement. Il évalue la capacité du GHT à assurer une prise en charge complète et coordonnée du patient, de l'hospitalisation aiguë jusqu'à la réadaptation ou le retour à domicile accompagné, sans rupture de filière vers l'extérieur. Un indice élevé traduit une offre de soins intra-GHT suffisamment diversifiée et une bonne organisation des transitions entre structures membres.",
+    "calcul": "L'indice de continuité du parcours patient est calculé comme suit : **Précisions méthodologiques** : - Un parcours multi-séjours est défini comme une séquence d'au moins deux séjours consécutifs pour le même patient dans un délai défini (ex. : 30 ou 90 jours), avec continuité clinique identifiable (même pathologie ou lien de causalité entre les séjours). - Le chaînage des séjours est réalisé via le NIR crypté disponible dans le PMSI (accès SNDS requis) ou via les identifiants locaux appariés entre établissements du GHT. - Les parcours sont classés selon leur complétude : entièrement intra-GHT, partiellement intra-GHT (au moins un séjour hors GHT), ou entièrement hors GHT (fuite complète de parcours). - L'analyse est segmentée par type de parcours (MCO → SSR, MCO → HAD, MCO → SSR → HAD) et par filière pathologique (AVC, fracture de hanche, cancérologie, chirurgie orthopédique, etc.).",
+    "utilite": [
+      "**Évaluation de la cohérence de l'offre intra",
+      "**Optimisation des capacités** : dimensionner les capacités SSR, HAD et médico"
+    ],
+    "sources": [
+      "**PMSI MCO, SSR et HAD** : chaînage des séjours par NIR crypté pour reconstituer les parcours multi",
+      "**SNDS (Système National des Données de Santé)** : accès au chaînage longitudinal inter",
+      "séjours et inter",
+      "**Plateforme Trajectoire** : traçabilité des admissions SSR et HAD permettant de vérifier si l'orientation reste intra"
+    ],
+    "exemples": [
+      "**Filière fracture de hanche** : indice de continuité intra",
+      "GHT de 40",
+      "60 % dans les GHT bien organisés, contre 20",
+      "**Filière AVC** : continuité MCO → SSR neurologique intra",
+      "**Filière cancérologie** : indice élevé (60",
+      "**Parcours MCO → HAD intra",
+      "**Cible de continuité** : un objectif de 60",
+      "70 % de parcours entièrement intra"
+    ],
+    "limites": [
+      "Le chaînage inter"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Méthodologie de chaînage PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "SNDS - Système National des Données de Santé",
+        "url": "https://www.snds.gouv.fr/"
+      },
+      {
+        "text": "Plateforme Trajectoire - Suivi des admissions SSR et HAD",
+        "url": "https://trajectoire.sante-ra.fr/"
+      },
+      {
+        "text": "HAS - Guide méthodologique des parcours de soins",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Chirurgie Mini-Invasive",
+    "definition": "Le taux de chirurgie mini-invasive mesure la proportion d'actes chirurgicaux réalisés par des techniques peu invasives — coelioscopie, thoracoscopie, arthroscopie, endoscopie opératoire ou chirurgie robotique — par rapport au total des actes chirurgicaux dans un même segment d'activité. Ces techniques, codées en CCAM, sont associées à une réduction des complications postopératoires, des durées de séjour, de la douleur et des coûts de récupération pour le patient. Cet indicateur évalue le niveau de modernisation des pratiques chirurgicales du GHT et sa capacité à offrir des techniques de référence à sa population.",
+    "calcul": "Le taux de chirurgie mini-invasive est calculé comme suit : **Précisions méthodologiques** : - Les actes de chirurgie mini-invasive sont identifiés dans le PMSI par les codes CCAM comportant les libellés ou classificateurs associés à la coelioscopie (ex. : codes HHFA, HGFA pour la chirurgie digestive), l'arthroscopie, la thoracoscopie, l'urétéroscopie, la robotique (Da Vinci : codes spécifiques CCAM). - L'analyse est réalisée par segment chirurgical : chirurgie digestive (appendicectomie, cholécystectomie, colectomie), chirurgie gynécologique, urologie, chirurgie thoracique, orthopédie (arthroscopie genou/épaule). - Les actes robots-assistés disposent de codes CCAM spécifiques depuis 2017 (ZBQK002, etc.) permettant leur identification directe. - Le taux peut être calculé par chirurgien, par unité fonctionnelle ou par établissement du GHT pour le benchmarking interne.",
+    "utilite": [
+      "**Modernisation des pratiques chirurgicales** : évaluer le niveau d'adoption des techniques mini",
+      "**Réduction de la durée de séjour** : la chirurgie mini",
+      "**Attractivité médicale et patient** : un GHT proposant largement la chirurgie mini"
+    ],
+    "sources": [
+      "**PMSI MCO",
+      "Actes CCAM** : codes d'actes chirurgicaux renseignés dans les Résumés de Sortie Standardisés (RSS), permettant d'identifier les techniques mini",
+      "**ScanSanté** : module d'analyse des actes CCAM par établissement, permettant la comparaison des taux de chirurgie mini",
+      "**ATIH"
+    ],
+    "exemples": [
+      "**Cholécystectomie par coelioscopie** : taux national >95 % (quasi",
+      "standard en France), référence de base pour la chirurgie mini",
+      "**Appendicectomie par coelioscopie** : taux national de 60",
+      "**Colectomie par coelioscopie** : 40",
+      "**Prostatectomie robotique** : 30",
+      "50 % des prostatectomies radicales dans les établissements équipés d'un robot Da Vinci, quasi",
+      "**Taux de chirurgie mini"
+    ],
+    "limites": [
+      "L'identification des actes mini",
+      "Certaines techniques mini",
+      "La chirurgie robotique, coûteuse en investissement et en maintenance, n'est pas accessible à tous les GHT et sa pertinence médico"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Base CCAM et actes chirurgicaux",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des actes CCAM par établissement",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "HAS - Recommandations sur la chirurgie mini-invasive",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "DREES - Études et Résultats n°194 (octobre 2002)",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/sites/default/files/er194.pdf"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux de Prolongation de Séjour",
     "definition": "Le taux de prolongation de séjour mesure la proportion de séjours dépassant significativement la durée attendue pour un groupe homogène de malades (GHM) donné. Cet indicateur, issu des Patient Safety Indicators (PSI), peut refléter des complications, des retards dans la prise en charge, ou des difficultés de sortie.",
     "calcul": "Le taux de prolongation de séjour est calculé comme suit : **Critères de prolongation** : - Durée de séjour > percentile 90 de la distribution pour le GHM. - Exclusion des séjours avec complications documentées (CIM-10).",
@@ -520,6 +1360,36 @@
       {
         "text": "ATIH - Durée de Séjour",
         "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Parts de Marché par Segment d'Activité",
+    "definition": "Les parts de marché par segment d'activité mesurent la proportion des séjours réalisés par le GHT dans l'activité hospitalière totale du territoire (tous statuts confondus : public, privé non lucratif, privé lucratif), pour chaque domaine ou segment d'activité. Cet indicateur positionne le GHT dans l'écosystème hospitalier local et révèle ses zones de force et de vulnérabilité concurrentielle face aux autres acteurs du territoire.",
+    "calcul": "Les parts de marché sont calculées comme suit : **Précisions méthodologiques** : - Le territoire est défini par les patients résidant dans la zone de référence du GHT (tous établissements confondus). - Les segments d'activité sont définis par les domaines PMSI (CMD, racines de GHM) : médecine, chirurgie, obstétrique, cancérologie, urgences, etc. - L'analyse inclut les établissements privés et cliniques du territoire, accessibles via la base nationale PMSI (publique et privée OQN). - Les parts de marché peuvent être calculées en nombre de séjours, en journées ou en points ISA/valorisation T2A.",
+    "utilite": [
+      "**Analyse par spécialité** : détecter les spécialités où le GHT est absent ou sous"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Chirurgie orthopédique** : le secteur privé capte en moyenne 50",
+      "**Obstétrique** : le GHT public conserve généralement 60",
+      "**Chirurgie ambulatoire** : forte concurrence du privé (60",
+      "**Médecine gériatrique** : quasi"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ScanSanté - Parts de marché hospitalières",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "ATIH - Base nationale PMSI publique et privée",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DREES - Panorama des établissements de santé",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
       }
     ]
   },
@@ -559,6 +1429,55 @@
     ]
   },
   {
+    "indicateur": "Indice de Complexité des Parcours Multi-RUM",
+    "definition": "L'indice de complexité des parcours multi-RUM mesure la proportion de séjours MCO comportant plusieurs Résumés d'Unité Médicale (RUM), c'est-à-dire des séjours au cours desquels le patient a été muté entre plusieurs unités fonctionnelles (UF) au sein du même établissement. Chaque RUM correspond à un passage dans une UF distincte ; un RSS multi-RUM reflète donc une prise en charge complexe nécessitant l'intervention de plusieurs services (ex. : urgences → réanimation → médecine, ou chirurgie → soins intensifs → médecine). Cet indicateur, invisible dans le GHM final qui agrège l'ensemble du séjour, est un proxy robuste de la complexité organisationnelle et clinique intra-séjour non capturée par la seule classification GHM.",
+    "calcul": "L'indice de complexité des parcours multi-RUM est calculé comme suit : **Sous-indicateurs dérivés :** **Précisions méthodologiques** : - Le nombre de RUM par RSS est directement disponible dans la structure du fichier PMSI MCO (fichier RSS/RSA). - L'analyse est réalisée par CMD, par GHM et par unité fonctionnelle d'origine (première UF du séjour) pour identifier les services générateurs de parcours complexes. - Le croisement avec la DMS et le GHM final permet de distinguer les séjours multi-RUM longs (complexité clinique lourde) des séjours multi-RUM courts (mutations organisationnelles rapides potentiellement optimisables). - L'analyse peut être affinée par le type de mutation : mutation vers une UF de niveau supérieur (escalade des soins) vs mutation vers une UF de niveau inférieur (déclassement, préparation à la sortie).",
+    "utilite": [
+      "**Identification des séjours complexes invisibles dans le GHM** : deux séjours dans le même GHM peuvent avoir des trajectoires intra",
+      "hospitalières très différentes (1 RUM vs 5 RUM) ; l'indice multi",
+      "**Benchmarking intra",
+      "GHT** : comparer les indices multi",
+      "RUM entre les établissements du GHT pour objectiver les différences de casemix clinique au",
+      "**Aide à la tarification et à la négociation** : les séjours multi",
+      "RUM très complexes (≥ 4 RUM, passage réanimation) sont souvent sous"
+    ],
+    "sources": [
+      "**PMSI MCO",
+      "Fichier RSS/RSA** : structure native multi",
+      "**ATIH",
+      "Logiciel GENRSA / VisualValoSej** : outils de traitement des fichiers PMSI permettant l'exploitation des données multi",
+      "**ScanSanté** : les indicateurs multi"
+    ],
+    "exemples": [
+      "**Taux de séjours mono",
+      "RUM** : 70",
+      "**Taux de séjours avec 2 RUM** : 10",
+      "**Taux de séjours avec ≥ 3 RUM** : 5",
+      "**Séjours ≥ 3 RUM et DMS** : DMS moyenne 2 à 4 fois supérieure aux séjours mono",
+      "**Taux de passage réanimation** : 2",
+      "**Durée moyenne par RUM** : 3",
+      "5 jours en médecine polyvalente, 1"
+    ],
+    "limites": [
+      "Le fichier RSA brut multi",
+      "Les comparaisons inter"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Guide méthodologique PMSI MCO : structure RSS/RSA et RUM",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ATIH - Logiciel GENRSA et traitement des fichiers PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DGOS - Référentiel des unités fonctionnelles et organisation hospitalière",
+        "url": "https://sante.gouv.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux de Réadmissions Non Programmes (30 jours)",
     "definition": "Le taux de réadmissions non programmées mesure la proportion de patients réhospitalisés de manière non planifiée dans les 30 jours suivant leur sortie initiale. Cet indicateur est un marqueur clé de la qualité des soins et de la continuité des parcours.",
     "calcul": "Le taux de réadmissions non programmées est calculé comme suit : **Exclusions** : Les réadmissions programmées (ex : chimiothérapie, chirurgie en deux temps) sont exclues.",
@@ -584,6 +1503,88 @@
       {
         "text": "HAS - Parcours de Soins",
         "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Polypathologie Sévère",
+    "definition": "Le taux de polypathologie sévère mesure la proportion de séjours pour lesquels le patient présente au moins trois pathologies chroniques actives et sévères, identifiées simultanément dans les diagnostics du PMSI (DP + DR + DA). La polypathologie sévère est associée à une consommation de soins disproportionnée, un risque élevé de réadmission, de complications iatrogènes et de perte d'autonomie. Ces patients — souvent qualifiés de « grands polypathologiques » ou de patients en situation de vulnérabilité médico-sociale — nécessitent une coordination renforcée et représentent un enjeu majeur de pilotage pour les GHT, tant en termes de ressources mobilisées que d'organisation de l'aval hospitalier.",
+    "calcul": "Le taux de polypathologie sévère est calculé comme suit : **Précisions méthodologiques** : - Les pathologies chroniques sont identifiées par une liste de codes CIM-10 validée, issue des référentiels HAS ou de l'adaptation française des listes de Barnett et al. (2012). Les principales pathologies retenues sont : insuffisance cardiaque (I50), BPCO (J44), diabète (E10-E14), insuffisance rénale chronique (N18), démence (F00-F03), cancer actif (C00-C97), hépatopathie chronique (K70-K77), AVC séquellaire (I69), dépression sévère (F32-F33), obésité morbide (E66). - Le critère de « sévérité » peut être affiné par la présence de complications (ex. : diabète avec complications E10.1-E14.9 plutôt que E10.0-E14.0) ou par un score de Charlson ≥ 3 comme proxy. - Un sous-indicateur pertinent est le **taux de séjours avec CCI ≥ 3 ET ≥ 3 DA chroniques**, combinant les deux approches pour cibler les profils les plus complexes. - L'analyse est segmentée par tranche d'âge (notamment ≥ 75 ans), par service et par établissement du GHT.",
+    "utilite": [
+      "**Identification des patients à haute intensité de soins** : les polypathologiques sévères représentent une minorité des séjours (10",
+      "20 %) mais concentrent 30",
+      "**Dialogue avec le médico"
+    ],
+    "sources": [
+      "**PMSI MCO** : ensemble des codes CIM",
+      "**Référence méthodologique** : Barnett K. et al., *Epidemiology of multimorbidity and implications for health care, research, and medical education: a cross"
+    ],
+    "exemples": [
+      "**Taux de polypathologie sévère (≥ 3 pathologies chroniques)** : 15",
+      "**Patients ≥ 75 ans** : 40",
+      "60 % présentent une polypathologie sévère, contre 5",
+      "**Consommation de ressources** : les séjours polypathologiques sévères ont une DMS 2 à 3 fois supérieure à la moyenne et un taux de réadmission à 30 jours de 20",
+      "**Concentration des coûts** : les 10 % de séjours les plus polypathologiques représentent 30",
+      "**Évolution projetée** : avec le vieillissement démographique, le taux de polypathologie sévère devrait augmenter de 15"
+    ],
+    "limites": [
+      "L'identification des pathologies chroniques dans le PMSI est conditionnée à leur codage en tant que DA : les comorbidités non codées sont invisibles, ce qui sous",
+      "La définition de « sévère » est arbitraire et non standardisée ; les comparaisons inter",
+      "La polypathologie est corrélée à l'âge et à la précarité sociale : les comparaisons inter"
+    ],
+    "references": [
+      {
+        "text": "Barnett K. et al., Epidemiology of multimorbidity, The Lancet, 2012",
+        "url": "https://doi.org/10.1016/S0140-6736(12"
+      },
+      {
+        "text": "HAS - Guide parcours de soins des patients en situation complexe",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH - Diagnostics associés et comorbidités dans le PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "SNDS - Données longitudinales et ALD",
+        "url": "https://www.snds.gouv.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indice de Besoins Non Couverts par Segment de Population",
+    "definition": "L'indice de besoins non couverts (BNC) mesure l'écart entre la demande théorique de soins hospitaliers d'une population — estimée à partir de données épidémiologiques et démographiques — et l'offre réelle observée dans les données PMSI du GHT. Un indice positif signale une demande non satisfaite (besoins supérieurs à l'offre), révélant des inégalités d'accès, un déficit capacitaire ou une fuite vers d'autres territoires. Un indice négatif peut indiquer une sur-offre relative ou une hospitalisation excessive par rapport aux besoins réels de la population. Cet indicateur est un outil de planification stratégique : il permet d'anticiper les évolutions de l'activité du GHT en fonction des projections démographiques et épidémiologiques du territoire.",
+    "calcul": "L'indice de besoins non couverts est calculé en trois étapes : **Étape 1 — Estimation de la demande théorique :** **Étape 2 — Observation de l'offre réelle :** **Étape 3 — Calcul de l'indice :** **Précisions méthodologiques** : - Le taux de recours de référence est le taux national standardisé par âge et sexe pour chaque segment (pathologie, CMD, GHM), publié par l'ATIH ou la DREES. - La population du territoire est issue des projections INSEE (OMPhale) par tranche d'âge et sexe pour intégrer l'évolution démographique. - L'offre réelle inclut tous les séjours des patients résidant sur le territoire, quel que soit l'établissement prestataire (intra- ou extra-GHT), pour éviter de confondre les BNC avec les flux de fuite. - L'analyse est réalisée par segment : pathologie chronique, domaine chirurgical, spécialité médicale, type de prise en charge (MCO, SSR, HAD). - Une variante utilise les taux de recours du quintile FDep le plus favorisé comme référence (taux « optimal atteignable »), pour mesurer les BNC liés aux inégalités sociales.",
+    "utilite": [],
+    "sources": [
+      "**INSEE",
+      "**DREES** : données épidémiologiques nationales (prévalence, incidence) par pathologie, pour affiner la demande théorique au"
+    ],
+    "exemples": [
+      "**SSR neurologique post",
+      "**Médecine gériatrique** : BNC projeté à +35",
+      "**HAD** : BNC structurel de +40",
+      "60 % dans la majorité des territoires, l'HAD étant encore largement sous"
+    ],
+    "limites": [
+      "La demande théorique repose sur des taux de recours de référence qui sont eux"
+    ],
+    "references": [
+      {
+        "text": "INSEE - Projections de population OMPhale",
+        "url": "https://www.insee.fr/fr/statistiques/1405555"
+      },
+      {
+        "text": "ATIH - Taux de recours nationaux standardisés",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DREES - Besoins de santé et offre de soins",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse territoriale de l'activité hospitalière",
+        "url": "https://www.scansante.fr/"
       }
     ]
   },
@@ -737,6 +1738,65 @@
     ]
   },
   {
+    "indicateur": "Taux de Suivi Ambulatoire Post-Hospitalier",
+    "definition": "Le taux de suivi ambulatoire post-hospitalier mesure la proportion de patients ayant bénéficié d'au moins une consultation médicale en ville (médecin généraliste ou spécialiste) dans les 7 et 30 jours suivant leur sortie d'hospitalisation MCO. Calculé depuis le Système National des Données de Santé (SNDS) par croisement des données PMSI (séjour index) et du DCIR (Données de Consommation Inter-Régimes — remboursements de soins ambulatoires), cet indicateur est un marqueur clé de la qualité de la transition hôpital-ville. L'absence de consultation post-hospitalière précoce est l'un des principaux facteurs de risque de réadmission non programmée, de rupture thérapeutique et de décompensation de pathologies chroniques — en particulier pour les patients âgés, polypathologiques ou sous traitements complexes.",
+    "calcul": "Le taux de suivi ambulatoire post-hospitalier est calculé comme suit : **Construction depuis le SNDS :**",
+    "utilite": [
+      "**Évaluation de la transition hôpital",
+      "ville** : identifier les pathologies et les populations pour lesquelles la transition est la moins assurée, pour cibler les interventions de coordination (appel infirmier à J+3, consultation post",
+      "**Déclinaison par pathologie** : le suivi post",
+      "IDM (cardiologue à J+30), post",
+      "AVC (neurologue + MG), post",
+      "**Pilotage des coopérations ville",
+      "hôpital** : un faible taux de suivi dans une zone géographique du territoire du GHT cible les actions à mener avec les acteurs de ville (MSP, CPTS, DAC) pour structurer la prise en charge post",
+      "**Évaluation des programmes de transition care** : mesurer l'impact des consultations post"
+    ],
+    "sources": [
+      "**SNDS (PMSI + DCIR)** : accès obligatoire pour cet indicateur — le PMSI seul ne contient pas les actes ambulatoires. Le chaînage PMSI",
+      "**CNAM",
+      "Données open data** : la CNAM publie des statistiques agrégées sur le suivi post",
+      "**Référence méthodologique** : CNAM, *Améliorer la qualité du système de santé et maîtriser les dépenses*, rapport annuel Charges et Produits, indicateurs de suivi post"
+    ],
+    "exemples": [
+      "**Taux de consultation MG à J+7 post",
+      "hospitalisation (toutes causes)** : 45",
+      "**Post",
+      "IDM, consultation cardiologue à J+30** : 55",
+      "**Post",
+      "insuffisance cardiaque, consultation à J+7** : 35",
+      "**Post",
+      "AVC, consultation neurologue à J+30** : 30",
+      "**Patients sans aucun contact médical à J+30** : 15",
+      "**Impact d'une consultation à J+7** : réduction de 20"
+    ],
+    "limites": [
+      "**Non",
+      "représentation des consultations non remboursées** : les consultations non remboursées (dépassements d'honoraires non pris en charge, médecines alternatives) ou les échanges téléphoniques médecin"
+    ],
+    "references": [
+      {
+        "text": "CNAM - Rapport Charges et Produits : suivi post-hospitalier",
+        "url": "https://www.ameli.fr/l-assurance-maladie/statistiques-et-publications/rapports-et-conventions/"
+      },
+      {
+        "text": "HAS - Recommandations sur la consultation post-hospitalisation",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "SNDS - Système National des Données de Santé",
+        "url": "https://www.snds.gouv.fr/"
+      },
+      {
+        "text": "Health Data Hub - Accès aux données de santé",
+        "url": "https://www.health-data-hub.fr/"
+      },
+      {
+        "text": "DREES - Transition hôpital-ville et réadmissions",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux d'Occupation",
     "definition": "Le taux d'occupation mesure le pourcentage de lits occupés par rapport à la capacité totale d'un établissement ou d'un GHT sur une période donnée. Cet indicateur reflète l'utilisation des ressources hospitalières.",
     "calcul": "Le taux d'occupation est calculé comme suit :",
@@ -778,6 +1838,63 @@
       {
         "text": "INCa - Parcours en Cancérologie",
         "url": "https://www.e-cancer.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Score de Comorbidité d'Elixhauser",
+    "definition": "Le score de comorbidité d'Elixhauser (Elixhauser Comorbidity Index, ECI) est un système de pondération des comorbidités développé par Anne Elixhauser et al. (1998) à partir des données administratives hospitalières américaines, puis adapté à la CIM-10 par van Walraven et al. (2009). Il identifie 31 catégories de comorbidités dans les codes de diagnostic des séjours hospitaliers et leur attribue un poids positif ou négatif en fonction de leur association avec la mortalité et la consommation de ressources. Contrairement à l'indice de Charlson (17 comorbidités, poids additifs simples), l'Elixhauser propose une modélisation plus granulaire et statistiquement plus performante pour prédire la mortalité hospitalière, la durée de séjour et les coûts — en particulier pour des populations hétérogènes et des pathologies non cancéreuses. Il est aujourd'hui considéré comme le gold standard international pour l'ajustement au risque en épidémiologie hospitalière.",
+    "calcul": "Le score d'Elixhauser est calculé en deux étapes : **Étape 1 — Identification des 31 comorbidités par codes CIM-10 (DA uniquement) :** | Comorbidité | Codes CIM-10 (exemples) | Poids van Walraven | |---|---|---| | Insuffisance cardiaque congestive | I09.9, I11.0, I13.0, I50 | +7 | | Arythmie cardiaque | I44-I49, R00 | +5 | | Valvulopathie | A52.0, I05-I08, I34-I38 | -1 | | Maladie pulmonaire | I27.8, I27.9, J40-J47, J67, J68.4 | +3 | | Troubles cognitifs | F00-F03, F05.1, G30, G31.1 | +5 | | Maladie cérébro-vasculaire | G45, G46, H34.0, I60-I69 | 0 | | Maladie périphérique vasculaire | I70, I71, I73.1, I73.8, I77.1 | -3 | | Diabète sans complication | E10.0, E11.0, E12.0 | 0 | | Diabète avec complication | E10.2-E10.8, E11.2-E11.8 | -1 | | Hypothyroïdie | E00-E03 | 0 | | Insuffisance rénale | I12.0, I13.1, N18, N19, N25.0 | +5 | | Hépatopathie | B18, I85, I86.4, K70-K77 | +11 | | Ulcère gastro-duodénal | K25-K28 | 0 | | SIDA/VIH | B20-B22 | 0 | | Lymphome | C81-C85, C88, C96 | +9 | | Cancer métastatique | C77-C80 | +12 | | Tumeur solide sans métastase | C00-C76 | +4 | | Polyarthrite rhumatoïde | L40.5, M05-M08, M09, M30-M35 | 0 | | Coagulopathie | D65-D68, D69.1, D69.3-D69.6 | +3 | | Obésité | E66 | -5 | | Perte de poids | E40-E46, R634 | +6 | | Désordres électrolytiques | E22.2, E86-E87 | +5 | | Anémie par perte sanguine | D50.0 | -2 | | Anémie déficitaire | D50.1-D53 | -2 | | Abus d'alcool | F10, E52, G62.1, Z50.2 | +0 | | Abus de drogues | F11-F16, F18-F19 | -7 | | Psychose | F20-F22, F24-F25, F28-F29 | 0 | | Dépression | F32-F33 | -3 | | Hypertension non compliquée | I10 | -1 | | Hypertension compliquée | I11-I13, I15 | -2 | | Paralysie | G04.1, G11.4, G80-G83, G35 | +5 | **Étape 2 — Calcul du score composite :** **Précisions méthodologiques :** - Les comorbidités sont identifiées uniquement dans les diagnostics associés (DA), pas dans le DP ni le DR, pour éviter de confondre le motif d'hospitalisation avec les comorbidités. - La version van Walraven (2009) propose des poids négatifs pour certaines comorbidités (obésité, dépression) qui sont paradoxalement associées à une mortalité plus faible dans les données administratives — reflet d'un biais de sélection (ces patients sont plus souvent hospitalisés pour des pathologies moins sévères). - Une version simplifiée à 29 comorbidités sans poids (présence/absence) est utilisée pour les analyses multivariées où chaque comorbidité est traitée comme covariable indépendante.",
+    "utilite": [
+      "**Ajustement au risque plus précis que le Charlson** : l'ECI est supérieur au Charlson pour prédire la mortalité hospitalière, les réadmissions et les coûts dans les populations hétérogènes non cancéreuses — il est recommandé pour les études médico",
+      "économiques et les comparaisons inter"
+    ],
+    "sources": [
+      "**PMSI MCO** : codes CIM",
+      "**Package R `comorbidity`** : implémentation open",
+      "source des algorithmes Elixhauser et Charlson en CIM",
+      "**Adaptation CIM"
+    ],
+    "exemples": [
+      "**Score ECI médian en MCO général** : 2",
+      "**Services de médecine interne / gériatrie** : ECI médian 8",
+      "**Chirurgie orthopédique programmée** : ECI médian 0",
+      "**Performance prédictive (AUC mortalité hospitalière)** : ECI ~0,78",
+      "0,82 vs Charlson ~0,72",
+      "**Performance prédictive (AUC réadmission 30j)** : ECI ~0,68",
+      "0,72, légèrement supérieur au Charlson (~0,65",
+      "**Corrélation ECI",
+      "coût** : chaque point supplémentaire d'ECI est associé à une augmentation de 8",
+      "12 % du coût moyen du séjour dans les études médico"
+    ],
+    "limites": [
+      "Dépendance totale à la qualité du codage des DA dans le PMSI : un sous",
+      "codage systématique des comorbidités (fréquent en France) sous",
+      "estime l'ECI et biaise les comparaisons inter",
+      "Certains poids contre",
+      "intuitifs (obésité =",
+      "5, dépression ="
+    ],
+    "references": [
+      {
+        "text": "Elixhauser A. et al., Comorbidity measures for use with administrative data, Medical Care, 1998",
+        "url": "https://doi.org/10.1097/00005650-199801000-00004"
+      },
+      {
+        "text": "van Walraven C. et al., A modification of the Elixhauser comorbidity measures into a point system, Medical Care, 2009",
+        "url": "https://doi.org/10.1097/MLR.0b013e31819432e5"
+      },
+      {
+        "text": "Package R comorbidity (Gasparini, 2018)",
+        "url": "https://CRAN.R-project.org/package=comorbidity"
+      },
+      {
+        "text": "IRDES - Mesure des comorbidités sur données PMSI",
+        "url": "https://www.irdes.fr/"
+      },
+      {
+        "text": "ATIH - Base nationale PMSI et diagnostics associés",
+        "url": "https://www.atih.sante.fr/"
       }
     ]
   },
@@ -870,6 +1987,70 @@
     ]
   },
   {
+    "indicateur": "PSI-90 — Indicateur Composite de Sécurité des Patients (AHRQ)",
+    "definition": "Le PSI-90 (Patient Safety Indicator 90) est un indicateur composite développé par l'Agency for Healthcare Research and Quality (AHRQ, États-Unis) mesurant la fréquence d'événements indésirables évitables survenant au cours d'une hospitalisation, détectés algorithmiquement depuis les codes de diagnostic et de procédure des données administratives hospitalières. Il agrège 8 sous-indicateurs PSI, chacun ciblant un type d'événement indésirable grave : sepsis postopératoire, embolie pulmonaire ou thrombose veineuse profonde postopératoire, hémorragie ou hématome postopératoire, pneumothorax iatrogène, plaie opératoire accidentelle, insuffisance rénale postopératoire, défaillance respiratoire postopératoire, et chute ou traumatisme iatrogène. Initialement conçu pour les DRG américains et la CIM-9/10, le PSI-90 est directement transposable au PMSI français grâce à la compatibilité des codes CIM-10 et à la structure similaire des données administratives hospitalières.",
+    "calcul": "Le PSI-90 composite est calculé comme suit : **Les 8 sous-indicateurs PSI composant le PSI-90 :** | PSI | Événement indésirable | Codes CIM-10 (exemples) | Population à risque | |---|---|---|---| | PSI-03 | Escarres de pression acquises en hospitalisation | L89 en DA (absent en DP/DR) | Séjours MCO ≥ 5 jours | | PSI-06 | Pneumothorax iatrogène | J95.811, J95.812 en DA | Séjours sans pneumothorax préexistant | | PSI-08 | Fracture de hanche postopératoire | M96.6x en DA après acte chirurgical | Séjours chirurgicaux sans fracture à l'entrée | | PSI-09 | Hémorragie / hématome postopératoire | T81.0, D68.4 en DA + reprise chirurgicale | Séjours chirurgicaux | | PSI-11 | Défaillance respiratoire postopératoire | J95.1, J95.2, J95.3 en DA | Séjours chirurgicaux élaborés | | PSI-12 | EP / TVP postopératoire | I26, I82 en DA après acte chirurgical | Séjours chirurgicaux sans MTEV préexistante | | PSI-13 | Sepsis postopératoire | A40, A41 en DA + défaillance d'organe | Séjours chirurgicaux élaborés | | PSI-15 | Plaie / ponction accidentelle peropératoire | T81.2, Y60-Y69 en DA | Tous séjours avec acte chirurgical | **Précisions méthodologiques :** - Chaque PSI distingue les événements présents à l'admission (POA — Present on Admission, codés en DA avec flag POA = « Y ») des événements survenus durant l'hospitalisation : seuls les seconds sont comptabilisés. - La France ne dispose pas encore d'un codage POA systématique dans le PMSI (contrairement aux USA) : une adaptation consiste à considérer que tout code CIM-10 figurant uniquement en DA (et non en DP ni DR) est survenu en cours de séjour. - Les séjours exclus (obstétrique, psychiatrie, néonatologie, cancers) sont définis par des listes de GHM ou de CMD spécifiques, transposables aux CMD françaises.",
+    "utilite": [
+      "**Détection algorithmique des événements indésirables graves** : le PSI",
+      "**Benchmarking international** : le PSI",
+      "**Suivi dans le temps** : la comparaison du PSI",
+      "90 sur 3",
+      "5 ans mesure l'impact des politiques de sécurité des soins mises en place par le GHT (check",
+      "**Priorisation des actions de sécurité** : l'analyse des sous"
+    ],
+    "sources": [
+      "**PMSI MCO** : codes CIM",
+      "**AHRQ",
+      "Logiciel SAS/R PSI** : algorithmes open",
+      "**OCDE"
+    ],
+    "exemples": [
+      "**PSI",
+      "12 (EP/TVP postopératoire)** : taux moyen OCDE de 5",
+      "10 pour 1 000 séjours chirurgicaux ; France estimée à 4",
+      "**PSI",
+      "13 (Sepsis postopératoire)** : taux moyen OCDE de 5",
+      "**PSI",
+      "03 (Escarres acquises)** : 2",
+      "**PSI",
+      "90 composite** : score composite normalisé autour de 1,0 (moyenne nationale) ; les établissements avec PSI",
+      "**Réduction observée** : les hôpitaux ayant mis en place des programmes ciblés sur le PSI",
+      "90 ont réduit leurs événements indésirables de 17"
+    ],
+    "limites": [
+      "**Dépendance au codage** : les PSI sont entièrement fondés sur les codes CIM",
+      "10 renseignés dans le PMSI ; un sous",
+      "codage des complications et comorbidités en DA conduit à une sous",
+      "**Spécificité imparfaite** : certains codes CIM",
+      "10 utilisés dans les PSI peuvent correspondre à des situations cliniques non iatrogènes ; des taux élevés de faux positifs ont été documentés pour certains PSI (PSI",
+      "03, PSI",
+      "**Non",
+      "**Comparaisons inter"
+    ],
+    "references": [
+      {
+        "text": "AHRQ - Patient Safety Indicators Documentation",
+        "url": "https://www.qualityindicators.ahrq.gov/Modules/PSI_TechSpec_ICD10_v2024.aspx"
+      },
+      {
+        "text": "OCDE - Health at a Glance : Patient Safety Indicators",
+        "url": "https://www.oecd.org/health/health-at-a-glance.htm"
+      },
+      {
+        "text": "IRDES - Transposition des PSI sur données PMSI françaises",
+        "url": "https://www.irdes.fr/"
+      },
+      {
+        "text": "DREES - Sécurité des soins et événements indésirables en France",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "HAS - Programme national de sécurité des patients",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Durée Médiane de Séjour par GHM",
     "definition": "La durée médiane de séjour par GHM mesure le temps médian passé à l'hôpital pour un groupe homogène de malades (GHM) donné. Contrairement à la durée moyenne, la médiane est moins sensible aux valeurs extrêmes (séjours très longs), offrant une vision plus robuste de la durée typique de séjour.",
     "calcul": "La durée médiane de séjour est calculée comme suit : **Méthode** : 1. Classer les durées de séjour par ordre croissant pour le GHM. 2. Identifier la valeur centrale (50ème percentile).",
@@ -938,6 +2119,267 @@
     ]
   },
   {
+    "indicateur": "IQTIG — Indicateurs de Qualité en Arthroplastie (Allemagne)",
+    "definition": "Dans le domaine de l'arthroplastie de hanche et de genou, l'IQTIG publie des indicateurs de qualité couvrant les révisions précoces de prothèse, les complications périopératoires (infections du site opératoire, embolie pulmonaire, luxation, fracture peropératoire), la durée de séjour et la mortalité postopératoire. L'Allemagne est l'un des pays au monde avec le plus fort taux d'arthroplastie (300 000 prothèses totales de hanche et 200 000 prothèses totales de genou par an) et dispose d'un registre national de suivi implantataire (EPRD — Endoprothesenregister Deutschland) couplé aux données G-DRG, fournissant le référentiel le plus riche au monde pour ces indicateurs. La transposition au PMSI français est directe grâce aux codes CIM-10 et CCAM couvrant les mêmes gestes, et au Registre National des Arthroplasties (RNA) en cours de déploiement en France.",
+    "calcul": "Les principaux indicateurs IQTIG en arthroplastie et leur formule : **1. Taux de révision précoce de prothèse (< 90 jours) :** **2. Taux d'infection du site opératoire profonde (ISO profonde) :** **3. Taux de complications thromboemboliques postopératoires :** **4. Taux de luxation de prothèse de hanche (< 90 jours) :** **5. Taux de fracture peropératoire :** **6. Mortalité à 90 jours post-arthroplastie :**",
+    "utilite": [
+      "**Intégration avec le RNA** : le couplage des indicateurs IQTIG avec le Registre National des Arthroplasties permet un suivi implantataire sur 5"
+    ],
+    "sources": [
+      "**PMSI MCO** : codes CCAM d'arthroplastie (pose et révision), codes CIM",
+      "**Chaînage PMSI (NIR crypté / SNDS)** : pour le suivi à 90 jours et 1 an des complications et révisions post"
+    ],
+    "exemples": [
+      "**Taux de révision à 90 jours PTH** : 0,5",
+      "**Taux d'ISO profonde sur PTH/PTG** : 0,5",
+      "**Taux de MTEV postopératoire (90j)** : 1",
+      "3 % en l'absence de prophylaxie optimale ; réduit à 0,3",
+      "**Taux de luxation de PTH** : 1",
+      "3 % à 90 jours (voie postérieure) vs 0,5",
+      "**Mortalité à 90 jours post",
+      "PTH** : 0,3",
+      "0,8 % pour la PTH élective, 3",
+      "**Volume minimal recommandé** : l'IQTIG et la HAS recommandent un minimum de 50 PTH/an par établissement pour maintenir une qualité chirurgicale suffisante ; les établissements en dessous de ce seuil présentent des taux de complications 30"
+    ],
+    "limites": [
+      "Le chaînage à 90 jours pour les révisions et complications post",
+      "Les révisions réalisées dans un établissement différent de celui de la pose (hôpital de destination pour complication) ne sont identifiables que par chaînage inter",
+      "Le RNA n'est pas encore exhaustif sur l'ensemble du territoire français (déploiement progressif) — l'interopérabilité PMSI"
+    ],
+    "references": [
+      {
+        "text": "IQTIG - Qualitätsindikatoren Hüft- und Knieendoprothetik",
+        "url": "https://www.iqtig.org/"
+      },
+      {
+        "text": "RNA - Registre National des Arthroplasties (France)",
+        "url": "https://www.rna.fr/"
+      },
+      {
+        "text": "ScanSanté - Arthroplastie de hanche et de genou",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "HAS - Recommandations sur les arthroplasties de hanche et de genou",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "SPILF - Prévention des infections sur prothèse articulaire",
+        "url": "https://www.infectiologie.com/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Score d'Intensité de Soins en SSR",
+    "definition": "Le score d'intensité de soins en SSR est un indicateur composite combinant les données de dépendance fonctionnelle issues des grilles d'autonomie AVQ (Actes de la Vie Quotidienne) du PMSI SSR et le volume d'actes de rééducation et de réadaptation codés par semaine de présence. Il vise à mesurer la lourdeur réelle de la prise en charge en SSR au-delà de la seule classification en Groupes Médico-Économiques (GME), qui ne capture pas toujours fidèlement l'intensité des soins prodigués. Un score élevé caractérise un patient très dépendant nécessitant une rééducation intensive ; un score faible peut signaler une orientation SSR inadaptée (patient trop peu dépendant) ou une sous-utilisation des ressources de rééducation disponibles.",
+    "calcul": "Le score d'intensité de soins en SSR est calculé à partir des données hebdomadaires du Résumé Hebdomadaire de Soins (RHS) : **Composante 1 — Score de dépendance AVQ (0-12 points) :** **Composante 2 — Intensité de rééducation (actes CSARR par semaine) :** **Score composite d'intensité de soins SSR :** **Précisions méthodologiques** : - Le calcul est réalisé semaine par semaine (unité du RHS) puis agrégé en moyenne sur la durée du séjour SSR. - L'analyse distingue les filières (neurologie, orthopédie, gériatrie, cardiologie, oncologie) car les niveaux d'intensité attendus diffèrent structurellement. - Le score peut être calculé à l'entrée en SSR (RHS de la première semaine) pour évaluer la pertinence de l'orientation, et à la sortie pour mesurer la progression fonctionnelle.",
+    "utilite": [
+      "**Évaluation de la pertinence de l'orientation en SSR** : un patient avec un score IS",
+      "**Benchmarking inter",
+      "SSR** : comparer les scores d'intensité entre les SSR du GHT pour identifier les structures qui sous",
+      "**Pilotage des ressources paramédicales** : calibrer les effectifs de kinésithérapeutes, ergothérapeutes et orthophonistes en fonction du score IS",
+      "**Optimisation des durées de séjour SSR** : un score IS"
+    ],
+    "sources": [
+      "**PMSI SSR",
+      "**ATIH",
+      "**ATIH",
+      "Groupes Médico",
+      "Économiques SSR (GME)** : classification SSR intégrant partiellement le score AVQ et les actes de rééducation, mais de façon agrégée et moins fine que le score IS",
+      "**ScanSanté** : module SSR permettant l'analyse des RHS par établissement, bien que le score IS"
+    ],
+    "exemples": [
+      "**Score AVQ moyen à l'entrée en SSR neurologique post",
+      "AVC** : 7",
+      "10/12 (forte dépendance), contre 3",
+      "5/12 en SSR orthopédique post",
+      "**Intensité CSARR moyenne** : 50",
+      "80 points CSARR par semaine en SSR neurologique intensif, contre 20",
+      "**Delta AVQ entrée/sortie** : gain de 3",
+      "5 points en SSR neurologique performant (AVC), gain de 1",
+      "**Taux de patients avec score IS",
+      "SSR faible à l'entrée** : 15",
+      "**Corrélation IS",
+      "SSR et DMS** : les patients à score IS",
+      "SSR élevé ont une DMS 30"
+    ],
+    "limites": [
+      "La cotation des grilles AVQ est réalisée par les soignants et peut varier selon les établissements et les équipes, introduisant un biais inter",
+      "Le CSARR ne couvre pas tous les actes de rééducation : certaines thérapies (neuropsychologie, médecine physique non cotée) ne sont pas tracées dans le PMSI SSR, sous",
+      "Le score IS"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Guide méthodologique PMSI SSR : RHS, AVQ et CSARR",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ATIH - Catalogue Spécifique des Actes de Rééducation et Réadaptation (CSARR)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Référentiels de bonnes pratiques en SSR par filière",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse de l'activité SSR",
+        "url": "https://www.scansante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Délai de Transfert MCO vers SSR",
+    "definition": "Le délai de transfert MCO vers SSR mesure le temps écoulé entre la date de sortie d'un séjour en Médecine-Chirurgie-Obstétrique (MCO) et la date d'entrée dans une unité de Soins de Suite et de Réadaptation (SSR) pour le même patient. Cet indicateur reflète la fluidité du parcours post-aigu : un délai long signale une rupture de parcours préjudiciable à la récupération fonctionnelle du patient et génératrice de prolongations de séjour MCO injustifiées (présence de patients en attente d'aval SSR).",
+    "calcul": "Le délai de transfert MCO vers SSR est calculé comme suit : **Précisions méthodologiques** : - Le calcul nécessite le chaînage des séjours PMSI MCO et SSR par patient (NIR crypté ou identifiant local). - Seuls les séjours SSR faisant suite à un séjour MCO identifiable sont inclus (mode d'entrée SSR = transfert ou mutation, avec FINESS MCO renseigné). - On distingue les transferts directs (délai = 0 jour, mutation le jour même) des transferts différés (délai ≥ 1 jour). - L'indicateur est calculé en médiane (moins sensible aux valeurs extrêmes) et en distribution par tranches (0 j, 1-3 j, 4-7 j, 8-14 j, >14 j). - L'analyse est segmentée par pathologie (AVC, fracture de hanche, chirurgie orthopédique, etc.) et par établissement émetteur/receveur.",
+    "utilite": [
+      "**Fluidité du parcours post",
+      "**Benchmarking intra"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Filière fracture de hanche** : délai optimal ≤ 5 jours post",
+      "**Transferts directs (délai = 0)** : représentent 20",
+      "**Journées d'attente en MCO** : estimées à 5"
+    ],
+    "limites": [
+      "Le chaînage MCO"
+    ],
+    "references": [
+      {
+        "text": "Plateforme Trajectoire - Gestion des admissions SSR",
+        "url": "https://trajectoire.sante-ra.fr/"
+      },
+      {
+        "text": "ATIH - Guide méthodologique PMSI SSR",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS - Parcours de soins AVC",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Flux MCO vers SSR",
+        "url": "https://www.scansante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Dénutrition Documentée",
+    "definition": "Le taux de dénutrition documentée mesure la proportion de séjours MCO dans lesquels une dénutrition a été codée en diagnostic associé (DA) selon la CIM-10, signalant que l'équipe soignante a identifié et documenté cet état nutritionnel dégradé lors de l'hospitalisation. Les codes pertinents incluent E40 à E46 (malnutrition protéino-énergétique de différents degrés) ainsi que E50-E64 (carences en micronutriments). La dénutrition hospitalière est une comorbidité fréquente et sous-diagnostiquée : elle est présente chez 20-40 % des patients hospitalisés en médecine et gériatrie selon les études de prévalence françaises, mais ne figure dans le PMSI que chez 3-8 % des séjours selon les établissements, révélant un sous-codage massif. Elle aggrave le pronostic, allonge la DMS, augmente les complications et majore le coût de séjour — son codage systématique est à la fois un enjeu clinique, qualité et médico-économique (la dénutrition sévère est une CMA dans de nombreux GHM, ce qui impacte le niveau de sévérité et donc le financement T2A).",
+    "calcul": "Le taux de dénutrition documentée est calculé directement depuis les codes diagnostics du PMSI : **Sous-indicateurs dérivés :** **Précisions méthodologiques** : - Le codage de la dénutrition en DA déclenche dans de nombreux GHM le classement en niveau CC ou CMA (complication ou comorbidité majeure) — il est donc à la fois un indicateur clinique et un levier de valorisation financière, ce qui peut biaiser les comparaisons inter-établissements si le codage est motivé par la T2A plutôt que par la clinique. - La dénutrition peut figurer en DP (diagnostic principal) uniquement quand elle est le motif principal d'hospitalisation — dans la grande majorité des cas, elle est codée en DA. - Les actes CCAM de nutrition artificielle (nutrition entérale JVJF001, parentérale JVJB001) sont un proxy de la prise en charge nutritionnelle et permettent de croiser le codage diagnostique avec l'acte thérapeutique.",
+    "utilite": [
+      "**Audit de la qualité du codage nutritionnel** : comparer le taux de dénutrition documentée par service avec les prévalences attendues dans la littérature (NutriAction II : 30 % en gériatrie, 20 % en médecine interne) pour identifier les services sous",
+      "**Pilotage médico",
+      "économique** : la dénutrition sévère (E43) est une CMA dans de nombreux GHM — son codage systématique permet de classer les séjours en niveau 3 ou 4 et d'optimiser légitimement la valorisation T2A des séjours complexes ; la quantification de cet impact justifie les investissements dans les programmes de dépistage nutritionnel (NRS",
+      "**Évaluation des programmes de dépistage nutritionnel** : mesurer l'évolution du taux de dénutrition documentée avant/après la mise en place d'un dépistage systématique à l'admission (NRS",
+      "**Comparaison inter",
+      "établissements et benchmarking** : ScanSanté permet d'accéder au taux de codage des codes E40"
+    ],
+    "sources": [
+      "**PMSI MCO** : codes E40",
+      "**ScanSanté** : filtrage des séjours par code de diagnostic associé E40",
+      "**Données locales DIM** : croisement des codes E40"
+    ],
+    "exemples": [
+      "**Taux de dénutrition documentée (codes E40",
+      "E46 en DA)** : 3",
+      "8 % des séjours MCO dans les établissements qui codent activement, contre une prévalence réelle estimée à 20",
+      "40 % en médecine et gériatrie (sous",
+      "**Gériatrie (CMD 23)** : 8",
+      "15 % de dénutrition documentée dans les meilleurs codeurs ; prévalence réelle estimée à 30",
+      "50 % selon les études NutriAction II (Raynaud",
+      "**Cancérologie (CMD 17)** : 6",
+      "12 % de codage de la dénutrition ; prévalence réelle estimée à 30",
+      "**Médecine interne et polyvalente** : 4",
+      "8 % de dénutrition documentée ; prévalence réelle estimée à 20",
+      "**Chirurgie digestive (CMD 6)** : 5",
+      "10 % de codage ; la dénutrition préopératoire est pourtant un facteur pronostique majeur de morbi",
+      "**Impact T2A du codage E43 (CMA)** : dans les GHM où E43 est CMA, le passage en niveau 3 ou 4 représente une majoration tarifaire de 30",
+      "**Évolution après programme de dépistage NRS",
+      "2002** : les établissements ayant déployé un dépistage systématique à l'admission observent une augmentation de 50",
+      "200 % du taux de codage de la dénutrition dans les 12"
+    ],
+    "limites": [
+      "Le taux de dénutrition documentée mesure le codage, pas la prévalence réelle — un établissement avec un taux faible peut avoir une excellente prise en charge nutritionnelle mais un sous",
+      "codage systématique, tandis qu'un taux élevé peut refléter un sur",
+      "Les codes E40",
+      "E46 de la CIM"
+    ],
+    "references": [
+      {
+        "text": "HAS - Dénutrition : dépistage et diagnostic chez l'adulte et l'enfant (2021)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH - Impact du codage des comorbidités sur la classification GHM",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des diagnostics associés par établissement",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "Raynaud-Simon A. et al. - NutriAction II : prévalence de la dénutrition en établissements de soins, 2011",
+        "url": "https://www.ncbi.nlm.nih.gov/pubmed/"
+      },
+      {
+        "text": "PNNS - Programme National Nutrition Santé : dépistage de la dénutrition hospitalière",
+        "url": "https://www.mangerbouger.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "OCDE — Réadmissions Standardisées pour AMI, Insuffisance Cardiaque et Diabète",
+    "definition": "Les indicateurs de réadmissions standardisées de l'OCDE mesurent le taux de réhospitalisation non programmée dans les 30 jours suivant un séjour index pour trois pathologies chroniques traceurs : l'infarctus du myocarde aigu (AMI — Acute Myocardial Infarction), l'insuffisance cardiaque congestive et le diabète avec complications. Ces pathologies ont été sélectionnées par l'OCDE car leurs réadmissions sont largement considérées comme évitables par une prise en charge post-hospitalière de qualité (suivi ambulatoire, éducation thérapeutique, coordination ville-hôpital, observance médicamenteuse). Ils constituent un complément indispensable aux indicateurs de mortalité à 30 jours : un établissement peut afficher une faible mortalité mais un fort taux de réadmission, révélant une sortie prématurée non accompagnée. Ces indicateurs sont calculés en France par la DREES et transmis à l'OCDE depuis 2015.",
+    "calcul": "**Structure commune aux trois indicateurs :** **1. Réadmissions après IDM (AMI) :** **2. Réadmissions après insuffisance cardiaque :** **3. Réadmissions après diabète avec complications :** **Méthode d'ajustement OCDE :**",
+    "utilite": [
+      "**Évaluation de la qualité du suivi post",
+      "hospitalier** : les réadmissions après IDM, IC et diabète sont largement déterminées par la qualité de la transition hôpital",
+      "ville (consultation de suivi à J+7",
+      "**Levier d'action sur la coordination ville",
+      "hôpital** : un taux élevé de réadmissions après IC ou diabète cible les actions à mettre en place (consultation post",
+      "**Indicateur du programme CMS Hospital Readmissions Reduction Program** : aux États"
+    ],
+    "sources": [
+      "**PMSI MCO** : diagnostic principal (I21, I22, I50, E10",
+      "**SNDS** : chaînage inter",
+      "**OCDE"
+    ],
+    "exemples": [
+      "**Réadmissions à 30j après IDM — France** : 12,8 % (OCDE 2022, standardisé). Meilleurs pays : Suède (9,1 %), Pays",
+      "Bas (9,8 %). Moins bons : États",
+      "**Variation inter",
+      "établissements France** : taux de réadmission après IC de 10",
+      "**Impact d'une consultation de suivi à J+7** : des études françaises (CNAM, HAS) montrent une réduction de 20",
+      "**Impact du programme ETP diabète** : les programmes d'éducation thérapeutique validés réduisent les réadmissions pour déséquilibre glycémique de 25"
+    ],
+    "limites": [
+      "L'indicateur toutes causes (toute réadmission quelle que soit la pathologie) est moins spécifique que l'indicateur cause"
+    ],
+    "references": [
+      {
+        "text": "OCDE - Health at a Glance : Hospital readmissions for AMI, HF and diabetes",
+        "url": "https://www.oecd.org/health/health-at-a-glance.htm"
+      },
+      {
+        "text": "DREES - Réadmissions hospitalières en France : comparaisons OCDE",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ScanSanté - Taux de réadmission à 30 jours par établissement",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "HAS - Consultation post-hospitalisation et réadmissions évitables",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "CMS - Hospital Readmissions Reduction Program (USA)",
+        "url": "https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/hospital-readmissions-reduction-program-hrrp"
+      }
+    ]
+  },
+  {
     "indicateur": "Efficacité des Parcours de Soins",
     "definition": "L'efficacité des parcours de soins mesure la capacité d'un établissement ou d'un GHT à assurer une prise en charge coordonnée et sans rupture pour les patients. Cet indicateur évalue la fluidité et la qualité de la coordination entre les différents acteurs et services.",
     "calcul": "L'efficacité des parcours de soins peut être mesurée via plusieurs sous-indicateurs :",
@@ -957,6 +2399,59 @@
       {
         "text": "ATIH - Coordination Territoriale",
         "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Coût Total de Parcours sur 12 Mois",
+    "definition": "Le coût total de parcours sur 12 mois est le coût cumulé de l'ensemble des dépenses de santé remboursées par l'Assurance Maladie pour un patient sur une fenêtre de 12 mois glissants, tous secteurs confondus : hospitalisations MCO, SSR, HAD, psychiatrie, consultations médicales de ville, actes paramédicaux, médicaments délivrés en officine, dispositifs médicaux, biologie et imagerie ambulatoire. Calculé depuis le SNDS par agrégation des données PMSI et du DCIR, il constitue la vision économique la plus complète du coût réel d'un patient ou d'une pathologie, intégrant les soins hospitaliers et ambulatoires dans une approche de parcours. Il se distingue fondamentalement du « coût par pathologie » intra-hospitalier (qui ne capture que le séjour) en révélant l'iceberg économique caché dans les soins de ville et le médico-social.",
+    "calcul": "Le coût total de parcours est calculé par agrégation des remboursements Assurance Maladie sur 12 mois : **Indicateurs dérivés :** **Précisions méthodologiques** : - La fenêtre de 12 mois est centrée sur le séjour index (6 mois avant / 6 mois après) ou calculée sur l'année civile selon l'objectif de l'analyse. - Les coûts sont exprimés en coûts remboursés (base de remboursement AMO) et non en coûts réels (qui incluent les restes à charge patient et la complémentaire) — une estimation du coût réel nécessite des données complémentaires. - La standardisation sur l'âge, le sexe et les comorbidités (Elixhauser) est recommandée pour les comparaisons entre populations ou entre territoires.",
+    "utilite": [
+      "**Vision économique complète du patient** : le coût de parcours révèle que le coût hospitalier ne représente souvent que 40",
+      "60 % du coût total d'un patient chronique — les 40",
+      "60 % restants (médicaments, soins de ville, médico",
+      "**Identification des patients à très haute intensité économique** : les 1 % de patients les plus coûteux (« super",
+      "utilisateurs ») concentrent 20",
+      "**Analyse médico"
+    ],
+    "sources": [
+      "**DCIR (Données de Consommation Inter",
+      "**CNAM"
+    ],
+    "exemples": [
+      "**Coût moyen de parcours (population générale adulte hospitalisée)** : 8 000",
+      "**Insuffisance cardiaque** : 12 000",
+      "**Cancer (tous stades)** : 15 000",
+      "40 000 €/patient/an selon la localisation et le stade ; part des médicaments onéreux (liste en sus) pouvant atteindre 40",
+      "**Diabète de type 2 sans complications** : 3 000",
+      "5 000 €/patient/an ; part ambulatoire dominante (~60",
+      "**Patients polypathologiques (CCI ≥ 4)** : coût moyen > 25 000 €/patient/an ; les 5 % de patients les plus coûteux concentrent 40",
+      "**Part du coût hospitalier dans le coût total** : 45",
+      "65 % selon la pathologie — les pathologies chroniques bien équilibrées (diabète, HTA) ont une part hospitalière plus faible (~30"
+    ],
+    "limites": [
+      "Les données DCIR sont disponibles avec un délai de 3 à 6 mois, rendant les analyses en temps quasi"
+    ],
+    "references": [
+      {
+        "text": "CNAM - Cartographie des pathologies et des dépenses",
+        "url": "https://www.ameli.fr/l-assurance-maladie/statistiques-et-publications/etudes-en-sante-publique/cartographie-des-pathologies-et-des-depenses/"
+      },
+      {
+        "text": "SNDS - Système National des Données de Santé",
+        "url": "https://www.snds.gouv.fr/"
+      },
+      {
+        "text": "Health Data Hub - Accès aux données de parcours",
+        "url": "https://www.health-data-hub.fr/"
+      },
+      {
+        "text": "ATIH - Valorisation des séjours hospitaliers",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DREES - Dépenses de santé en France",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
       }
     ]
   },
@@ -1006,6 +2501,210 @@
     ]
   },
   {
+    "indicateur": "Taux d'Hospitalisations Potentiellement Évitables (HPE)",
+    "definition": "Le taux d'hospitalisations potentiellement évitables (HPE) mesure la proportion de séjours MCO liés à des pathologies chroniques ou aiguës dont l'hospitalisation aurait pu être évitée par une prise en charge ambulatoire adaptée (médecin traitant, spécialiste de ville, soins infirmiers, HAD). Ces séjours sont considérés comme le signal d'une rupture dans la coordination ville-hôpital ou d'un recours inapproprié aux soins hospitaliers. Les pathologies traceurs les plus utilisées sont l'insuffisance cardiaque, le diabète, l'asthme, la BPCO, l'hypertension artérielle, les infections urinaires et les pneumonies bactériennes.",
+    "calcul": "Le taux d'HPE est calculé comme suit : **Précisions méthodologiques** : - Les séjours HPE sont identifiés par le diagnostic principal (DP) du RSS, en s'appuyant sur les listes de codes CIM-10 validées (DREES, OCDE, ou liste française COMPAQH/HAS). - Les principales pathologies traceurs et leurs codes CIM-10 associés : - Insuffisance cardiaque : I50 - BPCO exacerbée : J44 - Asthme : J45, J46 - Diabète décompensé : E10-E14 avec complications - Hypertension artérielle : I10-I15 - Infections urinaires : N10, N30, N39.0 - Pneumonies bactériennes : J13-J18 - Les séjours de moins de 24 heures (ambulatoires) sont exclus du dénominateur selon certaines définitions. - Le taux standardisé par âge et sexe est préférable pour les comparaisons inter-territoriales.",
+    "utilite": [
+      "**Évaluation de la coordination ville"
+    ],
+    "sources": [
+      "**PMSI MCO** : diagnostic principal (DP) codé en CIM"
+    ],
+    "exemples": [
+      "**Taux d'HPE moyen en France** : 5",
+      "**Variation territoriale** : les taux d'HPE sont 30",
+      "**Impact de l'âge** : les patients de plus de 75 ans représentent 50"
+    ],
+    "limites": [
+      "Toutes les hospitalisations pour une pathologie traceur ne sont pas évitables : le codage CIM",
+      "L'amélioration du taux d'HPE nécessite des actions hors du champ hospitalier (médecine de ville, officines, médico"
+    ],
+    "references": [
+      {
+        "text": "DREES - Hospitalisations potentiellement évitables",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "HAS - Indicateurs de qualité et sécurité des soins (IQSS)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "OCDE - Preventable Hospitalisations Indicator",
+        "url": "https://www.oecd.org/health/"
+      },
+      {
+        "text": "ATIH - Base nationale PMSI MCO",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "IP-DMS — Indice de Performance de la Durée Moyenne de Séjour",
+    "definition": "L'Indice de Performance de la Durée Moyenne de Séjour (IP-DMS) mesure l'écart entre la durée moyenne de séjour (DMS) observée dans un établissement et la DMS théorique attendue, calculée à partir des DMS nationales de référence pondérées par le casemix réel de l'établissement (ses propres GHM). Un IP-DMS inférieur à 1 indique que l'établissement est plus efficient que la moyenne nationale pour son casemix (séjours plus courts qu'attendu) ; un IP-DMS supérieur à 1 signale des séjours plus longs qu'attendu, révélant un potentiel d'optimisation. Cet indicateur est publié par l'ATIH et disponible dans ScanSanté — c'est l'un des rares indicateurs de performance directement accessible sans traitement supplémentaire, qui neutralise l'effet casemix pour des comparaisons équitables entre établissements de profils d'activité très différents.",
+    "calcul": "L'IP-DMS est calculé comme suit : **Décomposition de l'IP-DMS :** **Précisions méthodologiques** : - L'IP-DMS est calculé sur les séjours en hospitalisation complète uniquement (hors ambulatoire < 24h). - Les séjours en borne haute (EXH) et en borne basse (EXB) sont inclus dans le calcul mais peuvent être analysés séparément pour identifier leur contribution à l'IP-DMS. - L'indicateur peut être décliné par CMD, par GHM, par service ou par établissement du GHT. - La DMS nationale de référence est mise à jour annuellement par l'ATIH ; les comparaisons temporelles doivent s'assurer de la cohérence des millésimes utilisés.",
+    "utilite": [
+      "**Comparaison équitable entre établissements** : l'IP",
+      "**Identification des gisements d'optimisation** : un IP",
+      "**Benchmarking intra",
+      "GHT** : comparer les IP",
+      "**Suivi de l'impact des réformes organisationnelles** : mesurer l'évolution de l'IP",
+      "**Pilotage financier** : chaque point d'IP",
+      "DMS au",
+      "dessus de 1,0 représente des journées d'hospitalisation non valorisées (coût > recette EXH) — quantifier l'enjeu financier d'un retour à l'IP"
+    ],
+    "sources": [
+      "**ATIH",
+      "ScanSanté** : l'IP",
+      "**ATIH",
+      "Tableaux de bord PMSI** : IP",
+      "**PMSI MCO local** : pour un calcul infra",
+      "annuel (mensuel, trimestriel) ou par unité fonctionnelle, le DIM peut recalculer l'IP"
+    ],
+    "exemples": [
+      "**IP",
+      "**Établissements publics** : IP",
+      "**Cliniques privées** : IP",
+      "DMS souvent inférieur à 1,0 (0,85",
+      "**Établissements à IP",
+      "**Variation par CMD** : IP",
+      "DMS le plus élevé souvent en CMD 1 (neurologie, AVC) et CMD 5 (cardiologie) dans les établissements sans UNV/USIC organisées ; IP",
+      "**Impact d'un protocole RAAC** : réduction de l'IP"
+    ],
+    "limites": [
+      "L'IP",
+      "DMS ne neutralise pas tous les facteurs confondants : la sévérité intra",
+      "Un IP",
+      "DMS bas peut résulter de sorties prématurées non accompagnées, générant des réadmissions — l'IP",
+      "La DMS nationale de référence intègre les pratiques de tous les établissements, y compris les moins efficients : atteindre IP",
+      "L'indicateur est calculé sur l'hospitalisation complète uniquement : la progression du virage ambulatoire peut améliorer l'IP",
+      "Les comparaisons temporelles sont sensibles aux révisions annuelles des DMS de référence ATIH ; un IP"
+    ],
+    "references": [
+      {
+        "text": "ATIH - IP-DMS et tableaux de bord PMSI MCO",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - IP-DMS par établissement et par GHM",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "ANAP - Benchmark des durées de séjour et IP-DMS",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "HAS - Efficience hospitalière et durée de séjour",
+        "url": "https://www.has-sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Séjours Courts Répétés (Revolving Door)",
+    "definition": "Le taux de séjours courts répétés, ou phénomène de « porte tournante » (revolving door), mesure la proportion de patients présentant au moins 3 hospitalisations courtes (durée ≤ 3 jours) pour un même motif pathologique (même groupe de GHM ou même code diagnostique principal) dans une fenêtre de 12 mois glissants. Cet indicateur signale une prise en charge chronique insuffisante, une rupture répétée du continuum de soins ou une grande vulnérabilité médico-sociale empêchant la stabilisation ambulatoire. Il se distingue du simple taux de réadmission (qui mesure le retour après un séjour index unique) en ciblant spécifiquement les patients en situation de recours itératif non planifié aux soins hospitaliers. Calculé par chaînage PMSI sur le NIR crypté, il identifie des patients que l'hôpital « voit souvent mais ne soigne pas durablement », révélant des défaillances dans l'organisation de la prise en charge ambulatoire ou médico-sociale post-hospitalière.",
+    "calcul": "Le taux de séjours courts répétés est calculé par chaînage longitudinal des séjours PMSI : **Construction depuis le PMSI :** **Sous-indicateurs dérivés :** **Précisions méthodologiques** : - Le seuil de 3 jours pour définir un séjour court est le seuil standard dans la littérature internationale sur le revolving door hospitalier ; il peut être adapté à 2 jours pour les pathologies psychiatriques ou à 5 jours pour les pathologies complexes. - L'exclusion de la chirurgie ambulatoire programmée est critique : les séjours de moins de 24 heures pour acte chirurgical planifié ne relèvent pas du revolving door mais d'une stratégie de soin. - Le chaînage nécessite le NIR crypté disponible dans le PMSI — réalisable par le DIM sur les fichiers RSA du GHT sans nécessiter l'accès complet au SNDS pour la composante intra-GHT. - Pour une vision complète incluant les hospitalisations dans d'autres établissements du territoire, l'accès au SNDS est nécessaire.",
+    "utilite": [
+      "**Signal de défaillance ambulatoire par pathologie** : un taux de revolving door élevé sur une racine GHM spécifique (insuffisance cardiaque, BPCO, décompensation diabétique) révèle une rupture dans la filière ambulatoire post",
+      "**Détection de la précarité cachée** : le revolving door est fortement associé à la vulnérabilité médico",
+      "**Évaluation des programmes de réduction des hospitalisations évitables** : mesurer l'évolution du taux de séjours courts répétés avant/après la mise en place d'une HAD de transition, d'un programme de télésurveillance ou d'une consultation de suivi à J+7 pour quantifier l'impact médico"
+    ],
+    "sources": [
+      "**PMSI MCO local (DIM)** : fichiers RSA chaînés par NIR crypté sur 12 mois glissants, pour les séjours intra",
+      "**SNDS (PMSI national)** : pour inclure les séjours courts répétés dans d'autres établissements du territoire (cliniques privées, CHU de recours) et calculer le taux de revolving door tous"
+    ],
+    "exemples": [
+      "**Taux global de patients revolving door (≥ 3 séjours courts sur même motif en 12 mois)** : 2",
+      "**Psychiatrie et addictologie (CMD 19",
+      "20)** : taux de revolving door de 10",
+      "**Insuffisance cardiaque (CMD 5)** : 8",
+      "**BPCO et insuffisance respiratoire (CMD 4)** : 6",
+      "**Décompensation diabétique (CMD 10)** : 5",
+      "**Délai médian entre deux séjours courts consécutifs** : 12",
+      "25 jours pour les pathologies chroniques décompensées (insuffisance cardiaque, BPCO) ; 5",
+      "**Nombre moyen de séjours courts par patient revolving door sur 12 mois** : 4",
+      "**Réduction après intervention de coordination** : les programmes de télésurveillance pour l'insuffisance cardiaque réduisent le taux de revolving door de 30"
+    ],
+    "limites": [
+      "La définition du seuil de 3 jours pour un séjour court est arbitraire et doit être adaptée selon la pathologie et les pratiques locales d'organisation des soins — une comparaison inter",
+      "Le chaînage intra",
+      "GHT sous"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Chaînage PMSI et identifiant patient (NIR crypté)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "CNAM - Pertinence des soins et réadmissions hospitalières : rapport Charges et Produits",
+        "url": "https://www.ameli.fr/"
+      },
+      {
+        "text": "HAS - Insuffisance cardiaque : programme de réhabilitation et suivi post-hospitalier",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "DREES - Réadmissions et revolving door en MCO : analyse nationale PMSI",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "SNDS - Trajectoires longitudinales et hospitalisations répétées",
+        "url": "https://www.snds.gouv.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Projection Capacitaire Démographique",
+    "definition": "La projection capacitaire démographique est un modèle de simulation croisant les taux de recours hospitaliers actuels (calculés depuis le PMSI) avec les projections de population INSEE (modèle OMPhale) pour estimer l'évolution de l'activité du GHT à horizon 5, 10 et 20 ans. Ce modèle permet d'anticiper les besoins futurs en lits, en plateaux techniques, en personnel médical et paramédical, et en structures d'aval (SSR, HAD, médico-social), en tenant compte du vieillissement démographique, des évolutions épidémiologiques et des changements de pratiques (virage ambulatoire, médecine de précision). Il constitue le socle quantitatif du projet médical partagé du GHT et des négociations avec l'ARS pour les futurs CPOM.",
+    "calcul": "La projection capacitaire est construite en quatre étapes : **Étape 1 — Taux de recours actuels par classe d'âge et sexe :** **Étape 2 — Projection de la population par l'INSEE (OMPhale) :** **Étape 3 — Estimation de l'activité future (scénario tendanciel) :** **Étape 4 — Conversion en besoins capacitaires :** **Scénarios à modéliser :** - **Scénario tendanciel** : maintien des taux de recours actuels, évolution démographique seule. - **Scénario virage ambulatoire** : intégration d'une cible de taux d'ambulatoire progressivement croissante (-X % de lits MCO, +Y % de places ambulatoires). - **Scénario épidémiologique** : intégration de l'évolution prévisible des prévalences (diabète +20 %, cancers +15 %, démence +30 % à horizon 2035). - **Scénario innovant** : hypothèses de réduction des séjours par de nouvelles thérapeutiques (immunothérapies, chimiothérapies orales, télémédecine).",
+    "utilite": [
+      "**Planification des investissements** : dimensionner les futurs projets immobiliers (reconstruction, extension) sur la base d'une estimation robuste de l'activité à 10",
+      "15 ans, évitant le sur",
+      "ou le sous",
+      "**Anticipation des besoins en ressources humaines** : projeter les effectifs médicaux et paramédicaux nécessaires par spécialité pour anticiper les recrutements et les formations 5"
+    ],
+    "sources": [
+      "**INSEE",
+      "OMPhale** : projections de population par commune, département et région, par tranche d'âge quinquennale et sexe, à horizon 2030"
+    ],
+    "exemples": [
+      "**Vieillissement démographique** : dans un territoire à fort vieillissement (part des >75 ans passant de 9 % à 15 % en 2040), l'activité gériatrique et orthopédique peut croître de 30",
+      "**Oncologie** : +15",
+      "**Psychiatrie** : +20",
+      "25 % de besoins en soins psychiatriques projetés à horizon 2030, portés par le vieillissement (démences) et les troubles anxio",
+      "dépressifs post",
+      "**Virage ambulatoire** : à taux de recours constant, un passage de 40 % à 70 % de chirurgie ambulatoire réduit de 25",
+      "**SSR et médico",
+      "social** : besoins en SSR projetés en hausse de 20",
+      "**Exemple chiffré** : pour un GHT réalisant 20 000 séjours MCO en 2024, le modèle tendanciel projette 23 000",
+      "25 000 séjours en 2035 (+15",
+      "25 %), nécessitant 50"
+    ],
+    "limites": [
+      "Le modèle tendanciel suppose une stabilité des comportements de recours et d'accès aux soins, ce qui est rarement vérifié sur des horizons de 10"
+    ],
+    "references": [
+      {
+        "text": "INSEE - Projections de population OMPhale 2021-2070",
+        "url": "https://www.insee.fr/fr/statistiques/5008564"
+      },
+      {
+        "text": "INCa - Projections de l'incidence et de la mortalité par cancer en France",
+        "url": "https://www.e-cancer.fr/"
+      },
+      {
+        "text": "ATIH - Évolutions historiques des taux de recours PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DREES - Projections des besoins en soins de longue durée",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ANAP - Outil de projection capacitaire",
+        "url": "https://www.anap.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux de Réinterventions Chirurgicales",
     "definition": "Le taux de réinterventions chirurgicales mesure la proportion de patients nécessitant une réintervention non programmée dans les 30 jours suivant une intervention chirurgicale initiale. Cet indicateur est un marqueur de la qualité des prises en charge chirurgicales et de la sécurité des soins.",
     "calcul": "Le taux de réinterventions chirurgicales est calculé comme suit : **Critères de réintervention** : - Réinterventions non programmées (ex : hémorragie, infection, échec technique). - Exclusion des réinterventions programmées (ex : chirurgie en deux temps).",
@@ -1027,6 +2726,157 @@
       {
         "text": "ATIH - CCAM",
         "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "SHMI — Summary Hospital-level Mortality Indicator (NHS England)",
+    "definition": "Le SHMI (Summary Hospital-level Mortality Indicator) est un indicateur de mortalité hospitalière développé par le NHS England et publié trimestriellement depuis 2011 pour l'ensemble des hôpitaux anglais. Il mesure le ratio entre le nombre de décès observés (en cours d'hospitalisation ou dans les 30 jours suivant la sortie) et le nombre de décès attendus compte tenu du casemix de l'établissement, sur 140 groupes de diagnostics représentant environ 80 % de l'activité hospitalière. Un SHMI > 1 indique une mortalité supérieure à celle attendue ; un SHMI < 1 indique une mortalité inférieure. Le SHMI se distingue du HSMR (Hospital Standardised Mortality Ratio, indicateur précédent) par l'inclusion des décès à 30 jours post-sortie — évitant ainsi le biais de transfert (un hôpital qui transfère rapidement ses patients mourants vers une autre structure affiche un HSMR artificiellement bas mais un SHMI correct). Il est considéré comme l'indicateur de mortalité hospitalière le plus robuste et le moins biaisé disponible à partir de données administratives.",
+    "calcul": "Le SHMI est calculé comme suit : **Structure du modèle de prédiction :** **Interprétation du SHMI :**",
+    "utilite": [
+      "**Inclusion des décès post",
+      "**Suivi longitudinal** : l'évolution du SHMI sur 3"
+    ],
+    "sources": [
+      "**PMSI MCO** : mode de sortie (décès = code 9), codes CIM",
+      "10 (DP, DR, DA), âge, sexe, mode d'entrée, dates de séjour — pour les décès intra",
+      "**SNDS / CépiDc (Centre d'épidémiologie sur les causes de décès)** : chaînage avec les données d'état civil pour les décès à 30 jours post",
+      "**ATIH",
+      "**Référence méthodologique NHS** : NHS Digital, *Summary Hospital"
+    ],
+    "exemples": [
+      "**SHMI national NHS (Angleterre)** : distribution centrée sur 1,0 par construction ; les établissements en bande rouge (>1,15) représentent environ 15",
+      "**Variation inter",
+      "**Effet week",
+      "end** : le NHS a documenté un SHMI 10",
+      "15 % plus élevé pour les admissions du week",
+      "**Adaptations françaises** : les études DREES sur le HSMR France montrent une variation inter",
+      "établissements comparable à celle observée au Royaume"
+    ],
+    "limites": [
+      "**Accès aux décès post",
+      "sortie** : le chaînage PMSI",
+      "CépiDc nécessaire pour les décès à 30 jours est soumis à des autorisations réglementaires complexes (SNDS, CNIL) ; sans ce chaînage, seule la mortalité intra",
+      "**Dépendance au codage** : un codage exhaustif des comorbidités (DA) est indispensable pour un bon ajustement ; un sous",
+      "codage des DA sous",
+      "**Interprétation prudente** : un SHMI élevé n'est pas nécessairement le signe d'une mauvaise qualité des soins ; il peut refléter une patientèle plus fragile non captée par l'ajustement, ou un recours plus fréquent aux soins palliatifs (décès intra"
+    ],
+    "references": [
+      {
+        "text": "NHS Digital - SHMI Methodology and Technical Specification",
+        "url": "https://digital.nhs.uk/data-and-information/publications/statistical/shmi"
+      },
+      {
+        "text": "DREES - Mortalité hospitalière standardisée en France",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ATIH - Indicateurs de mortalité sur données PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "CépiDc INSERM - Données de causes de décès",
+        "url": "https://www.cepidc.inserm.fr/"
+      },
+      {
+        "text": "SNDS - Chaînage PMSI et données d'état civil",
+        "url": "https://www.snds.gouv.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Passage aux Urgences Suivi d'Hospitalisation",
+    "definition": "Le taux de passage aux urgences suivi d'hospitalisation mesure la proportion de passages aux urgences qui donnent lieu à une hospitalisation (en MCO, SSR, HAD ou psychiatrie), par opposition aux passages se soldant par un retour à domicile. Cet indicateur évalue à la fois la pertinence des admissions hospitalières via les urgences et le bon fonctionnement de la filière urgences-aval : un taux élevé peut traduire une sur-hospitalisation des patients des urgences, tandis qu'un taux faible combiné à un volume important peut signaler un engorgement des urgences faute d'aval disponible.",
+    "calcul": "Le taux de passage aux urgences suivi d'hospitalisation est calculé comme suit : **Précisions méthodologiques** : - Les passages aux urgences sont issus du PMSI MCO via les Résumés de Passage aux Urgences (RPU), obligatoires pour tous les services d'urgence. - Le mode d'entrée du séjour MCO (code 8 = urgences) permet d'identifier les hospitalisations en provenance des urgences sans nécessiter le chaînage des RPU. - L'analyse distingue les hospitalisations directes depuis les urgences (même établissement) des transferts vers un autre établissement après passage aux urgences. - L'indicateur est segmenté par tranche d'âge, par pathologie (CIM-10 du RPU ou DP du séjour MCO), par plage horaire et par jour de semaine pour identifier les tensions spécifiques. - Un indicateur complémentaire est le **taux d'hospitalisation non programmée** (mode d'entrée 8 dans le séjour MCO rapporté au total des séjours MCO).",
+    "utilite": [
+      "**Coordination ville"
+    ],
+    "sources": [
+      "**PMSI MCO",
+      "**PMSI MCO",
+      "**ATIH"
+    ],
+    "exemples": [
+      "**Taux moyen d'hospitalisation depuis les urgences** : 20",
+      "**Variation par âge** : 10",
+      "15 % chez les moins de 15 ans, 40",
+      "**Part des admissions MCO issues des urgences** : 40",
+      "**Taux de retour à domicile dans les 48 h après hospitalisation urgences** : 5"
+    ],
+    "limites": [
+      "L'indicateur ne mesure pas la qualité de la décision d'hospitalisation (sur",
+      "ou sous",
+      "Les ré"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Résumés de Passage aux Urgences (RPU)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DREES - Les urgences hospitalières en France",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des urgences et modes d'admission",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "SAMU-Urgences de France - Observatoire des passages aux urgences",
+        "url": "https://www.samu-urgences-de-france.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indice de Fragmentation du Parcours Patient",
+    "definition": "L'indice de fragmentation du parcours patient mesure le nombre moyen de structures de soins distinctes fréquentées par un patient sur une période de 12 mois glissants, tous secteurs confondus : établissements MCO, SSR, HAD, psychiatrie, consultations externes hospitalières et soins de ville (médecins, spécialistes, infirmiers, kinésithérapeutes). Calculé depuis le SNDS par chaînage longitudinal des séjours PMSI et des actes DCIR, il quantifie la dispersion géographique et institutionnelle du parcours de soins. Un indice élevé signale un parcours morcelé entre de nombreux acteurs sans coordination apparente — facteur de risque de ruptures thérapeutiques, d'actes redondants, de pertes d'information et de réadmissions évitables. Un indice faible peut refléter un parcours concentré et coordonné, ou au contraire un sous-recours aux soins. Contrairement à l'indice de continuité intra-GHT (qui mesure uniquement si le parcours reste dans le GHT), la fragmentation capture la dispersion réelle du patient dans l'ensemble du système de soins.",
+    "calcul": "L'indice de fragmentation du parcours patient est calculé comme suit : **Indicateurs dérivés :** **Précisions méthodologiques** : - L'analyse est réalisée sur les patients adultes (≥ 18 ans) ayant eu au moins un séjour MCO dans l'année. - La fenêtre temporelle de 12 mois glissants est centrée sur le séjour index ou calculée sur l'année civile. - La fragmentation est stratifiée par profil de comorbidité (CCI, Elixhauser) pour distinguer la fragmentation liée à la complexité médicale (légitime) de la fragmentation organisationnelle (évitable).",
+    "utilite": [
+      "**Identification des patients nécessitant une coordination active** : les patients avec IF ≥ 5 structures distinctes sur 12 mois sont les candidats prioritaires aux dispositifs de coordination (DAC, infirmière de liaison, case manager), représentant typiquement 10",
+      "20 % des patients mais 40"
+    ],
+    "sources": [
+      "**Référence méthodologique** : Bice T.W., Boxerman S.B., *A quantitative measure of continuity of care*, Medical Care, 1977 (indice de Bice"
+    ],
+    "exemples": [
+      "**IF moyen (population générale hospitalisée)** : 3",
+      "**Patients polypathologiques (CCI ≥ 3)** : IF moyen 6",
+      "**Patients atteints de cancer** : IF moyen 8",
+      "**Taux de patients très fragmentés (IF ≥ 5)** : 20",
+      "30 % de la population hospitalisée, concentrant 45",
+      "**Indice de Bice",
+      "**Corrélation IF",
+      "réadmission** : chaque structure supplémentaire dans le parcours est associée à une augmentation de 5"
+    ],
+    "limites": [
+      "**Accès SNDS obligatoire** pour la fragmentation totale (hospitalière + ville) : le chaînage PMSI",
+      "La fragmentation n'est pas toujours synonyme de mauvaise coordination : un patient atteint de cancer multi",
+      "L'indice de Bice",
+      "Boxerman sous",
+      "estime la fragmentation des patients peu consommateurs de soins (peu de contacts = peu d'opportunités de fragmenter) et sur",
+      "estime celle des grands consommateurs — la standardisation est nécessaire pour les comparaisons inter",
+      "La fragmentation calculée sur une année glissante peut être transitoire (période post"
+    ],
+    "references": [
+      {
+        "text": "Bice T.W., Boxerman S.B., A quantitative measure of continuity of care, Medical Care, 1977",
+        "url": "https://doi.org/10.1097/00005650-197704000-00010"
+      },
+      {
+        "text": "SNDS - Système National des Données de Santé",
+        "url": "https://www.snds.gouv.fr/"
+      },
+      {
+        "text": "CNAM - Fragmentation des parcours et réadmissions",
+        "url": "https://www.ameli.fr/"
+      },
+      {
+        "text": "Health Data Hub - Accès aux données longitudinales",
+        "url": "https://www.health-data-hub.fr/"
+      },
+      {
+        "text": "DREES - Parcours de soins et coordination",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
       }
     ]
   },
@@ -1072,6 +2922,50 @@
       {
         "text": "ScanSanté - Indicateurs GHT",
         "url": "https://www.scansante.fr/groupement-hospitalier-territoire"
+      }
+    ]
+  },
+  {
+    "indicateur": "Indice de Charlson Moyen par Séjour (CCI)",
+    "definition": "L'indice de Charlson (Charlson Comorbidity Index, CCI) est un score de comorbidité calculé algorithmiquement à partir des codes CIM-10 présents dans les diagnostics associés (DA) du PMSI. Il attribue un poids à chacune des 17 pathologies chroniques de l'index original (infarctus du myocarde, insuffisance cardiaque, BPCO, diabète, insuffisance rénale, cancer, VIH, etc.) et produit un score composite reflétant la charge globale en comorbidités du patient. Plus le CCI est élevé, plus le risque de mortalité et de consommation de ressources est important. Le CCI moyen par séjour, calculé à l'échelle d'un établissement ou d'un GHT, est un indicateur de lourdeur clinique réelle, bien plus précis que le nombre brut de diagnostics associés ou l'indice de lourdeur des cas (ILC) basé sur les seuls GHM.",
+    "calcul": "Le CCI moyen par séjour est calculé comme suit : **Pondération des comorbidités (Charlson 1987, adapté CIM-10) :** | Poids | Comorbidités | |---|---| | 1 | Infarctus du myocarde, Insuffisance cardiaque congestive, Maladie vasculaire périphérique, Maladie cérébrovasculaire, Démence, BPCO, Connectivite, Ulcère gastro-duodénal, Hépatopathie légère, Diabète sans complication | | 2 | Hémiplégie, Insuffisance rénale modérée à sévère, Diabète avec complications, Tumeur solide sans métastase, Leucémie, Lymphome | | 3 | Hépatopathie modérée à sévère | | 6 | Tumeur solide avec métastases, SIDA | **Codes CIM-10 associés** (exemples) : - Insuffisance cardiaque : I50 - BPCO : J44 - Diabète sans complication : E10.0-E14.0 - Tumeur solide sans métastase : C00-C26, C30-C34, C37-C41, C43, C45-C58, C60-C76, C81-C85, C88, C90-C97 - Insuffisance rénale modérée à sévère : N03, N05, N18, N19, N25 **Précisions méthodologiques** : - Le calcul porte sur l'ensemble des diagnostics du RSS (DP + DR + DA) pour maximiser la capture des comorbidités. - La version de Quan et al. (2005) propose une adaptation CIM-10 validée avec des codes actualisés, préférable à la version originale. - Le CCI peut être calculé par séjour, puis agrégé en moyenne, médiane ou distribution par classe (CCI 0, 1-2, 3-4, ≥5) à l'échelle d'un établissement ou d'une filière.",
+    "utilite": [],
+    "sources": [
+      "**PMSI MCO** : ensemble des codes CIM",
+      "**SNDS** : pour le calcul du CCI sur des trajectoires longitudinales multi",
+      "séjours (CCI cumulatif sur 12 mois glissants), plus robuste que le CCI intra",
+      "**Référence algorithmique** : Quan H. et al., *Coding Algorithms for Defining Comorbidities in ICD",
+      "9",
+      "CM and ICD"
+    ],
+    "exemples": [
+      "**Chirurgie orthopédique programmée** : CCI moyen 1,0",
+      "**Urgences / médecine polyvalente** : CCI moyen 2,0",
+      "**CCI et DMS** : chaque point de CCI supplémentaire est associé en moyenne à 0,5"
+    ],
+    "limites": [
+      "Le CCI dépend directement de la qualité et de l'exhaustivité du codage des diagnostics associés dans le PMSI : un sous",
+      "codage des DA (fréquent) sous",
+      "Le score original date de 1987 et n'intègre pas certaines pathologies chroniques contemporaines (obésité morbide, apnée du sommeil, etc.) ; des versions étendues (Elixhauser, CCI",
+      "Le CCI intra",
+      "La comparaison inter"
+    ],
+    "references": [
+      {
+        "text": "Charlson M.E. et al., A new method of classifying prognostic comorbidity in longitudinal studies, Journal of Chronic Diseases, 1987",
+        "url": "https://doi.org/10.1016/0021-9681(87"
+      },
+      {
+        "text": "Quan H. et al., Coding Algorithms for Defining Comorbidities in ICD-9-CM and ICD-10 Administrative Data, Medical Care, 2005",
+        "url": "https://doi.org/10.1097/01.mlr.0000182534.19832.83"
+      },
+      {
+        "text": "ATIH - Base nationale PMSI et diagnostics associés",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des diagnostics associés",
+        "url": "https://www.scansante.fr/"
       }
     ]
   },
@@ -1125,6 +3019,60 @@
     ]
   },
   {
+    "indicateur": "Score Prédictif de Réhospitalisation à 30 Jours",
+    "definition": "Le score prédictif de réhospitalisation à 30 jours est un modèle statistique multivarié construit à partir des variables disponibles dans le PMSI permettant d'estimer, dès la sortie du séjour index, la probabilité qu'un patient soit réhospitalisé dans les 30 jours suivants. Contrairement au simple taux de réadmission (indicateur rétrospectif), ce score est un outil prospectif d'aide à la décision : il permet d'identifier à la sortie les patients à haut risque de réadmission non programmée pour déclencher des interventions ciblées (contact téléphonique de suivi, coordination avec le médecin traitant, HAD, consultation rapide de post-hospitalisation). Il s'appuie sur des modèles validés dans la littérature internationale (LACE, HOSPITAL score) et adaptables aux données PMSI françaises.",
+    "calcul": "Le score prédictif est construit par régression logistique (ou modèle de gradient boosting) sur les variables suivantes, issues du PMSI : **Variables prédictives principales :** | Variable | Source PMSI | Pondération indicative (HOSPITAL score) | |---|---|---| | Hémoglobine basse à l'admission | DA (D64, D50-D53) | +1 | | Séjour pour cancer actif | DP/DA (C00-C97) | +2 | | Nombre de séjours dans les 12 mois (proxy : réadmissions antérieures) | Chaînage PMSI | +5 si ≥ 5 séjours | | Procédure spécialisée durant le séjour (acte CCAM lourd) | CCAM | +1 | | Admission aux urgences (mode d'entrée = 8) | Mode d'entrée MCO | +1 | | Durée de séjour ≥ 5 jours | DMS séjour | +2 | | Type de sortie (transfert, sortie contre avis médical) | Mode de sortie MCO | +1 | **Formule du modèle logistique :** **Précisions méthodologiques** : - Le modèle est entraîné sur les données PMSI historiques du GHT (N ≥ 5 000 séjours recommandé) avec validation croisée (split train/test 70/30 ou validation temporelle). - Les performances sont évaluées par l'aire sous la courbe ROC (AUC cible ≥ 0,70) et la calibration (courbe de Hosmer-Lemeshow). - Le score est recalibré annuellement pour tenir compte des évolutions de la patientèle et des pratiques de codage. - Les variables SNDS (médicaments, consultations ambulatoires, ALD) améliorent significativement la performance du modèle mais nécessitent un accès aux données appariées.",
+    "utilite": [
+      "**Prévention proactive des réadmissions** : déclencher à la sortie des interventions ciblées (appel infirmier à J+3, consultation post",
+      "**Priorisation des ressources de coordination** : avec un budget limité de coordination, concentrer les assistantes sociales, les infirmières de liaison et les équipes HAD sur les 10",
+      "**Recherche clinique et médico",
+      "économique** : le score constitue une variable de stratification pour les études sur les parcours de soins et les évaluations médico"
+    ],
+    "sources": [
+      "**Référence méthodologique",
+      "HOSPITAL score** : Donzé J. et al., *Potentially avoidable 30",
+      "**Référence méthodologique"
+    ],
+    "exemples": [
+      "**AUC du modèle HOSPITAL score** : 0,71",
+      "0,74 dans les cohortes de validation françaises, comparables aux performances anglo",
+      "**Prévalence de la réadmission à 30 jours** : 10",
+      "15 % des séjours MCO en France, jusqu'à 25",
+      "**Patients à haut risque (score P > 20 %)** : représentent 15",
+      "20 % des séjours mais concentrent 40",
+      "**Réduction des réadmissions par intervention ciblée** : programmes de transition care validés (appel téléphonique + consultation J+7) réduisent les réadmissions de 15",
+      "**Impact financier** : chaque réadmission évitée représente une économie de 2 000"
+    ],
+    "limites": [
+      "La performance prédictive des modèles basés sur le seul PMSI est limitée (AUC 0,65",
+      "Le modèle doit être calibré localement sur la patientèle du GHT : un modèle entraîné sur des données nationales ou anglo",
+      "saxonnes peut sous",
+      "ou sur"
+    ],
+    "references": [
+      {
+        "text": "Donzé J. et al., HOSPITAL score, JAMA Internal Medicine, 2013",
+        "url": "https://doi.org/10.1001/jamainternmed.2013.6233"
+      },
+      {
+        "text": "van Walraven C. et al., LACE index, CMAJ, 2010",
+        "url": "https://doi.org/10.1503/cmaj.091117"
+      },
+      {
+        "text": "HAS - Réadmissions non programmées et qualité des soins",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "SNDS - Données longitudinales pour la prédiction du risque",
+        "url": "https://www.snds.gouv.fr/"
+      },
+      {
+        "text": "ATIH - Chaînage PMSI et trajectoires patients",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux de Recours au CHU",
     "definition": "Le taux de recours au CHU mesure la proportion de patients résidents du territoire du GHT qui sont pris en charge par le Centre Hospitalier Universitaire (CHU) pour des soins spécialisés ou complexes. Cet indicateur évalue l'attractivité et la complémentarité entre le CHU et les autres établissements du GHT.",
     "calcul": "Le taux de recours au CHU est calculé comme suit :",
@@ -1167,6 +3115,111 @@
     ]
   },
   {
+    "indicateur": "PQI — Prevention Quality Indicators (AHRQ)",
+    "definition": "Les Prevention Quality Indicators (PQI) sont un ensemble de 18 indicateurs développés par l'AHRQ (Agency for Healthcare Research and Quality, États-Unis) mesurant les hospitalisations pour des pathologies chroniques ou aiguës qui auraient pu être évitées par une prise en charge ambulatoire de qualité. Ils constituent la version américaine, standardisée et validée internationalement, de ce que la France appelle « hospitalisations potentiellement évitables » (HPE). Contrairement au taux d'HPE français (souvent calculé avec des définitions ad hoc et peu standardisées), les PQI proposent des définitions précises par codes CIM-10, des règles d'exclusion rigoureuses et des taux de référence nationaux publiés annuellement par l'AHRQ — permettant des comparaisons robustes dans le temps et entre établissements ou territoires. Ils sont utilisés dans plus de 30 pays (OCDE, programme EU4Health) comme indicateur de performance des soins primaires et de coordination ville-hôpital.",
+    "calcul": "Chaque PQI est calculé comme suit : **Les 18 PQI et leur transposition CIM-10 FR :** | PQI | Pathologie | Codes CIM-10 (DP) | Exclusions principales | |---|---|---|---| | PQI-01 | Complications du diabète (court terme) | E10.0-E10.1, E11.0-E11.1, E12.0-E13.0 | Grossesse, diabète secondaire | | PQI-03 | Complications du diabète (long terme) | E10.2-E10.9, E11.2-E11.9 | Grossesse | | PQI-05 | BPCO ou asthme adulte | J40-J47, J96.0 | <40 ans, mucoviscidose | | PQI-07 | Hypertension artérielle | I10-I13, I15 | Grossesse, insuffisance rénale terminale | | PQI-08 | Insuffisance cardiaque | I50, I11.0 | Chirurgie cardiaque, transplantation | | PQI-09 | Déshydratation | E86 | Gastroentérite infectieuse, <18 ans | | PQI-10 | Bactériémie à bactéries sensibles aux antibiotiques | A41, A40 (sans sepsis sévère) | Immunodépression, tumeurs hématologiques | | PQI-11 | Pneumonie bactérienne | J13-J18, J15 | Immunodépression, mucoviscidose, <18 ans | | PQI-12 | Infections urinaires | N10, N30, N39.0 | Transplantation rénale, uro-néphropathies | | PQI-13 | Angine de poitrine sans revascularisation | I20 | Séjours avec revascularisation coronaire | | PQI-14 | Amputation du membre inférieur chez le diabétique | 28 codes amputation (CCAM) + diabète DA | Traumatisme vasculaire aigu | | PQI-15 | Complications de l'asthme enfant | J45, J46 | <2 ans, >17 ans, mucoviscidose | | PQI-16 | Diabète non contrôlé sans complication | E10.9, E11.9, E12.9, E13.9 | Grossesse, diabète secondaire | | PQI-90 | Composite global PQI | Agrégation PQI pondérés | Exclusions combinées | | PQI-91 | Composite maladies aiguës | PQI-08, 10, 11, 12 | — | | PQI-92 | Composite maladies chroniques | PQI-01, 03, 05, 07, 13, 14, 15, 16 | — | **Indicateurs composites :**",
+    "utilite": [
+      "**Décomposition par pathologie et par composite** : les PQI",
+      "90, PQI",
+      "91 (maladies aiguës) et PQI",
+      "**Outil de dialogue avec les acteurs de la ville** : un taux élevé de PQI",
+      "08 (insuffisance cardiaque) ou PQI",
+      "**Suivi longitudinal des politiques de santé** : les PQI sont sensibles aux interventions de santé publique (programmes ETP, déploiement de coordinateurs de soins, ouverture de centres de santé) et permettent d'en mesurer l'impact sur 3",
+      "**Benchmarking territorial intra"
+    ],
+    "sources": [
+      "**PMSI MCO** : diagnostic principal (DP) codé en CIM",
+      "**AHRQ",
+      "Logiciels PQI open"
+    ],
+    "exemples": [
+      "**PQI",
+      "08 (Insuffisance cardiaque) France** : environ 250",
+      "350 pour 100 000 habitants (données DREES/OCDE), dans la moyenne des pays européens mais 30",
+      "40 % supérieur aux Pays",
+      "**PQI",
+      "05 (BPCO/asthme adulte)** : 80",
+      "**PQI",
+      "11 (Pneumonie bactérienne)** : 150",
+      "**PQI",
+      "14 (Amputation diabétique)** : 10",
+      "**Variation territoriale** : les taux de PQI sont 40",
+      "**PQI",
+      "90 composite France vs OCDE** : la France se situe dans le tiers intermédiaire des pays OCDE, derrière les Pays"
+    ],
+    "limites": [
+      "Le calcul des PQI composites (PQI"
+    ],
+    "references": [
+      {
+        "text": "AHRQ - Prevention Quality Indicators Documentation and Software",
+        "url": "https://www.qualityindicators.ahrq.gov/Modules/PQI_TechSpec_ICD10_v2024.aspx"
+      },
+      {
+        "text": "OCDE - Health at a Glance : Avoidable Admissions",
+        "url": "https://www.oecd.org/health/health-at-a-glance.htm"
+      },
+      {
+        "text": "DREES - Hospitalisations potentiellement évitables en France",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ATIH - Base nationale PMSI et diagnostics principaux",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse par diagnostic principal",
+        "url": "https://www.scansante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Journées au-delà de la Borne Haute",
+    "definition": "Le taux de journées au-delà de la borne haute mesure la proportion de journées d'hospitalisation réalisées après que le séjour a dépassé la durée de la borne haute de son GHM, c'est-à-dire le seuil au-delà duquel l'ATIH verse des suppléments journaliers (EXH — suppléments pour extrême haute). Ces journées excédentaires sont un proxy des journées d'attente médicalement non justifiées (JAMJ) : patient cliniquement stable en attente d'une place en SSR, d'une décision chirurgicale, d'un retour à domicile ou d'une assistante sociale. Elles représentent un gisement d'efficience majeur pour les GHT, à la fois sur le plan organisationnel (libération de lits) et financier (coût d'une journée MCO non valorisée à la hauteur de son coût réel).",
+    "calcul": "Le taux de journées au-delà de la borne haute est calculé comme suit : **Précisions méthodologiques** : - La borne haute de chaque GHM est publiée annuellement par l'ATIH dans les fichiers tarifaires (disponibles sur le site ATIH). - L'analyse est réalisée par GHM, par CMD, par service et par établissement du GHT pour identifier les foyers de journées excédentaires. - Les séjours EXH génèrent un supplément tarifaire journalier (EXH) mais celui-ci couvre rarement le coût réel de la journée : l'objectif est de réduire ces séjours, pas de les multiplier. - Un sous-indicateur pertinent est la **durée médiane des journées EXH par GHM**, qui identifie les GHM pour lesquels les dépassements sont chroniques et importants (plusieurs semaines). - La comparaison avec le taux de séjours en borne basse (EXB) est utile : un établissement avec peu d'EXB et beaucoup d'EXH a un profil de prise en charge lourde structurelle, tandis qu'un établissement avec beaucoup d'EXH en médecine polyvalente signale un problème d'aval.",
+    "utilite": [
+      "**Identification des journées d'attente** : les journées EXH en médecine gériatrique, neurologie et orthopédie sont quasi",
+      "systématiquement des journées d'attente d'une place SSR ou médico",
+      "**Pilotage financier** : le taux de journées EXH est un indicateur de la sous",
+      "**Dialogue avec les partenaires SSR et médico"
+    ],
+    "sources": [
+      "**PMSI MCO",
+      "**ATIH",
+      "**ATIH"
+    ],
+    "exemples": [
+      "**Taux de séjours EXH moyen** : 5",
+      "**Taux de journées EXH** : 10",
+      "**Durée médiane des dépassements** : 5",
+      "**Coût d'une journée EXH** : le supplément EXH versé par l'assurance maladie (60",
+      "200 €/jour selon le GHM) est systématiquement inférieur au coût réel de la journée MCO (400",
+      "**Potentiel de réduction** : une réduction de 30 % des journées EXH dans un GHT de 20 000 séjours représente 5 000",
+      "15 000 journées libérées, soit l'équivalent de 15"
+    ],
+    "limites": [
+      "La réduction des journées EXH nécessite une action sur l'aval (SSR, HAD, médico"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Fichiers tarifaires MCO et bornes EXH/EXB",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ATIH - VisualValoSej : simulation de la valorisation des séjours",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Valorisation et suppléments EXH",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "DGOS - Circulaires tarifaires annuelles MCO",
+        "url": "https://sante.gouv.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux de Réadmission",
     "definition": "Le taux de réadmission mesure la proportion de patients réhospitalisés dans un délai donné (généralement 30 jours) après leur sortie initiale. Cet indicateur est un marqueur de la qualité des soins et de la continuité des parcours de santé.",
     "calcul": "Le taux de réadmission est calculé comme suit :",
@@ -1193,6 +3246,50 @@
     ]
   },
   {
+    "indicateur": "Taux de Transferts Inter-Établissements au sein du GHT",
+    "definition": "Le taux de transferts inter-établissements au sein du GHT mesure la proportion de patients dont le parcours de soins comprend au moins un transfert entre deux établissements membres du même GHT, rapportée au total des séjours du GHT. Cet indicateur évalue la fluidité et la cohérence du parcours patient à l'intérieur du groupement : un taux élevé et maîtrisé témoigne d'une bonne organisation de la filière intra-GHT, tandis qu'un taux faible peut signaler un manque de coordination ou une orientation par défaut vers des structures extérieures au groupement.",
+    "calcul": "Le taux de transferts intra-GHT est calculé comme suit : **Précisions méthodologiques** : - Les transferts intra-GHT sont identifiés par le couplage des modes de sortie (code 6 = transfert) et d'entrée (code 6 = transfert) entre deux FINESS membres du GHT, sur des séjours de dates compatibles. - L'analyse distingue les flux selon leur sens : MCO → SSR, MCO → HAD, SSR → MCO (réhospitalisation), MCO → MCO (transfert entre sites). - Le taux peut être calculé globalement ou par filière (traumatologie, AVC, chirurgie orthopédique, cancérologie, gériatrie, etc.). - La durée entre la sortie de l'établissement émetteur et l'entrée dans l'établissement receveur (délai de transfert) est un indicateur complémentaire de fluidité.",
+    "utilite": [
+      "**Évaluation de la coordination intra",
+      "**Optimisation des parcours post",
+      "**Pilotage des conventions intra"
+    ],
+    "sources": [
+      "**PMSI MCO, SSR et HAD** : modes d'entrée et de sortie (codes transfert), FINESS des établissements, dates d'entrée et de sortie — pour reconstituer les chaînes de séjours intra",
+      "**ATIH",
+      "Chaînage PMSI** : le chaînage anonymisé des séjours par numéro de patient (NIR crypté) permet de reconstituer les parcours multi"
+    ],
+    "exemples": [
+      "**Taux global de transferts intra",
+      "GHT** : 5",
+      "**Filière MCO → SSR intra",
+      "**Filière MCO → HAD intra",
+      "**Taux de retour MCO depuis SSR intra",
+      "GHT** : 8"
+    ],
+    "limites": [
+      "Un taux de transferts intra"
+    ],
+    "references": [
+      {
+        "text": "ATIH - Méthodologie de chaînage PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des flux inter-établissements",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "Plateforme Trajectoire - Gestion des admissions SSR/HAD",
+        "url": "https://trajectoire.sante-ra.fr/"
+      },
+      {
+        "text": "Ministère de la Santé - Instruction GHT et projet médical partagé",
+        "url": "https://www.legifrance.gouv.fr/"
+      }
+    ]
+  },
+  {
     "indicateur": "Taux de Recours à l'HAD dans les Territoires",
     "definition": "Le taux de recours à l'HAD (Hospitalisation à Domicile) mesure la proportion de patients orientés vers l'HAD après un séjour en Médecine, Chirurgie, Obstétrique (MCO). Cet indicateur évalue la fluidité des parcours et l'accès aux alternatives à l'hospitalisation complète.",
     "calcul": "Le taux de recours à l'HAD est calculé comme suit : **Critères de relais HAD** : - Patients éligibles à l'HAD (ex : soins complexes, palliatifs). - Orientation documentée dans le PMSI (chaînage des séjours).",
@@ -1212,6 +3309,95 @@
       {
         "text": "ATIH - PMSI HAD",
         "url": "https://www.atih.sante.fr/"
+      }
+    ]
+  },
+  {
+    "indicateur": "IQTIG — Indicateurs de Qualité Obstétricaux (Allemagne)",
+    "definition": "L'IQTIG (Institut für Qualitätssicherung und Transparenz im Gesundheitswesen) est l'institut fédéral allemand de mesure de la qualité hospitalière, équivalent de la HAS française pour les indicateurs de performance. Dans le domaine de l'obstétrique, l'IQTIG publie annuellement un ensemble d'indicateurs calculés sur les données administratives et cliniques des maternités allemandes (système G-DRG, équivalent du PMSI), couvrant : le taux de césariennes, les lésions périnéales sévères, la mortalité périnatale, les scores d'Apgar bas, les transferts néonatals non programmés en soins intensifs, et les hémorragies du post-partum. Ces indicateurs sont obligatoires pour toutes les maternités allemandes depuis 2001 et servent de base au benchmarking national et aux décisions de maintien ou de fermeture des autorisations. Leur transposition au PMSI français est directe grâce à la compatibilité CIM-10 et aux codes d'actes CCAM couvrant les mêmes gestes obstétricaux.",
+    "calcul": "Les principaux indicateurs IQTIG obstétricaux et leur formule : **1. Taux de césarienne (primaire et totale) :** **2. Taux de lésions périnéales sévères (déchirures de grade 3-4) :** **3. Taux d'hémorragie du post-partum sévère :** **4. Score d'Apgar bas à 5 minutes :** **5. Taux de transfert néonatal non programmé en soins intensifs :** **6. Taux de mortalité périnatale :**",
+    "utilite": [
+      "**Amélioration continue de la qualité** : les indicateurs IQTIG sont utilisés en Allemagne pour des revues de morbi"
+    ],
+    "sources": [
+      "**PMSI MCO",
+      "Séjours obstétricaux** : diagnostics CIM",
+      "10 (DP = O60",
+      "**PMSI MCO",
+      "Séjours néonatals** : DP = P00",
+      "**Chaînage mère",
+      "**ScanSanté",
+      "**HAS"
+    ],
+    "exemples": [
+      "**Taux de césarienne France (2022)** : 21,4 % (DREES), contre 32 % en Allemagne et 16 % en Suède — forte variation inter",
+      "établissements en France (10",
+      "**Taux de lésions périnéales sévères (grade 3",
+      "4) France** : 0,8",
+      "**Taux d'HPP sévère France** : 3",
+      "**Taux d'Apgar < 7 à 5 min** : 5",
+      "**Taux de transfert néonatal non programmé** : 15",
+      "30 ‰ en maternité de niveau I, 50"
+    ],
+    "limites": [
+      "Le taux de césarienne brut n'est pas interprétable sans ajustement sur le casemix obstétrical (parité, présentation, terme, pathologies maternelles) — la classification de Robson (10 groupes) est recommandée pour les comparaisons inter",
+      "Le codage des lésions périnéales (O70.2",
+      "La mortalité périnatale est un indicateur rare (faibles effectifs) pour lequel les intervalles de confiance sont larges dans les petites maternités du GHT — les comparaisons annuelles sont instables ; une agrégation sur 3",
+      "Le chaînage mère",
+      "Les indicateurs IQTIG allemands incluent des variables cliniques non disponibles dans le PMSI français (poids de naissance précis, terme exact en semaines, score d'Apgar documenté) — des proxies CIM"
+    ],
+    "references": [
+      {
+        "text": "IQTIG - Bundesauswertung Geburtshilfe (rapport annuel qualité obstétricale)",
+        "url": "https://www.iqtig.org/"
+      },
+      {
+        "text": "DREES - Les naissances en France : statistiques annuelles",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "HAS - Indicateurs IQSS obstétrique (césarienne, HPP, lésions périnéales)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Taux de césarienne par établissement",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "Classification de Robson - OMS, 2015",
+        "url": "https://www.who.int/publications/i/item/9789241549127"
+      }
+    ]
+  },
+  {
+    "indicateur": "Taux de Recours aux Interventions de Chirurgie Fonctionnelle",
+    "definition": "Le taux de recours aux interventions de chirurgie fonctionnelle mesure le nombre d'interventions chirurgicales visant à corriger une gêne fonctionnelle progressive, rapporté à la population du territoire. Ces interventions, dites « programmées », concernent des pathologies où l'état physique s'altère progressivement (cataracte, arthrose, hernies, varices, syndrome du canal carpien, etc.) et où le patient choisit de recourir à la chirurgie lorsque la gêne devient invalidante. Cet indicateur évalue l'accès de la population du GHT à cette chirurgie programmée et permet d'identifier les disparités territoriales d'offre et de pratiques.",
+    "calcul": "Le taux de recours aux interventions de chirurgie fonctionnelle est calculé comme suit : **Précisions méthodologiques** : - Les séjours retenus contiennent au moins un acte chirurgical codé (CCAM), sur les unités de soins de courte durée MCO (médecine, chirurgie, gynécologie-obstétrique), hors psychiatrie et hospitalisation conventionnelle de plus de 24 heures ambulatoire. - Les **taux standardisés** (par sexe et âge) sont utilisés pour les comparaisons inter-territoriales, en supprimant l'effet des différences démographiques. - Les pathologies couvertes incluent : adénomes de la prostate, arthroplasties de genou et de hanche, cataractes, hémorroïdes, hernies de l'aine, syndromes du canal carpien, troubles de la statique pelvienne, varices des membres inférieurs.",
+    "utilite": [
+      "**Analyse de l'offre chirurgicale programmée** : identifier les interventions fonctionnelles sous",
+      "ou sur"
+    ],
+    "sources": [
+      "**ScanSanté / ATIH** : données actualisées pour le calcul des indicateurs sur les périodes récentes et les comparaisons inter"
+    ],
+    "exemples": [
+      "**Évolution 1993"
+    ],
+    "limites": [
+      "Les données de référence de l'étude DREES datent de 1993"
+    ],
+    "references": [
+      {
+        "text": "DREES - Les interventions de chirurgie fonctionnelle (Études et Résultats n°194, octobre 2002)",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/sites/default/files/er194.pdf"
+      },
+      {
+        "text": "ATIH - Base nationale PMSI",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "ScanSanté - Analyse des activités hospitalières",
+        "url": "https://www.scansante.fr/"
       }
     ]
   }
