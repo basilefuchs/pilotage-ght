@@ -75,26 +75,55 @@ def parse_markdown_to_json(md_file):
     
     return data
 
+def get_thematique(subdir_name):
+    """
+    Extract a human-readable thematique label from a subdirectory name.
+    E.g. '05_qualite_securite' -> 'Qualité et sécurité des soins'
+    """
+    labels = {
+        "01_activite_production":      "Activité et production hospitalière",
+        "02_casemix_patientele":       "Casemix et profil de la patientèle",
+        "03_vulnerabilite_sociale":    "Dimensions sociales et vulnérabilité",
+        "04_efficience_capacitaire":   "Efficience et gestion capacitaire",
+        "05_qualite_securite":         "Qualité et sécurité des soins",
+        "06_pertinence_pratiques":     "Pertinence des soins et pratiques médicales",
+        "07_parcours_continuite":      "Parcours patient et continuité des soins",
+        "08_readmissions_evitables":   "Réadmissions et hospitalisations évitables",
+        "09_territoire_attractivite":  "Territoire, attractivité et offre de soins",
+        "10_financement_valorisation": "Financement, valorisation T2A et codage",
+    }
+    return labels.get(subdir_name, subdir_name)
+
+
 def convert_all_markdown_files(input_dir, output_file):
     """
-    Convert all Markdown files in a directory to a single JSON file.
-    
+    Convert all Markdown files in input_dir (recursively) to a single JSON file.
+    Each indicator gets a 'thematique' field derived from its subdirectory name.
+
     Args:
-        input_dir (str): Directory containing Markdown files.
+        input_dir (str): Root directory containing thematic subdirectories.
         output_file (str): Path to the output JSON file.
     """
     indicators = []
-    
-    for filename in os.listdir(input_dir):
-        if filename.endswith('.md'):
-            md_path = os.path.join(input_dir, filename)
-            indicator_data = parse_markdown_to_json(md_path)
-            indicators.append(indicator_data)
-    
+
+    for root, dirs, files in os.walk(input_dir):
+        dirs.sort()  # process subdirectories in alphabetical order
+        subdir_name = os.path.basename(root)
+        thematique = get_thematique(subdir_name) if root != input_dir else None
+
+        for filename in sorted(files):
+            if filename.endswith('.md'):
+                md_path = os.path.join(root, filename)
+                indicator_data = parse_markdown_to_json(md_path)
+                indicator_data["fichier"] = filename
+                if thematique:
+                    indicator_data["thematique"] = thematique
+                indicators.append(indicator_data)
+
     # Write to JSON file
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(indicators, f, indent=2, ensure_ascii=False)
-    
+
     print(f"Conversion terminée. {len(indicators)} indicateurs convertis dans {output_file}.")
 
 if __name__ == "__main__":
