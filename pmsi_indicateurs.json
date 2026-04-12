@@ -115,6 +115,125 @@
     "thematique": "Activité et production hospitalière"
   },
   {
+    "indicateur": "Analyse Spectrale (FFT) des Flux d'Admission",
+    "definition": "La transformée de Fourier rapide (Fast Fourier Transform, FFT — Cooley & Tukey, 1965) décompose n'importe quel signal temporel en une somme de composantes sinusoïdales à différentes fréquences, chacune caractérisée par une **amplitude** (puissance de la composante) et une **phase** (décalage temporel). Appliquée à la série temporelle des admissions hospitalières journalières, elle révèle les **cycles périodiques cachés** dans le flux de patients : cycle hebdomadaire (7 jours), bimensuel, mensuel, saisonnier (trimestriel, annuel) et leurs amplitudes relatives. L'analyse spectrale répond à une question que les indicateurs de moyenne et d'écart-type ne posent pas : **la variabilité des flux est-elle structurée (périodique, prévisible) ou aléatoire (bruit blanc, imprévisible) ?** Un flux dominé par un cycle à 7 jours est prévisible et actionnable — on sait que les lundis seront creux et les jeudis chargés, et on peut agir. Un flux avec un spectre \"plat\" (bruit blanc) est fondamentalement imprévisible et ne bénéficiera pas du heijunka. **X(f) = Σₜ x(t) × e^(−2πift)** où x(t) est le nombre d'admissions au jour t, X(f) le spectre de fréquence f, et |X(f)|² la puissance spectrale (contribution de la fréquence f à la variabilité totale du flux).",
+    "calcul": "Préparation de la série temporelle : Calcul du spectre de puissance : Indicateurs synthétiques dérivés :",
+    "utilite": [
+      "**Prévision des tensions à court et moyen terme** : la composante périodique identifiée par la FFT est directement utilisable comme signal prédictif — si le cycle à 7j a une amplitude de ±15 admissions et que l'on est en début de semaine \"creux\", on prévoit une charge élevée dans 3",
+      "**Comparaison inter",
+      "services et inter"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** : variable DATE_ENT (date d'entrée effective) agrégée par jour calendaire sur 2"
+    ],
+    "exemples": [
+      "**Impact de la COVID"
+    ],
+    "limites": [
+      "La FFT suppose la **stationnarité** du signal — que la structure périodique soit stable sur toute la fenêtre d'analyse ; or les flux hospitaliers évoluent (nouveaux services, réorganisations) et les cycles peuvent changer de fréquence ou d'amplitude dans le temps ; utiliser une STFT (Short",
+      "Time Fourier Transform) ou une analyse par ondelettes (wavelet transform) pour les séries non",
+      "La **résolution fréquentielle** est inversement proportionnelle à la longueur de la série : avec 1 an de données (365 jours), la résolution est 1/365 c/j — insuffisant pour distinguer un cycle à 28j d'un cycle à 30j ; une fenêtre de 2"
+    ],
+    "references": [
+      {
+        "text": "Cooley J.W., Tukey J.W. — An algorithm for the machine calculation of complex Fourier series, Mathematics of Computation 1965",
+        "url": "https://doi.org/10.1090/S0025-5718-1965-0178586-1"
+      },
+      {
+        "text": "Jones S.S. et al. — Forecasting daily patient volumes in the emergency department, Acad Emerg Med 2008",
+        "url": "https://doi.org/10.1111/j.1553-2712.2008.00160.x"
+      },
+      {
+        "text": "Boyle J. et al. — Predicting emergency department admissions, Emerg Med J 2012",
+        "url": "https://doi.org/10.1136/emj.2010.103531"
+      },
+      {
+        "text": "ANAP — Gestion des flux et prévision de l'activité hospitalière : méthodes quantitatives (2015)",
+        "url": "https://www.anap.fr/"
+      }
+    ],
+    "fichier": "analyse_spectrale_fft_flux_admissions.md",
+    "thematique": "Activité et production hospitalière"
+  },
+  {
+    "indicateur": "Débit de Base et Débit de Crue des Admissions",
+    "definition": "En hydrologie, le **débit total** d'une rivière se décompose en deux composantes de nature fondamentalement différente : - Le **débit de base** (baseflow) : apport lent, régulier et prévisible provenant des nappes phréatiques et des eaux souterraines — il représente le fond permanent du débit, quasi-indépendant des précipitations immédiates. - Le **débit de crue** (stormflow ou quickflow) : ruissellement rapide, variable et imprévisible déclenché par les épisodes pluvieux — il génère les pics de débit mais se résorbe vite. Transposée aux admissions hospitalières, cette décomposition distingue : - Le **débit de base hospitalier** (DBH) : admissions programmées, planifiées, attendues — chirurgie élective, hospitalisations conventionnelles de patients chroniques, chimiothérapies, actes diagnostiques — flux contrôlable, régulier, optimisable par le heijunka. - Le **débit de crue hospitalier** (DCH) : admissions non programmées, imprévisibles — urgences directes, hospitalisations après passage aux urgences, transferts imprévus — flux subi, variable, partiellement incompressible. **Indice de Base Hospitalier (IBH) = DBH / (DBH + DCH)** Un IBH élevé (> 0,6) signifie que la majorité des admissions est programmée et donc maîtrisable. Un IBH faible (< 0,3) signifie que le service est dominé par le flux d'urgence — peu de marge pour le lissage, la gestion des capacités doit être réactive plutôt que planifiée. L'IBH est le premier paramètre à calculer avant toute démarche d'optimisation des flux : il détermine si les leviers d'action sont du côté de la programmation (IBH élevé) ou de l'aval urgentiste (IBH faible).",
+    "calcul": "Identification du type d'admission depuis le PMSI MCO RSA : Calcul des indicateurs de décomposition : Décomposition par service et par type de GHM :",
+    "utilite": [],
+    "sources": [
+      "**PMSI MCO RSA** : variable MODE_ENTREE (mode d'entrée), PROVENANCE, TYPE_GHM (chirurgical C, médical M, technique Z, ambulatoire K), DA pour le calcul du Charlson — entièrement disponibles dans les extractions RSA standard ; agrégation par UM/service et par mois calendaire sur 24"
+    ],
+    "exemples": [
+      "**Établissement MCO de taille moyenne (200 lits, GHT semi"
+    ],
+    "limites": [
+      "La classification BASE/CRUE depuis le MODE_ENTREE est une **approximation** — certains séjours avec MODE_ENTREE = 1 (médecin traitant) sont des hospitalisations de semi",
+      "Le PMSI ne distingue pas la **programmation réellement anticipée** (rendez",
+      "vous planifié plusieurs semaines à l'avance) de la **programmation du jour même** (consultation du matin conduisant à une hospitalisation dans l'après"
+    ],
+    "references": [
+      {
+        "text": "Nathan R.J., McMahon T.A. — Evaluation of automated techniques for base flow and recession analyses, Water Resources Research 1990",
+        "url": "https://doi.org/10.1029/WR026i007p01465"
+      },
+      {
+        "text": "DGOS — Instruction relative à la mise en place du programme PACES (Parcours patients, Accès direct, Coordination) : flux programmés vs non programmés (2022)",
+        "url": "https://solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ATIH — Variables du RSA MCO : description du champ MODE_ENTREE et PROVENANCE",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "debit_base_crue_admissions.md",
+    "thematique": "Activité et production hospitalière"
+  },
+  {
+    "indicateur": "Entropie de Transfert Inter-Services",
+    "definition": "L'entropie de transfert (Transfer Entropy, TE) est une mesure d'information introduite par Thomas Schreiber (2000) pour quantifier le **flux d'information directionnel** entre deux processus stochastiques. Contrairement à la corrélation (symétrique et linéaire) ou à l'information mutuelle (symétrique), l'entropie de transfert est **asymétrique et non-paramétrique** : TE(A→B) ≠ TE(B→A), et elle capture les dépendances non-linéaires. Formellement : **TE(A→B) = H(Bₜ₊₁ | Bₜ) − H(Bₜ₊₁ | Bₜ, Aₜ)** où H est l'entropie de Shannon. TE(A→B) mesure la **réduction d'incertitude sur l'état futur de B apportée par la connaissance de l'état actuel de A, au-delà de ce qu'apporte B lui-même**. En d'autres termes : est-ce que savoir ce qui se passe dans le service A aujourd'hui aide à prédire ce qui se passera dans le service B demain, au-delà de ce que B prédit déjà de lui-même ? Appliquée aux flux d'activité hospitaliers (admissions, occupations, durées de séjour par service), l'**Entropie de Transfert Inter-Services** (ETIS) identifie les **dépendances causales directionnelles** entre services : le flux de MCO médecine \"cause\" (au sens de Granger) le flux d'admissions SSR avec un décalage de 3 jours ; la saturation des urgences \"cause\" le débordement en médecine interne avec un délai de 12 heures. Ces dépendances sont invisibles dans la corrélation classique (qui ne distingue pas A→B de B→A) et constituent la cartographie des **chaînes de propagation des tensions hospitalières**.",
+    "calcul": "Préparation des séries temporelles : Calcul de l'entropie de transfert : Matrice d'influence et graphe de propagation :",
+    "utilite": [
+      "**Évaluation de l'impact des réorganisations sur la propagation** : après la création d'une filière dédiée (unité post",
+      "urgences, lit dédié de post"
+    ],
+    "sources": [
+      "**Implémentation** : Python (pyinform pour TE, statsmodels pour le détrending STL, networkx pour la visualisation du graphe) ; R (RTransferEntropy, vars pour les tests de causalité de Granger comme validation) — calcul typiquement en quelques minutes sur 2",
+      "3 ans de données journalières pour un GHT de 5"
+    ],
+    "exemples": [
+      "**Impact d'une convention urgences"
+    ],
+    "limites": [
+      "L'estimation de l'entropie de transfert par fréquences conditionnelles requiert un **nombre élevé d'observations** pour être statistiquement fiable — avec des séries journalières de 2 ans (730 observations) et 3 niveaux de discrétisation, les fréquences conditionnelles peuvent être estimées sur des cellules très peu peuplées, biaisant la TE ; recommander un minimum de 500",
+      "L'entropie de transfert capture les **dépendances à un lag fixé τ** — si la relation causale est décalée de façon variable (parfois 1 jour, parfois 3 jours selon la saison), la TE à un lag unique sous",
+      "L'ETIS mesure les **dépendances observées** dans les données historiques — si une filière dédiée est créée précisément pour éviter une propagation connue, la TE post"
+    ],
+    "references": [
+      {
+        "text": "Schreiber T. — Measuring information transfer, Physical Review Letters 2000",
+        "url": "https://doi.org/10.1103/PhysRevLett.85.461"
+      },
+      {
+        "text": "Barnett L. et al. — Granger causality and transfer entropy are equivalent for Gaussian variables, Physical Review Letters 2009",
+        "url": "https://doi.org/10.1103/PhysRevLett.103.238701"
+      },
+      {
+        "text": "Granger C.W.J. — Investigating causal relations by econometric models and cross-spectral methods, Econometrica 1969",
+        "url": "https://doi.org/10.2307/1912791"
+      },
+      {
+        "text": "DGOS — Gestion des tensions hospitalières : outils de prévision et d'anticipation des pics d'activité (guide ORSAN 2021)",
+        "url": "https://solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "SPF — OSCOUR : réseau de surveillance des urgences, données de flux quotidiens",
+        "url": "https://www.santepubliquefrance.fr/"
+      }
+    ],
+    "fichier": "entropie_transfert_inter_services.md",
+    "thematique": "Activité et production hospitalière"
+  },
+  {
     "indicateur": "Nombre de Séjours",
     "definition": "Le nombre de séjours mesure le volume total d'hospitalisations dans un établissement ou un GHT sur une période donnée. Cet indicateur est fondamental pour évaluer l'activité globale et la charge de travail.",
     "calcul": "Le nombre de séjours est calculé comme suit :",
@@ -407,6 +526,73 @@
       }
     ],
     "fichier": "case_mix_index.md",
+    "thematique": "Casemix et profil de la patientèle"
+  },
+  {
+    "indicateur": "Diagramme de Hertzsprung-Russell des Services Hospitaliers",
+    "definition": "Le **diagramme de Hertzsprung-Russell** (HR) est l'outil fondamental de classification stellaire en astrophysique : en portant les étoiles sur un graphe luminosité (axe Y) × température de surface (axe X), Ejnar Hertzsprung et Henry Norris Russell constatèrent en 1910 que les étoiles ne se distribuent pas aléatoirement mais se regroupent en familles naturelles — la **séquence principale** (la majorité des étoiles, dont le Soleil), les **géantes rouges** (lumineuses mais froides), les **naines blanches** (chaudes mais peu lumineuses), et les **supergéantes**. Chaque position sur ce diagramme révèle l'état évolutif de l'étoile. Transposé aux services hospitaliers, le **Diagramme HR des Services Hospitaliers** (DHRSH) porte chaque service ou établissement sur un graphe bidimensionnel : - **Axe Y (luminosité)** : volume d'activité — nombre de séjours, journées, ou valorisation totale - **Axe X (température)** : complexité du casemix — poids GHM moyen, IP-DMS, Charlson médian, ou indice de complexité Les \"familles stellaires\" hospitalières émergent naturellement : - **Séquence principale** : relation volume/complexité attendue (services dans la norme) - **Géantes rouges** : fort volume, faible complexité (usines à séjours simples) - **Naines blanches** : faible volume, haute complexité (services ultra-spécialisés, rares) - **Supergéantes** : fort volume ET forte complexité (CHU, services de recours) - **Sous-naines** : faible volume ET faible complexité (services en difficulté structurelle) Un service hors de la séquence principale est un outlier stratégique : soit une opportunité (niche de spécialisation), soit un signal d'alerte (inadéquation activité/ressources).",
+    "calcul": "Construction des axes : Identification des familles et de la séquence principale : Évolution temporelle (diagramme HR dynamique) :",
+    "utilite": [
+      "**Identifier les services hors séquence principale comme sujets d'investigation prioritaire** : un service en quadrant IV (\"naine blanche\" — haute complexité, faible volume) est soit une référence de recours sous",
+      "reconnue (à valoriser et développer) soit un service sous"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** : nombre de séjours (Y), poids GHM moyen (X option 2), Charlson médian, fraction GHM niveau 3",
+      "4, IP",
+      "**IP",
+      "DMS national ATIH** : valeur de référence de la DMS nationale par GHM — pour calculer l'IP"
+    ],
+    "exemples": [
+      "**GHT semi"
+    ],
+    "limites": [
+      "La \"séquence principale\" empirique est calculée depuis les données du GHT ou du territoire étudié — elle n'est pas une référence absolue mais une référence relative au groupe comparé ; un GHT où tous les services sont des \"géantes rouges\" n'a pas de séquence principale visible, car le groupe de référence est lui"
+    ],
+    "references": [
+      {
+        "text": "ATIH — Classification des séjours MCO : poids relatifs des GHM et IP-DMS (publication annuelle)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DGOS — Analyse stratégique des GHT : outils de positionnement et de benchmarking (2020)",
+        "url": "https://solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "diagramme_hertzsprung_russell_services.md",
+    "thematique": "Casemix et profil de la patientèle"
+  },
+  {
+    "indicateur": "Distance de Mahalanobis du Profil Patient",
+    "definition": "La distance de Mahalanobis (P.C. Mahalanobis, 1936) est une mesure de distance statistique multivariée qui quantifie l'éloignement d'un point par rapport au centre d'une distribution, en tenant compte des **corrélations entre variables** et en **normalisant par les variances**. Contrairement à la distance euclidienne classique, elle n'est pas affectée par les différences d'échelle entre variables (une variable en jours et une en euros ne sont pas comparables directement) ni par leurs corrélations (âge et comorbidités sont fortement corrélés — ne pas en tenir compte surestime la distance). **D²_M(x) = (x − μ)ᵀ × Σ⁻¹ × (x − μ)** où x est le vecteur de caractéristiques du patient, μ le vecteur des moyennes de la population de référence et Σ la matrice de covariance de cette population. D_M(x) = √(D²_M) est la distance de Mahalanobis du patient. Appliquée au profil patient PMSI, la **Distance de Mahalanobis du Profil Patient** (DMPP) mesure dans quelle mesure un patient — ou un séjour — est **atypique par rapport à sa cohorte de référence**, en tenant compte simultanément de toutes ses caractéristiques cliniques et de leur structure de corrélation. Un patient avec D_M élevé n'est pas nécessairement \"anormal\" au sens clinique : il est statistiquement distant du profil habituel de sa cohorte, ce qui justifie une attention particulière — révision du codage PMSI, vérification de la prise en charge, analyse d'un possible outlier tarifaire ou d'un profil complexe sous-capté par les GHM. La DMPP généralise et améliore tous les indicateurs d'outlier univariés (DMS hors norme, coût atypique, âge atypique) : elle détecte des patients qui ne sont outliers sur aucune dimension isolément mais dont la **combinaison** de caractéristiques est globalement rare dans la cohorte.",
+    "calcul": "Définition du vecteur de caractéristiques patient : Calcul de la DMPP : Score d'atypicité normalisé :",
+    "utilite": [
+      "**Détection d'outliers PMSI multi"
+    ],
+    "sources": [],
+    "exemples": [
+      "2.0 ; P90 ≈ 3.5",
+      "4.5 ; P95 ≈ 5.0",
+      "6.5 ; P99 ≈ 8.0",
+      "dessus du seuil χ²(97.5%) : 5"
+    ],
+    "limites": [
+      "La DMPP suppose une **distribution approximativement gaussienne multivariée** des caractéristiques patients — hypothèse souvent violée en PMSI (distributions très asymétriques de la DMS, du coût, des comorbidités) ; une transformation préalable des variables (log"
+    ],
+    "references": [
+      {
+        "text": "Goldstein M., Uchida S. — A comparative evaluation of unsupervised anomaly detection algorithms for multivariate data, PLoS One 2016",
+        "url": "https://doi.org/10.1371/journal.pone.0152173"
+      },
+      {
+        "text": "ATIH — Analyse des séjours outliers en MCO : méthodologie de détection des séjours atypiques (rapport annuel)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "Quan H. et al. — Coding algorithms for defining comorbidities in ICD-9-CM and ICD-10 administrative data, Med Care 2005",
+        "url": "https://doi.org/10.1097/01.mlr.0000182534.19832.83"
+      }
+    ],
+    "fichier": "distance_mahalanobis_profil_patient.md",
     "thematique": "Casemix et profil de la patientèle"
   },
   {
@@ -1015,6 +1201,147 @@
     "thematique": "Casemix et profil de la patientèle"
   },
   {
+    "indicateur": "Température Statistique du Casemix",
+    "definition": "En physique statistique, la **température** d'un système de particules est inversement proportionnelle au paramètre β de la distribution de Boltzmann-Gibbs : P(E) ∝ e^(−βE), où P(E) est la probabilité qu'une particule ait l'énergie E et β = 1/(k_B × T). Une température élevée signifie que la distribution d'énergie est large et aplatie (beaucoup de particules à haute énergie) ; une température basse signifie une distribution concentrée autour des basses énergies (peu d'excitation, système \"froid\"). Transposée à la distribution des durées de séjour hospitalières, la **Température Statistique du Casemix** (TSC) modélise la DMS comme une variable distribuée selon une loi exponentielle (ou de Pareto pour les queues lourdes) : **P(DMS > t) = e^(−t/τ)** où τ = 1/k = DMS moyenne — c'est la \"température\" du service. Un service \"chaud\" (τ élevé) a une distribution de DMS aplatie avec beaucoup de séjours longs ; un service \"froid\" (τ faible) a une distribution concentrée sur les séjours courts. Mais l'intérêt principal de la TSC est qu'elle va **au-delà de la DMS moyenne** : elle caractérise la **forme** de la distribution des séjours, et en particulier le poids de la queue (les séjours très longs). Deux services peuvent avoir la même DMS moyenne mais des \"températures\" très différentes si l'un a une queue lourde (quelques séjours extrêmement longs) et l'autre une distribution homogène. La TSC, couplée à l'indice de queue, capture cette hétérogénéité invisible dans les statistiques de moyenne et d'écart-type habituelles.",
+    "calcul": "Test du modèle exponentiel et estimation de τ : Indicateurs dérivés : Décomposition de la variance de DMS (signal/chaleur) :",
+    "utilite": [
+      "**Distinguer deux services avec la même DMS mais des profils radicalement différents** : un service avec τ = 8 jours et IQL = 3,2 (distribution régulière) n'a pas le même profil qu'un service avec τ = 8 jours et IQL = 7,5 (quelques séjours de 40",
+      "**Identifier et quantifier les \"super",
+      "longs séjours\"** : les séjours dans la queue lourde (au",
+      "delà de P95 ou P99) sont souvent invisibles dans les statistiques de DMS moyenne — la TSC les révèle, les quantifie (FVS) et permet de les cibler pour une revue individuelle (bed"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** : DMS individuelle de chaque séjour (DATE_SOR − DATE_ENT) par GHM, CMD ou service — base suffisante pour tous les calculs ; fenêtre de 12"
+    ],
+    "exemples": [],
+    "limites": [
+      "Le **seuil t_min** pour l'ajustement de la loi de Pareto est un paramètre délicat — il définit à partir de quelle DMS on considère être dans la \"queue lourde\" ; des méthodes automatiques (estimateur de Hill, test de Kolmogorov",
+      "La TSC ne dit pas **pourquoi** la queue est lourde — un IQL élevé peut refléter une complexité médicale légitime (patients très sévères nécessitant un long séjour), un bed"
+    ],
+    "references": [
+      {
+        "text": "Weibull W. — A statistical distribution function of wide applicability, Journal of Applied Mechanics 1951",
+        "url": "https://doi.org/10.1115/1.4010337"
+      },
+      {
+        "text": "Clauset A. et al. — Power-law distributions in empirical data, SIAM Review 2009",
+        "url": "https://doi.org/10.1137/070710111"
+      },
+      {
+        "text": "Marazzi A. et al. — Fitting the distributions of length of stay by parametric models, Medical Care 1998",
+        "url": "https://doi.org/10.1097/00005650-199806000-00014"
+      },
+      {
+        "text": "ATIH — Statistiques de DMS par GHM : distributions et percentiles nationaux (rapports annuels)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS — Réhabilitation améliorée après chirurgie (RAAC) : guide de mise en œuvre (2020)",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "temperature_statistique_casemix.md",
+    "thematique": "Casemix et profil de la patientèle"
+  },
+  {
+    "indicateur": "Coefficient de Gini de la Consommation Hospitalière",
+    "definition": "Le coefficient de Gini, développé par l'économiste Corrado Gini en 1912 pour mesurer les inégalités de revenus dans une population, se définit comme le rapport entre l'aire de la courbe de Lorenz et l'aire du triangle de parfaite égalité. Transposé à la consommation hospitalière, le **Gini de consommation hospitalière** mesure le degré d'inégalité dans la distribution des hospitalisations (ou des dépenses de santé) sur un territoire : dans quelle mesure les séjours hospitaliers sont-ils concentrés sur un petit nombre de patients grands consommateurs, ou au contraire répartis de façon homogène dans la population ? G = 1 − 2 × ∫₀¹ L(x) dx où L(x) est la courbe de Lorenz : L(x) = fraction cumulée des séjours (ou dépenses) détenue par les x% de patients les moins consommateurs. G = 0 : consommation parfaitement égale (chaque patient consomme autant) G = 1 : consommation totalement concentrée (un seul patient consomme tout) Dans la réalité hospitalière française, la règle des 20/80 (ou \"loi de Pareto\") est bien documentée : 20% des patients concentrent 80% des dépenses hospitalières. Le Gini quantifie précisément cette concentration et permet de la comparer dans le temps, entre territoires, entre pathologies, et avant/après des politiques de santé visant à réduire les inégalités d'accès ou à gérer les grandes polyconsommateurs.",
+    "calcul": "Construction de la courbe de Lorenz hospitalière : Indicateurs complémentaires :",
+    "utilite": [
+      "**Mesurer les inégalités de recours sur le territoire** : calculé par IRIS à partir des taux de recours standardisés, le Gini territorial révèle les poches de sous",
+      "recours ou de non",
+      "**Benchmarking inter"
+    ],
+    "sources": [
+      "**SNDS DCIR** : pour élargir la consommation au"
+    ],
+    "exemples": [
+      "**Gini de consommation MCO (nombre de séjours, population générale)** : G ≈ 0,65",
+      "**Ratio P20_80** : dans la plupart des cohortes hospitalières, 20% des patients concentrent 70",
+      "**Gini territorial des taux de recours (par IRIS)** : G ≈ 0,15",
+      "0,35 selon le territoire — les zones rurales isolées et les zones urbaines défavorisées ont les taux les plus faibles (non",
+      "recours), les zones péri",
+      "**Gini insuffisance cardiaque** : G ≈ 0,70",
+      "0,80 (quelques patients décompensent très fréquemment, la majorité a 1",
+      "2 hospitalisations par an) — le programme de télésuivi cardiaque vise à réduire ce Gini de 0,10",
+      "**Indice de Kakwani** : K ≈ +0,05 à +0,15 dans les cohortes ALD — indique une légère surconsommation chez les patients déjà les plus comorbides, au"
+    ],
+    "limites": [
+      "Le Gini est sensible à la définition de la population de référence : s'il est calculé uniquement sur les patients hospitalisés, il exclut les non",
+      "La variation temporelle du Gini peut être due à des effets de composition (vieillissement, arrivée de patients chroniques) indépendants de tout changement organisationnel — une standardisation sur l'âge, le sexe et le profil de comorbidité est nécessaire pour les comparaisons inter",
+      "annuelles et inter"
+    ],
+    "references": [
+      {
+        "text": "Kakwani N. — Measurement of tax progressivity: an international comparison, The Economic Journal 1977",
+        "url": "https://doi.org/10.2307/2231833"
+      },
+      {
+        "text": "van Doorslaer E. et al. — Inequalities in the use of physician services : a review of the evidence, Health Economics 2006",
+        "url": "https://doi.org/10.1002/hec.1139"
+      },
+      {
+        "text": "CNAM — Charges et Produits annuels : concentration des dépenses de santé en France (rapport annuel)",
+        "url": "https://www.ameli.fr/"
+      },
+      {
+        "text": "DREES — Les inégalités sociales de santé dans le contexte du COVID-19 (2021)",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "coefficient_gini_consommation_hospitaliere.md",
+    "thematique": "Dimensions sociales et vulnérabilité"
+  },
+  {
+    "indicateur": "Indice de Rétention des Soins Primaires",
+    "definition": "En hydrologie, le **coefficient de rétention** (ou coefficient d'infiltration) mesure la fraction des précipitations qui s'infiltre dans les sols et les nappes phréatiques avant d'atteindre les cours d'eau : un sol imperméable a un coefficient de rétention faible (presque toute la pluie ruisselle directement vers la rivière) ; un sol riche en humus et couvert de végétation a un coefficient élevé (la pluie est absorbée progressivement, régulant les crues et maintenant un débit de base stable). Transposé à l'organisation des soins, l'**Indice de Rétention des Soins Primaires** (IRSP) mesure la fraction de la demande de soins aiguë ou potentiellement aiguë qui est **absorbée, filtrée ou orientée par les soins primaires** (médecin généraliste, CPTS, maison de santé pluriprofessionnelle) avant d'atteindre l'hôpital. Un territoire avec des soins primaires robustes est comme un sol perméable : la demande de soins est régulée, partiellement traitée en ambulatoire, et seulement la fraction nécessitant une hospitalisation atteint le MCO. Un territoire avec des soins primaires fragiles (désert médical, absence de médecin traitant déclaré) est imperméable : toute la demande ruisselle directement vers les urgences hospitalières, générant des \"crues\" de débit de crue. **IRSP = 1 − (Hospitalisations_potentiellement_évitables / Total_hospitalisations_aiguës)** où les hospitalisations potentiellement évitables (HPE) sont les hospitalisations pour des pathologies dont la prise en charge ambulatoire de qualité aurait dû prévenir l'hospitalisation (ACSC — Ambulatory Care Sensitive Conditions).",
+    "calcul": "Identification des hospitalisations potentiellement évitables (HPE) : Calcul de l'IRSP par territoire : Facteurs explicatifs exploitables depuis le SNDS :",
+    "utilite": [
+      "**Identifier les ACSC les plus \"évitables\"** : décomposer l'IRSP par type d'ACSC pour identifier les pathologies où le déficit de soins primaires est le plus marqué — dans un territoire donné, ce sont peut",
+      "**Benchmarking inter",
+      "GHT** : comparer les IRSP entre GHTs de caractéristiques similaires pour identifier les territoires avec les meilleurs modèles de soins primaires — les GHTs avec IRSP élevé malgré une densité médicale similaire ont développé des modèles de coordination ville"
+    ],
+    "sources": [
+      "**DCIR ER_PRS_F** : consultations de MG dans les 3 mois pré",
+      "hospitalisation (pour les patients HPE) — pour calculer le délai consultation"
+    ],
+    "exemples": [
+      "**Délai consultation"
+    ],
+    "limites": [
+      "La définition des **ACSC est contestée** : toutes les hospitalisations pour insuffisance cardiaque ne sont pas évitables même avec des soins primaires parfaits (décompensations liées à une progression naturelle de la maladie) ; des études montrent que 30",
+      "50% des HPE classifiées par les PQI",
+      "La **standardisation sur l'âge et le sexe** est indispensable mais insuffisante — les territoires avec une proportion élevée de patients en ALD (diabète, IC) ont structurellement plus d'ACSC potentielles, indépendamment de la qualité des soins primaires ; une standardisation supplémentaire sur le profil de comorbidités (Charlson) est recommandée pour les comparaisons inter",
+      "Le calcul requiert le **chaînage PMSI",
+      "DCIR par NIR** pour les analyses incluant les consultations ambulatoires pré",
+      "hospitalisation — la version \"PMSI seul\" (sans DCIR) ne peut calculer que la part HPE/total sans analyser le parcours pré"
+    ],
+    "references": [
+      {
+        "text": "Billings J. et al. — Impact of socioeconomic status on hospital use in New York City, Health Affairs 1993",
+        "url": "https://doi.org/10.1377/hlthaff.12.1.162"
+      },
+      {
+        "text": "AHRQ — Prevention Quality Indicators (PQI) technical specifications (2022)",
+        "url": "https://qualityindicators.ahrq.gov/"
+      },
+      {
+        "text": "Or Z. — Indicateurs de qualité et de performance des systèmes de santé en Europe, IRDES 2009",
+        "url": "https://www.irdes.fr/"
+      },
+      {
+        "text": "DREES — Les hospitalisations potentiellement évitables en France : état des lieux et déterminants (2018)",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "Haute Autorité de Santé — Pertinence des hospitalisations et soins ambulatoires sensibles aux soins primaires (2019)",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "indice_retention_soins_primaires.md",
+    "thematique": "Dimensions sociales et vulnérabilité"
+  },
+  {
     "indicateur": "Score de Vulnérabilité Sociale des Patients",
     "definition": "Le score de vulnérabilité sociale des patients est un indicateur construit à partir des codes Z de la CIM-10 renseignés dans les diagnostics associés (DA) du PMSI MCO, identifiant les patients présentant des facteurs de vulnérabilité sociale documentés lors de leur hospitalisation : problèmes de logement, isolement social, difficultés économiques, problèmes familiaux, absence de protection sociale, situation irrégulière. Ces codes Z, dits « facteurs influant sur l'état de santé et le recours aux services de santé », sont sous-utilisés en France mais constituent une mine d'informations sur la charge médico-sociale que le GHT doit absorber. Un score élevé sur un service ou un territoire révèle une patientèle socialement fragilisée nécessitant une coordination renforcée avec les travailleurs sociaux, les structures médico-sociales et les dispositifs de droit commun.",
     "calcul": "Le score de vulnérabilité sociale est calculé à deux niveaux : **Niveau 1 — Indicateur de présence binaire :** **Niveau 2 — Score composite (0-10 points) :** | Domaine | Codes CIM-10 | Poids | |---|---|---| | Logement précaire / sans domicile | Z59.0 (SDF), Z59.1 (logement inadéquat), Z59.2 (mésentente au domicile) | +3 | | Isolement social | Z60.2 (vie seule), Z60.3 (difficulté d'acculturation), Z60.4 (exclusion sociale) | +2 | | Difficultés économiques | Z59.5 (extrême pauvreté), Z59.6 (faibles revenus), Z59.7 (précarité ressources) | +3 | | Problèmes familiaux | Z63.0 (problèmes conjugaux), Z63.4 (disparition membre famille), Z63.6 (parent absent) | +1 | | Absence / rupture de protection sociale | Z59.4 (absence de soins appropriés), Z76.0 (demande de soins répétée injustifiée) | +1 | | **Score total** | | **0-10** | **Précisions méthodologiques** : - Les codes Z de vulnérabilité sociale sont identifiés dans les DA uniquement (le DP est réservé au motif médical principal d'hospitalisation). - Le codage de ces codes Z est très hétérogène entre établissements et entre services — un taux faible peut refléter un sous-codage plutôt qu'une faible prévalence réelle. - La liste des codes Z pertinents peut être complétée par des codes connexes : Z55 (problèmes liés à l'éducation), Z56 (problèmes liés à l'emploi), Z57 (exposition professionnelle). - L'indicateur peut être croisé avec le FDep (indice de défavorisation géographique) pour distinguer la vulnérabilité individuelle (codes Z) de la vulnérabilité contextuelle (zone de résidence défavorisée).",
@@ -1224,6 +1551,90 @@
     "thematique": "Dimensions sociales et vulnérabilité"
   },
   {
+    "indicateur": "Capacité de Charge Organisationnelle",
+    "definition": "En écologie des populations, la **capacité de charge** (carrying capacity, K) est la population maximale qu'un environnement peut soutenir de façon stable : au-delà de K, les ressources s'épuisent, la mortalité augmente, et la population décline. La croissance d'une population suit une courbe logistique — exponentielle au début, qui ralentit à l'approche de K et s'effondre au-delà. K est un seuil de soutenabilité, non une limite physique rigide : on peut dépasser K temporairement, mais au prix d'une dégradation des conditions. Transposée à l'hôpital, la **Capacité de Charge Organisationnelle** (CCO) est le **niveau de charge (taux d'occupation, volume d'activité) au-delà duquel les indicateurs de qualité se dégradent de façon détectable et reproductible** : la DMS s'allonge, les réadmissions augmentent, les complications s'accumulent, la mortalité dérive. K n'est pas la capacité nominale (nombre de lits installés) ni le taux d'occupation réglementaire (85%) : c'est le seuil empirique, propre à chaque service et dérivé des données PMSI réelles, à partir duquel la surcharge produit une détérioration mesurable de la qualité. La CCO révèle souvent que K_réel < K_nominal : certains services se dégradent dès 80% d'occupation, d'autres supportent 95% sans dommage. Elle permet également de détecter les **effets de seuil non-linéaires** — un service stable jusqu'à 85% qui se dégrade brutalement au-delà, plutôt que linéairement.",
+    "calcul": "Construction de la relation charge–qualité : Détection du seuil K par régression segmentée : Modèle de régression non-linéaire (version avancée) :",
+    "utilite": [
+      "**Définir des seuils d'alerte de charge fondés sur des données réelles** : remplacer le seuil conventionnel de 85% d'occupation (issu de normes historiques, non empiriques) par un K propre à chaque service, calculé depuis la relation réelle charge",
+      "**Anticiper les dégradations de qualité avant qu'elles ne se produisent** : l'indice de criticité IC = X/K × 100, calculé en temps quasi",
+      "**Justifier les demandes de capacité auprès des ARS** : \"notre service dépasse sa CCO 18 semaines par an, générant une augmentation mesurable de la DMS de +1,8 jours et du taux de réadmission de +3 points au"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Comparaison inter",
+      "25% du temps annuel — avec des pics importants en hiver et post"
+    ],
+    "limites": [
+      "L'estimation du breakpoint K par régression segmentée requiert un **nombre suffisant d'observations au",
+      "delà du seuil** — si un service ne dépasse jamais 80% d'occupation, la relation charge",
+      "qualité au",
+      "La relation charge",
+      "K est un **estimé ponctuel avec incertitude** — l'intervalle de confiance sur K peut être large (±5"
+    ],
+    "references": [
+      {
+        "text": "Muggeo V.M.R. — Estimating regression models with unknown break-points, Statistics in Medicine 2003",
+        "url": "https://doi.org/10.1002/sim.1545"
+      },
+      {
+        "text": "Davies R.B. — Hypothesis testing when a nuisance parameter is present only under the alternative, Biometrika 1987",
+        "url": "https://doi.org/10.1093/biomet/74.1.33"
+      },
+      {
+        "text": "Needleman J. et al. — Nurse-staffing levels and the quality of care in hospitals, NEJM 2002",
+        "url": "https://doi.org/10.1056/NEJMsa012247"
+      },
+      {
+        "text": "Weissman J.S. et al. — Gatekeeping and the quality of care, JAMA 1999",
+        "url": "https://doi.org/10.1001/jama.282.3.242"
+      },
+      {
+        "text": "ATIH — Statistiques d'activité hospitalière MCO : taux d'occupation et indicateurs de qualité par GHM (rapports annuels)",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "capacite_charge_organisationnelle.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
+    "indicateur": "Courbe de Laffer des Ressources Soignantes",
+    "definition": "La **courbe de Laffer** (Arthur Laffer, 1974) est l'observation en économie fiscale qu'il existe un taux d'imposition optimal τ* qui maximise les recettes fiscales totales : en dessous de τ*, augmenter les impôts augmente les recettes ; au-delà de τ*, augmenter les impôts réduit les recettes (les contribuables s'évadent fiscalement, réduisent leur activité, ou quittent le territoire). À taux nul, recettes nulles ; à taux 100%, recettes nulles également. Entre les deux, il existe un maximum. Transposée à la production hospitalière, la **Courbe de Laffer des Ressources Soignantes** (CLRS) modélise la relation entre la **charge de travail infligée aux soignants** (taux d'occupation, nombre d'actes/soignant) et la **production qualité-ajustée** totale (activité × qualité) — et prédit qu'il existe un point optimal au-delà duquel augmenter la charge réduit la production totale qualité-ajustée. Cette relation est distincte de la Capacité de Charge Organisationnelle (CCO) : - La **CCO** mesure le seuil de charge K au-delà duquel la *qualité* se dégrade - La **CLRS** mesure le seuil optimal de charge χ* qui *maximise la production totale qualité-ajustée* — qui peut être inférieur à K si la baisse de qualité réduit suffisamment la \"valeur\" produite pour compenser le gain de volume **Production_QA(X) = Volume(X) × Qualité(X)** où X est la charge (taux d'occupation ou actes/soignant), Volume(X) = λ × fonction croissante de X, et Qualité(X) = fonction décroissante de X au-delà de K. La production qualité-ajustée est un produit — elle est maximisée à un point χ* qui peut être inférieur à K.",
+    "calcul": "Construction de la relation charge–production qualité-ajustée : Indicateurs dérivés :",
+    "utilite": [
+      "**Fixer un objectif de taux d'occupation optimal différent du seuil de rupture K** : la CCO fournit le seuil K au",
+      "delà duquel la qualité se dégrade ; la CLRS fournit χ*, qui peut être inférieur à K, comme objectif de taux d'occupation maximisant la valeur produite totale — dans les services à forte asymétrie (γ élevé), χ* peut être 5",
+      "**Répondre à la question \"peut",
+      "on augmenter l'activité sans dégrader la qualité globale ?\"** : si EPL < 0 (service en dessous de χ*), augmenter l'activité augmente simultanément le volume ET la qualité",
+      "ajustée totale ; si EPL > 0 (service au",
+      "**Comparer les profils de Laffer entre services** : deux services avec le même χ* mais des courbures α₂ différentes ont des tolérances à la surcharge différentes — celui avec α₂ fortement négatif chute vite au"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** (séries hebdomadaires sur 2"
+    ],
+    "exemples": [],
+    "limites": [],
+    "references": [
+      {
+        "text": "Needleman J. et al. — Nurse-staffing levels and the quality of care in hospitals, NEJM 2002",
+        "url": "https://doi.org/10.1056/NEJMsa012247"
+      },
+      {
+        "text": "Aiken L.H. et al. — Hospital nurse staffing and patient mortality, nurse burnout, and job dissatisfaction, JAMA 2002",
+        "url": "https://doi.org/10.1001/jama.288.16.1987"
+      },
+      {
+        "text": "Kane R.L. et al. — The association of registered nurse staffing levels and patient outcomes, Medical Care 2007",
+        "url": "https://doi.org/10.1097/MLR.0b013e3181468ca3"
+      },
+      {
+        "text": "ATIH — Statistiques MCO : séries temporelles d'activité, de DMS et de complications par GHM et par service",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "courbe_laffer_ressources_soignantes.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
     "indicateur": "DMS SSR Ajustée au GME (Indice de Performance SSR)",
     "definition": "Ratio entre la durée de séjour (DMS) observée dans un établissement SSR et la DMS nationale de référence ATIH pour le même GME (Groupe Médico-Économique). Le GME est le groupage tarifaire du PMSI SSR, équivalent fonctionnel du GHM en MCO : il classe les séjours SSR selon la finalité principale de prise en charge (FP), le groupe nosologique (GN), et le niveau de dépendance MIF à l'entrée. Un ratio > 1 indique une DMS supérieure à la moyenne nationale pour le même profil de patient (possible inefficience ou complexité non capturée par le GME) ; un ratio < 1 indique une DMS inférieure à la référence (efficience ou risque de sortie prématurée). Cet indicateur permet un benchmarking équitable entre établissements SSR en neutralisant l'effet du casemix — un SSR spécialisé en neurologie lourde (AVC sévères, DMS nationale ~55 jours pour ce GME) ne peut pas être comparé brut à un SSR locomoteur (PTH, DMS nationale ~18 jours). L'indicateur est l'équivalent SSR de l'IPDMS (Indice de Performance de la Durée Moyenne de Séjour) déjà utilisé en MCO, et s'inscrit dans la même logique de mesure de l'efficience de production hospitalière par rapport à une norme nationale.",
     "calcul": "Sources de données : Formules de l'indicateur : Sous-indicateurs complémentaires :",
@@ -1369,6 +1780,62 @@
     "thematique": "Efficience et gestion capacitaire"
   },
   {
+    "indicateur": "Heijunka Hospitalier — Indice de Lissage des Flux d'Admission",
+    "definition": "Heijunka (平準化) est un concept fondamental du Toyota Production System (TPS), formalisé par Taiichi Ohno dans les années 1950, qui désigne le **lissage de la production** : plutôt que de produire par lots irréguliers qui surchargent le système par pics puis le laissent oisif, une production heijunka maintient un flux constant et prévisible. Transposé à l'hôpital, l'**Indice de Heijunka Hospitalier** (IHH) mesure le degré de lissage des flux d'entrées (admissions) sur différentes granularités temporelles : jour de la semaine, semaine du mois, mois de l'année. Un hôpital sans lissage présente une forte variabilité des admissions : peu de chirurgie le lundi matin (préparation des blocs), pic d'admissions le mercredi-jeudi, quasi-arrêt le week-end. Cette irrégularité génère des surcharges et des sous-utilisations alternées des ressources — infirmiers sous-occupés le week-end, débordement des salles de réveil en fin de semaine. Le heijunka hospitalier mesure cette régularité et identifie les leviers organisationnels pour lisser les flux sans augmenter la capacité globale. IHH = 1 − (σ_admissions / μ_admissions) où σ est l'écart-type et μ la moyenne des admissions sur la période considérée. IHH → 1 signifie un flux parfaitement lissé (même nombre d'admissions chaque jour) ; IHH → 0 ou négatif signifie un flux très irrégulier. Équivalent normalisé : IHH = max(0 ; 1 − CV_admissions) où CV = σ/μ",
+    "calcul": "Granularités d'analyse du flux : Décomposition du flux par type d'admission : Écart au profil de lissage optimal :",
+    "utilite": [
+      "**Optimiser l'utilisation des blocs opératoires** : le heijunka appliqué à la programmation chirurgicale permet de lisser l'occupation des blocs sur la semaine, réduisant les salles de réveil surchargées le jeudi",
+      "**Prévention du \"syndrome du lundi\"** : la sur",
+      "concentration des sorties le vendredi et des admissions le mercredi",
+      "jeudi génère un \"bed",
+      "blocking\" chronique le week",
+      "end (lits bloqués par des patients médicalement prêts à sortir mais sans aval) — le heijunka identifie ce phénomène et guide les actions pour le réduire (astreinte de planification aval le week",
+      "**Réduction des heures supplémentaires soignantes** : la variabilité des admissions est corrélée au recours aux heures supplémentaires et à l'intérim — un IHH amélioré de 0,10 points est associé à une réduction estimée de 5"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** : date et heure d'entrée effective pour chaque séjour (variable DATE_ENT + HEURE_ENT du RSA) — principale source pour calculer les flux quotidiens et intra"
+    ],
+    "exemples": [
+      "**IHH_hebdo d'un service de chirurgie orthopédique** : 0,30",
+      "0,45 typique (forte concentration mercredi",
+      "jeudi, quasi",
+      "arrêt samedi",
+      "**IHH_hebdo d'un service de médecine gériatrique** : 0,50",
+      "**IHH_annuel** : 0,60",
+      "0,75 pour la plupart des services (hors creux estival) ; chute marquée en S30",
+      "S35 (été) et S52",
+      "**Impact d'un chantier heijunka** : gain IHH_hebdo de +0,15",
+      "0,25 points en 12 mois dans les établissements ayant appliqué la méthode (répartition des vacations, extension de la programmation au samedi matin) — réduction corrélée de 10",
+      "**Ratio flux subi / flux total (RSF)** : RSF = 0,25",
+      "0,40 en chirurgie, 0,60"
+    ],
+    "limites": [
+      "L'IHH mesure la régularité des admissions, non leur niveau absolu — un service admettant 5 patients par jour exactement aurait IHH = 1 mais serait sous",
+      "utilisé ; l'IHH doit toujours être lu conjointement avec le taux d'occupation pour distinguer lissage efficace et sous",
+      "Le lissage du flux d'admissions peut créer une pression sur le flux aval (sorties) si les durées de séjour ne sont pas simultanément maîtrisées — heijunka sans action sur la DMS peut accroître le bed",
+      "blocking de façon contre",
+      "Certaines contraintes médicales (chirurgie réalisée uniquement certains jours par des chirurgiens visiteurs, urgences pédiatriques concentrées le week",
+      "La granularité intra",
+      "journalière (IHH_intraday) est difficile à améliorer sans modifier fondamentalement les horaires d'ouverture du bloc ou des urgences — son utilité est surtout diagnostique (identifier les pics de 10h"
+    ],
+    "references": [
+      {
+        "text": "Litvak E. et al. — Managing unnecessary variability in patient demand to reduce nursing stress and improve patient safety, Jt Comm J Qual Patient Saf 2005",
+        "url": "https://doi.org/10.1016/S1553-7250(05"
+      },
+      {
+        "text": "ANAP — Lean management en établissements de santé : retours d'expérience (2014)",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "HAS — Amélioration de la gestion des lits et des flux de patients : guide pratique (2019)",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "heijunka_hospitalier_lissage_flux.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
     "indicateur": "Indice d'Efficience du Bloc Opératoire",
     "definition": "L'indice d'efficience du bloc opératoire est un indicateur composite mesurant la performance organisationnelle et économique des salles d'opération d'un établissement du GHT. Il agrège plusieurs dimensions : le taux d'occupation des salles (temps opératoire réel vs temps ouvert), le ratio actes programmés/urgents, le taux d'annulation des interventions programmées et la durée moyenne de vacation utilisée. Le bloc opératoire représente généralement 40-60 % des charges d'un établissement chirurgical et conditionne directement la capacité du GHT à développer son activité chirurgicale, à réduire les délais d'attente et à améliorer sa rentabilité T2A.",
     "calcul": "L'indice d'efficience du bloc opératoire est calculé à partir de plusieurs sous-indicateurs : **1. Taux d'occupation des salles (TOS) :** **2. Taux d'annulation des interventions programmées :** **3. Ratio programmé / urgences :** **4. Estimation depuis le PMSI (proxy) :** **Précisions méthodologiques** : - Les données précises du bloc (horodatages d'entrée/sortie de salle) sont issues des logiciels de gestion du bloc (DIANE, BOW, Axya) et non directement du PMSI. - Le PMSI permet néanmoins des proxies robustes : nombre d'actes CCAM par jour et par établissement, répartition programmé/urgences via le mode d'entrée (code 8 = urgences), distribution hebdomadaire et mensuelle des actes. - L'analyse PMSI permet également d'identifier les « séjours sans acte » (séjours MCO sans code CCAM associé) pouvant signaler des dysfonctionnements de codage ou des annulations non tracées. - L'indice composite peut être calculé en agrégeant les sous-indicateurs pondérés selon les priorités du GHT.",
@@ -1411,6 +1878,46 @@
       }
     ],
     "fichier": "indice_efficience_bloc_operatoire.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
+    "indicateur": "Indice de Plasticité Post-Choc",
+    "definition": "En science des matériaux, la **déformation plastique** est la partie irréversible de la déformation d'un matériau après suppression de la contrainte : si un métal est plié au-delà de sa limite élastique, il reprend partiellement sa forme initiale mais conserve une courbure résiduelle permanente. Contrairement à la déformation élastique (entièrement récupérée), la déformation plastique laisse une trace durable dans la microstructure du matériau. L'**Indice de Résilience Opérationnelle** (IRO) mesure la vitesse à laquelle un indicateur de performance hospitalier revient à son baseline après un choc. Mais l'IRO ne pose pas la question suivante : **le retour est-il complet ?** Un service peut \"récupérer\" rapidement selon l'IRO (retour dans l'intervalle de normalité) tout en ayant subi une déformation permanente — son nouveau baseline post-choc est structurellement dégradé par rapport au baseline pré-choc. L'**Indice de Plasticité Post-Choc** (IPPC) mesure précisément cette déformation résiduelle : **IPPC = (Baseline_post − Baseline_pré) / |Amplitude_choc|** - IPPC = 0 : retour parfait au baseline pré-choc (déformation entièrement élastique, résilience complète) - IPPC > 0 : le baseline post-choc est dégradé par rapport au baseline pré-choc (dégradation permanente, déformation plastique positive — DMS plus longue, taux de complications plus élevé) - IPPC < 0 : le baseline post-choc est meilleur que le baseline pré-choc (le choc a paradoxalement forcé une amélioration durable — \"effet Phoenix\") - |IPPC| proche de 1 : la déformation permanente est égale à l'amplitude du choc (le système ne récupère pas du tout)",
+    "calcul": "Définition des phases (extension de la méthodologie IRO) : Décomposition élastique/plastique de la déformation totale : Suivi longitudinal multi-chocs :",
+    "utilite": [
+      "**Détecter l'effet Phoenix** (IPPC < 0) : certains chocs forcent des réorganisations bénéfiques que la routine n'aurait pas permises — la crise COVID a dans certains services amélioré le baseline de la DMS post",
+      "**Négociation post"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** (séries hebdomadaires sur 3",
+      "**Même infrastructure de données que l'IRO** : l'IPPC et l'IRO sont calculés sur les mêmes séries temporelles et peuvent être produits simultanément — coût marginal de production quasi"
+    ],
+    "exemples": [
+      "**Service MCO après vague COVID",
+      "19 (vague 1, mars"
+    ],
+    "limites": [
+      "La définition du **baseline post",
+      "choc** requiert une période de stabilisation suffisante (12",
+      "24 semaines) sans nouveau choc superposé — dans les environnements hospitaliers modernes où les chocs se succèdent rapidement (grippe 2019, COVID vague 1, COVID vague 2…), il peut être impossible d'isoler un baseline post",
+      "La distinction entre **déformation plastique** (baseline structurellement modifié) et **changement de casemix** (le service traite durablement un profil de patients différent post",
+      "choc) est délicate depuis le PMSI seul — une augmentation de la DMS post"
+    ],
+    "references": [
+      {
+        "text": "Holling C.S. — Resilience and stability of ecological systems, Annual Review of Ecology and Systematics 1973",
+        "url": "https://doi.org/10.1146/annurev.es.04.110173.000245"
+      },
+      {
+        "text": "Woods D.D. — Four concepts for resilience and the implications for the future of resilience engineering, Reliability Engineering & System Safety 2015",
+        "url": "https://doi.org/10.1016/j.ress.2015.03.018"
+      },
+      {
+        "text": "DGOS — Bilan post-COVID des établissements de santé : indicateurs de retour à la normale (2021)",
+        "url": "https://solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "indice_plasticite_post_choc.md",
     "thematique": "Efficience et gestion capacitaire"
   },
   {
@@ -1586,6 +2093,80 @@
       }
     ],
     "fichier": "ip_dms_indice_performance_dms.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
+    "indicateur": "Loi de Little Hospitalière",
+    "definition": "La loi de Little (John D.C. Little, 1961) est un résultat fondamental de la théorie des files d'attente, démontré pour tout système stable quelle que soit la distribution des temps d'arrivée ou de service : **L = λ × W** où L est le nombre moyen d'éléments présents dans le système, λ le débit moyen d'entrée dans le système, et W le temps moyen passé dans le système. Cette loi est universelle : elle s'applique à n'importe quel \"système\" stable — une usine, un réseau informatique, une file de caisse — sans hypothèse sur la distribution des durées ni sur la forme du service. Appliquée à une unité hospitalière, la loi de Little établit une relation invariante entre trois quantités mesurables depuis le PMSI : **Lits_occupés_moyens = Taux_admissions_journalier × DMS** En régime stable, si l'on connaît deux de ces trois quantités, la troisième est déterminée. La puissance de la loi de Little en milieu hospitalier réside dans sa capacité à **détecter les anomalies invisibles** : toute violation de cette relation triangulaire — c'est-à-dire tout écart significatif entre la valeur observée d'une des trois grandeurs et la valeur prédite par les deux autres — révèle une perturbation cachée que les indicateurs classiques ne détectent pas isolément. Un service avec une DMS stable et un taux d'admission stable devrait avoir une occupation stable : si l'occupation réelle s'envole malgré des admissions constantes, il y a nécessairement un problème de flux de sorties (bed-blocking, manque d'aval, blocage administratif). La loi de Little rend ce problème visible et quantifiable, avant même d'en connaître la cause.",
+    "calcul": "Mesure des trois composantes sur une fenêtre temporelle T (semaine, mois) : Indice de violation de la loi de Little (IVLL) : Décomposition diagnostique par composante : Taux d'utilisation de Little (TUL) :",
+    "utilite": [
+      "**Détecter le bed",
+      "blocking et les goulots d'étranglement aval** : un IVLL chroniquement positif signale que les patients restent dans les lits plus longtemps que la DMS déclarée ne le justifie — révèle un problème de flux de sorties (manque de places SSR, absence d'infirmière de liaison, sorties retardées le week",
+      "**Pilotage de la capacité en temps quasi",
+      "**Comparaison inter",
+      "unités du GHT** : deux unités avec la même DMS et le même taux d'occupation mais des IVLL différents n'ont pas le même profil de flux — l'unité avec IVLL > 0 a un problème de flux de sortie, l'unité avec IVLL < 0 a peut",
+      "être des lits fermés non déclarés ou une sous"
+    ],
+    "sources": [],
+    "exemples": [
+      "**IVLL lors d'une vague grippale** : pic à +25",
+      "40 % pendant 3",
+      "5 semaines, retour à 0",
+      "5 % en 4"
+    ],
+    "limites": [
+      "La définition de l'unité d'analyse (UM, service, pôle, établissement) modifie les résultats : une violation observée au niveau du service peut disparaître au niveau du pôle si les flux se compensent entre unités — l'analyse multi",
+      "Les **transferts intra"
+    ],
+    "references": [
+      {
+        "text": "Little J.D.C. — A proof for the queuing formula L = λW, Operations Research 1961",
+        "url": "https://doi.org/10.1287/opre.9.3.383"
+      },
+      {
+        "text": "Fieldston E.S. et al. — Application of Little's law to measure census variability in a pediatric hospital, Pediatrics 2010",
+        "url": "https://doi.org/10.1542/peds.2009-2093"
+      },
+      {
+        "text": "Litvak E., Bisognano M. — More patients, less payment: increasing hospital efficiency in the aftermath of health reform, Health Affairs 2011",
+        "url": "https://doi.org/10.1377/hlthaff.2011.0073"
+      },
+      {
+        "text": "ANAP — Gestion des lits et flux de patients : outils et méthodes (2013)",
+        "url": "https://www.anap.fr/"
+      }
+    ],
+    "fichier": "loi_de_little_hospitaliere.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
+    "indicateur": "Module d'Young Organisationnel",
+    "definition": "Le **module d'Young** (Thomas Young, 1807) est la constante de rigidité d'un matériau dans son domaine élastique : E = σ/ε, où σ est la contrainte appliquée (force par unité de surface) et ε est la déformation résultante (allongement relatif). Un matériau avec un E élevé (acier : 210 GPa) est rigide — il se déforme peu sous contrainte. Un matériau avec un E faible (caoutchouc : 0,01 GPa) se déforme beaucoup pour la même contrainte mais revient à sa forme initiale (domaine élastique). La **Capacité de Charge Organisationnelle** (CCO) identifie le seuil K au-delà duquel un service se dégrade — c'est le point de rupture. Le **Module d'Young Organisationnel** (MYO) est complémentaire et distinct : il mesure la **pente de dégradation de la qualité par unité de charge supplémentaire dans le domaine pré-K**, c'est-à-dire avant d'atteindre le seuil. Un service avec un MYO élevé est \"rigide\" — sa qualité se maintient presque parfaitement jusqu'au seuil K, puis se dégrade brutalement (rupture fragile). Un service avec un MYO faible est \"souple\" — sa qualité se dégrade progressivement dès les premières tensions, même loin du seuil K (déformation continue). **MYO = ΔQualité / ΔCharge dans la zone X < K** Un service rigide (MYO élevé) est prévisible et robuste en régime normal mais vulnérable aux chocs soudains. Un service souple (MYO faible) se dégrade continûment mais envoie des signaux précoces de tension — il est plus facile à piloter car chaque dégradation est un signal d'action.",
+    "calcul": "Profil élasticité–plasticité complet : Carte de comportement mécanique des services :",
+    "utilite": [],
+    "sources": [
+      "**PMSI MCO RSA** : DMS individuelle, complications (DA), réadmissions (chaînage NIR) — pour les variables de qualité Y ; journées d'hospitalisation pour l'approximation du taux d'occupation X (via L = λ×W, loi de Little) sur des séries hebdomadaires de 2"
+    ],
+    "exemples": [
+      "**Comparaison inter"
+    ],
+    "limites": [
+      "Le MYO ne peut être estimé que si le service a fonctionné dans une plage suffisamment large de taux d'occupation sous K — si le service est quasi",
+      "toujours entre 80% et 88%, la pente pré",
+      "K est estimée sur une plage de seulement 8 points, avec grande incertitude ; recommander une fenêtre d'observation de 2",
+      "La séparation entre domaine élastique (X < K) et domaine plastique (X > K) hérite de l'incertitude sur K (cf. limites de la CCO) — une erreur sur K de ±5 points modifie le sous"
+    ],
+    "references": [
+      {
+        "text": "Muggeo V.M.R. — Estimating regression models with unknown break-points, Statistics in Medicine 2003",
+        "url": "https://doi.org/10.1002/sim.1545"
+      },
+      {
+        "text": "ATIH — Statistiques MCO : séries temporelles d'activité et de DMS par GHM",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "module_young_organisationnel.md",
     "thematique": "Efficience et gestion capacitaire"
   },
   {
@@ -1768,6 +2349,46 @@
       }
     ],
     "fichier": "taux_rotation_lits.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
+    "indicateur": "Valeur d'Option Réelle Capacitaire",
+    "definition": "La théorie des options réelles (Myers, 1977 ; Dixit & Pindyck, 1994) étend le cadre des options financières aux décisions d'investissement réel en présence d'incertitude. Une **option financière** est le droit (sans obligation) d'acheter ou vendre un actif à un prix fixé à une date future — sa valeur provient précisément de la flexibilité qu'elle confère. Une **option réelle** est la valeur de la flexibilité opérationnelle d'un actif physique : la possibilité de différer, d'abandonner, d'étendre ou de réorienter un investissement selon l'évolution de l'environnement. Appliquée à la capacité hospitalière, la **Valeur d'Option Réelle Capacitaire** (VORC) mesure la **valeur économique de la flexibilité** d'une unité ou d'un lit : la capacité de basculer une ressource d'un usage à un autre (lit SSR → lit MCO lors d'une crise, bloc chirurgical → unité COVID, HAD → soins palliatives à domicile) en réponse à un choc imprevisible. La VORC répond à une question que les outils d'efficience classiques ne posent pas : **combien vaut le fait de ne pas fermer ces lits \"excédentaires\" ?** Un hôpital optimisé au plus juste (zéro slack, zéro marge de manœuvre) est efficace en régime nominal mais vulnérable et coûteux en cas de choc. La VORC quantifie la valeur d'assurance de la capacité de réserve — et justifie économiquement son maintien face aux pressionsbudgétaires qui poussent à supprimer tout ce qui semble \"non utilisé\". Formellement, la VORC d'une unité flexible est assimilée à une **option d'échange** (Margrabe, 1978) : le droit d'échanger l'usage actuel d'une ressource (valeur V_actuel) contre un usage alternatif (valeur V_alternatif), au coût de conversion C_switch. **VORC = E[max(V_alternatif − V_actuel − C_switch, 0)]** où l'espérance est calculée sur les scénarios de choc futurs possibles.",
+    "calcul": "Modélisation des usages alternatifs : Estimation de la VORC par la formule de Margrabe : Approche simplifiée par scénarios (plus accessible opérationnellement) :",
+    "utilite": [
+      "**Justifier économiquement le maintien de lits \"sous",
+      "**Quantifier le \"coût de la sur",
+      "optimisation\"** : les établissements qui ont supprimé toute marge de manœuvre pour atteindre des taux d'occupation > 95% ont une VORC nulle — et ont payé un prix élevé lors de la crise COVID (déprogrammation totale des activités électives car pas de marge pour absorber les patients COVID) ; la VORC aurait pu quantifier ce risque ex"
+    ],
+    "sources": [
+      "**PMSI MCO et SSR RSA** (séries hebdomadaires sur 3"
+    ],
+    "exemples": [
+      "**Impact COVID",
+      "19 mesuré ex",
+      "post** : les établissements qui avaient des lits de réserve identifiés (taux occupation pré",
+      "COVID 75",
+      "80%) ont réorienté 15",
+      "25% de leur capacité en moins de 72h ; les établissements à 95%+ ont subi une déprogrammation totale avec perte de recettes MCO estimée à 30"
+    ],
+    "limites": [
+      "La **formule de Margrabe** suppose des processus log"
+    ],
+    "references": [
+      {
+        "text": "Myers S.C. — Determinants of corporate borrowing, Journal of Financial Economics 1977",
+        "url": "https://doi.org/10.1016/0304-405X(77"
+      },
+      {
+        "text": "Margrabe W. — The value of an option to exchange one asset for another, Journal of Finance 1978",
+        "url": "https://doi.org/10.1111/j.1540-6261.1978.tb03397.x"
+      },
+      {
+        "text": "DGOS — Plan de gestion des tensions hospitalières et des situations sanitaires exceptionnelles : capacités de réserve et conversions de lits (2021)",
+        "url": "https://solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "valeur_option_reelle_capacitaire.md",
     "thematique": "Efficience et gestion capacitaire"
   },
   {
@@ -1992,6 +2613,61 @@
     "thematique": "Qualité et sécurité des soins"
   },
   {
+    "indicateur": "Indice de Simpson de Diversité des Équipes SSR",
+    "definition": "L'indice de diversité de Simpson, développé en écologie par E.H. Simpson en 1949 pour mesurer la biodiversité d'un écosystème, quantifie la probabilité que deux individus tirés au sort dans une population appartiennent à des espèces différentes. Transposé aux équipes de soins de suite et réadaptation (SSR), l'**Indice de Simpson de Diversité des Équipes SSR** (ISDE) mesure la **diversité professionnelle** d'une équipe soignante : la probabilité que deux intervenants choisis au hasard parmi les professionnels ayant pris en charge un patient sur son séjour SSR appartiennent à des professions différentes. ISDE = 1 − Σᵢ (nᵢ / N)² où nᵢ est le nombre d'actes ou d'interventions réalisées par la profession i et N le nombre total d'actes ; une valeur proche de 1 indique une équipe très diversifiée (nombreuses professions, réparties équitablement), une valeur proche de 0 indique une équipe mono-professionnelle. L'analogie écologique est directe : comme un écosystème riche en espèces est plus résilient qu'un écosystème mono-espèce, une équipe SSR pluriprofessionnelle est supposée mieux traiter la complexité des patients polypathologiques. L'ISDE n'est pas un simple comptage de professions (qui donnerait le même score à une équipe avec 1 kiné et 20 infirmiers qu'à une équipe avec 10 kinés et 10 infirmiers) : il prend en compte la **répartition équilibrée** des interventions entre professions.",
+    "calcul": "Construction du vecteur professionnel par séjour SSR : Calcul par service et par profil de patient : Indice de richesse professionnelle (complémentaire) :",
+    "utilite": [
+      "**Identifier les équipes sous",
+      "**Corrélation avec les résultats fonctionnels (MIF)** : les études en rééducation montrent que la diversité professionnelle effective (et non seulement la présence nominale) est associée à de meilleurs gains fonctionnels (delta",
+      "**Benchmarking inter",
+      "**Identification des séjours à prise en charge insuffisamment diversifiée** : à l'échelle individuelle, un ISDE séjour très faible pour un patient avec une CMD SSR complexe est un signal de prise en charge sous"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Service SSR neurologique (AVC, traumatisme crânien)** : ISDE moyen = 0,72",
+      "0,82 dans les services bien dotés (MPR, kiné, ergo, ortho, neuropsy, IDE, assistante sociale) ; S = 6",
+      "**Service SSR orthopédique (prothèse hanche/genou)** : ISDE moyen = 0,55",
+      "0,65 (kiné dominant + MPR + IDE) ; S = 3",
+      "**Service SSR gériatrique** : ISDE moyen = 0,65",
+      "**ISDE minimal acceptable** : ISDE < 0,40 pour un séjour SSR complexe = prise en charge mono",
+      "**Corrélation ISDE",
+      "delta MIF** : dans les études disponibles, chaque 0,10 point d'ISDE supplémentaire est associé à +1,5"
+    ],
+    "limites": [
+      "La complétude du codage des actes par profession dans les RHS est très variable selon les établissements et les logiciels — un ISDE faible peut refléter un sous",
+      "codage des actes des professions paramédicales plutôt qu'une réelle absence de pluriprofessionnalité ; la comparaison inter",
+      "La définition des \"professions\" dans le PMSI SSR est limitée par la granularité de la nomenclature d'actes : les actes de diététique, travail social, et accompagnement psychologique sont souvent mal tracés dans les RHS, conduisant à une sous"
+    ],
+    "references": [
+      {
+        "text": "Simpson E.H. — Measurement of diversity, Nature 1949",
+        "url": "https://doi.org/10.1038/163688a0"
+      },
+      {
+        "text": "Gittell J.H. et al. — Impact of relational coordination on quality of care, post-operative pain and functioning, Medical Care 2000",
+        "url": "https://doi.org/10.1097/00005650-200008000-00005"
+      },
+      {
+        "text": "HAS — Recommandations pour la prise en charge en SSR après AVC (2022)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "HAS — Conditions techniques de fonctionnement des SSR (décret compétences pluriprofessionnelles, 2019)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "Stroke Unit Trialists — Collaborative systematic review of randomised trials of organised inpatient stroke unit care after stroke, BMJ 1997",
+        "url": "https://doi.org/10.1136/bmj.314.7088.1151"
+      },
+      {
+        "text": "ATIH — Guide méthodologique PMSI SSR : codage des actes de rééducation dans les RHS",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "indice_simpson_diversite_equipe_ssr.md",
+    "thematique": "Qualité et sécurité des soins"
+  },
+  {
     "indicateur": "IQTIG — Indicateurs de Qualité en Arthroplastie (Allemagne)",
     "definition": "Dans le domaine de l'arthroplastie de hanche et de genou, l'IQTIG publie des indicateurs de qualité couvrant les révisions précoces de prothèse, les complications périopératoires (infections du site opératoire, embolie pulmonaire, luxation, fracture peropératoire), la durée de séjour et la mortalité postopératoire. L'Allemagne est l'un des pays au monde avec le plus fort taux d'arthroplastie (300 000 prothèses totales de hanche et 200 000 prothèses totales de genou par an) et dispose d'un registre national de suivi implantataire (EPRD — Endoprothesenregister Deutschland) couplé aux données G-DRG, fournissant le référentiel le plus riche au monde pour ces indicateurs. La transposition au PMSI français est directe grâce aux codes CIM-10 et CCAM couvrant les mêmes gestes, et au Registre National des Arthroplasties (RNA) en cours de déploiement en France.",
     "calcul": "Les principaux indicateurs IQTIG en arthroplastie et leur formule : **1. Taux de révision précoce de prothèse (< 90 jours) :** **2. Taux d'infection du site opératoire profonde (ISO profonde) :** **3. Taux de complications thromboemboliques postopératoires :** **4. Taux de luxation de prothèse de hanche (< 90 jours) :** **5. Taux de fracture peropératoire :** **6. Mortalité à 90 jours post-arthroplastie :**",
@@ -2101,6 +2777,45 @@
       }
     ],
     "fichier": "iqtig_indicateurs_qualite_obstetrique.md",
+    "thematique": "Qualité et sécurité des soins"
+  },
+  {
+    "indicateur": "Loi de Gutenberg-Richter des Événements Indésirables",
+    "definition": "La loi de Gutenberg-Richter (Gutenberg & Richter, 1944) est une loi empirique fondamentale en sismologie : pour une région donnée, le logarithme du nombre de séismes de magnitude supérieure à M est une fonction linéaire décroissante de M : **log₁₀(N) = a − b × M** où N est le nombre de séismes de magnitude ≥ M sur une période donnée, a est une constante liée à la sismicité générale de la région, et **b est la pente** — le paramètre le plus informatif. Une valeur b élevée (~1,5) signifie que les petits séismes sont très nombreux par rapport aux grands : le système \"se décharge\" progressivement via de nombreux micro-événements. Une valeur b faible (~0,5) signifie une accumulation silencieuse d'énergie sans micro-événements préalables — le système est en régime de \"séisme silencieux\", qui précède souvent un séisme majeur catastrophique. Transposée aux événements indésirables hospitaliers, la **Loi de Gutenberg-Richter des Événements Indésirables** (LGREI) applique cette logique à la distribution de gravité des incidents : si les événements mineurs (quasi-accidents, incidents sans conséquence) sont nombreux par rapport aux événements graves (complications sévères, décès évitables), la pente b est élevée — signe d'une culture de sécurité mature où les signaux faibles sont détectés et déclarés. Si les événements mineurs sont rares et les événements graves représentent une proportion anormale, b est faible — signe d'une sous-déclaration des incidents mineurs et d'un système en risque d'événement catastrophique. La LGREI quantifie la **maturité de la culture de déclaration des événements indésirables** et détecte les systèmes à risque de \"séisme hospitalier\" (événement grave isolé non précédé de signaux faibles).",
+    "calcul": "Construction de l'échelle de gravité des événements indésirables : Ajustement de la loi de Gutenberg-Richter : Indicateur de sous-déclaration (ISD) :",
+    "utilite": [
+      "**Évaluer la maturité de la culture de sécurité d'un service** : la pente b est un indicateur systémique de la capacité du service à détecter et déclarer ses signaux faibles — un b faible n'indique pas nécessairement une mauvaise qualité de soins, mais révèle une pyramide d'incidents tronquée en bas, signe d'une culture de déclaration immature ou d'une sous",
+      "**Suivi de l'impact des programmes qualité** : après un programme de sensibilisation à la déclaration des quasi",
+      "**Outil de dialogue CME/CSIRMT sur la culture sécurité** : la représentation graphique de la droite de Gutenberg",
+      "Richter (courbe de fréquence"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** : codes CIM",
+      "10 en DA pour les complications (T80",
+      "T88 complications des soins, Y60",
+      "Y84 effets adverses des actes médicaux, Y40",
+      "Y59 effets adverses des médicaments), actes CCAM de ré",
+      "**PMSI MCO RSA (chaînage)** : réadmissions à 7j (niveau M=5) via chaînage des séjours consécutifs d'un même patient (NIR crypté) ; décès intra",
+      "**Système de déclaration interne** (e",
+      "Signalement, fiche EI papier, OSIRIS) : niveaux M=1 et M=2 (quasi"
+    ],
+    "exemples": [
+      "absente — soit sous"
+    ],
+    "limites": [
+      "Le PMSI ne capture que les **événements ayant généré un acte ou un code diagnostique** — les quasi",
+      "accidents sans conséquence (M=1) et de nombreuses complications mineures (M=2) ne sont pas tracés dans les RSA si les codeurs ne les saisissent pas en DA ; la pente b calculée depuis le PMSI seul est structurellement sous",
+      "La **qualité du codage des complications** en DA varie fortement entre établissements et entre codeurs : certains services codent systématiquement toutes les complications, d'autres ne codent que les complications qui ont modifié la prise en charge ; un b faible peut refléter un sous",
+      "codage PMSI plutôt qu'une sous",
+      "L'ajustement de la droite de Gutenberg"
+    ],
+    "references": [
+      {
+        "text": "HAS — Retour d'expérience sur les événements indésirables graves (CREX, RMM) : guide méthodologique (2021)",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "loi_gutenberg_richter_evenements_indesirables.md",
     "thematique": "Qualité et sécurité des soins"
   },
   {
@@ -2226,6 +2941,43 @@
     "thematique": "Qualité et sécurité des soins"
   },
   {
+    "indicateur": "Rapport Signal/Bruit des Indicateurs de Qualité",
+    "definition": "Le rapport signal/bruit (Signal-to-Noise Ratio, SNR) est un concept fondamental du traitement du signal et des télécommunications : il mesure le rapport entre la puissance du signal utile (information réelle) et la puissance du bruit de fond (variation aléatoire). Un SNR élevé signifie que le signal est clairement distinguable du bruit ; un SNR faible signifie que le signal est noyé dans le bruit et qu'il est impossible de distinguer une variation réelle d'une fluctuation aléatoire. Appliqué aux indicateurs de qualité hospitaliers (taux de réadmission, taux de mortalité ajusté, taux de complications, DMS), le **Rapport Signal/Bruit des Indicateurs de Qualité** (RSNIQ) répond à la question que tout gestionnaire et médecin pose en regardant ses résultats mensuels : **\"Cette variation de mon indicateur est-elle réelle ou due au hasard ?\"** Sans calcul du SNR, deux erreurs symétriques sont inévitables : - **Fausse alarme** : réagir à une \"dégradation\" qui n'est qu'une fluctuation aléatoire (gaspillage d'énergie, démotivation des équipes) - **Fausse réassurance** : ignorer une vraie dégradation masquée dans le bruit statistique (risque qualité non détecté) **SNR = σ²_signal / σ²_bruit** où σ²_signal est la variance des variations réelles de l'indicateur (liées à des causes assignables) et σ²_bruit la variance du bruit statistique attendu (liée à la taille de la cohorte et aux fluctuations aléatoires intrinsèques).",
+    "calcul": "Modèle de décomposition signal/bruit pour un indicateur de proportion : Test de surdispersion (test préalable à tout commentaire d'indicateur) : Intervalle de confiance funnel plot : SNR pour indicateurs continus (DMS, coût) :",
+    "utilite": [],
+    "sources": [
+      "**PMSI MCO RSA** : numérateurs (réadmissions, décès, complications identifiées par les codes CIM",
+      "10 en DA) et dénominateurs (séjours éligibles par GHM ou CMD) pour les indicateurs de proportion — calcul de n_m et r_m par mois sur 24"
+    ],
+    "exemples": [
+      "**Taux de réadmission à 30j en chirurgie cardiaque (service de 15"
+    ],
+    "limites": [
+      "Le modèle binomial de bruit statistique suppose l'**indépendance des événements** — hypothèse violée si des patients sont réadmis plusieurs fois (biais de clustering) ou si des épidémies nosocomiales créent des regroupements temporels d'événements ; utiliser un modèle négatif",
+      "binomial ou quasi"
+    ],
+    "references": [
+      {
+        "text": "Spiegelhalter D.J. — Funnel plots for comparing institutional performance, Statistics in Medicine 2005",
+        "url": "https://doi.org/10.1002/sim.1970"
+      },
+      {
+        "text": "Mohammed M.A. et al. — Evidence of methodological bias in hospital standardised mortality ratios, BMJ 2009",
+        "url": "https://doi.org/10.1136/bmj.b780"
+      },
+      {
+        "text": "HAS — Indicateurs de qualité et de sécurité des soins (IQSS) : méthodes statistiques de calcul et d'interprétation (2022)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH — Méthode de calcul des indicateurs PMSI et intervalles de confiance associés",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "rapport_signal_bruit_indicateurs_qualite.md",
+    "thematique": "Qualité et sécurité des soins"
+  },
+  {
     "indicateur": "Ratio de Sharpe de la Performance Qualité",
     "definition": "Adapté de la finance (William Sharpe, 1966), le ratio de Sharpe mesure le rendement ajusté au risque d'un portefeuille : rendement excédentaire (au-dessus du \"taux sans risque\") divisé par la volatilité (écart-type des rendements). Appliqué à la performance qualité hospitalière, il mesure l'excédent de performance par rapport à un benchmark de référence, rapporté à la variabilité de cette performance dans le temps. Formule de base en finance : S = (R_p − R_f) / σ_p, où R_p est le rendement du portefeuille, R_f le taux sans risque, et σ_p l'écart-type des rendements. En performance qualité PMSI, le Ratio de Sharpe-Qualité (RSQ) est défini comme : **RSQ = (Performance_observée − Performance_de_référence) / Volatilité_mensuelle** où la \"performance de référence\" est le benchmark national (taux moyen national ATIH ou HAS pour l'indicateur choisi) — l'équivalent du \"taux sans risque\" financier — et la \"volatilité\" est l'écart-type des mesures mensuelles ou trimestrielles de l'indicateur sur la période d'observation. La rupture conceptuelle par rapport aux indicateurs classiques est décisive : **deux établissements avec la même performance moyenne ont des RSQ très différents si leur variabilité diffère**. Un établissement avec un taux de réadmission moyen de 12% (meilleur que la moyenne nationale de 14%) mais avec une forte variabilité mensuelle (σ = 4%) a un RSQ de 0,5 ; un autre établissement avec le même taux moyen de 12% mais une variabilité de 1% a un RSQ de 2,0. Le second est qualitativement supérieur car sa performance est stable et prévisible — c'est la dimension que tous les indicateurs de moyenne ignorent.",
     "calcul": "Construction du RSQ pour un indicateur de qualité donné : Interprétation du RSQ : RSQ multi-indicateurs et score composite :",
@@ -2265,6 +3017,44 @@
       }
     ],
     "fichier": "ratio_sharpe_performance_qualite.md",
+    "thematique": "Qualité et sécurité des soins"
+  },
+  {
+    "indicateur": "Rendement de Carnot de la Filière de Soins",
+    "definition": "Le **cycle de Carnot** (Sadi Carnot, 1824) est le cycle thermodynamique théorique d'efficacité maximale : il définit la borne supérieure du rendement de toute machine thermique opérant entre une source chaude (température T_H) et une source froide (température T_C). Aucune machine réelle ne peut dépasser ce rendement théorique : **η_Carnot = 1 − T_C / T_H** Le rendement de Carnot augmente quand l'écart entre T_H et T_C est grand (grand potentiel à transformer) et approche de 1 quand T_C → 0 (extraction maximale du potentiel). Le rendement réel d'une machine est toujours inférieur à η_Carnot en raison des irréversibilités (frottements, pertes thermiques) — l'écart entre rendement réel et rendement de Carnot mesure les pertes. Transposé à une filière de soins, le **Rendement de Carnot de la Filière** (RCF) adapte cette logique à la transformation de la sévérité clinique à l'entrée en résultat de santé à la sortie : - **T_H (source chaude)** = sévérité clinique initiale du patient à l'entrée (potentiel de dégradation — énergie à transformer) - **T_C (source froide)** = état résiduel après prise en charge (complications non évitées, morbidité résiduelle) - **η_réel** = fraction du potentiel de sévérité effectivement \"transformée\" en amélioration de santé (réduite par les complications, les actes non pertinents, les pertes d'information) **RCF = 1 − Morbidité_résiduelle / Sévérité_initiale** Un RCF = 1 signifierait une prise en charge parfaite (zéro complication, zéro morbidité résiduelle). Un RCF = 0 signifierait que la prise en charge n'a rien apporté (état de sortie identique à l'entrée). Un RCF négatif (théoriquement possible) signifierait que la prise en charge a aggravé l'état du patient.",
+    "calcul": "Construction des proxies de sévérité initiale et de morbidité résiduelle depuis le PMSI : Rendement de Carnot maximal théorique (borne supérieure) :",
+    "utilite": [
+      "**Identifier les \"irréversibilités\" dominantes** : la décomposition T_C en trois composantes (complications intra",
+      "séjour, réadmissions, prolongation de DMS) identifie quelle source de \"pertes\" domine dans un service — si C_intra est forte mais C_readm faible, les irréversibilités sont internes au séjour (agir sur les protocoles de prévention des complications) ; si C_readm domine, les irréversibilités sont post",
+      "**Détection des séjours à faible rendement** : les séjours individuels avec RCF_i < P10 (bas rendement) identifient les cas où la prise en charge a produit le moins d'amélioration par rapport au potentiel initial — candidats prioritaires pour les revues de morbi"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** : DP, DA (pour Charlson et complications T80",
+      "T88, Y40",
+      "Y84), GHM et niveau (1",
+      "**PMSI MCO RSA (chaînage NIR)** : séjours antérieurs pour le calcul du Charlson sur 24 mois, séjour de réadmission à 30j pour C_readm — chaînage nécessaire mais possible sur données PMSI locales intra",
+      "GHT ou SNDS pour les séjours inter"
+    ],
+    "exemples": [],
+    "limites": [
+      "Le RCF est très sensible à la **normalisation des scores T_H et T_C sur [0 ; 1]** — le choix des bornes de normalisation (Charlson max = 10 vs 20 vs 30) modifie les valeurs absolues de RCF et rend les comparaisons inter",
+      "L'analogie avec le cycle de Carnot est **métaphorique** — le rendement de Carnot est un résultat mathématique exact pour les machines thermiques, pas pour les systèmes de soins ; les \"températures\" T_H et T_C ne sont pas de vraies températures thermodynamiques mais des proxies construits de façon ad hoc ; l'analogie guide la construction de l'indicateur mais ne doit pas être poussée au"
+    ],
+    "references": [
+      {
+        "text": "Quan H. et al. — Coding algorithms for defining comorbidities in ICD-9-CM and ICD-10 administrative data, Med Care 2005",
+        "url": "https://doi.org/10.1097/01.mlr.0000182534.19832.83"
+      },
+      {
+        "text": "ATIH — Classification des GHM et niveaux de sévérité (CM, CMA, CMAS) : guide méthodologique",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS — Indicateurs de résultats en chirurgie : réadmissions, complications, durée de séjour (2021)",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "rendement_carnot_filiere_soins.md",
     "thematique": "Qualité et sécurité des soins"
   },
   {
@@ -3037,6 +3827,47 @@
     "thematique": "Pertinence des soins et pratiques médicales"
   },
   {
+    "indicateur": "Taux de Dérive des Plans de Soins",
+    "definition": "Adapté du concept de **dérive de trajectoire** en contrôle de processus industriel (Statistical Process Control, Shewhart, 1931) — où une machine qui s'écarte progressivement de sa trajectoire de production idéale est détectée avant de produire des rebuts — le taux de dérive des plans de soins (TDPS) mesure l'**écart entre le plan de traitement théorique** (protocole de référence de l'établissement ou de la HAS) et la **séquence d'actes effectivement réalisée**, au niveau d'un patient ou d'une cohorte. Un plan de soins est formalisé comme une séquence temporelle d'actes prédéfinis : en oncologie, un protocole de chimiothérapie spécifie les molécules, les doses, les cycles et les intervalles ; en SSR, un plan de rééducation spécifie le nombre de séances par semaine et leur nature. La dérive est la divergence observée entre cette séquence théorique et la séquence réellement tracée dans le PMSI (actes CCAM réalisés, durées de séjours, nombre de séances). TDPS = 1 − (Actes_conformes / Actes_planifiés_totaux) où TDPS = 0 signifie une exécution parfaite du plan (aucune dérive) et TDPS = 1 signifie une non-réalisation totale du plan. La dérive peut être positive (actes supplémentaires non planifiés, intensification) ou négative (actes omis, raccourcissement de cycle). Les deux types de dérive sont cliniquement significatifs mais nécessitent des interprétations différentes.",
+    "calcul": "Définition du plan de référence : Calcul du TDPS par type de dérive : Score d'alignement protocole (SAP) — approche continue : Analyse de cohorte :",
+    "utilite": [
+      "**Contrôle qualité des protocoles oncologiques** : en chimiothérapie, le taux de dérive des cycles (omissions, reports, réductions de dose) est un prédicteur de la survie globale et de la réponse tumorale — le TDPS permet une surveillance en temps quasi",
+      "**Évaluation de la qualité des plans de rééducation SSR** : comparer le nombre de séances réalisées au nombre prévu dans le plan individualisé (objectif MIF, durée prévisionnelle) — un TDPS élevé en SSR signale soit une sous",
+      "réalisation (manque de ressources) soit une sur",
+      "**Détection précoce des ruptures de parcours** : un TDPS croissant sur une cohorte indique une dégradation de la capacité à exécuter les protocoles — signal organisationnel (manque de ressources, turn",
+      "**Benchmarking inter"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Cohorte cancer du sein (FEC",
+      "100, 6 cycles)** : TDPS_omission moyen = 0,08 (8% des cycles omis ou reportés > 7 jours), TDPS_decalage = 0,12 (12% des cycles réalisés avec un décalage de 3",
+      "**Cohorte SSR neurologique post",
+      "**Benchmark inter",
+      "**Seuil d'alerte qualité** : TDPS > 0,20 pour un protocole bien établi → déclenchement d'une revue de morbidité"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "Bonadonna G. et al. — Dose-response effect of adjuvant chemotherapy for breast cancer, NEJM 1981",
+        "url": "https://doi.org/10.1056/NEJM198102053040601"
+      },
+      {
+        "text": "Lyman G.H. et al. — Relative dose intensity of chemotherapy and survival in patients with early-stage breast cancer, J Clin Oncol 2011",
+        "url": "https://doi.org/10.1200/JCO.2010.32.3014"
+      },
+      {
+        "text": "INCa — Référentiel de chimiothérapie et protocoles validés par pathologie",
+        "url": "https://www.e-cancer.fr/"
+      },
+      {
+        "text": "HAS — Évaluation des pratiques professionnelles en oncologie : indicateurs de suivi des protocoles (2020)",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "taux_derive_plans_soins.md",
+    "thematique": "Pertinence des soins et pratiques médicales"
+  },
+  {
     "indicateur": "Taux de Pertinence des Actes CCAM",
     "definition": "Le taux de pertinence des actes CCAM mesure la proportion d'actes chirurgicaux ou techniques réalisés au sein du GHT qui sont conformes aux référentiels de bonnes pratiques (recommandations HAS, sociétés savantes, seuils d'Evidence-Based Medicine), par opposition aux actes réalisés hors indications validées (sur-traitement) ou aux actes non réalisés alors qu'ils seraient indiqués (sous-traitement). Cet indicateur s'appuie sur la détection de signaux de non-pertinence dans le PMSI : actes réalisés pour des diagnostics ne correspondant pas aux indications recommandées, volumes d'actes anormalement élevés ou faibles par rapport aux standards nationaux, ou actes effectués dans des contextes cliniques inadaptés (ex. : arthroscopie du genou pour arthrose avancée sans arthrite associée).",
     "calcul": "Le taux de pertinence des actes CCAM est calculé comme suit : **Signaux de non-pertinence détectables dans le PMSI :** | Acte | Signal de non-pertinence | Code CIM-10 / CCAM | |---|---|---| | Arthroscopie du genou | DP = gonarthrose sans chondrocalcinose ni corps étranger | M17 sans M11, M23 | | Hystérectomie | Absence de pathologie maligne ou de fibrome symptomatique | Sans C53-C55, D25 | | Césarienne | Taux > 21 % dans un établissement sans facteur de risque documenté | QXGA | | Appendicectomie | DMS > 5 jours (peut signaler une appendicite perforée non anticipée) | K35-K37 | | Amygdalectomie enfant | Âge < 2 ans sans contexte d'apnée du sommeil | Sans G47.3 | | Pose de stent coronaire | Sans IDM ou angor instable documenté | Sans I20-I21 | **Précisions méthodologiques** : - La pertinence est définie par croisement du code CCAM de l'acte avec le diagnostic principal (DP) et les diagnostics associés (DA) du séjour. - Les seuils de volume (taux d'actes pour 100 000 habitants) sont comparés aux références nationales ScanSanté pour détecter les outliers positifs et négatifs. - L'analyse s'appuie sur les listes de pertinence publiées par la HAS (programme PREMS/PROMS, indicateurs de pertinence des soins) et par les sociétés savantes. - Les actes « à risque de non-pertinence » sont identifiés en priorité : arthroscopies, hystérectomies, chirurgie du rachis, endoscopies répétées, hospitalisations pour actes réalisables en ambulatoire.",
@@ -3209,6 +4040,52 @@
     "thematique": "Pertinence des soins et pratiques médicales"
   },
   {
+    "indicateur": "Constante Cinétique des Transferts MCO→SSR",
+    "definition": "En cinétique chimique, une **réaction du premier ordre** décrit un processus dans lequel le taux de transformation d'un réactif est proportionnel à la quantité de réactif présente : dN/dt = −k × N, dont la solution est N(t) = N₀ × e^(−kt). La constante de vitesse k caractérise entièrement la cinétique de la réaction : grande k = réaction rapide, petite k = réaction lente. La **demi-vie** t₁/₂ = ln(2)/k est le temps nécessaire pour que la moitié du réactif soit transformé. Transposé aux transferts MCO→SSR, la **Constante Cinétique de Transfert** (CKT) modélise la fraction de patients MCO \"en attente de transfert SSR\" (réactif) qui transitent effectivement vers le SSR chaque jour (transformation). Si le processus suit une cinétique du premier ordre, la probabilité qu'un patient soit transféré à une date donnée est constante et indépendante de la durée d'attente déjà écoulée — comme la désintégration radioactive. La demi-vie t₁/₂ est le délai médian de transfert MCO→SSR : le délai au-delà duquel 50% des patients éligibles ont été transférés. **k = ln(2) / t₁/₂_transfert** Un k élevé = filière fluide, transferts rapides ; un k faible = filière lente, bed-blocking structurel. L'écart entre k_observé et k_attendu (calculé depuis les recommandations HAS ou les meilleures pratiques) quantifie l'inefficience de la filière. La CKT permet aussi de **tester si la cinétique est réellement du premier ordre** — si elle ne l'est pas, cela révèle une hétérogénéité cachée dans la population en attente (certains patients transitent toujours rapidement, d'autres jamais, indépendamment de leur durée d'attente).",
+    "calcul": "Identification de la cohorte et mesure des délais : Estimation de la constante cinétique k (méthode de survie) : Indicateurs dérivés :",
+    "utilite": [
+      "**Benchmarking inter",
+      "**Simuler l'impact de créations de lits SSR** : avec un modèle cinétique calibré, simuler l'effet d'une augmentation de capacité SSR de X% sur le délai médian de transfert et le nombre de journées de bed",
+      "**Suivi de l'impact des conventions MCO",
+      "SSR** : avant/après la signature d'une convention de coopération ou la création de lits dédiés de post",
+      "**Prévision des journées de bed"
+    ],
+    "sources": [
+      "**PMSI SSR RHS** : DATE_ENT_SSR, code FINESS de l'établissement MCO d'origine (FINESS_ET_ORIGINE dans le RHS) — pour calculer le délai Δᵢ = DATE_ENT_SSR − DATE_SOR_MCO ; le chaînage par NIR crypté est nécessaire pour les transferts inter"
+    ],
+    "exemples": [
+      "**Filière AVC → SSR neurologique (GHT semi"
+    ],
+    "limites": [
+      "Le **chaînage MCO→SSR inter",
+      "établissements** requiert le NIR crypté (accès SNDS) — en l'absence d'accès SNDS, seuls les transferts intra"
+    ],
+    "references": [
+      {
+        "text": "Cox D.R. — Regression models and life-tables, Journal of the Royal Statistical Society B 1972",
+        "url": "https://doi.org/10.1111/j.2517-6161.1972.tb00899.x"
+      },
+      {
+        "text": "Kaplan E.L., Meier P. — Nonparametric estimation from incomplete observations, Journal of the American Statistical Association 1958",
+        "url": "https://doi.org/10.2307/2281868"
+      },
+      {
+        "text": "HAS — Orientation en soins de suite et de réadaptation : critères et délais (2013)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "SOFMER — Référentiel de bonnes pratiques de la filière de soins en MPR : délais de transfert recommandés par pathologie (2020)",
+        "url": "https://www.sofmer.com/"
+      },
+      {
+        "text": "ATIH — Guide méthodologique de production des informations relatives à l'activité médicale SSR : chaînage MCO-SSR",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "constante_cinetique_transfert_mco_ssr.md",
+    "thematique": "Parcours patient et continuité des soins"
+  },
+  {
     "indicateur": "Délai d'Admission en SSR Post-MCO",
     "definition": "Durée médiane (en jours) entre la date de sortie d'un séjour MCO (DATESOR dans le RSA) et la date d'entrée dans un établissement de SSR (Soins de Suite et Réadaptation) pour le même patient, identifié par chaînage NIR crypté. Calculé sur les patients dont le mode de sortie MCO = 6 (mutation vers SSR) ou dont le séjour SSR suivant a un mode d'entrée = 6 (provenance MCO). Stratifié par pathologie et motif de SSR : neurologie (AVC, traumatismes crâniens — GME 02xx), orthopédie/locomoteur (PTH, PTG, fractures — GME 01xx), cardiologie/pneumologie (GME 04xx), oncologie (GME 07xx), gériatrie polyvalente (GME 09xx). Un délai long signale un problème de disponibilité de lits SSR (bed-blocking), un défaut de coordination entre MCO et SSR, ou une orientation inadaptée vers un établissement SSR non disponible. Cet indicateur est le marqueur le plus direct de la fluidité de la filière MCO→SSR au sein d'un GHT. Il est à lire en parallèle avec le taux de bed-blocking MCO (journées excédentaires liées à l'attente SSR) et le délai médian de placement SSR par la cellule d'orientation.",
     "calcul": "Chaînage PMSI MCO RSA × PMSI SSR RHS par NIR crypté SNDS. Population éligible : Calcul du délai : Stratification recommandée :",
@@ -3298,6 +4175,49 @@
     "thematique": "Parcours patient et continuité des soins"
   },
   {
+    "indicateur": "Distance de Levenshtein des Séquences de Soins",
+    "definition": "La distance d'édition de Levenshtein (Vladimir Levenshtein, 1965) mesure le nombre minimal d'opérations élémentaires — **insertions**, **suppressions** et **substitutions** — nécessaires pour transformer une chaîne de caractères en une autre. Initialement développée pour la correction orthographique et la comparaison de séquences ADN en bioinformatique, elle quantifie la dissimilarité entre deux séquences ordonnées sans exiger qu'elles aient la même longueur. Appliquée aux parcours de soins, la **Distance de Levenshtein des Séquences de Soins** (DLSS) mesure l'écart entre la séquence d'actes réellement réalisée par un patient et une séquence de référence (protocole, parcours type, recommandation HAS). Contrairement au Taux de Dérive des Plans de Soins (TDPS) qui ne mesure que la présence/absence des actes, la DLSS capture également **l'ordre** dans lequel les actes sont réalisés — une inversion de deux actes majeurs (bilan biologique après et non avant l'ajustement thérapeutique) est une erreur de séquence que le TDPS ignore mais que la DLSS détecte. **DLSS(P, Q) = d_Levenshtein(P, Q)** où P est la séquence de référence (protocole) et Q la séquence observée (parcours réel), chaque élément de la séquence étant un acte codé (CCAM, GHM, ATCq ou code BHN). Une DLSS = 0 signifie que le parcours réel est identique au parcours de référence. Une DLSS élevée indique une divergence structurelle — non seulement des actes manquent ou s'ajoutent, mais leur ordre est différent de ce qui était prévu.",
+    "calcul": "Encodage des séquences : Algorithme de calcul (programmation dynamique) : Normalisation : Coûts d'édition pondérés (version clinique avancée) : Analyse de cohorte :",
+    "utilite": [
+      "**Identifier les sous",
+      "types de divergence protocolaire** : en analysant les opérations d'édition dominantes (suppressions vs insertions vs substitutions), distinguer les profils de déviation — un service avec beaucoup de suppressions manque de ressources pour réaliser tous les actes prévus ; un service avec beaucoup d'insertions sur",
+      "**Clustering des parcours par similarité** : en calculant la matrice de distances DLSS entre tous les parcours d'une cohorte, appliquer un algorithme de clustering (k",
+      "médoïdes, clustering hiérarchique) pour identifier des sous",
+      "**Détection des trajectoires aberrantes en temps quasi",
+      "**Benchmarking inter",
+      "établissements sur la fidélité protocolaire** : comparer la distribution des DLSS pour le même protocole entre établissements du GHT — les établissements avec DLSS_cohorte faible ont des processus de suivi protocolaire plus matures (peut"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Substitution la plus fréquente identifiée** : glycémie à jeun à la place de HbA1c dans 25"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "Needleman S.B., Wunsch C.D. — A general method applicable to the search for similarities in the amino acid sequence of two proteins, Journal of Molecular Biology 1970",
+        "url": "https://doi.org/10.1016/0022-2836(70"
+      },
+      {
+        "text": "Huang Z. et al. — Similarity measure between patient traces for clinical pathway analysis: problem, methods, and challenges, IEEE J Biomed Health Inform 2014",
+        "url": "https://doi.org/10.1109/JBHI.2013.2274383"
+      },
+      {
+        "text": "Bouarfa L., Dankelman J. — Workflow mining and outlier detection from clinical activity logs, J Biomed Inform 2012",
+        "url": "https://doi.org/10.1016/j.jbi.2011.12.003"
+      },
+      {
+        "text": "INCa — Algorithmes de prise en charge par pathologie (cancer sein, colorectal, poumon)",
+        "url": "https://www.e-cancer.fr/"
+      },
+      {
+        "text": "HAS — Parcours de soins des maladies chroniques : algorithmes décisionnels par ALD",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "distance_levenshtein_sequences_soins.md",
+    "thematique": "Parcours patient et continuité des soins"
+  },
+  {
     "indicateur": "Efficacité des Parcours de Soins",
     "definition": "L'efficacité des parcours de soins mesure la capacité d'un établissement ou d'un GHT à assurer une prise en charge coordonnée et sans rupture pour les patients. Cet indicateur évalue la fluidité et la qualité de la coordination entre les différents acteurs et services.",
     "calcul": "L'efficacité des parcours de soins peut être mesurée via plusieurs sous-indicateurs :",
@@ -3320,6 +4240,47 @@
       }
     ],
     "fichier": "efficacite_parcours_soins.md",
+    "thematique": "Parcours patient et continuité des soins"
+  },
+  {
+    "indicateur": "Exposant de Lyapunov du Parcours Chronique",
+    "definition": "L'exposant de Lyapunov (Aleksandr Lyapunov, 1892) est le concept central de la théorie du chaos déterministe. Il mesure le **taux moyen de divergence exponentielle** entre deux trajectoires d'un système dynamique qui partent de conditions initiales infiniment proches. Un exposant positif signifie que des conditions initiales quasiment identiques génèrent des trajectoires qui s'éloignent exponentiellement avec le temps — le système est chaotique et imprévisible à long terme. Un exposant négatif ou nul signifie que les trajectoires convergent — le système est attracteur et prévisible. **λ_L = lim_{t→∞} (1/t) × ln(|δ(t)| / |δ(0)|)** où δ(0) est la divergence initiale entre deux trajectoires et δ(t) la divergence au temps t. Appliqué aux parcours de soins chroniques, l'**Exposant de Lyapunov du Parcours Chronique** (ELPC) mesure dans quelle mesure deux patients ALD aux profils initiaux très similaires (même pathologie, même âge, même sévérité initiale) voient leurs trajectoires de soins **diverger progressivement** ou au contraire **converger vers un même régime de suivi**. Un ELPC élevé signale un parcours chaotique, sensible aux conditions initiales et aux petites perturbations — le système de soins n'est pas attracteur, les patients similaires ne convergent pas vers le même suivi. Un ELPC négatif ou proche de 0 signale un parcours régulier et prévisible — les patients similaires reçoivent des soins similaires, le système converge vers un état de référence. L'analogie avec le chaos est directe : de même qu'un météorologue ne peut prévoir le temps au-delà de 15 jours quelle que soit la précision de ses mesures initiales (sensibilité aux conditions initiales = chaos), un système de soins avec ELPC élevé est fondamentalement imprévisible — le parcours d'un patient donné ne peut être anticipé même en connaissant parfaitement son profil initial.",
+    "calcul": "Représentation du parcours comme trajectoire dans un espace d'état : Algorithme de calcul de l'ELPC (méthode des voisins proches) : Analyse spatiale de l'espace d'état :",
+    "utilite": [
+      "**Outil de recherche sur les déterminants de la stabilité du parcours** : l'ELPC permet d'étudier quels facteurs organisationnels (densité médicale, outils de coordination, caractéristiques socio"
+    ],
+    "sources": [
+      "**Chaînage SNDS par NIR crypté** : nécessaire pour reconstituer la trajectoire longitudinale multi",
+      "sources sur 24"
+    ],
+    "exemples": [
+      "**Cohorte diabète type 2 sans médecin traitant en zone sous"
+    ],
+    "limites": [
+      "Le calcul de l'ELPC requiert des **trajectoires longitudinales longues** (24",
+      "36 mois minimum) et un **nombre suffisant de paires de voisins proches** — pour les pathologies rares ou les cohortes petites, le nombre de paires avec δ₀ < ε peut être trop faible pour une estimation robuste ; recommander une cohorte minimale de 200 patients par sous",
+      "La **définition de l'espace d'état** (choix des variables et de leur pondération) influence fortement la valeur de l'ELPC — deux chercheurs utilisant des variables légèrement différentes obtiendront des ELPC différents ; la standardisation de l'espace d'état par pathologie (diabète, IC, BPCO) est un prérequis à la comparabilité inter",
+      "L'interprétation clinique de l'ELPC nécessite une **expertise en systèmes dynamiques** peu répandue dans les équipes hospitalières — l'indicateur est davantage adapté à la recherche en organisation des soins qu'au tableau de bord opérationnel ; le **Temps de Lyapunov** (T_L = 1/|λ_L|, exprimé en mois d'horizon de prévisibilité) est une traduction plus accessible pour les non"
+    ],
+    "references": [
+      {
+        "text": "Lorenz E.N. — Deterministic nonperiodic flow, Journal of the Atmospheric Sciences 1963",
+        "url": "https://doi.org/10.1175/1520-0469(1963"
+      },
+      {
+        "text": "Goldberger A.L. et al. — Fractal dynamics in physiology: alterations with disease and aging, PNAS 2002",
+        "url": "https://doi.org/10.1073/pnas.012579499"
+      },
+      {
+        "text": "Lipsitz L.A. — Dynamics of stability: the physiologic basis of functional health and frailty, J Gerontol Biol Sci 2002",
+        "url": "https://doi.org/10.1093/gerona/57.3.B115"
+      },
+      {
+        "text": "CNAM — Programme Sophia : évaluation de l'impact sur le suivi des patients diabétiques",
+        "url": "https://www.ameli.fr/"
+      }
+    ],
+    "fichier": "exposant_lyapunov_parcours_chronique.md",
     "thematique": "Parcours patient et continuité des soins"
   },
   {
@@ -3855,6 +4816,40 @@
     "thematique": "Parcours patient et continuité des soins"
   },
   {
+    "indicateur": "Taux de Compression Algorithmique du Parcours",
+    "definition": "La **complexité de Kolmogorov** (Andrei Kolmogorov, 1965) est la longueur du plus court programme informatique capable de générer exactement une séquence donnée — une mesure de la complexité intrinsèque et de la régularité d'une séquence, indépendante de toute référence externe. Une séquence régulière et répétitive (ABABABABAB…) est très compressible car un programme court suffit à la décrire (\"répéter AB 5 fois\") ; une séquence aléatoire (AKJZTQVMNP…) est incompressible car aucun programme court ne peut la résumer. En pratique, la complexité de Kolmogorov n'est pas calculable directement (problème indécidable). Elle est **approchée par les algorithmes de compression de données** (LZ77, zlib, bzip2) : le taux de compression d'un texte par un algorithme standard est une borne supérieure de la compressibilité de la séquence, et donc une approximation de sa complexité algorithmique. Appliqué aux parcours de soins, le **Taux de Compression Algorithmique du Parcours** (TCAP) encode la séquence ordonnée des actes d'un patient (codes CCAM, codes ATC, codes CIM-10) en une chaîne de caractères, puis mesure le ratio de compression obtenu par un algorithme standard : **TCAP = 1 − (Taille_compressée / Taille_originale)** - TCAP proche de 1 : parcours très compressible = **séquence régulière, répétitive, structurée** (actes récurrents, protocole suivi, comportement prédictible) - TCAP proche de 0 : parcours peu compressible = **séquence complexe, non-répétitive, aléatoire** (actes diversifiés sans pattern, parcours anarchique) Contrairement à la distance de Levenshtein (qui compare à un protocole de référence), le TCAP mesure la **complexité absolue du parcours sans référence** — il ne dit pas si le parcours est conforme, mais s'il est structuré ou non. Un parcours structuré peut être conforme (bon suivi d'un protocole) ou systématiquement non conforme (mauvais protocole appliqué régulièrement) ; un parcours peu compressible est soit très complexe cliniquement soit anarchique organisationnellement.",
+    "calcul": "Encodage de la séquence d'actes en chaîne de caractères : Calcul du taux de compression : Analyse de la distribution des TCAP dans une cohorte :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [
+      "Les algorithmes de compression standards (zlib, bzip2) sont sensibles à la **longueur de la chaîne encodée** — les parcours courts (peu d'actes sur 12 mois) sont mal comprimés quel que soit leur niveau de régularité (overhead de compression), conduisant à des TCAP artificiellement bas ; recommander une longueur minimale de séquence avant le calcul (au moins 10",
+      "Le TCAP est sensible au **niveau de granularité du codage** : utiliser les codes CCAM complets (7 caractères) vs les codes CCAM tronqués (3 caractères) donne des TCAP différents pour la même séquence ; standardiser la granularité de codage avant toute comparaison inter",
+      "cohortes ou inter",
+      "Le TCAP mesure la **régularité**, non la **conformité** — un parcours très régulier mais systématiquement non conforme au protocole (patient qui ne voit jamais le spécialiste requis mais consulte régulièrement le médecin généraliste) aura un TCAP élevé malgré une prise en charge sous"
+    ],
+    "references": [
+      {
+        "text": "Ziv J., Lempel A. — A universal algorithm for sequential data compression (LZ77), IEEE Transactions on Information Theory 1977",
+        "url": "https://doi.org/10.1109/TIT.1977.1055714"
+      },
+      {
+        "text": "Cilibrasi R., Vitányi P. — Clustering by compression, IEEE Transactions on Information Theory 2005",
+        "url": "https://doi.org/10.1109/TIT.2005.844059"
+      },
+      {
+        "text": "Huang Z. et al. — Similarity measure between patient traces for clinical pathway analysis, IEEE J Biomed Health Inform 2014",
+        "url": "https://doi.org/10.1109/JBHI.2013.2274383"
+      },
+      {
+        "text": "HAS — Programmes de coordination des soins pour les patients chroniques complexes (2021)",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "taux_compression_algorithmique_parcours.md",
+    "thematique": "Parcours patient et continuité des soins"
+  },
+  {
     "indicateur": "Taux de Conformité aux Parcours de Soins",
     "definition": "Le taux de conformité aux parcours de soins mesure la proportion de séjours conformes aux parcours types définis par les référentiels de bonnes pratiques (ex : parcours cancérologie, parcours AVC). Cet indicateur évalue la qualité de l'organisation des soins et le respect des recommandations.",
     "calcul": "Le taux de conformité aux parcours de soins est calculé comme suit : **Critères de conformité** : - Respect des étapes clés (ex : délais, examens, consultations). - Coordination entre acteurs (ville, hôpital, SSR).",
@@ -4209,6 +5204,57 @@
     ],
     "fichier": "taux_transferts_intra_ght.md",
     "thematique": "Parcours patient et continuité des soins"
+  },
+  {
+    "indicateur": "Fonction de Risque de Weibull des Réadmissions",
+    "definition": "En ingénierie de la fiabilité, la **fonction de risque** (hazard function, ou taux de défaillance instantané) h(t) décrit comment la probabilité de défaillance d'un composant évolue avec le temps depuis sa mise en service. La distribution de Weibull (Waloddi Weibull, 1951) est le modèle le plus utilisé en fiabilité car sa forme est entièrement déterminée par deux paramètres — l'échelle λ et la forme k — qui donnent accès à trois régimes fondamentalement différents : - **k < 1** : taux de défaillance décroissant — les défaillances précoces dominent (mortalité infantile), le composant est plus fragile à t=0 qu'à t>0 - **k = 1** : taux de défaillance constant — loi exponentielle, défaillances aléatoires indépendantes du temps écoulé - **k > 1** : taux de défaillance croissant — usure progressive, le composant est de plus en plus susceptible de tomber en panne avec le temps Transposée aux réadmissions post-sortie hospitalière, la **Fonction de Risque de Weibull des Réadmissions** (FRWR) modélise comment le taux instantané de réadmission h(t) évolue avec le temps depuis la sortie du patient. La réponse empirique — k < 1 — révèle que le risque de réadmission est **maximal dans les premiers jours post-sortie** et décroît ensuite : le patient est à son plus fort risque de décompensation à J0-J7 (période critique précoce), et ce risque diminue progressivement s'il passe ce cap sans incident. **h(t) = (k/λ) × (t/λ)^(k−1)** où t est le délai en jours depuis la sortie MCO et λ est la durée caractéristique (mediane de la distribution des réadmissions).",
+    "calcul": "Construction de la cohorte de réadmission : Ajustement du modèle de Weibull et estimation de h(t) : Stratification et comparaison :",
+    "utilite": [
+      "**Définir les fenêtres temporelles optimales de suivi post",
+      "sortie** : si k̂ < 1 avec un pic à J0",
+      "J3, l'appel de sortie à J15 est trop tardif — il faut concentrer les ressources de suivi sur J2",
+      "J5 ; si k̂ > 1 avec un pic à J14",
+      "J21, à l'inverse un appel à J3 est inutile et un appel à J14 est critique ; la FRWR calibre le protocole de suivi post",
+      "**Prioriser les ressources de suivi post",
+      "sortie par profil** : pour un patient IC avec k̂ = 0,55 (risque très précoce), le suivi à J3 est critique ; pour un patient diabétique décompensé avec k̂ = 1,35 (risque progressif), le suivi à J14 est plus important — les appels infirmiers post",
+      "**Benchmarking ajusté sur la structure du risque** : deux services avec le même taux de réadmission à 30j mais des k̂ différents ont des problèmes différents — l'un doit améliorer la sortie immédiate, l'autre le suivi à distance ; comparer les k̂ entre établissements du GHT révèle des différences d'organisation post"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** (chaîné par NIR crypté sur 12",
+      "24 mois) : DATE_SOR du séjour index, DATE_ENT du séjour de réadmission, MODE_ENTREE (urgences = 8 pour les réadmissions non programmées), DP du séjour index et de réadmission pour la classification étiologique — base suffisante pour le calcul intra",
+      "**SNDS (PMSI multi",
+      "établissements)** : pour capturer les réadmissions dans des établissements hors GHT — sans accès SNDS, les réadmissions dans des établissements concurrents sont manquantes, sous"
+    ],
+    "exemples": [],
+    "limites": [
+      "Le **chaînage NIR inter",
+      "établissements** requiert un accès SNDS — sans lui, les réadmissions dans des établissements hors GHT ne sont pas capturées, ce qui sous",
+      "estime le taux de réadmission réel et peut biaiser k̂ si les réadmissions précoces (J0"
+    ],
+    "references": [
+      {
+        "text": "Weibull W. — A statistical distribution function of wide applicability, Journal of Applied Mechanics 1951",
+        "url": "https://doi.org/10.1115/1.4010337"
+      },
+      {
+        "text": "Cox D.R. — Regression models and life-tables, JRSS B 1972",
+        "url": "https://doi.org/10.1111/j.2517-6161.1972.tb00899.x"
+      },
+      {
+        "text": "Kansagara D. et al. — Risk prediction models for hospital readmission: a systematic review, JAMA 2011",
+        "url": "https://doi.org/10.1001/jama.2011.1556"
+      },
+      {
+        "text": "van Walraven C. et al. — A meta-analysis of hospital 30-day avoidable readmission rates, J Eval Clin Pract 2011",
+        "url": "https://doi.org/10.1111/j.1365-2753.2011.01773.x"
+      },
+      {
+        "text": "HAS — Réadmissions évitables : définition, indicateurs et programmes de prévention (2019)",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "fonction_risque_weibull_readmissions.md",
+    "thematique": "Réadmissions et hospitalisations évitables"
   },
   {
     "indicateur": "OCDE — Réadmissions Standardisées pour AMI, Insuffisance Cardiaque et Diabète",
@@ -4878,6 +5924,57 @@
       }
     ],
     "fichier": "indice_herfindahl_concentration_flux_patients.md",
+    "thematique": "Territoire, attractivité et offre de soins"
+  },
+  {
+    "indicateur": "Loi de Metcalfe du GHT Numérique",
+    "definition": "La loi de Metcalfe (Robert Metcalfe, 1980, formalisée par Gilder, 1993) stipule que la **valeur d'un réseau de communication est proportionnelle au carré du nombre de ses membres connectés** : V ∝ n². Avec 2 nœuds, 1 connexion possible ; avec 10 nœuds, 45 connexions ; avec 100 nœuds, 4 950 connexions. La valeur croît donc beaucoup plus vite que le nombre de participants — c'est l'effet de réseau qui explique la domination des plateformes numériques (chaque utilisateur supplémentaire de Facebook augmente la valeur du réseau pour tous les autres). Appliquée au GHT numérique, la **Loi de Metcalfe du GHT Numérique** (LMGN) mesure le **retour sur investissement des outils de coordination numérique** (DPI partagé, messagerie sécurisée MSSanté, téléexpertise, accès partagé aux résultats de biologie) en quantifiant la valeur des connexions effectives entre producteurs de soins — non pas le nombre d'acteurs nominalement raccordés à un outil, mais le nombre de **paires d'acteurs qui échangent réellement des informations patient**. L'indicateur central est le **Taux de Connexions Actives** (TCA) : le rapport entre les connexions effectivement utilisées (échanges traçables depuis le PMSI/DCIR) et les connexions théoriquement possibles dans le réseau du GHT. La loi de Metcalfe prédit que chaque acteur supplémentaire effectivement connecté génère une valeur marginale croissante — ce qui justifie d'investir dans l'intégration des acteurs périphériques (médecins de ville, pharmacies, EHPAD) au-delà du périmètre hospitalier strict. **V_réseau ∝ n_actifs² où n_actifs = nombre d'acteurs avec au moins 1 échange tracé sur 12 mois**",
+    "calcul": "Construction du réseau de coordination numérique observable depuis le PMSI/DCIR : Calcul du Taux de Connexions Actives (TCA) et de la valeur de réseau : Analyse de la densité de coordination par zone géographique :",
+    "utilite": [
+      "**Détecter les îlots de non",
+      "coordination** : les zones ou spécialités avec TCA très faible malgré la présence de nombreux acteurs sont des îlots où les professionnels agissent en parallèle sans coordination tracée — cibles prioritaires pour les CPTS, les DAC et les conventions de coopération ville",
+      "**Argument pour les projets de territoire** : dans les dossiers de demande de financement (FIR, ONDAM médico",
+      "social, fonds numérique Ségur), démontrer que le territoire a un TCA actuellement faible et que le projet proposé vise à l'augmenter — la non"
+    ],
+    "sources": [
+      "**DCIR ER_PRS_F** : actes médicaux libéraux avec code RPPS du prescripteur et de l'exécutant, NIR du patient, date — pour reconstituer les arcs d'adressage (type 1) et de co",
+      "**DCIR ER_PHA_F** : dispensations avec FINESS de la pharmacie et code RPPS du prescripteur — pour les arcs prescription",
+      "**PMSI MCO RSA + PMSI SSR RHS** : chaînés par NIR crypté — pour les flux de transfert MCO→SSR (type 3) et les co"
+    ],
+    "exemples": [
+      "**GHT en territoire semi",
+      "**Benchmark national** : TCA moyen des territoires avec CPTS active depuis > 2 ans ≈ 7",
+      "12% (données CNAM 2023) vs TCA des territoires sans CPTS ≈ 2"
+    ],
+    "limites": [
+      "Le PMSI et le DCIR ne tracent que les **échanges médico",
+      "économiques** (actes facturés, séjours) — les échanges purement informationnels (message MSSanté sans acte associé, consultation téléphonique non cotée, réunion de concertation pluridisciplinaire) sont invisibles dans les données administratives ; le TCA sous",
+      "La **loi de Metcalfe elle",
+      "même est contestée** dans sa forme exacte (n² est peut"
+    ],
+    "references": [
+      {
+        "text": "Metcalfe R. — Metcalfe's law after 40 years of ethernet, Computer 2013",
+        "url": "https://doi.org/10.1109/MC.2013.374"
+      },
+      {
+        "text": "Briscoe B. et al. — Metcalfe's law is wrong, IEEE Spectrum 2006",
+        "url": "https://doi.org/10.1109/MSPEC.2006.1653003"
+      },
+      {
+        "text": "Barnett M.L. et al. — Mapping physician networks with self-reported and administrative data, Health Services Research 2011",
+        "url": "https://doi.org/10.1111/j.1475-6773.2011.01262.x"
+      },
+      {
+        "text": "CNAM — Évaluation des CPTS : indicateurs de coordination et de décloisonnement ville-hôpital (rapport 2023)",
+        "url": "https://www.ameli.fr/"
+      },
+      {
+        "text": "ANS — Programme Ségur du numérique en santé : indicateurs de déploiement et d'usage des outils de coordination (2022)",
+        "url": "https://esante.gouv.fr/"
+      }
+    ],
+    "fichier": "loi_metcalfe_ght_numerique.md",
     "thematique": "Territoire, attractivité et offre de soins"
   },
   {
