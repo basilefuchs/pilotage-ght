@@ -250,6 +250,63 @@
     "thematique": "Activité et production hospitalière"
   },
   {
+    "indicateur": "Taux d'Occupation SSR par Spécialité",
+    "definition": "Proportion de lits/places SSR (Soins de Suite et Réadaptation) effectivement occupés par rapport aux capacités autorisées, calculée par spécialité SSR (rééducation de l'appareil locomoteur, affections neurologiques, affections cardiovasculaires et pulmonaires, affections oncologiques et hématologiques, affections de la personne âgée polypathologique/gériatrie, addictologie, etc.). Les spécialités SSR sont définies par décret (articles R.6123-118 à R.6123-120 du CSP) et chaque établissement SSR dispose d'une autorisation par spécialité avec un nombre de lits agréés. Le taux d'occupation mesure l'utilisation des capacités autorisées, qui diffère du taux d'occupation réel sur lits ouverts (un établissement peut avoir des lits autorisés mais temporairement fermés faute de personnel soignant). Cette distinction est opérationnellement importante : un taux de 95% sur lits autorisés avec 20% de lits fermés indique une saturation réelle de 100% sur lits ouverts. Indicateur fondamental pour le pilotage capacitaire d'un GHT : identifie les spécialités en tension (> 92% = saturation, liste d'attente, bed-blocking MCO en amont) et les spécialités en sous-utilisation (< 75% = sous-activité, financement T2A sous-optimal, efficience à questionner).",
+    "calcul": "Sources : Formule principale : Codification des spécialités SSR (PMSI et SAE) : Sous-indicateurs recommandés :",
+    "utilite": [
+      "**Identifier les spécialités SSR en saturation chronique** (> 92% sur l'année) qui génèrent du bed",
+      "**Repérer les spécialités sous",
+      "**Planification saisonnière** : le pic hivernal de la gériatrie (+8",
+      "12 points en jan",
+      "**Pilotage RH SSR** : la corrélation entre le taux de lits fermés (faute de personnel) et le taux de bed"
+    ],
+    "sources": [
+      "**SAE (Statistique Annuelle des Établissements)** : capacités autorisées par spécialité SSR et par établissement — source officielle DREES, publiée annuellement (données N"
+    ],
+    "exemples": [
+      "**Taux d'occupation SSR national moyen (ATIH 2022)** : ~85",
+      "|",
+      "|",
+      "**Seuil de saturation opérationnel** : > 92% (liste d'attente documentée, bed",
+      "**Seuil de sous",
+      "**Variation saisonnière gériatrie** : +8 à +12 points en janvier",
+      "février vs juillet"
+    ],
+    "limites": [
+      "La SAE est renseignée annuellement par les établissements et peut présenter des décalages avec la réalité capacitaire infra",
+      "annuelle (fermetures temporaires, ouvertures de lits non reportées en cours d'année) — le numérateur PMSI (journées réalisées) est disponible mensuellement mais le dénominateur SAE (lits autorisés) est annuel, ce qui limite la granularité infra",
+      "La comparaison inter",
+      "établissements est limitée par les différences de case",
+      "mix intra",
+      "spécialité : un SSR neurologique spécialisé en cérébro",
+      "Les séjours très longs (> 90 jours, souvent liés à des blocages médico"
+    ],
+    "references": [
+      {
+        "text": "ATIH — Statistiques nationales PMSI SSR par établissement et par spécialité (données publiques annuelles)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DREES — SAE : Statistique Annuelle des Établissements de Santé, documentation méthodologique",
+        "url": "https://data.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "DREES — Les soins de suite et de réadaptation : panorama de l'offre, de l'activité et des besoins (2021)",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "IGAS — Rapport sur l'organisation des soins de suite et de réadaptation en France (2018)",
+        "url": "https://www.igas.gouv.fr/"
+      },
+      {
+        "text": "HAS — Recommandations sur l'organisation du SSR spécialisé par spécialité (neurologique, locomoteur, gériatrique)",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "taux_occupation_ssr_par_specialite.md",
+    "thematique": "Activité et production hospitalière"
+  },
+  {
     "indicateur": "APR-DRG — Sévérité de la Maladie et Risque de Mortalité (Belgique / Pays-Bas)",
     "definition": "L'APR-DRG (All Patient Refined Diagnosis-Related Groups) est une classification médico-économique développée par 3M Health Information Systems, utilisée en Belgique, aux Pays-Bas, en Espagne et dans plusieurs États américains comme alternative ou complément aux DRG/GHM classiques. Sa caractéristique centrale est d'attribuer à chaque séjour, en plus du groupe diagnostique (équivalent du GHM français), deux niveaux de sous-classification indépendants : le **SOI (Severity of Illness — sévérité de la maladie)** sur une échelle de 1 à 4 (mineur, modéré, majeur, extrême) et le **ROM (Risk of Mortality — risque de mortalité)** sur la même échelle. Ces deux dimensions capturent la complexité clinique intra-groupe que les GHM/DRG classiques ne peuvent pas distinguer : deux séjours dans le même GHM peuvent avoir des SOI/ROM radicalement différents, justifiant des ressources et des résultats très différents. En Belgique, l'APR-DRG est le système officiel de financement hospitalier depuis 1995 et fournit le référentiel le plus granulaire disponible pour l'ajustement au risque en Europe.",
     "calcul": "L'APR-DRG est un algorithme propriétaire 3M basé sur les codes CIM-10 : **Étape 1 — Attribution du groupe de base (équivalent GHM) :** **Étape 2 — Attribution du SOI (Severity of Illness) :** **Étape 3 — Attribution du ROM (Risk of Mortality) :** **Indicateurs dérivés du SOI/ROM :**",
@@ -409,6 +466,43 @@
       }
     ],
     "fichier": "elixhauser_comorbidity_score.md",
+    "thematique": "Casemix et profil de la patientèle"
+  },
+  {
+    "indicateur": "Entropie de Shannon du Casemix",
+    "definition": "L'entropie de Shannon H, issue de la théorie de l'information (Claude Shannon, 1948), mesure la diversité ou l'incertitude d'une distribution de probabilités. Appliquée à la distribution des GHMs (Groupes Homogènes de Malades) d'un service ou d'un établissement, elle quantifie le degré de **spécialisation vs polyvalence** du casemix hospitalier. H = −Σᵢ pᵢ × log₂(pᵢ) où pᵢ est la proportion du GHM i dans le total des séjours du service ou de l'établissement sur la période. H est exprimée en bits (si log₂) ou en nats (si ln). L'entropie est maximale (H_max = log₂(N_GHM)) lorsque tous les GHMs sont également représentés (service totalement polyvalent) et minimale (H = 0) lorsqu'un seul GHM concentre toute l'activité (service mono-pathologique). Pour faciliter les comparaisons inter-services disposant de volumes différents, l'entropie normalisée H' = H / H_max (comprise entre 0 et 1) est préférable : H' = 1 correspond à une diversité maximale, H' = 0 à une spécialisation absolue. Cet indicateur est fondamentalement absent des outils PMSI actuels : le CMI (Case Mix Index) mesure la lourdeur moyenne du casemix mais pas sa diversité structurelle ; le nombre de GHMs différents ne pondère pas par les volumes. L'entropie capture une information qualitativement différente — la **structure** de répartition de l'activité — inatteignable par les indicateurs scalaires classiques.",
+    "calcul": "Source : PMSI MCO RSA — variable GHM (8 caractères) par séjour. Indicateurs dérivés :",
+    "utilite": [],
+    "sources": [],
+    "exemples": [
+      "**CHU polyvalent (all specialties)** : H' ≈ 0,78",
+      "0,85 (casemix très diversifié, quasi",
+      "**CH général 500 lits** : H' ≈ 0,65",
+      "**Service de chirurgie orthopédique programmée** : H' ≈ 0,20",
+      "**Service de neurochirurgie** : H' ≈ 0,30",
+      "**Service de médecine interne polyvalente** : H' ≈ 0,70",
+      "**Clinique bariatrique mono",
+      "activité** : H' ≈ 0,05"
+    ],
+    "limites": [
+      "L'entropie ne distingue pas la polyvalence subie (service sous",
+      "Les changements de version de la classification ATIH (ex. passage GHM v11 → v12) modifient le nombre et la définition des GHMs, rendant les comparaisons inter"
+    ],
+    "references": [
+      {
+        "text": "Shannon C.E. — A Mathematical Theory of Communication, Bell System Technical Journal 1948",
+        "url": "https://doi.org/10.1002/j.1538-7305.1948.tb01338.x"
+      },
+      {
+        "text": "Jost L. — Entropy and diversity, Oikos 2006 : fondements mathématiques de l'entropie comme mesure de diversité",
+        "url": "https://doi.org/10.1111/j.2006.0030-1299.14714.x"
+      },
+      {
+        "text": "ATIH — Classification des GHMs et guide de lecture du PMSI MCO (version en vigueur)",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "entropie_shannon_casemix.md",
     "thematique": "Casemix et profil de la patientèle"
   },
   {
@@ -1130,6 +1224,62 @@
     "thematique": "Dimensions sociales et vulnérabilité"
   },
   {
+    "indicateur": "DMS SSR Ajustée au GME (Indice de Performance SSR)",
+    "definition": "Ratio entre la durée de séjour (DMS) observée dans un établissement SSR et la DMS nationale de référence ATIH pour le même GME (Groupe Médico-Économique). Le GME est le groupage tarifaire du PMSI SSR, équivalent fonctionnel du GHM en MCO : il classe les séjours SSR selon la finalité principale de prise en charge (FP), le groupe nosologique (GN), et le niveau de dépendance MIF à l'entrée. Un ratio > 1 indique une DMS supérieure à la moyenne nationale pour le même profil de patient (possible inefficience ou complexité non capturée par le GME) ; un ratio < 1 indique une DMS inférieure à la référence (efficience ou risque de sortie prématurée). Cet indicateur permet un benchmarking équitable entre établissements SSR en neutralisant l'effet du casemix — un SSR spécialisé en neurologie lourde (AVC sévères, DMS nationale ~55 jours pour ce GME) ne peut pas être comparé brut à un SSR locomoteur (PTH, DMS nationale ~18 jours). L'indicateur est l'équivalent SSR de l'IPDMS (Indice de Performance de la Durée Moyenne de Séjour) déjà utilisé en MCO, et s'inscrit dans la même logique de mesure de l'efficience de production hospitalière par rapport à une norme nationale.",
+    "calcul": "Sources de données : Formules de l'indicateur : Sous-indicateurs complémentaires :",
+    "utilite": [
+      "**Benchmarking équitable inter",
+      "**Identifier les GME spécifiques sur",
+      "ou sous",
+      "**Optimiser la planification des sorties** : la DMS attendue par GME fournit une cible prévisionnelle dès l'admission SSR — outil de programmation des sorties à J+DMS_attendue pour anticiper l'organisation médico",
+      "**Corrélation avec le taux de bed",
+      "blocking MCO** : un IPS élevé (séjours SSR longs) est corrélé à un taux de bed"
+    ],
+    "sources": [
+      "**Fichiers de référence ATIH** : statistiques nationales SSR par GME publiées annuellement — contiennent la DMS nationale, l'écart",
+      "**PMSI MCO RSA** : chaînage NIR pour corréler l'IPS avec le taux de réhospitalisation MCO post",
+      "SSR et le taux de bed"
+    ],
+    "exemples": [
+      "**DMS nationale moyenne SSR tous GME** : ~25",
+      "Neurologie cérébro",
+      "lésée lourde (AVC sévère, MIF entrée < 36) : ~50",
+      "AVC modéré (MIF entrée 36",
+      "72) : ~30",
+      "PTH/PTG : ~15",
+      "Fracture du col du fémur : ~25",
+      "Gériatrie polyvalente : ~25",
+      "Cardiovasculaire : ~20",
+      "**IPS cible** : 90",
+      "**IPS > 120** : fréquent dans les SSR gériatriques en zone rurale sans offre médico"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "ATIH — Statistiques nationales PMSI SSR et fichiers de référence DMS par GME (portail ATIH)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "Briggs R. et al. — Predicting length of stay in older patients admitted for rehabilitation, Age Ageing 2017",
+        "url": "https://doi.org/10.1093/ageing/afx051"
+      },
+      {
+        "text": "HAS — Critères de certification 2020 sur l'efficience et la pertinence des soins en SSR",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "DREES — Les soins de suite et de réadaptation : organisation, activité et financement (2021)",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "Tuppin P. et al. — Value of a national administrative database to guide public decisions: from the système national d'information interrégimes de l'Assurance Maladie (SNIIRAM) to the système national des données de santé (SNDS) in France, Rev Epidemiol Sante Publique 2017",
+        "url": "https://doi.org/10.1016/j.respe.2017.05.004"
+      }
+    ],
+    "fichier": "dms_ssr_ajustee_gme.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
     "indicateur": "Durée Médiane de Séjour par GHM",
     "definition": "La durée médiane de séjour par GHM mesure le temps médian passé à l'hôpital pour un groupe homogène de malades (GHM) donné. Contrairement à la durée moyenne, la médiane est moins sensible aux valeurs extrêmes (séjours très longs), offrant une vision plus robuste de la durée typique de séjour.",
     "calcul": "La durée médiane de séjour est calculée comme suit : **Méthode** : 1. Classer les durées de séjour par ordre croissant pour le GHM. 2. Identifier la valeur centrale (50ème percentile).",
@@ -1176,6 +1326,49 @@
     "thematique": "Efficience et gestion capacitaire"
   },
   {
+    "indicateur": "Énergie Potentielle de la Liste d'Attente",
+    "definition": "Adapté du concept d'énergie potentielle en physique (E_p = m × g × h — l'énergie accumulée par un objet en hauteur, proportionnelle à sa masse et à sa position), l'énergie potentielle de la liste d'attente (EPLA) mesure le **risque systémique accumulé** dans la liste d'attente d'un service, définie comme la somme des produits (sévérité clinique du patient × durée d'attente écoulée) pour l'ensemble des patients en attente. EPLA = Σᵢ Sᵢ × Dᵢ où Sᵢ est le score de sévérité du patient i (proxy calculé depuis le PMSI) et Dᵢ est la durée d'attente en jours depuis la demande de soin. L'analogie physique est directe : comme un objet en hauteur qui accumule de l'énergie potentielle proportionnellement à sa masse et à sa hauteur, un patient sévère qui attend longtemps accumule un \"potentiel de décompensation\" croissant. Quand ce potentiel est libéré (hospitalisation urgente, complication, décès en attente), il génère une perturbation proportionnelle à l'énergie accumulée. L'EPLA est fondamentalement différente des indicateurs de liste d'attente habituels (nombre de patients, délai médian) : une liste courte avec des patients très sévères peut être plus dangereuse qu'une liste longue avec des pathologies bénignes. L'EPLA capture cette dimension de **risque pondéré** que les métriques de volume et délai ignorent. Elle identifie également les moments où l'énergie potentielle totale dépasse un seuil critique, déclenchant une réorganisation préventive de la programmation.",
+    "calcul": "Score de sévérité individuel Sᵢ (proxy PMSI) : Calcul de l'EPLA : Seuils et alertes :",
+    "utilite": [
+      "**Détection précoce des crises de liste d'attente** : l'EPLA totale croissante au",
+      "**Justification de créneaux supplémentaires** : l'EPLA fournit un argument quantitatif pour demander des vacations opératoires supplémentaires ou des ouvertures de lits en hospitalisation — \"notre EPLA a augmenté de 40% ce mois, représentant X patients",
+      "**Comparaison inter"
+    ],
+    "sources": [],
+    "exemples": [
+      "10 patients sévères (Sᵢ = 4",
+      "5) avec Dᵢ moyen = 45j → contribution = 2 025 pts",
+      "35 patients modérés (Sᵢ = 2) avec Dᵢ moyen = 20j → contribution = 1 400 pts",
+      "EPLA totale = 3 425 pts",
+      "j ; EPLA_norm = 76 pts",
+      "Seuil d'alerte (P80 historique) = 3 000 pts",
+      "**Gradient hebdomadaire en période de tension** : +300",
+      "500 pts",
+      "**Impact d'une fermeture de bloc de 2 semaines** : augmentation d'EPLA estimée à ~1 500",
+      "2 000 pts"
+    ],
+    "limites": [
+      "L'EPLA suppose une relation linéaire entre sévérité, délai et risque de décompensation — or cette relation est souvent non",
+      "linéaire (un patient qui attend 90 jours n'a pas nécessairement 3 fois plus de risque qu'un patient qui attend 30 jours ; le risque peut être non"
+    ],
+    "references": [
+      {
+        "text": "Kreindler S.A. — Lifting the burden of waiting: strategies for reducing patient wait times, Journal of Health Services Research & Policy 2010",
+        "url": "https://doi.org/10.1258/jhsrp.2009.009013"
+      },
+      {
+        "text": "HAS — Délais de prise en charge et gestion des listes d'attente en chirurgie programmée (2019)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "DGOS — Répertoire opérationnel des ressources et gestion des listes d'attente en établissements de santé",
+        "url": "https://solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "energie_potentielle_liste_attente.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
     "indicateur": "Indice d'Efficience du Bloc Opératoire",
     "definition": "L'indice d'efficience du bloc opératoire est un indicateur composite mesurant la performance organisationnelle et économique des salles d'opération d'un établissement du GHT. Il agrège plusieurs dimensions : le taux d'occupation des salles (temps opératoire réel vs temps ouvert), le ratio actes programmés/urgents, le taux d'annulation des interventions programmées et la durée moyenne de vacation utilisée. Le bloc opératoire représente généralement 40-60 % des charges d'un établissement chirurgical et conditionne directement la capacité du GHT à développer son activité chirurgicale, à réduire les délais d'attente et à améliorer sa rentabilité T2A.",
     "calcul": "L'indice d'efficience du bloc opératoire est calculé à partir de plusieurs sous-indicateurs : **1. Taux d'occupation des salles (TOS) :** **2. Taux d'annulation des interventions programmées :** **3. Ratio programmé / urgences :** **4. Estimation depuis le PMSI (proxy) :** **Précisions méthodologiques** : - Les données précises du bloc (horodatages d'entrée/sortie de salle) sont issues des logiciels de gestion du bloc (DIANE, BOW, Axya) et non directement du PMSI. - Le PMSI permet néanmoins des proxies robustes : nombre d'actes CCAM par jour et par établissement, répartition programmé/urgences via le mode d'entrée (code 8 = urgences), distribution hebdomadaire et mensuelle des actes. - L'analyse PMSI permet également d'identifier les « séjours sans acte » (séjours MCO sans code CCAM associé) pouvant signaler des dysfonctionnements de codage ou des annulations non tracées. - L'indice composite peut être calculé en agrégeant les sous-indicateurs pondérés selon les priorités du GHT.",
@@ -1218,6 +1411,63 @@
       }
     ],
     "fichier": "indice_efficience_bloc_operatoire.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
+    "indicateur": "Indice de Résilience Opérationnelle",
+    "definition": "Emprunté à l'ingénierie des systèmes complexes et à l'écologie (Holling, 1973), la résilience est la capacité d'un système à absorber une perturbation et à retrouver son état de fonctionnement normal. L'Indice de Résilience Opérationnelle (IRO) d'un GHT mesure la **vitesse de retour au baseline** des indicateurs de performance clés après un choc exogène identifiable (vague épidémique, pandémie, grève, sinistre, tension saisonnière extrême). IRO = 1 / T_retour où T_retour est le nombre de semaines nécessaires pour que l'indicateur de performance revienne dans la plage de son baseline pré-choc (défini comme la médiane ± 1 écart-type de la période de référence). Un IRO élevé = retour rapide = système résilient ; un IRO faible = récupération lente = système fragile face aux perturbations. L'IRO est calculé sur des séries temporelles PMSI (extractions hebdomadaires ou mensuelles) et peut être appliqué à tout indicateur de flux ou de qualité : DMS, taux d'occupation, délai MCO→SSR, taux de réhospitalisation, taux de déprogrammation chirurgicale. Il permet de comparer la résilience de différents établissements d'un GHT face au même choc, ou de mesurer l'amélioration de la résilience dans le temps après des investissements organisationnels. Contrairement aux indicateurs statiques (qui mesurent la performance à un instant T), l'IRO capture une propriété **dynamique** du système — sa capacité à retrouver son régime nominal — qui est invisible dans tous les tableaux de bord hospitaliers actuels.",
+    "calcul": "Identification du choc et des phases : Calcul de l'IRO et sous-indicateurs : Chocs types applicables (avec indicateurs cibles) :",
+    "utilite": [
+      "**Identifier les facteurs organisationnels de résilience** : par corrélation entre l'IRO des établissements et leurs caractéristiques organisationnelles (existence d'un plan de gestion de crise, de lits de débordement pré",
+      "**Mesurer l'amélioration de la résilience dans le temps** : évaluer si les investissements post",
+      "**Anticiper les besoins de soutien inter",
+      "**Dialogue avec les ARS et le niveau national** : l'IRO est un indicateur de préparation aux crises sanitaires, directement pertinent dans le contexte du Plan Blanc, des plans ORSAN et des contrats de retour à l'équilibre post"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** (extractions hebdomadaires ou mensuelles) : DMS observée, taux d'occupation (journées / capacités), nombre d'actes CCAM réalisés, nombre de séjours — séries temporelles sur 2"
+    ],
+    "exemples": [
+      "Établissement résilient : T_retour = 3",
+      "4 semaines → IRO ≈ 0,25",
+      "Établissement peu résilient : T_retour = 10",
+      "14 semaines → IRO ≈ 0,07",
+      "**IRO face à la vague COVID",
+      "19 (vague 1, mars",
+      "Choc exceptionnel : T_retour pour la chirurgie programmée : 8",
+      "Certains établissements n'ont jamais retrouvé leur baseline pré",
+      "COVID → IRO = 0 (non",
+      "**Perte cumulée estimée d'une vague grippale sévère** : 500",
+      "2000 journées"
+    ],
+    "limites": [
+      "L'IRO suppose qu'un retour rapide au baseline est toujours souhaitable — or si le baseline lui",
+      "même était défavorable (DMS élevée pré",
+      "Certains chocs modifient structurellement le système (fermeture permanente d'un service, départ d'un médecin",
+      "clé, réforme tarifaire) — dans ces cas le système n'a pas vocation à retourner au baseline mais à atteindre un nouveau régime ; l'IRO doit être recalculé sur un nouveau baseline post"
+    ],
+    "references": [
+      {
+        "text": "Holling C.S. — Resilience and stability of ecological systems, Annual Review of Ecology and Systematics 1973",
+        "url": "https://doi.org/10.1146/annurev.es.04.110173.000245"
+      },
+      {
+        "text": "Woods D.D. — Four concepts for resilience and the implications for the future of resilience engineering, Reliability Engineering & System Safety 2015",
+        "url": "https://doi.org/10.1016/j.ress.2015.03.018"
+      },
+      {
+        "text": "Righi A.W. et al. — A systematic literature review of resilience engineering: research areas and a research agenda proposal, Reliability Engineering & System Safety 2015",
+        "url": "https://doi.org/10.1016/j.ress.2014.11.016"
+      },
+      {
+        "text": "Hick J.L. et al. — Health care facility and community strategies for patient care surge capacity, Ann Emerg Med 2004",
+        "url": "https://doi.org/10.1016/j.annemergmed.2004.07.428"
+      },
+      {
+        "text": "DGOS — Plan de gestion des tensions hospitalières et des situations sanitaires exceptionnelles (2021)",
+        "url": "https://solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "indice_resilience_operationnelle.md",
     "thematique": "Efficience et gestion capacitaire"
   },
   {
@@ -1336,6 +1586,66 @@
       }
     ],
     "fichier": "ip_dms_indice_performance_dms.md",
+    "thematique": "Efficience et gestion capacitaire"
+  },
+  {
+    "indicateur": "Taux de Bed-Blocking MCO (Patients en Attente de Place SSR)",
+    "definition": "Le \"bed-blocking\" (ou blocage de lit) désigne la situation où un patient hospitalisé en MCO, cliniquement stabilisé et éligible à une prise en charge en SSR ou en établissement médico-social, ne peut pas être transféré faute de place disponible et occupe ainsi un lit de soins aigus au-delà de sa DMS médicalement justifiée. Cet indicateur mesure : (1) le nombre de journées d'hospitalisation MCO \"excédentaires\" liées à une attente de place SSR, et (2) la proportion de séjours MCO concernés. En PMSI, il est approché par deux signaux complémentaires : (a) séjours MCO avec DMS observée supérieure à la borne haute du GHM ET mode de sortie = 6 (mutation vers SSR), signalant un séjour prolongé au-delà de la norme tarifaire dans l'attente d'un transfert SSR ; (b) présence du code CIM-10 Z75.1 (personne en attente d'admission dans un établissement de soins approprié) dans les diagnostics associés du RSA. Le bed-blocking génère des surcoûts directs pour l'établissement MCO (journées facturées sous le tarif journalier T2A, au-delà de la borne haute GHM) et des coûts indirects (déconditionnement fonctionnel du patient maintenu en milieu de soins aigus inadapté à la rééducation, risque nosocomial accru). C'est un indicateur à la fois d'efficience (T2A sous-optimal), de qualité des soins (risque patient) et de coordination des filières (tension capacitaire SSR).",
+    "calcul": "Méthode principale — approche par la durée de séjour et les bornes GHM : Méthode complémentaire — approche par le codage CIM-10 : Indicateurs agrégés : Sous-indicateurs par service et territoire :",
+    "utilite": [
+      "**Quantifier l'impact financier de la tension capacitaire SSR** : transformer les journées de bed",
+      "**Appuyer les demandes de lits SSR auprès de l'ARS** : le nombre de journées de bed",
+      "**Mesurer l'impact des actions d'amélioration** : évaluer l'effet d'une convention SSR partenaire, du développement d'une filière HAD de rééducation, ou de la mise en place d'une cellule d'orientation dédiée sur la réduction des journées de bed",
+      "**Vue filière intégrée avec l'IPS SSR** : un IPS élevé (séjours SSR longs) amplifie mécaniquement le bed"
+    ],
+    "sources": [
+      "**PMSI SSR RHS** : date d'entrée effective en SSR par chaînage NIR — permet de calculer le délai réel d'attente entre la sortie MCO et l'admission SSR, et de valider les séjours avec bed",
+      "**DCIR ER_PHA_F** (optionnel) : dispensations de médicaments pour les patients en bed"
+    ],
+    "exemples": [
+      "**Estimation française tous services MCO (DREES 2019)** : 5",
+      "**Période de tension capacitaire hivernale** : taux pouvant atteindre 20",
+      "25% dans les services de médecine gériatrique en janvier",
+      "**Coût moyen d'une journée de bed",
+      "blocking** : 200",
+      "400€ de perte tarifaire nette (journée sous",
+      "**Délai médian d'attente SSR** : 3",
+      "7 jours dans les GHTs avec filières organisées, 15",
+      "**Impact de la mise en place d'une cellule d'orientation MCO",
+      "SSR** : réduction de 25",
+      "35% des journées de bed"
+    ],
+    "limites": [
+      "Le code Z75.1 est très sous",
+      "utilisé dans le codage MCO français (estimé documenté dans < 15% des séjours réels de bed",
+      "L'indicateur ne capture que le bed",
+      "blocking intra",
+      "MCO — il ne mesure pas la pression sur les urgences (patients en attente de lit MCO avant orientation vers SSR) ni le bed",
+      "Les bornes hautes GHM varient chaque année avec les revalorifications tarifaires ATIH — les comparaisons inter"
+    ],
+    "references": [
+      {
+        "text": "Ou L. et al. — Delayed discharge from hospital in older adults: a systematic review, BMJ Open 2021",
+        "url": "https://doi.org/10.1136/bmjopen-2020-044193"
+      },
+      {
+        "text": "Landeiro F. et al. — Delayed hospital discharges of older patients: a systematic review on prevalence and costs, Age Ageing 2017",
+        "url": "https://doi.org/10.1093/ageing/afx028"
+      },
+      {
+        "text": "DREES — Études et Résultats : les soins de suite et de réadaptation, panorama de l'offre (2019)",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ATIH — Guide méthodologique tarifaire MCO : bornes basses et hautes GHM (mis à jour annuellement)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS — Recommandations pour l'organisation des filières SSR et la réduction des délais d'attente MCO",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "taux_bed_blocking_mco_attente_ssr.md",
     "thematique": "Efficience et gestion capacitaire"
   },
   {
@@ -1575,6 +1885,113 @@
     "thematique": "Qualité et sécurité des soins"
   },
   {
+    "indicateur": "First-Pass Yield — Taux de Parcours Sans Défaut",
+    "definition": "Adapté du concept industriel de qualité Six Sigma, le First-Pass Yield (FPY) mesure la proportion de séjours hospitaliers complétés sans aucun événement de \"retraitement\" : ni complication documentée, ni réintervention chirurgicale non programmée, ni réhospitalisation à 30 jours. En industrie, le FPY exprime la proportion de pièces sorties conformes du processus de production sans intervention corrective. En MCO, chaque séjour est assimilé à une unité de production et le \"défaut\" est tout événement contraire à l'objectif thérapeutique initial. Le FPY est un indicateur composite multiplicatif : il combine trois dimensions de qualité indépendantes en un score unique qui reflète la probabilité qu'un séjour se déroule intégralement sans incident. Il se distingue des indicateurs habituels de qualité — qui mesurent chaque dimension séparément — en capturant la qualité du parcours dans sa globalité. Un service avec 5% de complications, 3% de réinterventions et 10% de réhospitalisations n'est pas performant à 97%, 97% et 90% : son FPY est de 0,95 × 0,97 × 0,90 = **82,9%**, révélant que seulement 83 séjours sur 100 se terminent sans aucun défaut. Applicable à l'ensemble du PMSI MCO et calculable par GHM, spécialité, chirurgien, ou établissement.",
+    "calcul": "Le FPY est le produit de trois taux de conformité calculés depuis le PMSI MCO : Calcul illustratif : Stratification recommandée :",
+    "utilite": [
+      "**Identification du levier d'amélioration prioritaire** : la décomposition des trois composantes permet d'orienter l'action vers le défaut le plus impactant (ex : si la composante réadmission est le principal contributeur, l'effort doit porter sur le suivi post",
+      "hospitalier et la coordination ville"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** : diagnostics associés (DA CIM",
+      "10) pour les complications intra",
+      "**Chaînage SNDS par NIR crypté** : identification des réhospitalisations MCO à 30 jours post",
+      "**Référentiel PSI",
+      "90 AHRQ / ATIH** : liste des codes CIM",
+      "10 retenus pour définir les complications intra"
+    ],
+    "exemples": [
+      "**FPY estimé en chirurgie orthopédique élective (PTH/PTG)** : ~88",
+      "92% (faible taux de complication, réintervention rare, réadmission ~8",
+      "**FPY en chirurgie digestive lourde (résection colorectale)** : ~75",
+      "82% (complications fréquentes ~10",
+      "12%, réadmission ~15",
+      "**FPY en médecine (décompensations cardiaques)** : ~70",
+      "78% (réadmission à 30j élevée ~20",
+      "25% même sans complication intra"
+    ],
+    "limites": [
+      "Le FPY est sensible à la qualité du codage PMSI : sous",
+      "Le FPY multiplicatif suppose l'indépendance des trois composantes, ce qui est une approximation : une complication intra",
+      "séjour augmente la probabilité de réadmission — le FPY sous",
+      "Pas de référentiel national publié pour ce calcul — l'établissement doit définir et documenter sa méthodologie pour permettre des comparaisons inter"
+    ],
+    "references": [
+      {
+        "text": "AHRQ — Patient Safety Indicators Technical Specifications (PSI-90), version 2024 : définition des complications intra-séjour codées en CIM-10",
+        "url": "https://qualityindicators.ahrq.gov/"
+      },
+      {
+        "text": "Birkmeyer J.D. et al. — Surgical skill and complication rates after bariatric surgery, NEJM 2013 : variabilité inter-chirurgiens des taux de complication et réopération",
+        "url": "https://doi.org/10.1056/NEJMsa1300625"
+      },
+      {
+        "text": "ATIH — Définition des complications et morbidités associées (CMA) dans le PMSI MCO",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "first_pass_yield_parcours_sans_defaut.md",
+    "thematique": "Qualité et sécurité des soins"
+  },
+  {
+    "indicateur": "Gain Fonctionnel MIF (Delta Entrée-Sortie SSR)",
+    "definition": "La MIF (Mesure de l'Indépendance Fonctionnelle), version française du FIM (Functional Independence Measure), est un score standardisé évaluant le niveau d'autonomie fonctionnelle du patient. Elle est codée dans le PMSI SSR (Résumé Hebdomadaire Standardisé — RHS) à l'entrée et à la sortie du séjour. Score total : 18 à 126 points, composé de 18 items répartis en deux domaines : - **Domaine moteur** (13 items, max 91 points) : soins personnels (alimentation, hygiène, habillage, toilette périnéale), contrôle sphinctérien, mobilité/transferts, locomotion - **Domaine cognitif** (5 items, max 35 points) : compréhension, expression, conscience sociale, résolution de problèmes, mémoire Chaque item est coté de 1 (dépendance totale — aide totale requise) à 7 (indépendance complète sans assistance). Seuils cliniques : MIF < 36 = dépendance totale/très sévère ; MIF 36-72 = dépendance modérée ; MIF 73-107 = dépendance légère ; MIF ≥ 108 = quasi-indépendance. Le **gain fonctionnel MIF** = MIF_sortie − MIF_entrée mesure la valeur ajoutée clinique réelle du séjour SSR. C'est l'indicateur de résultat clinique le plus direct et le plus objectif du SSR. L'**efficience rééducative** (gain MIF par jour de séjour) permet de comparer la productivité des programmes de rééducation entre unités ou établissements, en neutralisant l'effet de la durée de séjour.",
+    "calcul": "Sources PMSI SSR : variables MIF_ENT (score MIF total à l'entrée, présent dans le 1er RHS du séjour) et MIF_SOR (score MIF total à la sortie, présent dans le dernier RHS du séjour). Population éligible : Formules principales : Sous-indicateurs de résultat :",
+    "utilite": [
+      "**Benchmarking inter",
+      "unités et inter",
+      "**Corrélation prédictive avec le retour à domicile** : MIF_SOR ≥ 80 est le meilleur prédicteur individuel d'un retour à domicile réussi ; l'indicateur permet d'anticiper les décisions de sortie et de préparer les filières médico"
+    ],
+    "sources": [
+      "**PMSI SSR RHS** : variables MIF_ENT et MIF_SOR (scores MIF total à l'entrée et à la sortie), GME (Groupe Médico"
+    ],
+    "exemples": [
+      "**AVC (neurologie cérébro",
+      "lésée)** : ΔMif moyen ~20",
+      "35 points selon sévérité initiale ; efficience ~0.8",
+      "1.2 pts/jour ; MIF_ENT typique ~55",
+      "75, MIF_SOR ~80",
+      "**PTH/PTG (locomoteur)** : ΔMif moyen ~15",
+      "25 points, DMS ~15",
+      "25 jours, efficience ~1.0",
+      "**Fracture du col du fémur** : ΔMif moyen ~10",
+      "20 points ; MIF_ENT ~45",
+      "65 (dépendance post",
+      "**Gériatrie polyvalente** : ΔMif moyen ~5",
+      "15 points ; efficience ~0.4",
+      "**Seuil retour domicile** : MIF_SOR ≥ 80 points associé à retour domicile sans aide majeure dans ~70"
+    ],
+    "limites": [
+      "La MIF est cotée par les soignants (ergothérapeute, kinésithérapeute, infirmière) — variabilité inter",
+      "cotateurs documentée, avec un risque de biais de désirabilité sociale (gonflement possible du score de sortie dans certaines équipes) ; la formation à la cotation standardisée et les audits de concordance inter",
+      "Le score MIF à l'entrée SSR est influencé par le délai MCO→SSR : une admission SSR tardive (> J7) laisse une récupération spontanée précoce déjà intégrée dans le score d'entrée, réduisant artificiellement le delta SSR apparent — le délai MCO→SSR (indicateur SSR"
+    ],
+    "references": [
+      {
+        "text": "Dodds T.A. et al. — A validation of the functional independence measure and its performance among rehabilitation inpatients, Arch Phys Med Rehabil 1993",
+        "url": "https://doi.org/10.1016/0003-9993(93"
+      },
+      {
+        "text": "Granger C.V. et al. — Functional Assessment Scales: a study of persons with multiple sclerosis, Arch Phys Med Rehabil 1990",
+        "url": "https://doi.org/10.1016/0003-9993(90"
+      },
+      {
+        "text": "ATIH — Guide méthodologique du recueil d'informations médicalisé en SSR (PMSI RHS, cotation MIF)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS — Recommandations de bonne pratique : rééducation après AVC, évaluation fonctionnelle et MIF (2012)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "Prvu Bettger J., Stineman M.G. — Effectiveness of multidisciplinary rehabilitation services in postacute care, Arch Phys Med Rehabil 2007",
+        "url": "https://doi.org/10.1016/j.apmr.2007.01.034"
+      }
+    ],
+    "fichier": "gain_fonctionnel_mif_ssr.md",
+    "thematique": "Qualité et sécurité des soins"
+  },
+  {
     "indicateur": "IQTIG — Indicateurs de Qualité en Arthroplastie (Allemagne)",
     "definition": "Dans le domaine de l'arthroplastie de hanche et de genou, l'IQTIG publie des indicateurs de qualité couvrant les révisions précoces de prothèse, les complications périopératoires (infections du site opératoire, embolie pulmonaire, luxation, fracture peropératoire), la durée de séjour et la mortalité postopératoire. L'Allemagne est l'un des pays au monde avec le plus fort taux d'arthroplastie (300 000 prothèses totales de hanche et 200 000 prothèses totales de genou par an) et dispose d'un registre national de suivi implantataire (EPRD — Endoprothesenregister Deutschland) couplé aux données G-DRG, fournissant le référentiel le plus riche au monde pour ces indicateurs. La transposition au PMSI français est directe grâce aux codes CIM-10 et CCAM couvrant les mêmes gestes, et au Registre National des Arthroplasties (RNA) en cours de déploiement en France.",
     "calcul": "Les principaux indicateurs IQTIG en arthroplastie et leur formule : **1. Taux de révision précoce de prothèse (< 90 jours) :** **2. Taux d'infection du site opératoire profonde (ISO profonde) :** **3. Taux de complications thromboemboliques postopératoires :** **4. Taux de luxation de prothèse de hanche (< 90 jours) :** **5. Taux de fracture peropératoire :** **6. Mortalité à 90 jours post-arthroplastie :**",
@@ -1806,6 +2223,48 @@
       }
     ],
     "fichier": "psi90_patient_safety_indicators.md",
+    "thematique": "Qualité et sécurité des soins"
+  },
+  {
+    "indicateur": "Ratio de Sharpe de la Performance Qualité",
+    "definition": "Adapté de la finance (William Sharpe, 1966), le ratio de Sharpe mesure le rendement ajusté au risque d'un portefeuille : rendement excédentaire (au-dessus du \"taux sans risque\") divisé par la volatilité (écart-type des rendements). Appliqué à la performance qualité hospitalière, il mesure l'excédent de performance par rapport à un benchmark de référence, rapporté à la variabilité de cette performance dans le temps. Formule de base en finance : S = (R_p − R_f) / σ_p, où R_p est le rendement du portefeuille, R_f le taux sans risque, et σ_p l'écart-type des rendements. En performance qualité PMSI, le Ratio de Sharpe-Qualité (RSQ) est défini comme : **RSQ = (Performance_observée − Performance_de_référence) / Volatilité_mensuelle** où la \"performance de référence\" est le benchmark national (taux moyen national ATIH ou HAS pour l'indicateur choisi) — l'équivalent du \"taux sans risque\" financier — et la \"volatilité\" est l'écart-type des mesures mensuelles ou trimestrielles de l'indicateur sur la période d'observation. La rupture conceptuelle par rapport aux indicateurs classiques est décisive : **deux établissements avec la même performance moyenne ont des RSQ très différents si leur variabilité diffère**. Un établissement avec un taux de réadmission moyen de 12% (meilleur que la moyenne nationale de 14%) mais avec une forte variabilité mensuelle (σ = 4%) a un RSQ de 0,5 ; un autre établissement avec le même taux moyen de 12% mais une variabilité de 1% a un RSQ de 2,0. Le second est qualitativement supérieur car sa performance est stable et prévisible — c'est la dimension que tous les indicateurs de moyenne ignorent.",
+    "calcul": "Construction du RSQ pour un indicateur de qualité donné : Interprétation du RSQ : RSQ multi-indicateurs et score composite :",
+    "utilite": [
+      "**Outil de management par la qualité** : le RSQ est directement utilisable dans les revues de performance qualité des CME et des pôles — il offre une conversation différente de \"votre taux de complication est de X%\", en posant la question \"votre performance est",
+      "**Comparaison inter"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** : série temporelle mensuelle de l'indicateur de qualité retenu (taux de complication PSI",
+      "90, taux de réadmission 30j, FPY) — sur 24"
+    ],
+    "exemples": [],
+    "limites": [
+      "Le RSQ requiert une série temporelle de 24",
+      "36 mois minimum pour que l'écart",
+      "Sensibilité à la valeur de référence choisie : le RSQ dépend directement du benchmark I_ref — une valeur de référence sous",
+      "estimée (trop basse) gonfle artificiellement le RSQ de tous les établissements ; utiliser systématiquement les valeurs ATIH/HAS publiées pour l'année N",
+      "La normalité de la distribution de I_m est implicitement supposée dans l'interprétation standard du ratio de Sharpe — si la distribution est fortement asymétrique (queues épaisses = quelques mois très mauvais), le σ sous",
+      "Risque de \"volatility suppression\" : un service qui reporte moins fréquemment ses événements indésirables (sous"
+    ],
+    "references": [
+      {
+        "text": "Sharpe W.F. — Mutual fund performance, Journal of Business 1966 : définition originale du ratio de Sharpe",
+        "url": "https://doi.org/10.1086/294846"
+      },
+      {
+        "text": "Berwick D.M. — Continuous improvement as an ideal in health care, NEJM 1989 : application des méthodes de contrôle statistique de la qualité aux soins",
+        "url": "https://doi.org/10.1056/NEJM198901053200110"
+      },
+      {
+        "text": "Mohammed M.A. et al. — Statistical process control charts in healthcare, BMJ 2008 : limites de contrôle statistique et détection des variations de performance",
+        "url": "https://doi.org/10.1136/bmj.a1739"
+      },
+      {
+        "text": "ATIH — Indicateurs de qualité et sécurité des soins IQSS : valeurs nationales de référence (publiées annuellement)",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "ratio_sharpe_performance_qualite.md",
     "thematique": "Qualité et sécurité des soins"
   },
   {
@@ -2274,6 +2733,49 @@
     "thematique": "Qualité et sécurité des soins"
   },
   {
+    "indicateur": "Value at Risk des Événements Indésirables Graves (VaR-EIG)",
+    "definition": "Adapté de la gestion des risques financiers, le Value at Risk (VaR) des événements indésirables graves (EIG) est le taux mensuel d'événements indésirables au-delà duquel un établissement ne devrait se trouver que dans 5% des mois (VaR à 95%), ou 1% des mois (VaR à 99%). En finance, la VaR répond à : \"Quelle est la perte maximale que l'on peut subir avec une probabilité de 95% sur une période donnée ?\" Appliqué à la sécurité des patients : \"Quel est le taux mensuel d'EIG que l'établissement ne devrait dépasser qu'une fois tous les 20 mois (VaR 95%) ou une fois tous les 100 mois (VaR 99%) ?\" La rupture conceptuelle par rapport aux indicateurs habituels (taux annuels ou trimestriels comparés à une moyenne) est fondamentale : la VaR-EIG passe d'une gestion **réactive** (on constate après coup que le mois a été mauvais) à une gestion **probabiliste du risque** (on définit à l'avance les seuils statistiques qui déclenchent une investigation, indépendamment du fait que le résultat soit \"mieux que l'an dernier\"). Elle permet également de quantifier le **risque résiduel** : un établissement avec un taux moyen d'EIG conforme aux benchmarks peut néanmoins avoir une variance élevée (grande variabilité mensuelle) qui génère des pics dangereux. La VaR capture ce risque que les indicateurs moyens ignorent. Calculable depuis le PMSI MCO sur un historique de 24-36 mois, sur la base des EIG tracés en CIM-10 (PSI-90 AHRQ, complications codées, décès inattendus).",
+    "calcul": "Construction de la distribution historique des EIG : Calcul de la VaR-EIG : Indicateurs dérivés :",
+    "utilite": [
+      "**Passage d'une culture réactive à une culture proactive du risque patient** : définir à l'avance les seuils statistiques de déclenchement des revues de morbi",
+      "**Communication avec les tutelles** : la VaR est un indicateur de maturité de la gestion des risques — des établissements capables de présenter leur profil VaR",
+      "**Benchmarking inter"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** : diagnostics associés (DA) CIM",
+      "10 pour les complications et EIG intra",
+      "séjour (liste PSI",
+      "**PMSI tous champs** (MCO + SSR + HAD) : chaînage NIR pour inclure dans les EIG les complications survenant après la sortie MCO (ex. décès à J3 post"
+    ],
+    "exemples": [
+      "Écart",
+      "**Seuil de déclenchement RMM** : si taux_EIG > VaR_95% = 10,2 ‰ ce mois"
+    ],
+    "limites": [
+      "Le choix de la définition des EIG (PSI"
+    ],
+    "references": [
+      {
+        "text": "Artzner P. et al. — Coherent measures of risk, Mathematical Finance 1999 : fondements théoriques de la VaR et de l'Expected Shortfall",
+        "url": "https://doi.org/10.1111/1467-9965.00068"
+      },
+      {
+        "text": "Runciman W. et al. — Towards an international classification for patient safety, Int J Qual Health Care 2009 : taxonomie des événements indésirables en santé",
+        "url": "https://doi.org/10.1093/intqhc/mzp026"
+      },
+      {
+        "text": "AHRQ — Patient Safety Indicators v2024 : liste des complications et EIG codables en PMSI",
+        "url": "https://qualityindicators.ahrq.gov/"
+      },
+      {
+        "text": "HAS — Méthode d'analyse des événements indésirables graves (EIG) en établissements de santé (2021)",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "value_at_risk_evenements_indesirables.md",
+    "thematique": "Qualité et sécurité des soins"
+  },
+  {
     "indicateur": "Délai d'Attente",
     "definition": "Le délai d'attente mesure le temps moyen entre la demande de consultation ou d'hospitalisation et la réalisation effective de l'acte. Cet indicateur est crucial pour évaluer l'accessibilité aux soins et la satisfaction des patients.",
     "calcul": "Le délai d'attente est calculé comme suit :",
@@ -2707,6 +3209,57 @@
     "thematique": "Pertinence des soins et pratiques médicales"
   },
   {
+    "indicateur": "Délai d'Admission en SSR Post-MCO",
+    "definition": "Durée médiane (en jours) entre la date de sortie d'un séjour MCO (DATESOR dans le RSA) et la date d'entrée dans un établissement de SSR (Soins de Suite et Réadaptation) pour le même patient, identifié par chaînage NIR crypté. Calculé sur les patients dont le mode de sortie MCO = 6 (mutation vers SSR) ou dont le séjour SSR suivant a un mode d'entrée = 6 (provenance MCO). Stratifié par pathologie et motif de SSR : neurologie (AVC, traumatismes crâniens — GME 02xx), orthopédie/locomoteur (PTH, PTG, fractures — GME 01xx), cardiologie/pneumologie (GME 04xx), oncologie (GME 07xx), gériatrie polyvalente (GME 09xx). Un délai long signale un problème de disponibilité de lits SSR (bed-blocking), un défaut de coordination entre MCO et SSR, ou une orientation inadaptée vers un établissement SSR non disponible. Cet indicateur est le marqueur le plus direct de la fluidité de la filière MCO→SSR au sein d'un GHT. Il est à lire en parallèle avec le taux de bed-blocking MCO (journées excédentaires liées à l'attente SSR) et le délai médian de placement SSR par la cellule d'orientation.",
+    "calcul": "Chaînage PMSI MCO RSA × PMSI SSR RHS par NIR crypté SNDS. Population éligible : Calcul du délai : Stratification recommandée :",
+    "utilite": [
+      "**Quantifier l'impact du bed",
+      "**Évaluer les conventions de coopération MCO",
+      "SSR** : les GHTs ayant des conventions formalisées avec des délais de réponse garantis présentent des médianes J1"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Délai médian national France (tous GME, ATIH 2022)** : ~4",
+      "**Filières organisées (AVC, PTH/PTG avec convention MCO",
+      "SSR)** : J1",
+      "**Gériatrie polyvalente** : J7",
+      "**Neurologie cérébro",
+      "lésée** : J3",
+      "**Proportion admis J0",
+      "J3** : environ 40",
+      "55% dans les GHTs avec convention formalisée, 15",
+      "**GHTs avec cellule d'orientation SSR dédiée** : réduction de 30"
+    ],
+    "limites": [
+      "Le chaînage par NIR peut manquer les transferts vers des SSR hors périmètre du SNDS local ou vers des établissements privés non conventionnés — sous",
+      "Le délai J0 (même jour) peut correspondre à un transfert organisé en urgence (dégradation clinique en MCO) ou à une admission SSR pré"
+    ],
+    "references": [
+      {
+        "text": "SFNV — Recommandations sur la filière AVC et les délais d'admission en SSR neurovasculaire (2022)",
+        "url": "https://www.sfnv.net/"
+      },
+      {
+        "text": "Ou L. et al. — Delayed discharge from hospital: length of stay and cost implications, BMJ Open 2021",
+        "url": "https://doi.org/10.1136/bmjopen-2020-044193"
+      },
+      {
+        "text": "HAS — Recommandations de bonne pratique : rééducation après AVC (2012)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH — Statistiques et publications PMSI SSR : données nationales d'activité par GME",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DREES — Les soins de suite et de réadaptation en France : panorama de l'offre et des besoins (2021)",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "delai_admission_ssr_post_mco.md",
+    "thematique": "Parcours patient et continuité des soins"
+  },
+  {
     "indicateur": "Délai de Transfert MCO vers SSR",
     "definition": "Le délai de transfert MCO vers SSR mesure le temps écoulé entre la date de sortie d'un séjour en Médecine-Chirurgie-Obstétrique (MCO) et la date d'entrée dans une unité de Soins de Suite et de Réadaptation (SSR) pour le même patient. Cet indicateur reflète la fluidité du parcours post-aigu : un délai long signale une rupture de parcours préjudiciable à la récupération fonctionnelle du patient et génératrice de prolongations de séjour MCO injustifiées (présence de patients en attente d'aval SSR).",
     "calcul": "Le délai de transfert MCO vers SSR est calculé comme suit : **Précisions méthodologiques** : - Le calcul nécessite le chaînage des séjours PMSI MCO et SSR par patient (NIR crypté ou identifiant local). - Seuls les séjours SSR faisant suite à un séjour MCO identifiable sont inclus (mode d'entrée SSR = transfert ou mutation, avec FINESS MCO renseigné). - On distingue les transferts directs (délai = 0 jour, mutation le jour même) des transferts différés (délai ≥ 1 jour). - L'indicateur est calculé en médiane (moins sensible aux valeurs extrêmes) et en distribution par tranches (0 j, 1-3 j, 4-7 j, 8-14 j, >14 j). - L'analyse est segmentée par pathologie (AVC, fracture de hanche, chirurgie orthopédique, etc.) et par établissement émetteur/receveur.",
@@ -2767,6 +3320,50 @@
       }
     ],
     "fichier": "efficacite_parcours_soins.md",
+    "thematique": "Parcours patient et continuité des soins"
+  },
+  {
+    "indicateur": "Fidélité de Transmission d'Information MCO→SSR",
+    "definition": "Indicateur mesurant la cohérence diagnostique entre le diagnostic principal (DP) du séjour MCO émetteur et le diagnostic principal (ou groupe nosologique GN) du séjour SSR récepteur pour le même patient, identifié par chaînage NIR crypté. Inspiré du concept de **fidélité de transmission** en théorie de l'information — la proportion du message original correctement reçu après transmission à travers un canal — cet indicateur évalue si l'information clinique produite pendant le séjour MCO est fidèlement transmise et intégrée dans la prise en charge SSR. Une incohérence diagnostique MCO→SSR (ex. DP MCO = I63.3 AVC ischémique → GN SSR = M79.3 myalgie diffuse) signale une rupture dans la chaîne d'information clinique : soit le médecin SSR n'a pas reçu le compte-rendu d'hospitalisation MCO, soit il a reformulé le diagnostic sans lien avec le motif initial d'hospitalisation, soit le codage est erroné dans l'un des deux champs. Dans tous les cas, cette incohérence est un proxy de la qualité de la **lettre de liaison MCO→SSR** et de la continuité informationnelle de la filière. Cet indicateur est inédit dans les outils de pilotage PMSI : il exploite la puissance du chaînage SNDS pour détecter des ruptures qualitatives de coordination qui sont invisibles à l'analyse de chaque champ séparément.",
+    "calcul": "Chaînage PMSI MCO RSA × PMSI SSR RHS par NIR crypté SNDS. Population éligible : Construction de la matrice de cohérence diagnostique : Formule principale : Sous-indicateurs :",
+    "utilite": [
+      "**Mesurer la continuité informationnelle de la filière** : au",
+      "**Identifier les paires établissements MCO",
+      "SSR avec une coordination dégradée** : dans un GHT multi",
+      "sites, certaines paires MCO",
+      "**Évaluation de l'impact du dossier patient partagé (DMP)** : mesurer l'évolution du taux de cohérence avant/après l'implémentation d'un DMP ou d'une messagerie sécurisée MCO"
+    ],
+    "sources": [
+      "**PMSI MCO RSA** : diagnostic principal (DP CIM"
+    ],
+    "exemples": [
+      "**Incohérences fréquentes et acceptables** : cardiologie MCO → gériatrie SSR chez les patients âgés polypathologiques (~15",
+      "**Impact de l'implémentation d'une lettre de liaison standardisée** : études de coordination de soins montrent une réduction de 20",
+      "30% des incohérences de codage après introduction d'un compte"
+    ],
+    "limites": [
+      "Le chaînage MCO→SSR par NIR peut manquer des transferts vers des SSR hors SNDS ou avec un délai > 30j — sous",
+      "L'indicateur ne distingue pas l'incohérence liée à une erreur de codage SSR (médecin SSR qui ne connaît pas la pathologie initiale) d'une incohérence cliniquement justifiée (priorité thérapeutique SSR différente de la pathologie MCO aiguë) — l'interprétation des incohérences de niveau 2 nécessite une revue manuelle d'un sous"
+    ],
+    "references": [
+      {
+        "text": "Kripalani S. et al. — Deficits in communication and information transfer between hospital-based and primary care physicians, JAMA 2007",
+        "url": "https://doi.org/10.1001/jama.297.8.831"
+      },
+      {
+        "text": "HAS — Lettre de liaison à la sortie d'hospitalisation : recommandations de bonnes pratiques (2014)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "ATIH — Guide méthodologique PMSI SSR : codage du groupe nosologique (GN) et de la finalité principale (FP)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "Jeffs L. et al. — Information loss at hospital discharge: a prospective observational study, J Hosp Med 2013",
+        "url": "https://doi.org/10.1002/jhm.2023"
+      }
+    ],
+    "fichier": "fidelite_transmission_information_mco_ssr.md",
     "thematique": "Parcours patient et continuité des soins"
   },
   {
@@ -3127,6 +3724,40 @@
     "thematique": "Parcours patient et continuité des soins"
   },
   {
+    "indicateur": "Score de Synchronisation du Parcours Chronique",
+    "definition": "Pour un patient porteur de plusieurs affections de longue durée (ALD) simultanées, le score de synchronisation mesure dans quelle mesure ses différents actes de soins — consultations spécialisées, dispensations médicamenteuses, bilans biologiques — se déroulent de façon **régulière et temporellement cohérente**, ou au contraire de façon **désynchronisée et anarchique**. Inspiré du concept de synchronisation en physique des systèmes couplés (Kuramoto, 1975) — où des oscillateurs indépendants finissent par se synchroniser lorsqu'ils sont couplés — le parcours idéal d'un patient chronique est une série d'actes régulièrement espacés et coordonnés (consultation cardiologie J0, bilan biologique J+7, ajustement traitement J+14, consultation médecin traitant J+30…). Un parcours désynchronisé est une série d'actes dispersés aléatoirement dans le temps, sans coordination apparente entre les différentes prises en charge. Le score est calculé depuis le DCIR (ER_PRS_F, ER_PHA_F, ER_BIO_F) en analysant la régularité temporelle des intervalles entre actes consécutifs par type de soins. Un score proche de 1 indique un parcours régulier et synchronisé (coordination effective) ; un score proche de 0 indique une désynchronisation totale (soins chaotiques, probablement non coordonnés). La désynchronisation chronique est associée à une augmentation du risque d'omissions de soins (intervalles trop longs entre prises en charge), de chevauchements iatrogènes (consultations multiples en peu de temps générant des prescriptions contradictoires), et de décompensation aiguë (rupture d'un acte régulier = rupture de suivi).",
+    "calcul": "Construction de la séquence temporelle par type d'acte : Score de régularité par type d'acte : Score de synchronisation composite : Indicateur de co-synchronisation multi-ALD :",
+    "utilite": [],
+    "sources": [
+      "**IR_IMB_R** : ALD actives par NIR — pour identifier les patients concernés et adapter les pondérations w_i selon le profil multi"
+    ],
+    "exemples": [],
+    "limites": [
+      "Le score ne distingue pas une désynchronisation subie (patient qui n'a pas pu obtenir un rendez",
+      "Le DCIR a un lag de 6"
+    ],
+    "references": [
+      {
+        "text": "Peasah S.K. et al. — Medicare Part D medication adherence, Am J Manag Care 2022 : PDC et risque d'hospitalisation",
+        "url": "https://doi.org/10.37765/ajmc.2022.89116"
+      },
+      {
+        "text": "Pham Nguyen T.P. et al. — Effect of medication adherence on healthcare resource utilization, PLoS One 2020",
+        "url": "https://doi.org/10.1371/journal.pone.0234543"
+      },
+      {
+        "text": "CNAM — Programme Sophia : évaluation de l'impact sur le suivi des patients diabétiques, rapport 2021",
+        "url": "https://www.ameli.fr/"
+      },
+      {
+        "text": "HAS — Recommandations de suivi pour les principales ALD : rythme des consultations, bilans biologiques et traitements",
+        "url": "https://www.has-sante.fr/"
+      }
+    ],
+    "fichier": "score_synchronisation_parcours_chronique.md",
+    "thematique": "Parcours patient et continuité des soins"
+  },
+  {
     "indicateur": "Taux d'Adhérence Médicamenteuse Post-Hospitalisation (PDC)",
     "definition": "Le taux d'adhérence médicamenteuse post-hospitalisation mesure, pour les patients sortis d'une hospitalisation MCO, la proportion de jours effectivement couverts par leurs médicaments-clés dans les 90 jours suivant la sortie — métrique connue sous le nom de PDC (Proportion of Days Covered). Calculé depuis les dispensations pharmaceutiques du DCIR (Données de Consommation Inter-Régimes), il capture un phénomène paradoxal bien documenté dans la littérature internationale : l'hospitalisation est associée à une **réduction** de l'adhérence aux traitements chroniques, non à une amélioration. Pham Nguyen et al. (*Pharmacotherapy* 2020) ont démontré sur 22 429 patients porteurs de fibrillation atriale que le PDC aux anticoagulants oraux chutait significativement après toute hospitalisation, indépendamment du motif. Cette rupture thérapeutique post-hospitalière est un facteur de risque indépendant de réadmission à 30 jours, de mortalité cardiovasculaire et d'événements thromboemboliques — directement actionnable par des programmes de coordination pharmacien-médecin traitant lors de la transition de sortie. Le DCIR complet permet de calculer le PDC pour chaque classe médicamenteuse d'intérêt en croisant les dispensations pharmaceutiques (avec code CIP13 du médicament) et les dates de sortie PMSI.",
     "calcul": "Le PDC est calculé en croisant les données PMSI (date de sortie) et DCIR (dispensations pharmaceutiques) : **Classes médicamenteuses d'intérêt et codes CIP/ATC :** **Sous-indicateurs dérivés :** **Précisions méthodologiques :** - La DDD (Defined Daily Dose) de l'OMS est utilisée pour estimer la durée de couverture d'une boîte dispensée, en l'absence de la durée de prescription dans le DCIR. - La fenêtre de 90 jours est le standard international pour la mesure du PDC post-hospitalier ; une fenêtre de 30 jours peut être utilisée pour les indicateurs de transition de soins rapides. - Le DCIR trace les dispensations en pharmacie de ville uniquement — les médicaments rétrocédés par la pharmacie hospitalière ou délivrés lors de consultations externes hospitalières ne sont pas dans le DCIR et peuvent conduire à sous-estimer le PDC réel. - Le calcul nécessite de chaîner les séjours PMSI (date de sortie, diagnostic principal) avec les dispensations DCIR (date, CIP13) par NIR crypté.",
@@ -3363,6 +3994,58 @@
       }
     ],
     "fichier": "taux_recours_soins_palliatifs.md",
+    "thematique": "Parcours patient et continuité des soins"
+  },
+  {
+    "indicateur": "Taux de Retour à Domicile à la Sortie du SSR",
+    "definition": "Proportion de patients sortis d'un séjour SSR (Soins de Suite et Réadaptation) dont la destination de sortie est le domicile — personnel ou familial, avec ou sans aide à domicile (SSIAD, HAD, auxiliaire de vie) — par opposition à l'institutionnalisation en EHPAD/USLD ou au retour en hospitalisation MCO/psychiatrie. Codé via la variable mode de sortie du PMSI SSR : mode_sort = 8 (retour domicile ou famille) vs mode_sort = 6 (mutation vers établissement médico-social ou EHPAD) vs mode_sort = 7 (transfert vers MCO ou autre SSR) vs mode_sort = 9 (décès). C'est l'indicateur de résultat final le plus important du SSR : il mesure si la rééducation a permis une récupération fonctionnelle suffisante pour permettre une vie en autonomie ou semi-autonomie à domicile. Il est intimement lié au gain MIF (delta score fonctionnel entrée-sortie) et à la durée de séjour SSR. Stratifié par finalité principale de prise en charge (FP) et par GME : neurologie cérébro-lésée (AVC, TC), appareil locomoteur (PTH/PTG, fractures du col du fémur), cardiovasculaire, gériatrie polyvalente. Un taux de retour à domicile faible peut refléter soit une rééducation insuffisante (patient non récupéré), soit une inadéquation de l'environnement à domicile (absence d'aidant, logement inadapté), soit un défaut d'organisation de la sortie (absence de SSIAD disponible, HAD non mise en place à temps).",
+    "calcul": "Population éligible : Formule principale : Sous-indicateurs par destination de sortie : Stratification : Indicateur de robustesse du retour à domicile :",
+    "utilite": [
+      "**Évaluation des programmes de préparation de sortie** : mesurer l'impact de dispositifs dédiés (infirmière coordinatrice de sortie, bilan logement ergothérapeute, plateforme d'orientation médico"
+    ],
+    "sources": [
+      "**PMSI HAD** : chaînage NIR post",
+      "**PMSI MCO RSA** : chaînage NIR post",
+      "**DCIR ER_PRS_F** : actes SSIAD (codes NGAP infirmiers) dans les 30 jours post",
+      "**IR_BEN_R DCIR** : commune de résidence du patient — permet l'analyse territoriale des taux de retour domicile (déserts médico"
+    ],
+    "exemples": [
+      "**Taux national de retour à domicile SSR tous GME confondus (ATIH 2022)** : ~58",
+      "**PTH/PTG (locomoteur, patients jeunes)** : 78",
+      "**AVC (neurologie cérébro",
+      "lésée)** : 50",
+      "**Fracture du col du fémur (personne âgée)** : 55",
+      "65% — forte variabilité liée à la situation sociale pré",
+      "**Gériatrie polyvalente** : 40",
+      "**Impact de l'organisation de sortie** : les SSR disposant d'une infirmière coordinatrice de sortie dédiée présentent des taux de retour domicile supérieurs de 8"
+    ],
+    "limites": [
+      "Biais de sélection structurel : les SSR accueillant des patients avec des AVC sévères ou des fractures compliquées présenteront un taux plus faible qu'un SSR orienté chirurgie orthopédique programmée — la stratification par GME et MIF d'entrée est indispensable pour tout benchmark inter",
+      "Les transferts en EHPAD temporaire (hébergement temporaire le temps de l'adaptation du domicile) sont codés en mode_sort = 6 et comptabilisés dans l'institutionnalisation, alors qu'ils correspondent parfois à un retour domicile différé — sur"
+    ],
+    "references": [
+      {
+        "text": "Prvu Bettger J. et al. — Stroke rehabilitation: it's about time, Stroke 2012",
+        "url": "https://doi.org/10.1161/STROKEAHA.111.641738"
+      },
+      {
+        "text": "HAS — Recommandations de bonne pratique post-AVC : rééducation et retour à domicile (2012)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "SFGG — Recommandations sur la prise en charge SSR gériatrique et les critères de retour à domicile (2019)",
+        "url": "https://www.sfgg.fr/"
+      },
+      {
+        "text": "ATIH — Statistiques nationales PMSI SSR : taux de retour à domicile par GME (données annuelles)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "DREES — Enquête auprès des établissements de santé sur les filières de sortie SSR (2020)",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "taux_retour_domicile_sortie_ssr.md",
     "thematique": "Parcours patient et continuité des soins"
   },
   {
@@ -3820,6 +4503,177 @@
     "thematique": "Réadmissions et hospitalisations évitables"
   },
   {
+    "indicateur": "Taux de Réhospitalisation MCO Non Programmée depuis SSR",
+    "definition": "Proportion de séjours SSR (Soins de Suite et Réadaptation) interrompus par un transfert non programmé vers un service de soins aigus MCO (Médecine-Chirurgie-Obstétrique), identifié par le mode de sortie SSR = 7 (transfert vers MCO) associé à un mode d'entrée MCO = 6 (provenance SSR) ou = 5 (urgences) dans les 24-48h, par chaînage NIR crypté. Distingue les transferts programmés (intervention chirurgicale planifiée, consultation spécialisée avec retour SSR prévu) des transferts non programmés liés à une complication ou une dégradation clinique survenue pendant le séjour SSR. C'est un indicateur de sécurité des soins en SSR : il signale soit une instabilité clinique sous-estimée à l'admission SSR (patient transféré trop précocement depuis MCO), soit une complication nosocomiale acquise en SSR (chute avec fracture, infection, décompensation cardiaque, AVC récidivant), soit une inadéquation des ressources médicales SSR face à la complexité du patient. Stratifié par GME SSR, motif de réhospitalisation MCO (diagnostic principal du séjour MCO de transfert en CIM-10), et délai depuis l'admission SSR (précoce < 7j = signal d'admission prématurée vs tardif ≥ 7j = complication acquise en SSR).",
+    "calcul": "Chaînage PMSI SSR RHS × PMSI MCO RSA par NIR crypté SNDS. Identification des transferts non programmés : Formule principale : Sous-indicateurs :",
+    "utilite": [
+      "**Identifier les admissions SSR prématurées** : un taux élevé de transferts précoces (< 7j post",
+      "admission) dans un service MCO donné signale que les critères de stabilité clinique appliqués avant transfert vers SSR sont insuffisants — action corrective : protocole de critères d'admission SSR co",
+      "**Évaluer la capacité des équipes SSR à gérer les complications** : un SSR avec un taux élevé de transferts MCO mais un taux de complications documentées dans les RHS faible peut signaler une tendance à sur",
+      "**Optimiser les critères d'admission SSR par spécialité** : réduire le bed",
+      "**Appuyer la démarche qualité SSR** : indicateur directement utilisable dans le cadre de la certification HAS (critère relatif à la sécurité des soins en SSR) et des revues de morbi",
+      "**Pilotage GHT multi",
+      "sites** : comparer les taux entre établissements SSR du GHT pour identifier les bonnes pratiques transposables (protocoles anti"
+    ],
+    "sources": [
+      "**PMSI SSR RHS** : mode_sort, GME, FP, dates d'entrée/sortie du séjour, diagnostics associés CIM",
+      "10 (dont W00",
+      "**PMSI MCO RSA** : mode_entrée, diagnostic principal (DP CIM"
+    ],
+    "exemples": [
+      "**Taux national estimé tous GME SSR** : 5",
+      "**Gériatrie polyvalente** : 10",
+      "**Orthopédie élective (PTH/PTG)** : 3",
+      "**Neurologie cérébro",
+      "lésée (AVC)** : 6",
+      "**Part des transferts précoces (< 7j)** : environ 30"
+    ],
+    "limites": [
+      "La distinction programmé/non programmé repose sur le mode_sort SSR qui n'est pas toujours codé précisément — sous"
+    ],
+    "references": [
+      {
+        "text": "Crotty M. et al. — Unplanned transfers from residential aged care to hospital: a systematic review, Age Ageing 2002",
+        "url": "https://doi.org/10.1093/ageing/31.6.422"
+      },
+      {
+        "text": "Mahomed N. et al. — Rates and predictors of hospital readmission after total hip and knee replacement, CMAJ 2008",
+        "url": "https://doi.org/10.1503/cmaj.070873"
+      },
+      {
+        "text": "ATIH — Guide méthodologique PMSI SSR : codage des modes de sortie/entrée et chaînage inter-champs",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "HAS — Critères de certification V2020 relatifs à la sécurité des soins en SSR (critère 8.2, 8.3)",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "SFGG — Recommandations sur la prévention des complications en SSR gériatrique (2020)",
+        "url": "https://www.sfgg.fr/"
+      }
+    ],
+    "fichier": "taux_rehospitalisation_mco_depuis_ssr.md",
+    "thematique": "Réadmissions et hospitalisations évitables"
+  },
+  {
+    "indicateur": "Taux de Réhospitalisation à 30 Jours en Psychiatrie",
+    "definition": "Cet indicateur mesure la proportion de patients hospitalisés en psychiatrie (hospitalisation temps plein — HTP) qui sont réhospitalisés dans un établissement de psychiatrie dans les 30 jours suivant leur sortie, tous modes de sortie confondus à l'exception des décès et des transferts programmés. Il est stratifié par groupe diagnostique principal (CIM-10 : schizophrénie F20-F29, épisodes dépressifs F32-F33, troubles bipolaires F30-F31, troubles anxieux/névrotiques F40-F48, troubles liés aux substances F10-F19) pour distinguer les profils de rechute selon la pathologie. La réhospitalisation précoce en psychiatrie est à la fois un indicateur de résultat (qualité de la prise en charge intra-hospitalière et préparation de la sortie) et un indicateur de continuité des soins (efficacité du relais ambulatoire par les Centres Médico-Psychologiques, Hôpital De Jour, structures médico-sociales). Elle est reconnue comme indicateur de qualité par la Haute Autorité de Santé dans le cadre du programme IFAQ et du Manuel de Certification 2020. La réhospitalisation à 30 jours est aussi un proxy des ruptures de parcours en santé mentale, particulièrement sensible dans les territoires avec faible densité en psychiatres ambulatoires ou délais d'accès aux CMP élevés.",
+    "calcul": "La population d'index et les modalités de calcul sont les suivantes : Formule de l'indicateur principal : Stratification diagnostique par groupe CIM-10 : Sous-indicateurs de parcours ambulatoire post-sortie (PMSI RIM-P + DCIR) : Indicateur sentinelle de risque suicidaire :",
+    "utilite": [
+      "**Indicateur de qualité des soins et de préparation de sortie** : un taux élevé de réhospitalisation à 30 jours signale soit une sortie prématurée (stabilisation insuffisante), soit une planification de sortie défaillante (absence de rendez",
+      "**Mesure de l'efficacité du relais ambulatoire** : le croisement avec les sous",
+      "indicateurs de contact CMP/HDJ à J7 permet de démontrer que les réhospitalisations évitables sont concentrées chez les patients sans contact ambulatoire précoce — argument pour renforcer les dispositifs de contact J3",
+      "J7 post",
+      "**Surveillance du risque suicidaire post",
+      "hospitalisation** : la fenêtre J0",
+      "J30 est reconnue comme la période de risque suicidaire maximal post",
+      "**Évaluation des programmes de case management** : mesurer l'impact des programmes de suivi intensif en milieu ouvert (SIAO, équipes mobiles psychiatrie",
+      "précarité) sur le taux de réhospitalisation en comparant les patients bénéficiaires versus non"
+    ],
+    "sources": [
+      "**PMSI RIM",
+      "P (Recueil d'Information Médicalisé en Psychiatrie)** : base nationale des séjours psychiatriques HTP, avec diagnostic principal (DP CIM",
+      "**PMSI RIM",
+      "P ambulatoire** : consultations et actes réalisés dans les structures ambulatoires psychiatriques (CMP, CATTP, HDJ) — permet le calcul des sous",
+      "indicateurs de contact ambulatoire post",
+      "**DCIR ER_PHA_F** : dispensations de médicaments psychotropes (antipsychotiques ATC N05A, antidépresseurs N06A, thymorégulateurs N03A) — permet de calculer le PDC (Proportion of Days Covered) post"
+    ],
+    "exemples": [
+      "**Taux national de réhospitalisation à 30j en HTP psychiatrie (France, ATIH 2022)** : environ 15",
+      "20 % tous diagnostics confondus — avec une forte variabilité inter",
+      "établissements (8",
+      "**Schizophrénie (F20",
+      "F29)** : taux le plus élevé, typiquement 20",
+      "**Épisodes dépressifs (F32",
+      "F33)** : 10",
+      "**Troubles bipolaires (F30",
+      "F31)** : 15",
+      "**Impact du contact CMP à J7 (Knudsen S.V. et al., Clin Epidemiol 2022)** : les patients ayant un contact ambulatoire dans les 7 jours post",
+      "sortie présentent un taux de réhospitalisation à 30j réduit de 30",
+      "**Patients sans aucun contact ambulatoire à J30** : environ 35",
+      "40 % en France selon les secteurs — proportion qui double dans les territoires à faible densité psychiatrique (zones rurales, DOM"
+    ],
+    "limites": [
+      "Le PMSI RIM",
+      "P historiquement moins exhaustif que le PMSI MCO : des séjours courts ou des ré",
+      "La distinction hospitalisation volontaire / sous contrainte (soins sous contrainte : SDT, SDRE) n'est pas toujours finement codée dans le PMSI RIM",
+      "Le chaînage avec les CMP (PMSI ambulatoire psychiatrie) est variable selon les établissements : certains CMP ne transmettent pas encore leur activité en format RIM",
+      "P ambulatoire, entraînant une sous",
+      "estimation du taux de contact ambulatoire post",
+      "Le taux brut n'est pas standardisé sur la sévérité diagnostique ni sur la durée du séjour index — un service prenant en charge des patients schizophrènes très sévères présentera structurellement un taux plus élevé qu'un service orienté troubles anxieux, d'où la nécessité de la stratification diagnostique pour tout benchmark inter"
+    ],
+    "references": [
+      {
+        "text": "Knudsen S.V. et al. — Quality indicators for inpatient psychiatric care: challenges and perspectives, Clin Epidemiol 2022, DOI: 10.2147/CLEP.S322392",
+        "url": "https://doi.org/10.2147/CLEP.S322392"
+      },
+      {
+        "text": "HAS — Indicateurs de qualité et sécurité des soins en psychiatrie (IFAQ 2022-2024)",
+        "url": "https://www.has-sante.fr/jcms/p_3315729/fr/indicateurs-de-qualite-et-de-securite-des-soins-en-psychiatrie"
+      },
+      {
+        "text": "ATIH — Rapport annuel PMSI psychiatrie RIM-P 2022 : analyse de l'activité et des indicateurs de qualité",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "Haute Autorité de Santé — Manuel de Certification 2020, critère 3.5 : continuité et coordination des soins en psychiatrie",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "Fond FHF / DGOS — Plan de transformation de la psychiatrie et de la santé mentale 2018-2023 : indicateurs de suivi du parcours post-hospitalisation",
+        "url": "https://solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "taux_rehospitalisation_psychiatrie.md",
+    "thematique": "Réadmissions et hospitalisations évitables"
+  },
+  {
+    "indicateur": "Centralité de Betweenness du GHT dans le Réseau de Soins Territorial",
+    "definition": "La centralité de betweenness (ou centralité d'intermédiarité), concept fondateur de la théorie des réseaux (Freeman, 1977), mesure la fréquence à laquelle un nœud se trouve sur le \"chemin le plus court\" entre deux autres nœuds d'un réseau. Appliquée au réseau de soins territorial, elle quantifie dans quelle mesure le GHT est un **intermédiaire incontournable** — un hub — dans les flux de patients entre les autres producteurs de soins du territoire (médecins généralistes, spécialistes libéraux, cliniques, EHPAD, SSR privés, laboratoires, pharmacies). Formellement : CB(v) = Σ_{s≠v≠t} [σ(s,t|v) / σ(s,t)], où σ(s,t) est le nombre de chemins les plus courts entre les nœuds s et t, et σ(s,t|v) est le nombre de ces chemins qui passent par le nœud v (le GHT). Le réseau de soins territorial est modélisé depuis le SNDS comme un graphe orienté pondéré : les nœuds sont les producteurs de soins (établissements FINESS, médecins traitants RPPS, spécialistes libéraux) et les arcs sont les flux de patients (un patient vu par le médecin A puis par le producteur B crée un arc A→B, pondéré par le volume de patients en commun). Cet indicateur est radicalement différent du taux d'attraction habituel (qui mesure les parts de marché en volume) : un GHT peut avoir un taux d'attraction modeste mais une centralité élevée s'il est systématiquement sur les parcours complexes qui relient de nombreux acteurs entre eux. Inversement, un GHT volumétriquement dominant mais contournable (patients qui vont directement chez les spécialistes libéraux sans passer par le GHT) peut avoir une centralité faible.",
+    "calcul": "Construction du réseau de soins territorial : Calcul de la centralité de betweenness : Indicateurs dérivés :",
+    "utilite": [
+      "**Identifier les axes de désintermédiation** : si le GHT est central pour les hospitalisations MCO mais périphérique pour les consultations post",
+      "sortie (DCIR), cela révèle que les patients quittent la filière GHT dès la sortie d'hospitalisation — orientation pour le développement de consultations externes spécialisées ou de protocoles de coopération ville"
+    ],
+    "sources": [
+      "**SNDS complet** (PMSI tous champs + DCIR) : accès nécessaire pour construire le réseau multi"
+    ],
+    "exemples": [
+      "**CB_norm attendue pour un GHT dominant en territoire semi",
+      "rural** : 0,35",
+      "**CB_norm en territoire urbain concurrentiel** : 0,10",
+      "**CB_norm d'un CHU en territoire isolé** : 0,55",
+      "0,75 (quasi",
+      "**Centralité des concurrents principaux** (benchmarking) : clinique privée concurrente CB_norm ~0,08"
+    ],
+    "limites": [],
+    "references": [
+      {
+        "text": "Freeman L.C. — A set of measures of centrality based on betweenness, Sociometry 1977",
+        "url": "https://doi.org/10.2307/3033543"
+      },
+      {
+        "text": "Brandes U. — A faster algorithm for betweenness centrality, Journal of Mathematical Sociology 2001",
+        "url": "https://doi.org/10.1080/0022250X.2001.9990249"
+      },
+      {
+        "text": "Barnett M.L. et al. — Mapping physician networks with self-reported and administrative data, Health Services Research 2011",
+        "url": "https://doi.org/10.1111/j.1475-6773.2011.01262.x"
+      },
+      {
+        "text": "Landon B.E. et al. — Using administrative data to identify naturally occurring networks of physicians, Med Care 2012",
+        "url": "https://doi.org/10.1097/MLR.0b013e3182374834"
+      },
+      {
+        "text": "Health Data Hub — Documentation SNDS : identifiants producteurs de soins (RPPS, FINESS) dans le DCIR",
+        "url": "https://www.health-data-hub.fr/"
+      }
+    ],
+    "fichier": "centralite_betweenness_ght_reseau_soins.md",
+    "thematique": "Territoire, attractivité et offre de soins"
+  },
+  {
     "indicateur": "Collaboration entre Établissements (GHT)",
     "definition": "La collaboration entre établissements mesure le niveau de coordination et de mutualisation des ressources au sein d'un Groupement Hospitalier de Territoire (GHT). Cet indicateur évalue la capacité des établissements à travailler ensemble pour optimiser les parcours de soins et les ressources.",
     "calcul": "La collaboration peut être mesurée via plusieurs sous-indicateurs :",
@@ -3990,6 +4844,43 @@
     "thematique": "Territoire, attractivité et offre de soins"
   },
   {
+    "indicateur": "Indice de Herfindahl-Hirschman des Flux Patients par Pathologie",
+    "definition": "L'Indice de Herfindahl-Hirschman (IHH), utilisé en économie industrielle pour mesurer la concentration d'un marché, est ici adapté pour mesurer la concentration des flux d'hospitalisation par pathologie sur un territoire. Pour chaque GHM ou groupe de pathologies, l'IHH est la somme des carrés des parts de marché de chaque établissement recevant des patients du bassin de vie du GHT. Un IHH proche de 10 000 indique un monopole local (un seul établissement capte tous les patients), un IHH proche de 0 indique une atomisation des flux (multiples établissements de tailles équivalentes). L'IHH se distingue fondamentalement du simple taux de fuite/attraction (déjà utilisé dans les PMSI territoriaux) : le taux de fuite est unidimensionnel (% de patients allant ailleurs) tandis que l'IHH capture la structure complète de la concurrence — un GHT peut avoir un taux de fuite de 30% vers un concurrent unique (IHH élevé, concurrence concentrée, risque stratégique fort) ou 30% répartis entre 8 établissements (IHH faible, concurrence fragmentée, risque stratégique moindre). Cette nuance est fondamentale pour les décisions d'investissement médical et les négociations avec l'ARS. Calculable par pathologie (GHM) et par territoire (bassin de vie défini par commune de résidence des patients) depuis le PMSI national.",
+    "calcul": "Données nécessaires : Formule de l'IHH : Indicateurs dérivés : Stratification recommandée :",
+    "utilite": [
+      "**Analyse des fusions et coopérations inter",
+      "établissements** : évaluer l'impact d'une fusion entre deux établissements du GHT sur l'IHH local — outil utilisé par les autorités de concurrence (Autorité de la Concurrence) mais rarement par les GHTs eux"
+    ],
+    "sources": [],
+    "exemples": [
+      "**Chirurgie orthopédique (PTH/PTG) en territoire semi",
+      "rural** : IHH typiquement 3 500",
+      "5 000 (2",
+      "**Neurochirurgie en territoire urbain** : IHH > 5 000 (offre concentrée sur 1",
+      "**Chirurgie bariatrique** : forte variabilité territoriale — IHH peut atteindre 7 000"
+    ],
+    "limites": [
+      "Le calcul de l'IHH sur un territoire requiert les données de TOUS les établissements hospitaliers recevant des patients du bassin — ces données ne sont disponibles qu'avec un accès aux données ATIH régionales ou via l'ARS ; les données de l'établissement seul ne permettent qu'un calcul partiel (sous",
+      "La définition du territoire pertinent (bassin de vie, département, zone d'influence construite sur les flux PMSI) influence fortement les valeurs d'IHH — une définition trop large dilue les effets de concentration locaux, une définition trop étroite sur"
+    ],
+    "references": [
+      {
+        "text": "U.S. Department of Justice — Horizontal Merger Guidelines 2010 : seuils IHH pour l'évaluation de la concurrence (IHH < 1500 / 1500-2500 / > 2500)",
+        "url": "https://www.justice.gov/atr/horizontal-merger-guidelines-08192010"
+      },
+      {
+        "text": "Capps C. et al. — The silent majority fallacy of the Elzinga-Hogarty criteria: a critique and new approach to analyzing hospital mergers, Int J Industrial Org 2002",
+        "url": "https://doi.org/10.1016/S0167-7187(02"
+      },
+      {
+        "text": "ATIH — Statistiques d'activité hospitalière par établissement et territoire (portail ATIH)",
+        "url": "https://www.atih.sante.fr/"
+      }
+    ],
+    "fichier": "indice_herfindahl_concentration_flux_patients.md",
+    "thematique": "Territoire, attractivité et offre de soins"
+  },
+  {
     "indicateur": "Parts de Marché par Segment d'Activité",
     "definition": "Les parts de marché par segment d'activité mesurent la proportion des séjours réalisés par le GHT dans l'activité hospitalière totale du territoire (tous statuts confondus : public, privé non lucratif, privé lucratif), pour chaque domaine ou segment d'activité. Cet indicateur positionne le GHT dans l'écosystème hospitalier local et révèle ses zones de force et de vulnérabilité concurrentielle face aux autres acteurs du territoire.",
     "calcul": "Les parts de marché sont calculées comme suit : **Précisions méthodologiques** : - Le territoire est défini par les patients résidant dans la zone de référence du GHT (tous établissements confondus). - Les segments d'activité sont définis par les domaines PMSI (CMD, racines de GHM) : médecine, chirurgie, obstétrique, cancérologie, urgences, etc. - L'analyse inclut les établissements privés et cliniques du territoire, accessibles via la base nationale PMSI (publique et privée OQN). - Les parts de marché peuvent être calculées en nombre de séjours, en journées ou en points ISA/valorisation T2A.",
@@ -4074,6 +4965,49 @@
       }
     ],
     "fichier": "projection_capacitaire_demographique.md",
+    "thematique": "Territoire, attractivité et offre de soins"
+  },
+  {
+    "indicateur": "Taux de Churn Patient — Fidélisation Longitudinale du GHT",
+    "definition": "Adapté du concept marketing de \"churn rate\" (taux d'attrition client), le taux de churn patient mesure la proportion de patients qui avaient eu recours aux soins au sein du GHT au cours de l'année N et qui n'ont plus aucun contact avec le GHT en année N+1, alors qu'ils sont toujours vivants et ont consommé des soins hospitaliers ou ambulatoires. Il s'agit d'une mesure longitudinale de la fidélisation du GHT sur sa patientèle, calculable exclusivement depuis le SNDS (chaînage NIR crypté multi-annuel sur PMSI + DCIR). L'indicateur capture un phénomène distinct du taux de fuite instantané (qui mesure la proportion de soins réalisés hors GHT pour une pathologie et une période données) : le churn mesure la **rupture totale du lien** avec le GHT sur une année entière. Un patient qui fuit à 30% (3 hospitalisations sur 10 ailleurs) n'est pas un patient churné ; un patient qui n'a plus aucun contact avec le GHT après y avoir été soigné l'année précédente est churné. La distinction est opérationnellement importante : réduire le churn nécessite une stratégie de fidélisation (coordination, continuité, qualité relationnelle), tandis que réduire la fuite nécessite une stratégie de compétitivité (offre de soins, délais, réputation). Stratifié par profil patient (ALD, âge, pathologie) et par type de prise en charge (MCO, consultation externe, ambulatoire DCIR) pour identifier les segments les plus à risque d'attrition.",
+    "calcul": "Chaînage longitudinal SNDS sur 2 années consécutives : Définition du churn : Formule : Sous-indicateurs et segmentation :",
+    "utilite": [
+      "**Mesure de la fidélisation réelle du GHT sur sa patientèle chronique** : pour les patients ALD (diabète, insuffisance cardiaque, cancer), le churn mesure si le GHT maintient un rôle central dans leur parcours de soins sur le long terme — indicateur de loyalty impossible à calculer sans chaînage SNDS multi",
+      "**Mesure de l'impact des actions de coordination** : évaluer si les programmes de case management (infirmière de coordination, télésuivi, protocoles de coopération médecin traitant–GHT) réduisent le churn sur les patients chroniques — comparaison bénéficiaires vs non",
+      "**Benchmarking entre établissements du GHT** : si le GHT est multi"
+    ],
+    "sources": [
+      "**Chaînage multi"
+    ],
+    "exemples": [
+      "**Taux de churn global tous patients MCO** : difficilement benchmarkable car très dépendant de la proportion de séjours ponctuels dans la patientèle — valeurs attendues 30",
+      "**Taux de churn patients ALD chroniques** : 10",
+      "**Taux de churn post",
+      "première hospitalisation** : 40",
+      "**Taux de reconquête N+2** (patients revenus après un an d'absence) : environ 15",
+      "**Benchmark marketing SaaS** : taux de churn considéré \"acceptable\" dans les industries de services = 5"
+    ],
+    "limites": [
+      "L'identification des contacts avec le GHT requiert d'apparier les FINESS géographiques de tous les établissements membres du GHT dans la requête SNDS — une omission de FINESS conduit à sous",
+      "estimer les contacts et sur",
+      "Le DCIR a un lag de 6",
+      "12 mois : les contacts ambulatoires très récents (dernier trimestre de l'année N+1) peuvent ne pas encore être dans le DCIR lors du calcul — légère sur"
+    ],
+    "references": [
+      {
+        "text": "Tuppin P. et al. — Value of a national administrative database to guide public decisions: SNIIRAM to SNDS, Rev Epidemiol Sante Publique 2017",
+        "url": "https://doi.org/10.1016/j.respe.2017.05.004"
+      },
+      {
+        "text": "Health Data Hub — Documentation technique SNDS et accès multi-annuel pour le chaînage longitudinal",
+        "url": "https://www.health-data-hub.fr/"
+      },
+      {
+        "text": "Van Walraven C. et al. — Continuity of care and patient outcomes after hospital discharge, J Gen Intern Med 2004 : impact de la continuité de suivi sur les réhospitalisations",
+        "url": "https://doi.org/10.1111/j.1525-1497.2004.30082.x"
+      }
+    ],
+    "fichier": "taux_churn_patient_fidelisation_ght.md",
     "thematique": "Territoire, attractivité et offre de soins"
   },
   {
