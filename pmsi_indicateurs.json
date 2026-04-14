@@ -1293,6 +1293,63 @@
     "thematique": "Dimensions sociales et vulnérabilité"
   },
   {
+    "indicateur": "Indice de Perméabilité Sociale aux Soins Préventifs",
+    "definition": "L'**indice de perméabilité sociale aux soins préventifs** mesure la facilité avec laquelle les soins préventifs et ambulatoires \"percolent\" à travers le tissu social d'un territoire pour atteindre les populations qui en ont besoin. L'analogie est empruntée à l'hydrogéologie : en milieu poreux, la **perméabilité de Darcy** (loi de Darcy, 1856) quantifie la résistance qu'oppose un milieu au passage d'un fluide sous l'effet d'un gradient de pression. Transposée à la santé publique, la \"pression motrice\" est le besoin de soins non satisfait (charge de morbidité chronique d'un territoire), le \"fluide\" est l'accès effectif aux soins préventifs, et la \"perméabilité\" est la capacité sociale, géographique et organisationnelle du territoire à convertir ce besoin en recours aux soins. Un territoire **imperméable** — comme une roche argileuse — présente de forts besoins de santé mais un recours très faible aux soins préventifs : les barrières sociales (précarité, isolement, illectronisme, absence de médecin traitant), géographiques (déserts médicaux) et culturelles (défiance vis-à-vis du système de santé) bloquent le fluide de soins comme une couche imperméable bloque l'eau. La conséquence mesurable dans le PMSI est l'accumulation d'[[taux_hospitalisations_potentiellement_evitables|hospitalisations potentiellement évitables]] — les pathologies chroniques mal contrôlées qui \"débordent\" en urgences faute d'avoir été gérées en amont, comme une nappe d'eau qui s'accumule derrière une couche imperméable jusqu'à saturer et s'écouler en crue. À l'inverse, un territoire **très perméable** convertit efficacement les besoins de santé en recours préventifs et ambulatoires : les pathologies chroniques sont stabilisées, les hospitalisations évitables sont rares, et les urgences ne sont pas le point d'entrée par défaut dans le système de soins.",
+    "calcul": "### 1. Coefficient de perméabilité territoriale (K_p) Inspiré de la loi de Darcy : Q = −K × A × (ΔP / L) ### 2. Gradient de perméabilité sociale (ΔK_p / ΔFDep) ### 3. Cartographie des \"couches imperméables\" (zones d'accumulation) Indicateurs satellites pour confirmer l'imperméabilité : - [[taux_patients_sans_medecin_traitant|Taux de patients sans médecin traitant]] déclaré > 15 % - Part des entrées MCO par les urgences > 50 % - [[delai_diagnostic_traitement_cancer|Délai moyen diagnostic-traitement cancer]] > référence nationale - [[taux_sortie_contre_avis_medical|Taux de sortie contre avis médical]] > 5 % ### 4. Indice de perméabilité composite (IPC) **Précisions méthodologiques** : - Les HPE traceurs retenus sont celles de la liste [[pqi_prevention_quality_indicators|PQI]] de l'AHRQ adaptée au contexte français par la HAS et la DREES : diabète (complications aiguës et chroniques), BPCO, insuffisance cardiaque, hypertension, asthme de l'adulte, angine de poitrine — identifiables dans le PMSI par les codes CIM-10 du diagnostic principal. - La prévalence des pathologies chroniques traceurs est issue du SNDS (cartographie des pathologies et des dépenses, CNAM) ou, à défaut, estimée depuis la fréquence des séjours MCO avec ces DP sur le territoire. - L'analyse est réalisée à l'échelon communal ou du bassin de vie, puis agrégée au territoire du GHT.",
+    "utilite": [
+      "**Dimension sociale de la responsabilité populationnelle** : dans le cadre des projets médicaux de territoire (PMT), l'IPC objectivise la responsabilité du GHT vis",
+      "à"
+    ],
+    "sources": [
+      "**PMSI MCO** : diagnostic principal (DP) et codes CIM"
+    ],
+    "exemples": [
+      "**K_p > 1,2** : communes périurbaines favorisées avec forte densité de médecins généralistes et d'infirmiers, taux d'HPE inférieur de 30",
+      "**K_p < 0,4** : zones péri",
+      "**Proportion de \"zones imperméables\" dans un GHT moyen** : 15",
+      "25 % des communes du territoire du GHT concentrent 40"
+    ],
+    "limites": [
+      "**Le calcul de K_p nécessite une estimation de la charge de morbidité territoriale** : en l'absence d'accès au SNDS, cette charge est approximée depuis la fréquence des séjours MCO pour pathologies chroniques — ce qui sous",
+      "estime la morbidité des zones imperméables où les patients arrivent moins fréquemment en hospitalisation (biais d'imperméabilité auto",
+      "**L'APL (accessibilité potentielle localisée) sous",
+      "**Les HPE varient selon les définitions** : la liste des [[taux_hospitalisations_potentiellement_evitables|hospitalisations potentiellement évitables]] retenue pour le calcul des [[pqi_prevention_quality_indicators|PQI]] en France n'est pas entièrement stabilisée — des variations méthodologiques peuvent affecter la comparabilité inter",
+      "**Inertie temporelle** : l'amélioration de la perméabilité d'un territoire est lente (3"
+    ],
+    "references": [
+      {
+        "text": "Darcy H., *Les Fontaines Publiques de la Ville de Dijon*, 1856",
+        "url": "https://fr.wikipedia.org/wiki/Loi_de_Darcy"
+      },
+      {
+        "text": "AHRQ — Prevention Quality Indicators (PQI), Technical Specifications",
+        "url": "https://www.qualityindicators.ahrq.gov/Modules/PQI_TechSpec_ICD10_v2024.aspx"
+      },
+      {
+        "text": "DREES / IRDES — Accessibilité Potentielle Localisée (APL)",
+        "url": "https://www.irdes.fr/recherche/2012/r553-construction-d-un-indicateur-de-l-accessibilite-potentielle-localisee.html"
+      },
+      {
+        "text": "Rey G. et al., *FDep : an area-based measure of deprivation*, European Journal of Epidemiology, 2009",
+        "url": "https://doi.org/10.1007/s10654-009-9343-y"
+      },
+      {
+        "text": "CNAM — Cartographie des pathologies et des dépenses",
+        "url": "https://assurance-maladie.ameli.fr/etudes-et-donnees/cartographie-des-pathologies-et-des-depenses"
+      },
+      {
+        "text": "HAS — Hospitalisations potentiellement évitables : indicateurs et méthode",
+        "url": "https://www.has-sante.fr/"
+      },
+      {
+        "text": "DREES — Mortalité prématurée évitable par territoire",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "indice_permeabilite_sociale_soins_preventifs.md",
+    "thematique": "Dimensions sociales et vulnérabilité"
+  },
+  {
     "indicateur": "Indice de Rétention des Soins Primaires",
     "definition": "En hydrologie, le **coefficient de rétention** (ou coefficient d'infiltration) mesure la fraction des précipitations qui s'infiltre dans les sols et les nappes phréatiques avant d'atteindre les cours d'eau : un sol imperméable a un coefficient de rétention faible (presque toute la pluie ruisselle directement vers la rivière) ; un sol riche en humus et couvert de végétation a un coefficient élevé (la pluie est absorbée progressivement, régulant les crues et maintenant un débit de base stable). Transposé à l'organisation des soins, l'**Indice de Rétention des Soins Primaires** (IRSP) mesure la fraction de la demande de soins aiguë ou potentiellement aiguë qui est **absorbée, filtrée ou orientée par les soins primaires** (médecin généraliste, CPTS, maison de santé pluriprofessionnelle) avant d'atteindre l'hôpital. Un territoire avec des soins primaires robustes est comme un sol perméable : la demande de soins est régulée, partiellement traitée en ambulatoire, et seulement la fraction nécessitant une hospitalisation atteint le MCO. Un territoire avec des soins primaires fragiles (désert médical, absence de médecin traitant déclaré) est imperméable : toute la demande ruisselle directement vers les urgences hospitalières, générant des \"crues\" de débit de crue. **IRSP = 1 − (Hospitalisations_potentiellement_évitables / Total_hospitalisations_aiguës)** où les hospitalisations potentiellement évitables (HPE) sont les hospitalisations pour des pathologies dont la prise en charge ambulatoire de qualité aurait dû prévenir l'hospitalisation (ACSC — Ambulatory Care Sensitive Conditions).",
     "calcul": "Identification des hospitalisations potentiellement évitables (HPE) : Calcul de l'IRSP par territoire : Facteurs explicatifs exploitables depuis le SNDS :",
@@ -4040,6 +4097,69 @@
     "thematique": "Pertinence des soins et pratiques médicales"
   },
   {
+    "indicateur": "Coefficient de Viscosité des Flux Patients",
+    "definition": "Le **coefficient de viscosité des flux patients** mesure la résistance au mouvement des patients entre les différents segments de soins — exactement comme la viscosité en physique des fluides quantifie la résistance d'un fluide à l'écoulement sous l'effet d'une contrainte. Un fluide visqueux s'écoule lentement et forme des bouchons ; un flux patient visqueux produit des délais de transition, des patients bloqués en MCO faute de place en SSR, des passages aux urgences qui ne débouchent pas sur une hospitalisation en temps utile, ou des sorties retardées faute d'aval. Le coefficient est calculé depuis le PMSI par l'analyse des délais et taux de blocage à chaque point de transition critique du parcours hospitalier (urgences → MCO, MCO → SSR, MCO → HAD, MCO → domicile, MCO → EHPAD). Un coefficient élevé signale un système à haute résistance interne où les patients « s'accumulent » aux interfaces — reflet d'un manque de coordination, d'une pénurie de capacités aval ou d'une organisation cloisonnée. À l'inverse, un coefficient faible indique des flux fluides, synonymes de parcours coordonnés et de capacités bien dimensionnées. L'analogie physique est formalisée par la loi de Hagen-Poiseuille, qui relie le débit d'un fluide dans un tube à sa viscosité, à la pression motrice et au diamètre du conduit. Appliquée au flux patient, la pression motrice correspond à la demande de soins (entrées), le diamètre du conduit correspond à la capacité disponible à l'aval, et la viscosité correspond aux frictions organisationnelles et logistiques qui ralentissent les transitions.",
+    "calcul": "### 1. Viscosité de transition (ν_t) pour chaque interface ### 2. Coefficient de viscosité global (CVP) ### 3. Indice de viscosité standardisé (CVP-s) ### 4. Profil de viscosité par interface **Précisions méthodologiques** : - Le chaînage des séjours pour le calcul des délais inter-segments est réalisé par le NIR crypté dans le SNDS (fragmentation hospitalière) ou par les identifiants patients dans le DPI pour le niveau local intra-GHT. - Le taux de blocage est estimé par la proportion de séjours MCO avec une durée prolongée liée à l'attente d'aval (mode de sortie vers SSR/HAD/EHPAD avec DMS > moyenne GHM + écart-type). - La pondération w_i est recalculée chaque année pour tenir compte de l'évolution du casemix.",
+    "utilite": [
+      "**Pilotage des conventions intra",
+      "**Benchmarking inter",
+      "GHT** : le CVP"
+    ],
+    "sources": [
+      "**SNDS (chaînage NIR)** : nécessaire pour les délais inter",
+      "**DPI (Dossier Patient Informatisé)** : pour le calcul intra"
+    ],
+    "exemples": [
+      "**CVP médian national (estimation)** : 8",
+      "15 (unités composites jours×%), correspondant à un délai médian MCO→SSR de 3",
+      "5 jours avec un taux de blocage de 25",
+      "**Viscosité MCO→EHPAD** : interface systématiquement la plus visqueuse (ν_t de 15",
+      "40), avec des délais médians de 10",
+      "21 jours et des taux de blocage de 40",
+      "**Viscosité urgences→MCO** : variable selon l'heure et la saison — ν_t de 2",
+      "**Impact d'une cellule de gestion des lits** : réduction du CVP de 20"
+    ],
+    "limites": [
+      "**Chaînage inter",
+      "**Biais de casemix** : les établissements accueillant des patients plus lourds (Charlson élevé, dépendance) ont structurellement des délais d'orientation vers l'aval plus longs — la standardisation par profil clinique est nécessaire pour les comparaisons inter",
+      "**Absence de référentiel national officiel** : contrairement à la DMS ou au IP",
+      "DMS, il n'existe pas de benchmark national publié pour les délais de transition inter",
+      "**Interface domicile** : la viscosité de la transition vers le domicile simple (sans HAD ni SSR) est difficile à mesurer car le PMSI ne trace pas les conditions de retour à domicile (aide à domicile, matériel médical, coordination infirmière) — seule la prolongation de séjour au"
+    ],
+    "references": [
+      {
+        "text": "Hagen-Poiseuille, loi fondamentale de l'écoulement visqueux — analogie avec les flux patients",
+        "url": "https://fr.wikipedia.org/wiki/Loi_de_Hagen-Poiseuille"
+      },
+      {
+        "text": "ANAP — Gestion des lits et fluidité des parcours hospitaliers",
+        "url": "https://www.anap.fr/s-informer/publications/detail/actualites/gestion-des-lits"
+      },
+      {
+        "text": "ATIH — PMSI MCO : modes de sortie et filières",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "SNDS — Chaînage longitudinal des séjours PMSI",
+        "url": "https://www.snds.gouv.fr/"
+      },
+      {
+        "text": "HAS — Parcours de soins : continuité et coordination",
+        "url": "https://www.has-sante.fr/jcms/c_1742367/fr/parcours-de-soins"
+      },
+      {
+        "text": "Bittencourt R.J. et al., *Patient flow in emergency departments: a conceptual model*, 2013",
+        "url": "https://doi.org/10.1097/PTS.0b013e318294b4ad"
+      },
+      {
+        "text": "Proudlove N.C. et al., *Bed management and patient flow*, Health Care Management Science, 2003",
+        "url": "https://doi.org/10.1023/A:1023313212829"
+      }
+    ],
+    "fichier": "coefficient_viscosite_flux_patients.md",
+    "thematique": "Parcours patient et continuité des soins"
+  },
+  {
     "indicateur": "Constante Cinétique des Transferts MCO→SSR",
     "definition": "En cinétique chimique, une **réaction du premier ordre** décrit un processus dans lequel le taux de transformation d'un réactif est proportionnel à la quantité de réactif présente : dN/dt = −k × N, dont la solution est N(t) = N₀ × e^(−kt). La constante de vitesse k caractérise entièrement la cinétique de la réaction : grande k = réaction rapide, petite k = réaction lente. La **demi-vie** t₁/₂ = ln(2)/k est le temps nécessaire pour que la moitié du réactif soit transformé. Transposé aux transferts MCO→SSR, la **Constante Cinétique de Transfert** (CKT) modélise la fraction de patients MCO \"en attente de transfert SSR\" (réactif) qui transitent effectivement vers le SSR chaque jour (transformation). Si le processus suit une cinétique du premier ordre, la probabilité qu'un patient soit transféré à une date donnée est constante et indépendante de la durée d'attente déjà écoulée — comme la désintégration radioactive. La demi-vie t₁/₂ est le délai médian de transfert MCO→SSR : le délai au-delà duquel 50% des patients éligibles ont été transférés. **k = ln(2) / t₁/₂_transfert** Un k élevé = filière fluide, transferts rapides ; un k faible = filière lente, bed-blocking structurel. L'écart entre k_observé et k_attendu (calculé depuis les recommandations HAS ou les meilleures pratiques) quantifie l'inefficience de la filière. La CKT permet aussi de **tester si la cinétique est réellement du premier ordre** — si elle ne l'est pas, cela révèle une hétérogénéité cachée dans la population en attente (certains patients transitent toujours rapidement, d'autres jamais, indépendamment de leur durée d'attente).",
     "calcul": "Identification de la cohorte et mesure des délais : Estimation de la constante cinétique k (méthode de survie) : Indicateurs dérivés :",
@@ -5206,6 +5326,76 @@
     "thematique": "Parcours patient et continuité des soins"
   },
   {
+    "indicateur": "Demi-Vie Thérapeutique Post-Hospitalisation",
+    "definition": "La **demi-vie thérapeutique post-hospitalisation** (T½) est le temps médian après lequel 50 % des patients d'un groupe homogène de malades (GHM) donné ont présenté un premier recours non programmé aux soins aigus — réhospitalisation non programmée, passage aux urgences ou consultation en urgence chez un spécialiste — après leur sortie. Le concept est emprunté à la physique nucléaire : dans la désintégration radioactive, la demi-vie est le temps au bout duquel la moitié des noyaux instables se sont désintégrés, selon une loi de décroissance exponentielle N(t) = N₀ × e^(−λt) où λ = ln(2)/T½. Appliquée à la médecine hospitalière, la \"population\" instable est celle des patients qui n'ont pas encore rechuté après leur sortie, λ est le taux instantané de recours non programmé (hazard rate de la survie sans événement aigu), et T½ est la médiane de survie sans événement calculée par l'estimateur de Kaplan-Meier. Plus T½ est court, plus le bénéfice thérapeutique de l'hospitalisation se dissipe rapidement — et plus le suivi ambulatoire post-sortie doit être précoce et intense pour intercepter la rechute avant qu'elle ne génère une nouvelle hospitalisation. Plus T½ est long, plus l'hospitalisation a produit un effet stabilisateur durable, signalant une prise en charge complète et un retour à un état d'équilibre robuste. La demi-vie thérapeutique est fondamentalement différente du [[taux_readmission|taux de réadmission à 30 jours]] : ce dernier mesure un résultat binaire à un instant fixe arbitraire, là où T½ caractérise la cinétique complète de la décroissance du bénéfice — une information beaucoup plus riche pour calibrer l'intensité et le calendrier du suivi post-sortie.",
+    "calcul": "### 1. Modèle de décroissance exponentielle ### 2. Constante de désintégration par GHM (λ_GHM) ### 3. Stratification par profil clinique ### 4. Indice de stabilité thérapeutique (IST) **Précisions méthodologiques** : - L'analyse de survie est menée sur les patients adultes (≥ 18 ans) ayant eu un séjour MCO index, chaînés par NIR crypté dans le SNDS sur une fenêtre de 90 jours post-sortie. - Le modèle exponentiel (hazard constant) est une approximation valide pour la plupart des GHM médicaux ; pour les GHM chirurgicaux à risque de complication précoce, un [[fonction_risque_weibull_readmissions|modèle de Weibull]] (hazard décroissant dans le temps) est préférable. - Les décès dans les 90 jours post-sortie sont traités comme des événements censurés (fin de suivi), sauf si l'analyse porte explicitement sur la mortalité. - La granularité minimale recommandée est le GHM racine (4 caractères) pour garantir des effectifs suffisants (≥ 100 patients par strate).",
+    "utilite": [
+      "**Calibrage précis du calendrier de suivi post",
+      "sortie** : remplacer le suivi systématique à J+30 (arbitraire) par un suivi calé sur T½ du GHM du patient — les patients insuffisants cardiaques (T½ ~ 25 jours) voient leur cardiologue à J+7, les patients opérés d'une prothèse de hanche (T½ ~ 120 jours) à J+45, évitant à la fois le sous",
+      "**Identification des GHM à bénéfice fragile** : les GHM avec T½ court et IST < 0,8 signalent une prise en charge dont le bénéfice se dissipe trop vite — l'analyse de la décomposition (sortie prématurée ? absence de suivi structuré ? comorbidités sous",
+      "**Dimensionnement des programmes de suivi post",
+      "**Argument pour la coordination ville",
+      "**Benchmarking inter"
+    ],
+    "sources": [
+      "**PMSI MCO** : dates de sortie du séjour index, GHM, mode de sortie, et dates d'entrée des séjours ultérieurs (identification des réhospitalisations non programmées par chaînage FINESS + dates) — pour le calcul de T½ intra",
+      "établissement ou intra",
+      "**SNDS (chaînage NIR)** : chaînage longitudinal des séjours MCO post",
+      "index sur 90 jours, passages aux urgences (RPU) et consultations de médecine de ville (DCIR) — indispensable pour une demi",
+      "**RPU — Résumés de Passage aux Urgences** : passages aux urgences sans hospitalisation dans les 90 jours post"
+    ],
+    "exemples": [
+      "**Insuffisance cardiaque (GHM 05M14)** : T½ ~ 20",
+      "**BPCO exacerbée (GHM 04M07)** : T½ ~ 35",
+      "**Prothèse totale de hanche (GHM 08C04)** : T½ ~ 150",
+      "200 jours pour les patients sans comorbidité ; T½ chute à 60",
+      "90 jours chez les patients [[indice_charlson_moyen|Charlson]] ≥ 2 (complications infectieuses et thrombo",
+      "**AVC ischémique (GHM 01M19)** : T½ ~ 45",
+      "70 jours ; grande hétérogénéité selon la sévérité initiale (NIHSS) — les patients avec AVC sévère ont un T½ de 25",
+      "**Appendicectomie simple (GHM 06C03)** : T½ > 300 jours — chirurgie curatrice à bénéfice très durable, λ quasi nul, suivi post",
+      "**IST moyen observé** : 20"
+    ],
+    "limites": [
+      "**Hypothèse de hazard constant (modèle exponentiel)** : valable pour les pathologies à risque de rechute distribué uniformément dans le temps, mais non pour les pathologies à risque bimodal (pic précoce de complications post",
+      "**Confusion entre instabilité de la pathologie et défaut de prise en charge** : un T½ court peut refléter la sévérité intrinsèque de la maladie (insuffisance cardiaque terminale) plutôt qu'un problème organisationnel — la stratification par sévérité (Charlson, APR",
+      "**Censure informative** : les patients décédés après leur sortie ou perdus de vue (absence de recours aux soins) créent une censure qui peut biaiser l'estimation de T½ si les patients les plus instables décèdent avant de se réhospitaliser — le T½ peut être surestimé dans les populations âgées avec [[taux_mortalite_30j_post_sortie|forte mortalité post",
+      "**Accès SNDS requis pour la demi",
+      "vie complète** : le calcul de T½ incluant les passages aux urgences et les consultations de ville nécessite le chaînage SNDS (NIR crypté) — sans cet accès, seules les réhospitalisations MCO sont tracées, sous"
+    ],
+    "references": [
+      {
+        "text": "Kaplan E.L., Meier P., *Nonparametric estimation from incomplete observations*, JASA, 1958",
+        "url": "https://doi.org/10.1080/01621459.1958.10501452"
+      },
+      {
+        "text": "Rutherford E., Soddy F., *The Cause and Nature of Radioactivity*, 1902",
+        "url": "https://doi.org/10.1080/14786440209462856"
+      },
+      {
+        "text": "HAS — Taux de réadmission non programmée à 30 jours : indicateur de qualité",
+        "url": "https://www.has-sante.fr/jcms/c_1249816/fr/indicateurs-de-qualite-et-de-securite-des-soins"
+      },
+      {
+        "text": "ATIH — Indicateurs de réadmission par GHM, ScanSanté",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "Krumholz H.M. et al., *Patterns of hospital performance in acute myocardial infarction and heart failure 30-day mortality and readmission*, Circ Cardiovasc Qual Outcomes, 2009",
+        "url": "https://doi.org/10.1161/CIRCOUTCOMES.109.871186"
+      },
+      {
+        "text": "SNDS — Chaînage longitudinal post-sortie",
+        "url": "https://www.snds.gouv.fr/"
+      },
+      {
+        "text": "Kansagara D. et al., *Risk prediction models for hospital readmission: a systematic review*, JAMA, 2011",
+        "url": "https://doi.org/10.1001/jama.2011.1515"
+      }
+    ],
+    "fichier": "demi_vie_therapeutique_post_hospitalisation.md",
+    "thematique": "Réadmissions et hospitalisations évitables"
+  },
+  {
     "indicateur": "Fonction de Risque de Weibull des Réadmissions",
     "definition": "En ingénierie de la fiabilité, la **fonction de risque** (hazard function, ou taux de défaillance instantané) h(t) décrit comment la probabilité de défaillance d'un composant évolue avec le temps depuis sa mise en service. La distribution de Weibull (Waloddi Weibull, 1951) est le modèle le plus utilisé en fiabilité car sa forme est entièrement déterminée par deux paramètres — l'échelle λ et la forme k — qui donnent accès à trois régimes fondamentalement différents : - **k < 1** : taux de défaillance décroissant — les défaillances précoces dominent (mortalité infantile), le composant est plus fragile à t=0 qu'à t>0 - **k = 1** : taux de défaillance constant — loi exponentielle, défaillances aléatoires indépendantes du temps écoulé - **k > 1** : taux de défaillance croissant — usure progressive, le composant est de plus en plus susceptible de tomber en panne avec le temps Transposée aux réadmissions post-sortie hospitalière, la **Fonction de Risque de Weibull des Réadmissions** (FRWR) modélise comment le taux instantané de réadmission h(t) évolue avec le temps depuis la sortie du patient. La réponse empirique — k < 1 — révèle que le risque de réadmission est **maximal dans les premiers jours post-sortie** et décroît ensuite : le patient est à son plus fort risque de décompensation à J0-J7 (période critique précoce), et ce risque diminue progressivement s'il passe ce cap sans incident. **h(t) = (k/λ) × (t/λ)^(k−1)** où t est le délai en jours depuis la sortie MCO et λ est la durée caractéristique (mediane de la distribution des réadmissions).",
     "calcul": "Construction de la cohorte de réadmission : Ajustement du modèle de Weibull et estimation de h(t) : Stratification et comparaison :",
@@ -5927,6 +6117,66 @@
     "thematique": "Territoire, attractivité et offre de soins"
   },
   {
+    "indicateur": "Indice de Viabilité Métapopulationnelle des Services du GHT",
+    "definition": "L'**indice de viabilité métapopulationnelle des services du GHT** évalue la pérennité de chaque service ou spécialité d'un établissement membre du GHT en appliquant le cadre théorique des **métapopulations** (Levins, 1969). En écologie, une métapopulation est un ensemble de populations locales spatialement séparées — les \"patches\" d'habitat — qui s'éteignent et se recolonisent au fil du temps selon un équilibre entre taux d'extinction locale et taux de recolonisation par migration depuis les patches voisins. La grande découverte de ce modèle est l'**effet de sauvetage** (*rescue effect*) : un patch dont la population locale est trop faible pour se maintenir peut survivre indéfiniment grâce aux apports continus de migrants provenant des patches voisins. Privé de ces apports, il s'éteint. Appliqué au GHT, chaque service hospitalier dans chaque établissement est un \"patch\" : sa viabilité dépend à la fois de son activité locale (recrutement propre, fidélisation des patients du bassin de vie) et des flux entrants de patients adressés par les autres établissements membres (effet de sauvetage intra-GHT). Un service en dessous du [[volume_seuil_actes_chirurgicaux|seuil d'activité minimale de l'ATIH]] est un patch \"en voie d'extinction\" — il peut être maintenu artificiellement s'il reçoit suffisamment de patients des partenaires du GHT, ou condamné à la fermeture si ces flux s'interrompent. La modélisation métapopulationnelle permet de distinguer les services viables de façon autonome, les services viables uniquement grâce à l'effet de sauvetage GHT, et les services non viables même avec l'appui inter-établissements — trois situations appelant des réponses stratégiques radicalement différentes.",
+    "calcul": "### 1. Modèle de Levins adapté aux services hospitaliers ### 2. Indice de viabilité locale (IVL) par service ### 3. Effet de sauvetage inter-établissements (ES) ### 4. Matrice de viabilité métapopulationnelle du GHT **Précisions méthodologiques** : - Les [[taux_transferts_intra_ght|flux entrants GHT]] sont identifiés dans le PMSI par le mode d'entrée (= 6 transfert) combiné au FINESS de l'établissement d'origine, filtré sur les FINESS membres du GHT (liste issue du répertoire FINESS / ARS). - L'activité locale correspond aux séjours dont le patient réside dans le bassin de vie propre de l'établissement (code géographique de résidence du patient). - Les seuils ATIH sont ceux publiés dans les décrets d'autorisation d'activité de soins (autorisation de chirurgie cardiaque, neurochirurgie, oncologie, etc.) — complétés par les seuils de bonnes pratiques HAS pour les actes sans seuil réglementaire. - L'analyse est réalisée par famille de spécialité (CMD ou regroupement GHM) pour maintenir des effectifs suffisants ; une granularité à la racine GHM est possible pour les spécialités à fort volume.",
+    "utilite": [
+      "**Sécurisation juridique des conventions intra"
+    ],
+    "sources": [
+      "**Répertoire FINESS (DREES / ARS)** : liste des établissements membres de chaque GHT et leurs autorisations d'activité — pour définir le périmètre des flux intra",
+      "**ScanSanté** : données agrégées de volumes par GHM et par établissement — pour le benchmarking des seuils et la comparaison inter"
+    ],
+    "exemples": [
+      "**Patches autonomes (IVL ≥ 1,0, ES < 0,2)** : services MCO de médecine générale et de chirurgie orthopédique dans les CHG de taille moyenne — viabilité propre, faible dépendance aux transferts GHT (60",
+      "**Patches sauvés (IVL < 1,0, IVE ≥ 1,0)** : neurochirurgie légère, cardiologie interventionnelle ou chirurgie thoracique dans les CHG disposant d'une autorisation mais à faible volume local — maintenus grâce à 35",
+      "60 % de patients adressés par les autres membres du GHT (15",
+      "**Patches éteints (IVE < 1,0)** : chirurgie cardiaque avec CEC dans les CHG sous 150 interventions/an malgré les flux GHT, ou unités de soins palliatifs dédiées dans les petits établissements ruraux — représentent 5",
+      "**Hubs attracteurs (IVL ≥ 1,0, ES > 0,4)** : plateau technique d'imagerie interventionnelle ou bloc de chirurgie complexe dans l'établissement support du GHT — génèrent 40",
+      "**Équilibre de Levins p* typique** : dans un GHT de taille moyenne, p* ~ 0,75",
+      "0,85 pour les spécialités chirurgicales (75",
+      "85 % des autorisations sont effectivement exercées au",
+      "dessus du seuil de viabilité, contre 15"
+    ],
+    "limites": [
+      "**Le modèle de Levins suppose des patches équivalents et des migrations aléatoires** — hypothèse non vérifiée dans un GHT où les établissements sont de tailles très différentes et où les flux de patients suivent des logiques géographiques et médicales structurées. Les extensions du modèle (patches hétérogènes, modèles source",
+      "**Dépendance aux conventions intra",
+      "**L'indicateur ne capture pas les ressources humaines** : un service peut être au"
+    ],
+    "references": [
+      {
+        "text": "Levins R., *Some demographic and genetic consequences of environmental heterogeneity for biological control*, Bulletin of the Entomological Society of America, 1969",
+        "url": "https://doi.org/10.1093/besa/15.3.237"
+      },
+      {
+        "text": "Hanski I., *Metapopulation Ecology*, Oxford University Press, 1999",
+        "url": "https://global.oup.com/academic/product/metapopulation-ecology-9780198540655"
+      },
+      {
+        "text": "ATIH — Seuils d'activité minimale par spécialité (décrets d'autorisation)",
+        "url": "https://www.atih.sante.fr/"
+      },
+      {
+        "text": "Ministère de la Santé — Réforme des autorisations d'activités de soins, 2023",
+        "url": "https://solidarites-sante.gouv.fr/"
+      },
+      {
+        "text": "ANS — Répertoire Opérationnel des Ressources (ROR)",
+        "url": "https://esante.gouv.fr/produits-services/ror"
+      },
+      {
+        "text": "ScanSanté — Volumes d'activité par établissement et par GHM",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "DREES — Dynamique des services hospitaliers et déserts médicaux spécialisés",
+        "url": "https://www.drees.solidarites-sante.gouv.fr/"
+      }
+    ],
+    "fichier": "indice_viabilite_metapopulationnelle_services_ght.md",
+    "thematique": "Territoire, attractivité et offre de soins"
+  },
+  {
     "indicateur": "Loi de Metcalfe du GHT Numérique",
     "definition": "La loi de Metcalfe (Robert Metcalfe, 1980, formalisée par Gilder, 1993) stipule que la **valeur d'un réseau de communication est proportionnelle au carré du nombre de ses membres connectés** : V ∝ n². Avec 2 nœuds, 1 connexion possible ; avec 10 nœuds, 45 connexions ; avec 100 nœuds, 4 950 connexions. La valeur croît donc beaucoup plus vite que le nombre de participants — c'est l'effet de réseau qui explique la domination des plateformes numériques (chaque utilisateur supplémentaire de Facebook augmente la valeur du réseau pour tous les autres). Appliquée au GHT numérique, la **Loi de Metcalfe du GHT Numérique** (LMGN) mesure le **retour sur investissement des outils de coordination numérique** (DPI partagé, messagerie sécurisée MSSanté, téléexpertise, accès partagé aux résultats de biologie) en quantifiant la valeur des connexions effectives entre producteurs de soins — non pas le nombre d'acteurs nominalement raccordés à un outil, mais le nombre de **paires d'acteurs qui échangent réellement des informations patient**. L'indicateur central est le **Taux de Connexions Actives** (TCA) : le rapport entre les connexions effectivement utilisées (échanges traçables depuis le PMSI/DCIR) et les connexions théoriquement possibles dans le réseau du GHT. La loi de Metcalfe prédit que chaque acteur supplémentaire effectivement connecté génère une valeur marginale croissante — ce qui justifie d'investir dans l'intégration des acteurs périphériques (médecins de ville, pharmacies, EHPAD) au-delà du périmètre hospitalier strict. **V_réseau ∝ n_actifs² où n_actifs = nombre d'acteurs avec au moins 1 échange tracé sur 12 mois**",
     "calcul": "Construction du réseau de coordination numérique observable depuis le PMSI/DCIR : Calcul du Taux de Connexions Actives (TCA) et de la valeur de réseau : Analyse de la densité de coordination par zone géographique :",
@@ -6374,6 +6624,59 @@
       }
     ],
     "fichier": "cout_total_parcours_12_mois.md",
+    "thematique": "Financement, valorisation T2A et codage"
+  },
+  {
+    "indicateur": "Ratio de Sharpe Médico-Économique",
+    "definition": "Le **ratio de Sharpe médico-économique** mesure la performance financière d'un service, d'une unité ou d'un établissement **ajustée du risque de variabilité de ses recettes**. Emprunté à la finance quantitative, où il évalue le rendement excédentaire d'un portefeuille par rapport à son écart-type (sa volatilité), ce ratio est transposé ici au portefeuille d'activité hospitalière : il rapporte la recette moyenne par séjour (au-delà d'un seuil de référence) à la variabilité de cette recette d'un séjour à l'autre. Un ratio élevé indique un service qui génère des recettes supérieures à la norme de façon *stable et prévisible* — le profil idéal pour la planification financière. Un ratio faible signale soit une performance financière insuffisante, soit une forte imprévisibilité des recettes (casemix instable, codage irrégulier, dépendance à quelques GHM rares et mal valorisés), ce qui constitue un risque financier structurel indépendamment du volume d'activité. L'analogie avec la finance est directe : tout comme un gestionnaire de fonds préfère un portefeuille avec un Sharpe élevé (rendement stable plutôt que sporadique), un directeur financier doit piloter ses services non seulement sur leur recette moyenne, mais aussi sur la fiabilité de cette recette — particulièrement critique dans un contexte T2A où la valorisation dépend du groupage séjour par séjour.",
+    "calcul": "### 1. Recette ajustée par séjour (r_i) ### 2. Ratio de Sharpe Médico-Économique (RSME) ### 3. Décomposition de la volatilité ### 4. RSME standardisé et benchmarking **Précisions méthodologiques** : - Le calcul est réalisé au niveau du séjour individuel (RSS) pour capturer la variabilité intra-service, puis agrégé par service, par établissement et par GHT. - Les tarifs GHM de référence sont ceux publiés annuellement par l'ATIH dans l'arrêté tarifaire. - Le calcul porte sur les séjours MCO (et SSR avec DAF en dotation modulée) ; l'HAD et la psychiatrie sous dotation globale sont exclues du calcul principal mais peuvent faire l'objet d'une adaptation. - La fenêtre temporelle recommandée est de 12 mois pour lisser les aléas saisonniers ; une analyse glissante sur 3 ans permet de détecter les tendances structurelles.",
+    "utilite": [
+      "**Arbitrages d'investissement intra",
+      "**Détection des effets de borne haute** : un RSME dégradé par σ²_duree révèle un service où les séjours longs (au",
+      "**Benchmarking inter",
+      "GHT** : le RSME"
+    ],
+    "sources": [
+      "**Arrêté tarifaire annuel ATIH** : liste des tarifs GHM par niveau de sévérité et par secteur (ex",
+      "DG / ex"
+    ],
+    "exemples": [
+      "**RSME médian (chirurgie orthopédique programmée)** : 0,8",
+      "**RSME élevé (chirurgie ambulatoire de cataracte)** : 1,5",
+      "**RSME faible (médecine interne/gériatrie)** : 0,2",
+      "0,5 — recette souvent inférieure à la médiane nationale (patients lourds, séjours longs non valorisés au",
+      "**RSME négatif (SSR en dotation modulée)** : peut être négatif si la valorisation modulée est structurellement inférieure au tarif de référence PMSI classique, révélant un sous"
+    ],
+    "limites": [
+      "**Sensibilité aux modifications tarifaires annuelles** : les révisions de tarifs GHM publiées chaque année par l'ATIH modifient la distribution de référence et peuvent faire varier le RSME sans changement réel de la pratique — la comparaison inter"
+    ],
+    "references": [
+      {
+        "text": "Sharpe W.F., *Mutual Fund Performance*, Journal of Business, 1966",
+        "url": "https://doi.org/10.1086/294846"
+      },
+      {
+        "text": "ATIH — Arrêtés tarifaires annuels MCO",
+        "url": "https://www.atih.sante.fr/tarification/la-tarification-a-l-activite"
+      },
+      {
+        "text": "ATIH — OVALIDE : outil de valorisation et contrôle PMSI",
+        "url": "https://www.atih.sante.fr/ovalide"
+      },
+      {
+        "text": "ScanSanté — Valorisation par GHM et par établissement",
+        "url": "https://www.scansante.fr/"
+      },
+      {
+        "text": "ANAP — Comptabilité analytique et CREA hospitalier",
+        "url": "https://www.anap.fr/"
+      },
+      {
+        "text": "Nguyen J.M. et al., *Case-mix and financial performance in French hospitals*, Health Policy, 2011",
+        "url": "https://doi.org/10.1016/j.healthpol.2011.01.008"
+      }
+    ],
+    "fichier": "ratio_sharpe_medico_economique.md",
     "thematique": "Financement, valorisation T2A et codage"
   },
   {
