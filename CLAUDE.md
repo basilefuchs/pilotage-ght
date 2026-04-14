@@ -62,6 +62,8 @@ Chaque fiche `.md` suit ce schéma :
 - `## Limites` — biais, précautions d'interprétation
 - `## Références` — liens externes
 
+Ne jamais modifier ce schéma.
+
 ## Conventions
 
 - Langue : fiches en français, code en anglais
