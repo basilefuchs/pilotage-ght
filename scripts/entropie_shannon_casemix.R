@@ -2,22 +2,27 @@ library(dplyr)
 library(purrr)
 library(ggplot2)
 
-# paramètres
+# Paramètres
 annees <- 2016:2025
 dep <- "29"
 
-# table de référence
+# Table de référence
 ref_finess <- tbl(conn, I("prd_vue_nomgen.finess")) %>%
   filter(
     substr(finess, 1, 2) == dep,
-    mco == "1" # filtre ets MCO
+    mco == "1" # Filtre les établissements MCO
   ) %>%
   select(annee, finess, rs) %>%
   distinct() %>%
   collect() %>%
   filter(!grepl("dialyse", rs, ignore.case = TRUE))
 
-# boucle principale MCO
+# nb_rghm_par_annee <- tbl(conn, "thesaurus_ghm") %>%
+#   group_by(annee) %>%
+#   summarise(GHM_TOTAL = n_distinct(ghm)) %>%
+#   collect()
+
+# Boucle principale MCO
 df <- map_df(annees, function(an) {
   
   nom_table <- paste0("prd_vue_mco_", an, ".fixe")
@@ -27,30 +32,30 @@ df <- map_df(annees, function(an) {
            substr(finess, 1, 2) == dep) %>%
     mutate(
       annee = an,
-      ghm_racine = substr(ghm2, 1, 5)
+      rghm = substr(ghm2, 1, 5)
     ) %>%
-    group_by(annee, finess, ghm_racine) %>%
+    group_by(annee, finess, rghm) %>%
     summarise(N_i = n_distinct(ident), .groups = "drop") %>%
-    # filter(N_i > 10) %>%
     collect()
 })
 
-# calcul final
+# Calcul de l'entropie
 result <- df %>%
-  inner_join(ref_finess, by = c("finess","annee")) %>%
+  inner_join(ref_finess, by = c("finess", "annee")) %>% # Jointure avec le référentiel des FINESS
+  left_join(nb_rghm_par_annee, by = "annee") %>%  # Jointure avec le nombre de GHM par année
   group_by(annee, finess) %>%
+  filter(sum(N_i) > 0) %>%
   summarise(
-    rs = first(rs),
+    rs = first(rs), # Sélectionne la première valeur de raison sociale en cas de doublon
     N_total = sum(N_i),
-    N_GHM = n_distinct(ghm_racine),
-    H = -sum(ifelse((N_i / sum(N_i)) > 0,
-                    (N_i / sum(N_i)) * log2(N_i / sum(N_i)), 0)),
-    H_max = log2(n_distinct(ghm_racine)),
-    H_norm = ifelse(H_max > 0, H / H_max, NA_real_),
+    N_GHM = n_distinct(rghm),
+    H = -sum((N_i / sum(N_i)) * log2(N_i / sum(N_i))),
+    H_max = log2(GHM_TOTAL),  # Utilise le nombre de GHM total pour l'année
+    H_norm = H / H_max,
     .groups = "drop"
   )
 
-# filtre ets top 10 volumétrie sur la période
+# Filtre le top 10 des établissements sur la période
 top_finess <- result %>%
   group_by(finess) %>%
   summarise(total = sum(N_total), .groups = "drop") %>%
@@ -61,7 +66,7 @@ top_finess <- result %>%
 df_plot <- result %>%
   filter(finess %in% top_finess)
 
-# tri décroissant des ets par volumétrie sur la période
+# Tri décroissant des établissements sur la période
 ordre_rs <- df_plot %>%
   group_by(rs) %>%
   summarise(total = sum(N_total), .groups = "drop") %>%
@@ -71,7 +76,7 @@ ordre_rs <- df_plot %>%
 df_plot <- df_plot %>%
   mutate(rs = factor(rs, levels = ordre_rs))
 
-# plot
+# Tracé des tendances avec lissage et facettes
 ggplot(df_plot, aes(x = annee, y = H_norm, color = rs)) +
   geom_smooth(se = FALSE) +
   geom_point() +
