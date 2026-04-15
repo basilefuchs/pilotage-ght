@@ -14,7 +14,7 @@ Cet indicateur est fondamentalement absent des outils PMSI actuels : le CMI (Cas
 
 ## Calcul
 
-Source : PMSI MCO RSA — variable GHM (8 caractères) par séjour.
+Source : PMSI MCO RSA — variable racine de GHM (5 caractères) par séjour.
 
 ```
 Population : tous les séjours MCO d'un service ou d'un établissement
@@ -39,11 +39,11 @@ Population : tous les séjours MCO d'un service ou d'un établissement
   H' proche de 0 = casemix très concentré / spécialisé
 
 Étape 4 — Granularité du groupage :
-  Option A : GHM complet (8 car.) → entropie maximalement sensible
-  Option B : Racine GHM (6 car., sans niveau de sévérité) → moins sensible
+  Option A : GHM complet (6 car.) → entropie maximalement sensible
+  Option B : Racine GHM (5 car., sans niveau de sévérité) → moins sensible
              aux variations de codage de comorbidités
   Option C : CMD (2 car.) → vision grands ensembles, moins fine
-  → Recommandation : utiliser la racine GHM (6 car.) pour le benchmarking
+  → Recommandation : utiliser la racine GHM (5 car.) pour le benchmarking
     inter-établissements (neutralise les effets de codage des CMA)
 ```
 
@@ -66,6 +66,8 @@ Comparaison entropie observée vs entropie attendue par type d'établissement :
   → Clinique spécialisée : H' attendue ~0,20-0,40
   → Écart à la norme de type = signal de sur- ou sous-spécialisation
 ```
+
+Calcul à partir de la base nationale ATIH : voir [ici](scripts/entropie_shannon_casemix.R).
 
 ## Utilité
 
