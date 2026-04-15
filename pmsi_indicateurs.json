@@ -1,5 +1,17 @@
 [
   {
+    "indicateur": "01 - Activité & Production",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [],
+    "fichier": "01_activite_production.md",
+    "thematique": "Activité et production hospitalière"
+  },
+  {
     "indicateur": "Activité en Hospitalisation à Domicile (HAD)",
     "definition": "L'activité en Hospitalisation à Domicile (HAD) mesure le volume et la nature des prises en charge réalisées à domicile, en alternative à l'hospitalisation traditionnelle. Cet indicateur est spécifique au champ HAD du PMSI.",
     "calcul": "L'activité en HAD peut être mesurée via plusieurs sous-indicateurs :",
@@ -426,6 +438,18 @@
     "thematique": "Activité et production hospitalière"
   },
   {
+    "indicateur": "02 - Casemix & Patientele",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [],
+    "fichier": "02_casemix_patientele.md",
+    "thematique": "Casemix et profil de la patientèle"
+  },
+  {
     "indicateur": "APR-DRG — Sévérité de la Maladie et Risque de Mortalité (Belgique / Pays-Bas)",
     "definition": "L'APR-DRG (All Patient Refined Diagnosis-Related Groups) est une classification médico-économique développée par 3M Health Information Systems, utilisée en Belgique, aux Pays-Bas, en Espagne et dans plusieurs États américains comme alternative ou complément aux DRG/GHM classiques. Sa caractéristique centrale est d'attribuer à chaque séjour, en plus du groupe diagnostique (équivalent du GHM français), deux niveaux de sous-classification indépendants : le **SOI (Severity of Illness — sévérité de la maladie)** sur une échelle de 1 à 4 (mineur, modéré, majeur, extrême) et le **ROM (Risk of Mortality — risque de mortalité)** sur la même échelle. Ces deux dimensions capturent la complexité clinique intra-groupe que les GHM/DRG classiques ne peuvent pas distinguer : deux séjours dans le même GHM peuvent avoir des SOI/ROM radicalement différents, justifiant des ressources et des résultats très différents. En Belgique, l'APR-DRG est le système officiel de financement hospitalier depuis 1995 et fournit le référentiel le plus granulaire disponible pour l'ajustement au risque en Europe.",
     "calcul": "L'APR-DRG est un algorithme propriétaire 3M basé sur les codes CIM-10 : **Étape 1 — Attribution du groupe de base (équivalent GHM) :** **Étape 2 — Attribution du SOI (Severity of Illness) :** **Étape 3 — Attribution du ROM (Risk of Mortality) :** **Indicateurs dérivés du SOI/ROM :**",
@@ -657,7 +681,7 @@
   {
     "indicateur": "Entropie de Shannon du Casemix",
     "definition": "L'entropie de Shannon H, issue de la théorie de l'information (Claude Shannon, 1948), mesure la diversité ou l'incertitude d'une distribution de probabilités. Appliquée à la distribution des GHMs (Groupes Homogènes de Malades) d'un service ou d'un établissement, elle quantifie le degré de **spécialisation vs polyvalence** du casemix hospitalier. H = −Σᵢ pᵢ × log₂(pᵢ) où pᵢ est la proportion du GHM i dans le total des séjours du service ou de l'établissement sur la période. H est exprimée en bits (si log₂) ou en nats (si ln). L'entropie est maximale (H_max = log₂(N_GHM)) lorsque tous les GHMs sont également représentés (service totalement polyvalent) et minimale (H = 0) lorsqu'un seul GHM concentre toute l'activité (service mono-pathologique). Pour faciliter les comparaisons inter-services disposant de volumes différents, l'entropie normalisée H' = H / H_max (comprise entre 0 et 1) est préférable : H' = 1 correspond à une diversité maximale, H' = 0 à une spécialisation absolue. Cet indicateur est fondamentalement absent des outils PMSI actuels : le CMI (Case Mix Index) mesure la lourdeur moyenne du casemix mais pas sa diversité structurelle ; le nombre de GHMs différents ne pondère pas par les volumes. L'entropie capture une information qualitativement différente — la **structure** de répartition de l'activité — inatteignable par les indicateurs scalaires classiques.",
-    "calcul": "Source : PMSI MCO RSA — variable GHM (8 caractères) par séjour. Indicateurs dérivés :",
+    "calcul": "Source : PMSI MCO RSA — variable racine de GHM (5 caractères) par séjour. Indicateurs dérivés : Calcul à partir de la base nationale ATIH : voir [ici](scripts/entropie_shannon_casemix.R).",
     "utilite": [],
     "sources": [],
     "exemples": [
@@ -1244,6 +1268,18 @@
     "thematique": "Casemix et profil de la patientèle"
   },
   {
+    "indicateur": "03 - Vulnérabilité Sociale",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [],
+    "fichier": "03_vulnerabilite_sociale.md",
+    "thematique": "Dimensions sociales et vulnérabilité"
+  },
+  {
     "indicateur": "Coefficient de Gini de la Consommation Hospitalière",
     "definition": "Le coefficient de Gini, développé par l'économiste Corrado Gini en 1912 pour mesurer les inégalités de revenus dans une population, se définit comme le rapport entre l'aire de la courbe de Lorenz et l'aire du triangle de parfaite égalité. Transposé à la consommation hospitalière, le **Gini de consommation hospitalière** mesure le degré d'inégalité dans la distribution des hospitalisations (ou des dépenses de santé) sur un territoire : dans quelle mesure les séjours hospitaliers sont-ils concentrés sur un petit nombre de patients grands consommateurs, ou au contraire répartis de façon homogène dans la population ? G = 1 − 2 × ∫₀¹ L(x) dx où L(x) est la courbe de Lorenz : L(x) = fraction cumulée des séjours (ou dépenses) détenue par les x% de patients les moins consommateurs. G = 0 : consommation parfaitement égale (chaque patient consomme autant) G = 1 : consommation totalement concentrée (un seul patient consomme tout) Dans la réalité hospitalière française, la règle des 20/80 (ou \"loi de Pareto\") est bien documentée : 20% des patients concentrent 80% des dépenses hospitalières. Le Gini quantifie précisément cette concentration et permet de la comparer dans le temps, entre territoires, entre pathologies, et avant/après des politiques de santé visant à réduire les inégalités d'accès ou à gérer les grandes polyconsommateurs.",
     "calcul": "Construction de la courbe de Lorenz hospitalière : Indicateurs complémentaires :",
@@ -1606,6 +1642,18 @@
     ],
     "fichier": "taux_sortie_contre_avis_medical.md",
     "thematique": "Dimensions sociales et vulnérabilité"
+  },
+  {
+    "indicateur": "04 - Efficience Capacitaire",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [],
+    "fichier": "04_efficience_capacitaire.md",
+    "thematique": "Efficience et gestion capacitaire"
   },
   {
     "indicateur": "Capacité de Charge Organisationnelle",
@@ -2500,6 +2548,18 @@
     ],
     "fichier": "volume_seuil_actes_chirurgicaux.md",
     "thematique": "Efficience et gestion capacitaire"
+  },
+  {
+    "indicateur": "05 - Qualité & Sécurité",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [],
+    "fichier": "05_qualite_securite.md",
+    "thematique": "Qualité et sécurité des soins"
   },
   {
     "indicateur": "Délai Porte-Aiguille et Porte-Ponction dans la Filière AVC",
@@ -3623,6 +3683,18 @@
     "thematique": "Qualité et sécurité des soins"
   },
   {
+    "indicateur": "06 - Pertinence des Pratiques",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [],
+    "fichier": "06_pertinence_pratiques.md",
+    "thematique": "Pertinence des soins et pratiques médicales"
+  },
+  {
     "indicateur": "Délai d'Attente",
     "definition": "Le délai d'attente mesure le temps moyen entre la demande de consultation ou d'hospitalisation et la réalisation effective de l'acte. Cet indicateur est crucial pour évaluer l'accessibilité aux soins et la satisfaction des patients.",
     "calcul": "Le délai d'attente est calculé comme suit :",
@@ -4095,6 +4167,18 @@
     ],
     "fichier": "taux_sejours_chirurgicaux_cancer.md",
     "thematique": "Pertinence des soins et pratiques médicales"
+  },
+  {
+    "indicateur": "07 - Parcours & Continuité",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [],
+    "fichier": "07_parcours_continuite.md",
+    "thematique": "Parcours patient et continuité des soins"
   },
   {
     "indicateur": "Coefficient de Viscosité des Flux Patients",
@@ -5326,6 +5410,18 @@
     "thematique": "Parcours patient et continuité des soins"
   },
   {
+    "indicateur": "08 - Réadmissions Évitables",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [],
+    "fichier": "08_readmissions_evitables.md",
+    "thematique": "Réadmissions et hospitalisations évitables"
+  },
+  {
     "indicateur": "Demi-Vie Thérapeutique Post-Hospitalisation",
     "definition": "La **demi-vie thérapeutique post-hospitalisation** (T½) est le temps médian après lequel 50 % des patients d'un groupe homogène de malades (GHM) donné ont présenté un premier recours non programmé aux soins aigus — réhospitalisation non programmée, passage aux urgences ou consultation en urgence chez un spécialiste — après leur sortie. Le concept est emprunté à la physique nucléaire : dans la désintégration radioactive, la demi-vie est le temps au bout duquel la moitié des noyaux instables se sont désintégrés, selon une loi de décroissance exponentielle N(t) = N₀ × e^(−λt) où λ = ln(2)/T½. Appliquée à la médecine hospitalière, la \"population\" instable est celle des patients qui n'ont pas encore rechuté après leur sortie, λ est le taux instantané de recours non programmé (hazard rate de la survie sans événement aigu), et T½ est la médiane de survie sans événement calculée par l'estimateur de Kaplan-Meier. Plus T½ est court, plus le bénéfice thérapeutique de l'hospitalisation se dissipe rapidement — et plus le suivi ambulatoire post-sortie doit être précoce et intense pour intercepter la rechute avant qu'elle ne génère une nouvelle hospitalisation. Plus T½ est long, plus l'hospitalisation a produit un effet stabilisateur durable, signalant une prise en charge complète et un retour à un état d'équilibre robuste. La demi-vie thérapeutique est fondamentalement différente du [[taux_readmission|taux de réadmission à 30 jours]] : ce dernier mesure un résultat binaire à un instant fixe arbitraire, là où T½ caractérise la cinétique complète de la décroissance du bénéfice — une information beaucoup plus riche pour calibrer l'intensité et le calendrier du suivi post-sortie.",
     "calcul": "### 1. Modèle de décroissance exponentielle ### 2. Constante de désintégration par GHM (λ_GHM) ### 3. Stratification par profil clinique ### 4. Indice de stabilité thérapeutique (IST) **Précisions méthodologiques** : - L'analyse de survie est menée sur les patients adultes (≥ 18 ans) ayant eu un séjour MCO index, chaînés par NIR crypté dans le SNDS sur une fenêtre de 90 jours post-sortie. - Le modèle exponentiel (hazard constant) est une approximation valide pour la plupart des GHM médicaux ; pour les GHM chirurgicaux à risque de complication précoce, un [[fonction_risque_weibull_readmissions|modèle de Weibull]] (hazard décroissant dans le temps) est préférable. - Les décès dans les 90 jours post-sortie sont traités comme des événements censurés (fin de suivi), sauf si l'analyse porte explicitement sur la mortalité. - La granularité minimale recommandée est le GHM racine (4 caractères) pour garantir des effectifs suffisants (≥ 100 patients par strate).",
@@ -5863,6 +5959,18 @@
     ],
     "fichier": "taux_rehospitalisation_psychiatrie.md",
     "thematique": "Réadmissions et hospitalisations évitables"
+  },
+  {
+    "indicateur": "09 - Territoire & Attractivité",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [],
+    "fichier": "09_territoire_attractivite.md",
+    "thematique": "Territoire, attractivité et offre de soins"
   },
   {
     "indicateur": "Centralité de Betweenness du GHT dans le Réseau de Soins Territorial",
@@ -6549,6 +6657,18 @@
     ],
     "fichier": "taux_recours_had.md",
     "thematique": "Territoire, attractivité et offre de soins"
+  },
+  {
+    "indicateur": "10 - Financement & Valorisation",
+    "definition": "",
+    "calcul": "",
+    "utilite": [],
+    "sources": [],
+    "exemples": [],
+    "limites": [],
+    "references": [],
+    "fichier": "10_financement_valorisation.md",
+    "thematique": "Financement, valorisation T2A et codage"
   },
   {
     "indicateur": "Coût par Pathologie",
