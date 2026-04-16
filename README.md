@@ -6,16 +6,16 @@ Base de référence de 156 indicateurs de pilotage hospitalier pour les GHT, cal
 
 ```
 indicateurs_pmsi/
-├── 01_activite_production/        13 indicateurs
-├── 02_casemix_patientele/         21 indicateurs
-├── 03_vulnerabilite_sociale/       6 indicateurs
-├── 04_efficience_capacitaire/     21 indicateurs
-├── 05_qualite_securite/           24 indicateurs
-├── 06_pertinence_pratiques/       13 indicateurs
-├── 07_parcours_continuite/        26 indicateurs
-├── 08_readmissions_evitables/     10 indicateurs
-├── 09_territoire_attractivite/    17 indicateurs
-└── 10_financement_valorisation/    5 indicateurs
+├── 01_activite_production/
+├── 02_casemix_patientele/
+├── 03_vulnerabilite_sociale/
+├── 04_efficience_capacitaire/
+├── 05_qualite_securite/
+├── 06_pertinence_pratiques/
+├── 07_parcours_continuite/
+├── 08_readmissions_evitables/
+├── 09_territoire_attractivite/
+└── 10_financement_valorisation/
 ```
 
 Chaque fiche documente : définition, formule de calcul, sources de données, exemple de valeurs, limites et références.
