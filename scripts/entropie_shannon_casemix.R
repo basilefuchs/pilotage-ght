@@ -9,6 +9,7 @@ dep <- "29"
 # Connexion
 conn <- pRatihque::connection_database()
 
+
 # MCO
 
 ## Référentiels
@@ -84,6 +85,7 @@ entropie_mco <- df %>%
   ) %>%
   distinct()
 
+
 # SMR
 
 ## Référentiels
@@ -152,6 +154,7 @@ entropie_smr <- df %>%
     .groups = "drop"
   ) %>%
   distinct()
+
 
 # Visualisation
 df_plot <- entropie_mco %>%
