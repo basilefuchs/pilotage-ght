@@ -1,6 +1,5 @@
 library(dplyr)
-library(purrr)
-library(ggplot2)
+
 
 # Paramètres
 annees <- 2016:2025
@@ -8,6 +7,7 @@ dep <- "29"
 
 # Connexion
 conn <- pRatihque::connection_database()
+
 
 # Référentiels
 ref_finessgeo <- tbl(conn, I("prd_vue_nomgen.finessgeo")) %>%
@@ -29,9 +29,10 @@ nb_code_par_annee <- tbl(conn, I("prd_vue_nompmsi.all_classif_pmsi")) %>%
   summarise(N_TOTAL_CODE = n_distinct(code)) %>%
   distinct()
 
+
 # Activité
 ## MCO
-mco <- map_dfr(annees, function(an) {
+mco <- purrr::map_dfr(annees, function(an) {
   
   fixe_tbl <- tbl(conn, I(paste0("prd_vue_mco_", an, ".fixe")))
   geo_tbl  <- tbl(conn, I(paste0("prd_vue_mco_", an, ".finessgeo_umdudp")))
@@ -42,7 +43,8 @@ mco <- map_dfr(annees, function(an) {
       substr(finess, 1, 2) == dep
     ) %>%
     inner_join(
-      geo_tbl %>% select(ident, finessgeodp),
+      geo_tbl %>% 
+      select(ident, finessgeodp),
       by = "ident"
     ) %>%
     transmute(
@@ -60,7 +62,7 @@ mco <- map_dfr(annees, function(an) {
 })
 
 ## SMR
-smr <- map_dfr(annees, function(an) {
+smr <- purrr::map_dfr(annees, function(an) {
   
   fixe_tbl <- tbl(conn, I(paste0("prd_vue_smr_", an, ".fixe")))
   
@@ -83,15 +85,15 @@ smr <- map_dfr(annees, function(an) {
     collect()
 })
 
+
 # Entropie
-calcul_entropie <- function(df, champ, type_code) {
+calcul_entropie <- function(df, type_code) {
   
   df %>%
   inner_join(ref_finessgeo, by = c("finessgeo", "annee")) %>%
-  left_join(
+  inner_join(
     nb_code_par_annee %>% 
     filter(
-      .data[[champ]] == "O",
       type_code == type_code
     ),
     by = "annee"
@@ -106,17 +108,19 @@ calcul_entropie <- function(df, champ, type_code) {
     H_norm = H / H_max,
     .groups = "drop"
   ) %>%
-  distinct()
+  distinct() %>%
+  mutate(rs = factor(rs, levels = sort(unique(rs))))
   
   return(df)
 
 }
 
-# Visualisation
-df <- calcul_entropie(mco, "mco", "racine") %>%
-  mutate(rs = factor(rs, levels = sort(unique(rs))))
 
-ggplot(df, aes(x = annee, y = H_norm, color = rs)) +
+# Visualisation
+df <- calcul_entropie(mco, "racine")
+# df <- calcul_entropie(smr, "gn")
+
+ggplot2::ggplot(df, aes(x = annee, y = H_norm, color = rs)) +
   geom_smooth(se = FALSE, method = "loess") +
   geom_point() +
   facet_wrap(~ reorder(rs, rs), scales = "free_y") +
