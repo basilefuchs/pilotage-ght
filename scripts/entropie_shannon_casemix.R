@@ -9,10 +9,7 @@ dep <- "29"
 # Connexion
 conn <- pRatihque::connection_database()
 
-
-# MCO
-
-## Référentiels
+# Référentiels
 ref_finessgeo <- tbl(conn, I("prd_vue_nomgen.finessgeo")) %>%
   filter(substr(finessgeo, 1, 2) == dep) %>%
   select(annee, finessgeo, rs) %>%
@@ -32,7 +29,8 @@ nb_code_par_annee <- tbl(conn, I("prd_vue_nompmsi.all_classif_pmsi")) %>%
   summarise(N_TOTAL_CODE = n_distinct(code)) %>%
   distinct()
 
-## Activité
+# Activité
+## MCO
 mco <- map_dfr(annees, function(an) {
   
   fixe_tbl <- tbl(conn, I(paste0("prd_vue_mco_", an, ".fixe")))
@@ -61,6 +59,7 @@ mco <- map_dfr(annees, function(an) {
     collect()
 })
 
+## SMR
 smr <- map_dfr(annees, function(an) {
   
   fixe_tbl <- tbl(conn, I(paste0("prd_vue_smr_", an, ".fixe")))
@@ -84,7 +83,7 @@ smr <- map_dfr(annees, function(an) {
     collect()
 })
 
-## Entropie
+# Entropie
 calcul_entropie <- function(df, champ, type_code) {
   
   df %>%
@@ -112,7 +111,6 @@ calcul_entropie <- function(df, champ, type_code) {
   return(df)
 
 }
-
 
 # Visualisation
 df <- calcul_entropie(mco, "mco", "racine") %>%
