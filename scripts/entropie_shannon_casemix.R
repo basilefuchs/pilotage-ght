@@ -49,7 +49,7 @@ mco <- map_dfr(annees, function(an) {
       finessgeo = finessgeodp,
       ident,
       code = substr(ghm2, 1, 5),
-      annee = !!an
+      annee = an
     ) %>%
     group_by(annee, finessgeo, code) %>%
     summarise(
@@ -73,7 +73,7 @@ smr <- map_dfr(annees, function(an) {
       finessgeo,
       ident_sej,
       code = substr(gme, 1, 4),
-      annee = !!an
+      annee = an
     ) %>%
     group_by(annee, finessgeo, code) %>%
     summarise(
@@ -92,7 +92,7 @@ calcul_entropie <- function(df, champ, type_code) {
     nb_code_par_annee %>% 
     filter(
       .data[[champ]] == "O",
-      type_code == !!type_code
+      type_code == type_code
     ),
     by = "annee"
   ) %>%
@@ -100,7 +100,7 @@ calcul_entropie <- function(df, champ, type_code) {
   summarise(
     rs = rs,
     N_total = sum(N_i),
-    N_code = n_distinct(!!code),
+    N_code = n_distinct(code),
     H = -sum((N_i / sum(N_i)) * log2(N_i / sum(N_i))),
     H_max = log2(N_TOTAL_CODE),
     H_norm = H / H_max,
