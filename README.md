@@ -1,21 +1,21 @@
 # Base de connaissances — Indicateurs PMSI/GHT
 
-Base de référence de 156 indicateurs de pilotage hospitalier pour les GHT, calculables depuis le PMSI MCO/SSR/PSY et le SNDS.
+Base de référence de 185 indicateurs de pilotage hospitalier pour les GHT, calculables depuis le PMSI MCO/SSR/PSY et le SNDS.
 
 ## Structure
 
 ```
 indicateurs_pmsi/
-├── 01_activite_production/
-├── 02_casemix_patientele/
-├── 03_vulnerabilite_sociale/
-├── 04_efficience_capacitaire/
-├── 05_qualite_securite/
-├── 06_pertinence_pratiques/
-├── 07_parcours_continuite/
-├── 08_readmissions_evitables/
-├── 09_territoire_attractivite/
-└── 10_financement_valorisation/
+├── 01_activite_production/       (27 indicateurs)
+├── 02_casemix_patientele/        (22 indicateurs)
+├── 03_vulnerabilite_sociale/     (7 indicateurs)
+├── 04_efficience_capacitaire/    (23 indicateurs)
+├── 05_qualite_securite/          (24 indicateurs)
+├── 06_pertinence_pratiques/      (17 indicateurs)
+├── 07_parcours_continuite/       (26 indicateurs)
+├── 08_readmissions_evitables/    (11 indicateurs)
+├── 09_territoire_attractivite/   (20 indicateurs)
+└── 10_financement_valorisation/  (8 indicateurs)
 ```
 
 Chaque fiche documente : définition, formule de calcul, sources de données, exemple de valeurs, limites et références.
@@ -37,6 +37,11 @@ Une trentaine d'indicateurs adaptent des cadres théoriques d'autres disciplines
 | Analyse spectrale FFT des flux d'admissions | Traitement du signal | 01 |
 | Entropie de transfert inter-services | Théorie de l'information | 01 |
 | Débit base/crue des admissions | Hydrologie | 01 |
+| Indice d'allométrie volume-complexité | Biologie (loi de Kleiber) | 01 |
+| Indice de phénologie des admissions | Écologie | 01 |
+| Indice de résilience post-perturbation | Écologie (Holling/Pimm) | 01 |
+| Score de succession du mix GHM | Écologie (Clements/Horn) | 01 |
+| Taux de colonisation de nouveaux GHM | Biogéographie (MacArthur & Wilson) | 01 |
 | Rapport signal/bruit des indicateurs qualité | Traitement du signal | 05 |
 | Loi Gutenberg-Richter des événements indésirables | Sismologie | 05 |
 | Rendement de Carnot de la filière de soins | Thermodynamique | 05 |
