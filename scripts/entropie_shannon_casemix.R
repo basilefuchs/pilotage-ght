@@ -13,35 +13,27 @@ conn <- pRatihque::connection_database()
 # MCO
 
 ## Référentiels
-ref_finessgeo_mco <- tbl(conn, I("prd_vue_nomgen.finessgeo")) %>%
-  filter(
-    substr(finessgeo, 1, 2) == dep,
-    mco == "O"
-  ) %>%
+ref_finessgeo <- tbl(conn, I("prd_vue_nomgen.finessgeo")) %>%
+  filter(substr(finessgeo, 1, 2) == dep) %>%
   select(annee, finessgeo, rs) %>%
   distinct() %>%
   collect() %>%
-  filter(!grepl("dialyse|udm|rein", rs, ignore.case = TRUE)) %>%
   group_by(annee, finessgeo) %>%
   summarise(
     rs = first(rs),
     .groups = "drop"
   )
 
-nb_rghm_par_annee <- tbl(conn, I("prd_vue_nompmsi.all_classif_pmsi")) %>%
-  filter(
-    champ == "mco",
-    type_code == "racine"
-  ) %>%
+nb_code_par_annee <- tbl(conn, I("prd_vue_nompmsi.all_classif_pmsi")) %>%
   mutate(annee = year(date_deb)) %>%
-  distinct(annee, code) %>%
+  distinct(annee, champ, type_code, code) %>%
   collect() %>%
-  group_by(annee) %>%
-  summarise(GHM_TOTAL = n_distinct(code)) %>%
+  group_by(annee, champ, type_code) %>%
+  summarise(N_TOTAL_CODE = n_distinct(code)) %>%
   distinct()
 
 ## Activité
-df <- map_dfr(annees, function(an) {
+mco <- map_dfr(annees, function(an) {
   
   fixe_tbl <- tbl(conn, I(paste0("prd_vue_mco_", an, ".fixe")))
   geo_tbl  <- tbl(conn, I(paste0("prd_vue_mco_", an, ".finessgeo_umdudp")))
@@ -58,10 +50,10 @@ df <- map_dfr(annees, function(an) {
     transmute(
       finessgeo = finessgeodp,
       ident,
-      rghm = substr(ghm2, 1, 5),
+      code = substr(ghm2, 1, 5),
       annee = !!an
     ) %>%
-    group_by(annee, finessgeo, rghm) %>%
+    group_by(annee, finessgeo, code) %>%
     summarise(
       N_i = n_distinct(ident),
       .groups = "drop"
@@ -69,54 +61,7 @@ df <- map_dfr(annees, function(an) {
     collect()
 })
 
-## Entropie
-entropie_mco <- df %>%
-  inner_join(ref_finessgeo_mco, by = c("finessgeo", "annee")) %>%
-  left_join(nb_rghm_par_annee, by = "annee") %>%  
-  group_by(annee, finessgeo) %>%
-  summarise(
-    rs = rs,
-    N_total = sum(N_i),
-    N_GHM = n_distinct(rghm),
-    H = -sum((N_i / sum(N_i)) * log2(N_i / sum(N_i))),
-    H_max = log2(GHM_TOTAL),
-    H_norm = H / H_max,
-    .groups = "drop"
-  ) %>%
-  distinct()
-
-
-# SMR
-
-## Référentiels
-ref_finessgeo_smr <- tbl(conn, I("prd_vue_nomgen.finessgeo")) %>%
-  filter(
-    substr(finessgeo, 1, 2) == dep,
-    ssr == "O"
-  ) %>%
-  distinct(annee, finessgeo, rs) %>%
-  collect() %>%
-  filter(!grepl("dialyse|udm|rein", rs, ignore.case = TRUE)) %>%
-  group_by(annee, finessgeo) %>%
-  summarise(
-    rs = first(rs),
-    .groups = "drop"
-  )
-
-nb_gn_par_annee <- tbl(conn, I("prd_vue_nompmsi.all_classif_pmsi")) %>%
-  filter(
-    champ == "ssr",
-    type_code == "gn"
-  ) %>%
-  mutate(annee = year(date_deb)) %>%
-  distinct(annee, code) %>%
-  collect() %>%
-  group_by(annee) %>%
-  summarise(GN_TOTAL = n_distinct(code)) %>%
-  distinct()
-
-## Activité
-df <- map_dfr(annees, function(an) {
+smr <- map_dfr(annees, function(an) {
   
   fixe_tbl <- tbl(conn, I(paste0("prd_vue_smr_", an, ".fixe")))
   
@@ -128,10 +73,10 @@ df <- map_dfr(annees, function(an) {
     transmute(
       finessgeo,
       ident_sej,
-      gn = substr(gme, 1, 4),
+      code = substr(gme, 1, 4),
       annee = !!an
     ) %>%
-    group_by(annee, finessgeo, gn) %>%
+    group_by(annee, finessgeo, code) %>%
     summarise(
       N_i = n_distinct(ident_sej),
       .groups = "drop"
@@ -140,27 +85,40 @@ df <- map_dfr(annees, function(an) {
 })
 
 ## Entropie
-entropie_smr <- df %>%
-  inner_join(ref_finessgeo_smr, by = c("finessgeo", "annee")) %>%
-  left_join(nb_gn_par_annee, by = "annee") %>%
+calcul_entropie <- function(df, champ, type_code) {
+  
+  df %>%
+  inner_join(ref_finessgeo, by = c("finessgeo", "annee")) %>%
+  left_join(
+    nb_code_par_annee %>% 
+    filter(
+      .data[[champ]] == "O",
+      type_code == !!type_code
+    ),
+    by = "annee"
+  ) %>%
   group_by(annee, finessgeo) %>%
   summarise(
     rs = rs,
     N_total = sum(N_i),
-    N_GHM = n_distinct(gn),
+    N_code = n_distinct(!!code),
     H = -sum((N_i / sum(N_i)) * log2(N_i / sum(N_i))),
-    H_max = log2(GN_TOTAL),
+    H_max = log2(N_TOTAL_CODE),
     H_norm = H / H_max,
     .groups = "drop"
   ) %>%
   distinct()
+  
+  return(df)
+
+}
 
 
 # Visualisation
-df_plot <- entropie_mco %>%
+df <- calcul_entropie(mco, "mco", "racine") %>%
   mutate(rs = factor(rs, levels = sort(unique(rs))))
 
-ggplot(df_plot, aes(x = annee, y = H_norm, color = rs)) +
+ggplot(df, aes(x = annee, y = H_norm, color = rs)) +
   geom_smooth(se = FALSE, method = "loess") +
   geom_point() +
   facet_wrap(~ reorder(rs, rs), scales = "free_y") +
