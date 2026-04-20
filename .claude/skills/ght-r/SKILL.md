@@ -16,6 +16,7 @@ le style dplyr/purrr du projet, avec demande de mapping à l'utilisateur.
 /ght-r <nom_indicateur>              # développe depuis le contexte courant (après /ght-dev)
 /ght-r <chemin_fiche.md>             # développe depuis un fichier de fiche explicite
 /ght-r <nom> --profil <chemin>       # avec un profil de mapping pré-enregistré
+/ght-r <nom> --profil <p1>,<p2>,... # plusieurs profils fusionnés (virgule, sans espace)
 /ght-r <nom> --pattern <type>        # force le pattern (taux, mesure_diversite, parcours_sequentiel, etc.)
 /ght-r <nom> --cat <N>               # force la catégorie (01 à 10)
 /ght-r <nom> --dry-run               # squelette avec placeholders, pas de mapping demandé
@@ -71,13 +72,13 @@ Format type :
 Pour finaliser le script, j'ai besoin du mapping suivant. Complète les
 cases `?` (si tu as déjà un profil mapping, colle-le simplement) :
 
-| Concept PMSI             | Table                     | Colonne      |
-|--------------------------|---------------------------|--------------|
-| Séjour (1 ligne)         | ? (ex: fixe)              | ? (ex: ident)|
-| GHM complet              | ?                         | ?            |
-| Diagnostic principal     | ?                         | ?            |
-| Actes CCAM               | ?                         | ?            |
-| ...                      |                           |              |
+| Concept PMSI             | Table                     | Colonne      | Clef(s) de jointure    |
+|--------------------------|---------------------------|--------------|------------------------|
+| Séjour (1 ligne)         | ? (ex: fixe)              | ? (ex: ident)| ? (ex: ident, anonyme) |
+| GHM complet              | ?                         | ?            | ?                      |
+| Diagnostic principal     | ?                         | ?            | ?                      |
+| Actes CCAM               | ?                         | ?            | ?                      |
+| ...                      |                           |              |                        |
 
 Et pour les paramètres méthodologiques :
 - Délai de ré-hospitalisation : 30, 60 ou 90 jours ? (fiche laisse ouvert)
@@ -175,6 +176,27 @@ Si l'utilisateur colle un bloc `# PROFIL DE BASE` au début de sa demande
 l'étape 3** et utiliser directement ce mapping. Ne poser que les
 questions méthodologiques s'il en reste.
 
+### Profils multiples
+
+Le flag `--profil` accepte plusieurs chemins séparés par des virgules
+(sans espace) :
+
+```
+/ght-r continuite_ght --profil profils/portail_atih_mco.md,profils/portail_atih_ssr.md
+```
+
+Règles de fusion :
+
+- Chaque vue est prise dans le profil qui la définit
+- Les sections "Pièges" et "Défauts recommandés" sont **concaténées**
+  (en dédupliquant les lignes identiques)
+- En cas de conflit (même nom de vue avec colonnes différentes dans
+  deux profils), signaler l'ambiguïté à l'utilisateur et demander
+  lequel garder
+
+Le glob (`profils/*`) n'est **pas** supporté : lister explicitement les
+profils à charger.
+
 ### Indicateur multi-champs
 
 Si l'indicateur traverse plusieurs champs PMSI (ex: continuité GHT
@@ -212,7 +234,8 @@ l'utilisateur qu'une viz alternative pourrait être pertinente.
 /ght-r indicateurs_pmsi/07_parcours_continuite/continuite_ght.md
 /ght-r iso_pth --cat 05 --write
 /ght-r concentration_ghm --pattern mesure_diversite --dry-run
-/ght-r readmission_j30 --profil profils/portail_atih.md
+/ght-r readmission_j30 --profil profils/portail_atih_mco.md
+/ght-r continuite_ght --profil profils/portail_atih_mco.md,profils/portail_atih_ssr.md
 ```
 
 ## Ce que la skill NE fait PAS
