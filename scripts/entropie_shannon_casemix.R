@@ -11,7 +11,10 @@ conn <- pRatihque::connection_database()
 
 # Référentiels
 ref_finessgeo <- tbl(conn, I("prd_vue_nomgen.finessgeo")) %>%
-  filter(substr(finessgeo, 1, 2) == dep) %>%
+  filter(
+    substr(finessgeo, 1, 2) == dep,
+    annee %in% annees
+  ) %>%
   select(annee, finessgeo, rs) %>%
   distinct() %>%
   collect() %>%
@@ -23,6 +26,7 @@ ref_finessgeo <- tbl(conn, I("prd_vue_nomgen.finessgeo")) %>%
 
 nb_code_par_annee <- tbl(conn, I("prd_vue_nompmsi.all_classif_pmsi")) %>%
   mutate(annee = year(date_deb)) %>%
+  filter(annee %in% annees) %>%
   distinct(annee, champ, type_code, code) %>%
   collect() %>%
   group_by(annee, champ, type_code) %>%
@@ -87,20 +91,17 @@ smr <- purrr::map_dfr(annees, function(an) {
 
 
 # Entropie
-calcul_entropie <- function(df, type_code) {
-  
-  df %>%
+calcul_entropie <- function(df, x) {
+    
+  df <- df %>%
   inner_join(ref_finessgeo, by = c("finessgeo", "annee")) %>%
   inner_join(
     nb_code_par_annee %>% 
-    filter(
-      type_code == type_code
-    ),
+    filter(type_code == x),
     by = "annee"
   ) %>%
-  group_by(annee, finessgeo) %>%
+  group_by(annee, finessgeo, rs) %>%
   summarise(
-    rs = rs,
     N_total = sum(N_i),
     N_code = n_distinct(code),
     H = -sum((N_i / sum(N_i)) * log2(N_i / sum(N_i))),
@@ -117,10 +118,12 @@ calcul_entropie <- function(df, type_code) {
 
 
 # Visualisation
+library(ggplot2)
+
 df <- calcul_entropie(mco, "racine")
 # df <- calcul_entropie(smr, "gn")
 
-ggplot2::ggplot(df, aes(x = annee, y = H_norm, color = rs)) +
+ggplot(df, aes(x = annee, y = H_norm, color = rs)) +
   geom_smooth(se = FALSE, method = "loess") +
   geom_point() +
   facet_wrap(~ reorder(rs, rs), scales = "free_y") +
