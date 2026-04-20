@@ -116,12 +116,13 @@ calcul_entropie <- function(df, x) {
 
 }
 
+df <- calcul_entropie(mco, "racine")
+# df <- calcul_entropie(smr, "gn")
+
 
 # Visualisation
 library(ggplot2)
 
-df <- calcul_entropie(mco, "racine")
-# df <- calcul_entropie(smr, "gn")
 
 ggplot(df, aes(x = annee, y = H_norm, color = rs)) +
   geom_smooth(se = FALSE, method = "loess") +
