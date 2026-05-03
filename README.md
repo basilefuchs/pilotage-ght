@@ -53,11 +53,14 @@ Développe un indicateur compressé en fiche markdown complète au standard du p
 ```
 
 ### `/ght-r <fiche>` — Implémentation R
-Génère le code R/dplyr exécutable (portail ATIH via Teradata/dbplyr, SNDS, datamarts locaux) à partir d'une fiche d'indicateur. Demande le mapping schéma → colonnes avant finalisation.
+Génère le code R/dplyr exécutable (portail ATIH via Teradata/dbplyr, SNDS, datamarts locaux) à partir d'une fiche d'indicateur. La skill détecte automatiquement un profil de mapping existant dans `profils/<base>_<champ>.md` ; à défaut elle demande le mapping schéma → colonnes, et **enrichit le profil partagé** en fin d'exécution pour que les prochaines invocations n'aient plus à le redemander.
 
 ```
 /ght-r indicateurs_pmsi/02_casemix_patientele/entropie_shannon_casemix.md
+/ght-r <fiche> --no-save-profil   # mapping ad-hoc, sans persistance
 ```
+
+Voir `profils/README.md` pour les détails du mécanisme.
 
 **Pipeline type** : `/ght-gen` → sélection d'un candidat → `/ght-dev` → `/ght-r` → script prêt à exécuter.
 

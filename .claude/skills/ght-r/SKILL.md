@@ -21,6 +21,7 @@ le style dplyr/purrr du projet, avec demande de mapping à l'utilisateur.
 /ght-r <nom> --cat <N>               # force la catégorie (01 à 10)
 /ght-r <nom> --dry-run               # squelette avec placeholders, pas de mapping demandé
 /ght-r <nom> --write                 # écrit le fichier dans scripts_r/ sans confirmation
+/ght-r <nom> --no-save-profil        # n'enrichit pas le profil partagé après la skill
 ```
 
 ## Principe directeur
@@ -61,7 +62,32 @@ Sélectionner le squelette approprié selon le type d'indicateur dans
 
 ### Étape 3 : Questions groupées à l'utilisateur
 
-**Sauf si `--dry-run` ou `--profil <chemin>` est fourni.**
+Décision de l'étape, dans l'ordre :
+
+- `--dry-run` → sauter intégralement l'étape (placeholders conservés).
+- `--profil <chemin>` (ou bloc `# PROFIL DE BASE` collé) → utiliser ce
+  mapping tel quel, sauter §3.0, ne poser que les questions
+  méthodologiques restantes en §3.1.
+- Sinon → §3.0 (détection automatique) puis §3.1 (questions restantes).
+
+#### 3.0 — Détection de profils existants
+
+Avant de poser les questions, lister `profils/*.md` à la racine du repo
+et identifier les profils couvrant le **champ PMSI** de la fiche
+(MCO/SSR/HAD/Psy, déduit du nom de fichier `<base>_<champ>.md`) :
+
+- **0 profil candidat** → poser les questions de mapping comme avant.
+- **1 profil candidat couvrant tous les concepts requis** → le charger
+  d'office, sauter le mapping, ne poser que les questions
+  méthodologiques. Annoncer dans le message : "Profil détecté et
+  utilisé : `profils/portail_atih_mco.md`".
+- **1 profil candidat couvrant partiellement** → l'utiliser pour les
+  concepts couverts, ne poser que les concepts manquants + questions
+  méthodologiques.
+- **Plusieurs candidats** → les lister dans le message et demander
+  lequel utiliser, en même temps que les questions méthodologiques.
+
+#### 3.1 — Format des questions
 
 Poser **toutes les questions nécessaires en un seul message**, sous forme
 d'un tableau de mapping à compléter. Ne pas fractionner en plusieurs tours.
@@ -105,6 +131,8 @@ Une fois la réponse reçue (ou immédiatement si `--dry-run`) :
 6. Terminer par un `write_csv()` commenté
 7. Si `--write`, écrire à `scripts_r/<NN>_<categorie>/<nom_snake_case>.R`
    sinon proposer l'emplacement à l'utilisateur
+8. **Persister le profil** (sauf si `--no-save-profil` ou `--dry-run`) :
+   voir section "Persistance des profils" ci-dessous.
 
 ## Règles qualité
 
@@ -169,13 +197,6 @@ Catégories (alignées sur `indicateurs_pmsi/`) :
 
 ## Gestion des cas particuliers
 
-### Profil de base déjà fourni
-
-Si l'utilisateur colle un bloc `# PROFIL DE BASE` au début de sa demande
-(généré par un appel précédent) ou passe `--profil <chemin>`, **sauter
-l'étape 3** et utiliser directement ce mapping. Ne poser que les
-questions méthodologiques s'il en reste.
-
 ### Profils multiples
 
 Le flag `--profil` accepte plusieurs chemins séparés par des virgules
@@ -216,12 +237,71 @@ Si la fiche n'a aucune dimension temporelle (ex: analyse cross-sectionnelle
 d'une seule année), omettre la visualisation timeseries et prévenir
 l'utilisateur qu'une viz alternative pourrait être pertinente.
 
+## Persistance des profils
+
+À la fin de l'étape 4, la skill persiste le mapping dans
+`profils/<base>_<champ>.md`.
+
+**Cas où la persistance est SKIPPÉE** :
+
+- `--no-save-profil` fourni
+- `--dry-run` (pas de mapping réel)
+- Mapping chargé via `--profil` **et** aucun concept ajouté ni modifié
+  pendant la session (le profil n'a rien à apprendre)
+- `--profil` charge plusieurs profils fusionnés (la rétro-écriture vers
+  les sources serait ambigüe)
+
+### Procédure
+
+1. **Identifier la base** : déduite de la connexion utilisée
+   (`pRatihque::connection_database()` → `portail_atih`). Si la base
+   n'est pas reconnue, demander à l'utilisateur le préfixe
+   (`datamart_chu_lille`, `snds`, etc.) — une seule fois.
+2. **Identifier le champ** : MCO, SSR, HAD, Psy. Déduit de la fiche
+   (catégorie + tables citées). Si ambigu, demander.
+3. **Charger le profil existant** `profils/<base>_<champ>.md` s'il
+   existe, sinon créer le squelette (voir
+   `references/profils_format.md`).
+4. **Fusionner** concept par concept :
+   - Concept absent → ajouter la ligne dans la bonne section de vue
+     (créer la section si nécessaire).
+   - Concept présent avec **même colonne** → ne rien faire.
+   - Concept présent avec **colonne différente** → **CONFLIT** :
+     afficher le diff `ancien → nouveau` à l'utilisateur, demander
+     "écraser ? [O/n]". En cas de refus, ne pas écrire.
+5. **Concaténer** les sections "Pièges" et "Défauts recommandés"
+   (dédupliquer les lignes identiques par hash de contenu).
+6. **Écrire** le fichier mis à jour.
+7. **Annoncer** dans la réponse finale, exemple :
+   `Profil mis à jour : profils/portail_atih_mco.md (+2 concepts dans
+   "fixe", +1 vue "finessgeo_umdudp")`.
+
+### Format du profil
+
+Voir `references/profils_format.md` pour le schéma exact (sections,
+libellés concepts normalisés, conventions). Exemple canonique :
+`profils/portail_atih_mco.md` du repo `pilotage-ght`.
+
+### Cas multi-champs
+
+Si l'indicateur traverse plusieurs champs (ex. continuité MCO→SSR), la
+skill enrichit chaque profil indépendamment :
+`profils/portail_atih_mco.md` ET `profils/portail_atih_ssr.md`.
+
+### Désactivation
+
+`--no-save-profil` désactive l'étape de persistance. Utile pour les
+mappings ad-hoc ou expérimentaux qu'on ne veut pas pousser dans le
+profil partagé.
+
 ## Fichiers de référence
 
 - `references/conventions_dplyr.md` — **toujours lire** : style de code,
   squelette de script, pattern `map_dfr`, viz timeseries
 - `references/patterns_methodologiques.md` — **toujours lire** : 8
   patterns d'indicateurs avec leur squelette R
+- `references/profils_format.md` — schéma des fichiers profil
+  `profils/<base>_<champ>.md`, conventions de libellés concept
 - `references/exemples/` — à consulter pour voir un script final type :
   - `taux_iso_pth.R` — pattern `taux` (catégorie 05)
   - `diversite_shannon.R` — pattern `mesure_diversite` (catégorie 02)

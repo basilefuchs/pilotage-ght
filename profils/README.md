@@ -1,14 +1,35 @@
 # profils/
 
-Profils de mapping concepts PMSI ↔ schéma réel, consommés par la skill
-`/ght-r` pour éviter de redemander le mapping à chaque génération.
+Profils de mapping concepts PMSI ↔ schéma réel, consommés **et
+enrichis** par la skill `/ght-r` pour éviter de redemander le mapping à
+chaque génération.
 
 ## Utilisation
 
-| Mode                     | Commande                                        |
-|--------------------------|-------------------------------------------------|
-| Via flag                 | `/ght-r <indicateur> --profil profils/<fichier>.md` |
-| Collé en tête de prompt  | Coller le contenu sous un bloc `# PROFIL DE BASE` |
+| Mode                          | Commande                                            |
+|-------------------------------|-----------------------------------------------------|
+| Détection auto (par défaut)   | `/ght-r <indicateur>` — la skill charge d'office le profil correspondant au champ PMSI |
+| Via flag explicite            | `/ght-r <indicateur> --profil profils/<fichier>.md` |
+| Plusieurs profils fusionnés   | `/ght-r <ind> --profil profils/p1.md,profils/p2.md` |
+| Collé en tête de prompt       | Coller le contenu sous un bloc `# PROFIL DE BASE`   |
+| Désactiver la sauvegarde      | Ajouter `--no-save-profil` pour mapping ad-hoc      |
+
+## Enrichissement automatique
+
+Quand `/ght-r` reçoit un mapping (saisi par l'utilisateur ou complété
+par lui en cas de profil partiel), la skill **persiste les nouveaux
+concepts** dans le profil correspondant en fin d'exécution :
+
+- Concept absent → ajouté silencieusement
+- Concept présent avec colonne identique → ignoré
+- Concept présent avec colonne différente → diff affiché, confirmation
+  utilisateur demandée avant écrasement
+- `--no-save-profil`, `--dry-run`, ou `--profil` inchangé → pas
+  d'écriture
+
+Voir `.claude/skills/ght-r/SKILL.md` (section "Persistance des profils")
+pour la procédure complète et `.claude/skills/ght-r/references/profils_format.md`
+pour le schéma exact d'un fichier profil.
 
 ## Convention de nommage
 

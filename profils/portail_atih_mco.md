@@ -84,6 +84,38 @@
 | Id séjour (clé)                   | `ident`  |
 | IPP chaîné inter-séjours          | `ipp_c`  |
 
+## `nom_gen.pop_com_sex_ag` — population INSEE par commune × âge × sexe (annuel)
+
+| Concept                            | Colonne     |
+|------------------------------------|-------------|
+| Code commune INSEE                 | `code_com`  |
+| Année du recensement               | `annee_pop` |
+| Âge (années entières)              | `age`       |
+| Sexe (1 = M, 2 = F)                | `sexe`      |
+| Effectif de population             | `pop`       |
+
+## `nom_gen.corresp_code_com_geo_ts_pop` — correspondance code commune INSEE ↔ code géographique PMSI
+
+| Concept                            | Colonne     |
+|------------------------------------|-------------|
+| Code commune INSEE                 | `code_com`  |
+| Code géographique PMSI             | `code_geo`  |
+
+Jointure : `code_com` côté INSEE, `code_geo` à apparier sur `fixe.codegeo`.
+Permet d'agréger la population INSEE au niveau `codegeo` PMSI (utile pour
+TRHS, taux de recours, zones d'attraction).
+
+## `prd_vue_nomgen.finessgeo` — référentiel (annuel, hors schéma MCO)
+
+| Concept                                   | Colonne        |
+|-------------------------------------------|----------------|
+| FINESS géographique (clé)                 | `finessgeo`    |
+| Raison sociale établissement              | `rs`           |
+| Année                                     | `annee`        |
+
+Jointure : `(annee, finessgeo)`. Filtre département recommandé :
+`substr(finessgeo, 1, 2) == dep`.
+
 ## Pièges
 
 | Piège                                        | Traitement                             |
