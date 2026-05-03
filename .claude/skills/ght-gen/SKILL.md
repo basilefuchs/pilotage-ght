@@ -16,15 +16,41 @@ Phase 1 du pipeline — exploration token-efficiente. Produit une liste d'indica
 /ght-gen <domaine> --n <nb>            # nombre de candidats (défaut: 5)
 /ght-gen <domaine> --lvl <niveau>      # granularité cible: rsa, ghm, cmd, um, finess, temps
 /ght-gen <domaine> --excl              # exclure les indicateurs déjà présents dans indicateurs_pmsi/
+/ght-gen <domaine> --no-web            # désactive la veille (mode hors-ligne)
+/ght-gen <domaine> --since <YYYY>      # restreint la veille aux publications depuis cette année (défaut: année courante - 2)
 ```
+
+## Veille préalable (obligatoire sauf `--no-web`)
+
+Avant toute génération, exécuter une veille ciblée et produire une synthèse de **3 à 8 puces horodatées et sourcées** (URL ou PMID), placée juste avant la liste des candidats. Si rien de pertinent n'émerge : écrire explicitement « Veille : aucune nouveauté pertinente sur <domaine> ».
+
+**Sources officielles** — via `WebSearch` puis `WebFetch` ciblé :
+- ATIH — `atih.sante.fr` (notices techniques PMSI, guides méthodologiques, campagne tarifaire en cours)
+- HAS — `has-sante.fr` (IPAQSS, indicateurs qualité-sécurité)
+- DGOS / Ministère santé — `sante.gouv.fr` (instructions, circulaires GHT)
+- IRDES — `irdes.fr` (méthodes, working papers)
+- DREES — `drees.solidarites-sante.gouv.fr` (panoramas, études)
+- ScanSanté — `scansante.fr` (nouveaux restituts)
+
+**PubMed** — via le serveur MCP `claude.ai PubMed` :
+- `mcp__claude_ai_PubMed__search_articles` avec mots-clés du domaine + filtres `("hospital indicator" OR "case-mix" OR "PMSI" OR "DRG" OR "quality measure")`, fenêtre par défaut = 24 derniers mois (paramétrable via `--since`)
+- `mcp__claude_ai_PubMed__get_article_metadata` pour confirmer titre/année/PMID avant citation
+
+**Cache de session** : ne pas relancer la veille si un appel `/ght-gen` sur le même `<domaine>` a déjà eu lieu dans la session courante — réutiliser la synthèse existante.
+
+**Règle anti-hallucination** : aucune URL ni PMID ne doit être cité sans avoir été obtenu via `WebFetch`/`WebSearch`/MCP PubMed dans la session. Pas de citation « de tête ».
 
 ## Format de sortie
 
 Chaque indicateur sur une ligne numérotée :
 
 ```
-N. [i:<nom_snake_case>] [d:<définition 1 phrase>] [c:<formule compacte>] [u:<usage clé>] [l:<limite principale>] [t:<auteur année>]
+N. [i:<nom_snake_case>] [d:<définition 1 phrase>] [c:<formule compacte>] [u:<usage clé>] [l:<limite principale>] [t:<auteur année>] [s:<URL courte | PMID:xxxxx | interne>]
 ```
+
+Champ `s:` :
+- `s:interne` → candidat issu des connaissances modèle uniquement
+- `s:<url>` ou `s:PMID:12345` → candidat dérivé/inspiré d'une source identifiée pendant la veille
 
 ## Règles de génération
 
@@ -42,10 +68,13 @@ N. [i:<nom_snake_case>] [d:<définition 1 phrase>] [c:<formule compacte>] [u:<us
 - Indicateur non calculable depuis PMSI/SNDS → rejeté
 - Formule vague ou non opérationnelle → rejeté
 - Doublon conceptuel avec existant → rejeté
+- Citation d'une source non vérifiée (URL ou PMID inventé) → rejeté
+- Veille omise sans flag `--no-web` → rejeté
 
 ## Workflow recommandé
 
-1. `/ght-gen <domaine>` → liste de candidats numérotés
+0. Veille web (sources officielles + PubMed) → synthèse 3–8 puces sourcées
+1. `/ght-gen <domaine>` → liste de candidats numérotés (avec champ `s:`)
 2. Sélectionner par numéro(s) les candidats retenus
 3. `/ght-dev <nom_indicateur>` → développement complet en markdown
 
