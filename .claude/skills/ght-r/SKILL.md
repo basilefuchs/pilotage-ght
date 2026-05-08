@@ -44,6 +44,12 @@ Lire la fiche fournie et en extraire :
 - **Paramètres ouverts** laissés au calculateur (délais, seuils, options)
 - **Formule mathématique** exacte
 - **Catégorie** (01 à 10) pour le chemin de sortie, si non forcée par `--cat`
+- **Helpers candidats** : lire `helpers_r/README.md` (s'il existe) et
+  matcher les mots-clés de la fiche (« Charlson », « Elixhauser »,
+  « comorbidités OECD », « chirurgie programmée »…) contre la colonne
+  *Rôle* du tableau d'index. Retenir les helpers applicables pour
+  l'étape 2 (insertion) et l'étape 3 (lever ambiguïté si plusieurs
+  helpers couvrent le même concept, ex: Charlson Quan vs Deyo).
 
 Si un point est ambigu dans la fiche (ex: "dans les 30, 60 ou 90 jours"),
 le marquer comme **paramètre ouvert** à poser à l'utilisateur à l'étape 3.
@@ -59,6 +65,20 @@ Produire un script R suivant le squelette de
 
 Sélectionner le squelette approprié selon le type d'indicateur dans
 `references/patterns_methodologiques.md` et l'adapter à la fiche.
+
+**Helpers partagés** : pour chaque helper retenu en étape 1, insérer en
+tête de script (après les `library()`) :
+
+```r
+source("helpers_r/<fichier>.R")
+```
+
+et **ne pas inliner** le calcul correspondant dans le script. Appeler la
+fonction du helper là où le placeholder `<TODO ...>` aurait été inséré.
+Si un helper applicable n'existe pas encore (concept présent dans la
+fiche mais absent de `helpers_r/README.md`), conserver le `<TODO>` et le
+signaler en fin de réponse comme **helper à créer** (ne pas inliner non
+plus — le `<TODO>` rend la dette visible).
 
 ### Étape 3 : Questions groupées à l'utilisateur
 
@@ -302,6 +322,8 @@ profil partagé.
   patterns d'indicateurs avec leur squelette R
 - `references/profils_format.md` — schéma des fichiers profil
   `profils/<base>_<champ>.md`, conventions de libellés concept
+- `helpers_r/README.md` — **lire à l'étape 1** : index des helpers
+  partagés (Charlson, Elixhauser, etc.) à `source()` plutôt qu'inliner
 - `references/exemples/` — à consulter pour voir un script final type :
   - `taux_iso_pth.R` — pattern `taux` (catégorie 05)
   - `diversite_shannon.R` — pattern `mesure_diversite` (catégorie 02)

@@ -57,10 +57,11 @@
 
 ## `acte` — N / séjour (~2.6x)
 
-| Concept              | Colonne  |
-|----------------------|----------|
-| Id séjour (clé)      | `ident`  |
-| Code CCAM (7 car)    | `acte`   |
+| Concept              | Colonne             |
+|----------------------|---------------------|
+| Id séjour (clé)      | `ident`             |
+| Code CCAM (7 car)    | `acte`              |
+| Délai depuis date_entree (jours, int) | `acte_delai` |
 
 ## `um` — N / séjour (~1.1x)
 
