@@ -11,7 +11,7 @@
 # Connexion  : pRatihque::connection_database()
 #
 # Séjour (1 ligne)        : fixe.ident
-# Patient chaîné          : id_hospit_ipp.ipp_c
+# Patient chaîné          : fixe.anonyme
 # GHM (6 car) → CMD       : substr(fixe.ghm2, 1, 2)
 # FINESS géo. (DP)        : finessgeo_umdudp.finessgeodp
 # Année                   : fixe.annee
@@ -39,7 +39,7 @@ decomp_cmd <- TRUE             # décomposition α par CMD (en plus de α global
 distribution <- purrr::map_dfr(annees, function(an) {
 
   tbl_fixe   <- tbl(conn, I(paste0("prd_vue_mco_", an, ".fixe")))
-  tbl_ipp    <- tbl(conn, I(paste0("prd_vue_mco_", an, ".id_hospit_ipp")))
+  tbl_ipp    <- tbl(conn, I(paste0("prd_vue_mco_", an, ".fixe")))
   tbl_finess <- tbl(conn, I(paste0("prd_vue_mco_", an, ".finessgeo_umdudp")))
 
   base <- tbl_fixe %>%
@@ -52,7 +52,7 @@ distribution <- purrr::map_dfr(annees, function(an) {
     { if (exclure_cmd28) filter(., cmd != "28") else . } %>%
     { if (exclure_cmd90) filter(., cmd != "90") else . } %>%
     inner_join(
-      tbl_ipp %>% select(ident, ipp_c),
+      tbl_ipp %>% select(ident, anonyme),
       by = "ident"
     ) %>%
     inner_join(
@@ -62,7 +62,7 @@ distribution <- purrr::map_dfr(annees, function(an) {
 
   # Comptage global (patient × établissement) — pour α global
   global <- base %>%
-    group_by(finessgeodp, ipp_c) %>%
+    group_by(finessgeodp, anonyme) %>%
     summarise(N_i = n_distinct(ident), .groups = "drop") %>%
     mutate(annee = an, cmd = NA_character_) %>%
     collect()
@@ -70,7 +70,7 @@ distribution <- purrr::map_dfr(annees, function(an) {
   if (decomp_cmd) {
     # Comptage (patient × établissement × CMD) — pour α par CMD
     par_cmd <- base %>%
-      group_by(finessgeodp, ipp_c, cmd) %>%
+      group_by(finessgeodp, anonyme, cmd) %>%
       summarise(N_i = n_distinct(ident), .groups = "drop") %>%
       mutate(annee = an) %>%
       collect()
