@@ -1,6 +1,6 @@
 # Base de connaissances — Indicateurs PMSI/GHT
 
-Base de référence de 185 indicateurs de pilotage hospitalier pour les GHT, calculables depuis le PMSI MCO/SSR/PSY et le SNDS.
+Base de référence d'indicateurs de pilotage hospitalier pour les GHT, calculables depuis le PMSI MCO/SSR/PSY et le SNDS.
 
 ## Structure
 

@@ -2,7 +2,7 @@
 # Indicateur : Taux de Recours Hospitalier Standardisé sur l'âge et le sexe (TRHS)
 # Source     : DREES/SAE, ATIH, IRDES (méthodologie standardisation indirecte)
 # Pattern    : §2 — ratio_standardise (Obs / Att, IC95 Ulm 1990)
-# Fiche      : indicateurs_pmsi/01_activite_production/taux_recours_hospitalier_standardise_age_sexe.md
+# Fiche      : indicateurs_pmsi/09_territoire_attractivite/taux_recours_hospitalier_standardise_age_sexe.md
 # ==============================================================================
 
 # ==== PROFIL DE BASE (mapping utilisé) ====
