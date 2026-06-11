@@ -160,6 +160,6 @@ Indice de convergence vers les pairs (ICP) :
 - [ATIH — PMSI MCO open data national : statistiques par établissement, GHM et CMD](https://www.atih.sante.fr/open-pmsi)
 - [Goldstein H., Spiegelhalter D.J. — League tables and their limitations: statistical issues in comparisons of institutional performance, Journal of the Royal Statistical Society A, 1996](https://doi.org/10.2307/2983325)
 - [Iezzoni L.I. — Risk Adjustment for Measuring Health Care Outcomes, 4th ed., Health Administration Press 2012 — fondements du benchmarking en données administratives hospitalières]
-- [Normand S.L., Shahian D.M. — Statistical and clinical aspects of hospital outcomes profiling, Statistical Science, 2007](https://doi.org/10.1214/07-STS232)
+- [Normand S.L., Shahian D.M. — Statistical and clinical aspects of hospital outcomes profiling, Statistical Science, 2007](https://doi.org/10.1214/088342307000000096)
 - [ANAP — Tableau de bord de pilotage médico-économique des établissements de santé — méthodologie de stratification des pairs](https://www.anap.fr/s-informer/publications/tableau-de-bord-de-pilotage-medico-economique)
 - [ATIH — Guide méthodologique PMSI MCO (version en vigueur) — règles de production et de comptage des RSA](https://www.atih.sante.fr/pmsi-mco)

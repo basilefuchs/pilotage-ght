@@ -119,6 +119,6 @@ IST = T½_observé / T½_référence_national_GHM
 - [Rutherford E., Soddy F., *The Cause and Nature of Radioactivity*, 1902](https://doi.org/10.1080/14786440209462856) — article fondateur de la loi de décroissance radioactive
 - [HAS — Taux de réadmission non programmée à 30 jours : indicateur de qualité](https://www.has-sante.fr/jcms/c_1249816/fr/indicateurs-de-qualite-et-de-securite-des-soins)
 - [ATIH — Indicateurs de réadmission par GHM, ScanSanté](https://www.scansante.fr/)
-- [Krumholz H.M. et al., *Patterns of hospital performance in acute myocardial infarction and heart failure 30-day mortality and readmission*, Circ Cardiovasc Qual Outcomes, 2009](https://doi.org/10.1161/CIRCOUTCOMES.109.871186)
+- [Krumholz H.M. et al., *Patterns of hospital performance in acute myocardial infarction and heart failure 30-day mortality and readmission*, Circ Cardiovasc Qual Outcomes, 2009](https://doi.org/10.1161/CIRCOUTCOMES.109.883256)
 - [SNDS — Chaînage longitudinal post-sortie](https://www.snds.gouv.fr/)
 - [Kansagara D. et al., *Risk prediction models for hospital readmission: a systematic review*, JAMA, 2011](https://doi.org/10.1001/jama.2011.1515)

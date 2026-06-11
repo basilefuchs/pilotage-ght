@@ -144,7 +144,7 @@ Matrice de substitution fréquentielle :
 
 - [Levenshtein V.I. — Binary codes capable of correcting deletions, insertions, and reversals, Soviet Physics Doklady 1966 : article fondateur de la distance d'édition]
 - [Needleman S.B., Wunsch C.D. — A general method applicable to the search for similarities in the amino acid sequence of two proteins, Journal of Molecular Biology 1970](https://doi.org/10.1016/0022-2836(70)90057-4) — généralisation en bioinformatique (alignement de séquences ADN)
-- [Huang Z. et al. — Similarity measure between patient traces for clinical pathway analysis: problem, methods, and challenges, IEEE J Biomed Health Inform 2014](https://doi.org/10.1109/JBHI.2013.2274383) — application clinique de la distance d'édition aux parcours de soins
+- [Huang Z. et al. — Similarity measure between patient traces for clinical pathway analysis: problem, methods, and challenges, IEEE J Biomed Health Inform 2014](https://doi.org/10.1109/JBHI.2013.2274281) — application clinique de la distance d'édition aux parcours de soins
 - [Bouarfa L., Dankelman J. — Workflow mining and outlier detection from clinical activity logs, J Biomed Inform 2012](https://doi.org/10.1016/j.jbi.2011.12.003)
 - [INCa — Algorithmes de prise en charge par pathologie (cancer sein, colorectal, poumon)](https://www.e-cancer.fr/)
 - [HAS — Parcours de soins des maladies chroniques : algorithmes décisionnels par ALD](https://www.has-sante.fr/)

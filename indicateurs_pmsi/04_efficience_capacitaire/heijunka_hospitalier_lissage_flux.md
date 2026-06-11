@@ -118,6 +118,6 @@ Carte de chaleur hebdomadaire-annuelle :
 - [Ohno T. — Toyota Production System: Beyond Large-Scale Production, Productivity Press 1988 : fondements du heijunka et du TPS]
 - [Womack J.P., Jones D.T. — Lean Thinking: Banish Waste and Create Wealth in Your Corporation, Free Press 1996 : application du lean aux processus de service]
 - [Litvak E., Long M.C. — Cost and quality under managed care: irreconcilable differences?, Am J Manag Care 2000 : premiers travaux sur le lissage des admissions hospitalières]
-- [Litvak E. et al. — Managing unnecessary variability in patient demand to reduce nursing stress and improve patient safety, Jt Comm J Qual Patient Saf 2005](https://doi.org/10.1016/S1553-7250(05)31031-8)
+- [Litvak E. et al. — Managing unnecessary variability in patient demand to reduce nursing stress and improve patient safety, Jt Comm J Qual Patient Saf 2005](https://doi.org/10.1016/S1553-7250(05)31044-0)
 - [ANAP — Lean management en établissements de santé : retours d'expérience (2014)](https://www.anap.fr/)
 - [HAS — Amélioration de la gestion des lits et des flux de patients : guide pratique (2019)](https://www.has-sante.fr/)

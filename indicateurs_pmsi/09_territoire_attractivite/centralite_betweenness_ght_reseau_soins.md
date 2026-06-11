@@ -117,5 +117,5 @@ Détection des "courtiers alternatifs" (competing hubs) :
 - [Freeman L.C. — A set of measures of centrality based on betweenness, Sociometry 1977](https://doi.org/10.2307/3033543)
 - [Brandes U. — A faster algorithm for betweenness centrality, Journal of Mathematical Sociology 2001](https://doi.org/10.1080/0022250X.2001.9990249)
 - [Barnett M.L. et al. — Mapping physician networks with self-reported and administrative data, Health Services Research 2011](https://doi.org/10.1111/j.1475-6773.2011.01262.x)
-- [Landon B.E. et al. — Using administrative data to identify naturally occurring networks of physicians, Med Care 2012](https://doi.org/10.1097/MLR.0b013e3182374834)
+- [Landon B.E. et al. — Using administrative data to identify naturally occurring networks of physicians, Med Care 2012](https://doi.org/10.1097/mlr.0b013e3182977991)
 - [Health Data Hub — Documentation SNDS : identifiants producteurs de soins (RPPS, FINESS) dans le DCIR](https://www.health-data-hub.fr/)

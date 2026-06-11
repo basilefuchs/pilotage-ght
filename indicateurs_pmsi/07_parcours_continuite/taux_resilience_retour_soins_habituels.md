@@ -116,7 +116,7 @@ Population : séjours MCO index avec SOR_DAT dans la période d'analyse
 
 - [Holling C.S. — Resilience and stability of ecological systems, Annual Review of Ecology and Systematics 1973 : fondements théoriques de la résilience comme capacité de retour à l'équilibre après perturbation](https://doi.org/10.1146/annurev.es.04.110173.000245)
 - [Bähler C. et al. — Multimorbidity, health care utilization and costs in an elderly community-dwelling population: a claims-based study, BMC Health Services Research 2015 : patterns de recours des populations multimorbides en ambulatoire](https://doi.org/10.1186/s12913-015-0698-2)
-- [van Walraven C. et al. — Continuity of care and patient outcomes after hospital discharge, Journal of General Internal Medicine 2004 : lien entre continuité du suivi post-hospitalier et réhospitalisations](https://doi.org/10.1111/j.1525-1497.2004.30511.x)
+- [van Walraven C. et al. — Continuity of care and patient outcomes after hospital discharge, Journal of General Internal Medicine 2004 : lien entre continuité du suivi post-hospitalier et réhospitalisations](https://doi.org/10.1111/j.1525-1497.2004.30082.x)
 - [Kripalani S. et al. — Deficits in communication and information transfer between hospital-based and primary care physicians, JAMA 2007 : déficits de coordination à la sortie d'hôpital et leurs conséquences](https://doi.org/10.1001/jama.297.8.831)
 - [Tuppin P. et al. — Value of a national administrative database to guide public decisions: From the SNIIRAM to the SNDS in France, Revue d'Épidémiologie et de Santé Publique 2017](https://doi.org/10.1016/j.respe.2017.05.004)
 - [HAS — Outils pour la sortie du patient hospitalisé (guide méthodologique PRADO, protocoles de liaison)](https://www.has-sante.fr/)

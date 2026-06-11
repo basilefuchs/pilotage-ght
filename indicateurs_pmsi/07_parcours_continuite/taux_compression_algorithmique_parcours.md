@@ -138,5 +138,5 @@ Corrélation TCAP avec les indicateurs de qualité :
 - [Kolmogorov A.N. — Three approaches to the quantitative definition of information, Problems of Information Transmission 1965 : définition de la complexité algorithmique]
 - [Ziv J., Lempel A. — A universal algorithm for sequential data compression (LZ77), IEEE Transactions on Information Theory 1977](https://doi.org/10.1109/TIT.1977.1055714) — algorithme de base de zlib
 - [Cilibrasi R., Vitányi P. — Clustering by compression, IEEE Transactions on Information Theory 2005](https://doi.org/10.1109/TIT.2005.844059) — classification par compression et distance de Kolmogorov normalisée
-- [Huang Z. et al. — Similarity measure between patient traces for clinical pathway analysis, IEEE J Biomed Health Inform 2014](https://doi.org/10.1109/JBHI.2013.2274383)
+- [Huang Z. et al. — Similarity measure between patient traces for clinical pathway analysis, IEEE J Biomed Health Inform 2014](https://doi.org/10.1109/JBHI.2013.2274281)
 - [HAS — Programmes de coordination des soins pour les patients chroniques complexes (2021)](https://www.has-sante.fr/)
