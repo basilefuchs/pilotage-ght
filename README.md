@@ -6,17 +6,19 @@ Base de référence d'indicateurs de pilotage hospitalier pour les GHT, calculab
 
 ```
 indicateurs_pmsi/
-├── 01_activite_production/       (27 indicateurs)
-├── 02_casemix_patientele/        (22 indicateurs)
-├── 03_vulnerabilite_sociale/     (7 indicateurs)
-├── 04_efficience_capacitaire/    (23 indicateurs)
-├── 05_qualite_securite/          (24 indicateurs)
-├── 06_pertinence_pratiques/      (17 indicateurs)
-├── 07_parcours_continuite/       (26 indicateurs)
+├── 01_activite_production/       (29 indicateurs)
+├── 02_casemix_patientele/        (27 indicateurs)
+├── 03_vulnerabilite_sociale/     (17 indicateurs)
+├── 04_efficience_capacitaire/    (24 indicateurs)
+├── 05_qualite_securite/          (40 indicateurs)
+├── 06_pertinence_pratiques/      (19 indicateurs)
+├── 07_parcours_continuite/       (42 indicateurs)
 ├── 08_readmissions_evitables/    (11 indicateurs)
-├── 09_territoire_attractivite/   (20 indicateurs)
-└── 10_financement_valorisation/  (8 indicateurs)
+├── 09_territoire_attractivite/   (30 indicateurs)
+└── 10_financement_valorisation/  (9 indicateurs)
 ```
+
+Total : **248 fiches**, dont 20 implémentées en script R (`scripts_r/`).
 
 Chaque fiche documente : définition, formule de calcul, sources de données, exemple de valeurs, limites et références.
 
@@ -27,7 +29,7 @@ Une page de recherche statique est publiée depuis `docs/` :
 
 Elle permet de chercher parmi les 248 fiches par mots-clés, filtrer par catégorie, et consulter le script R associé quand il existe.
 
-Après ajout/modification de fiches, régénérer l'index :
+Après ajout/modification de fiches, régénérer l'index de recherche. Le plus simple est la skill **`/ght-page-refresh`** (cf. plus bas) : elle relance `build_docs.py`, affiche un diff lisible (fiches ajoutées/retirées, scripts R liés) et **ne commit ni ne push rien**. À défaut, directement :
 
 ```
 python3 build_docs.py
@@ -57,7 +59,7 @@ Une trentaine d'indicateurs adaptent des cadres théoriques d'autres disciplines
 
 ## Utilisation des skills
 
-Trois skills Claude Code permettent de générer et implémenter de nouveaux indicateurs selon un pipeline en 3 phases :
+Des skills Claude Code permettent de générer et implémenter de nouveaux indicateurs selon un pipeline en 3 phases, puis de tenir la page de recherche à jour :
 
 ### `/ght-gen <domaine>` — Exploration
 Génère une liste compressée de candidats d'indicateurs au format `[i,d,c,u,l,t]` (identifiant, description, calcul, unité, limites, thématique). Optimisé pour explorer rapidement un domaine sans consommer trop de tokens.
@@ -83,7 +85,14 @@ Génère le code R/dplyr exécutable (portail ATIH via Teradata/dbplyr, SNDS, da
 
 Voir `profils/README.md` pour les détails du mécanisme.
 
-**Pipeline type** : `/ght-gen` → sélection d'un candidat → `/ght-dev` → `/ght-r` → script prêt à exécuter.
+### `/ght-page-refresh` — Mise à jour de la page
+Régénère l'index de recherche de la GitHub Page (`docs/data/index.json`) à partir des fiches `indicateurs_pmsi/` et des scripts `scripts_r/` courants, puis affiche un diff lisible (nouvelles fiches, fiches retirées, scripts R ajoutés). Sans elle, la page web continue de servir l'ancien index après l'ajout d'une fiche. La skill **ne commit ni ne push jamais** : elle ne touche qu'à `docs/data/index.json` et rappelle les commandes de publication à lancer soi-même. Proposée spontanément en fin de `/ght-dev` et `/ght-r`.
+
+```
+/ght-page-refresh
+```
+
+**Pipeline type** : `/ght-gen` → sélection d'un candidat → `/ght-dev` → `/ght-r` → script prêt à exécuter → `/ght-page-refresh` pour publier dans la recherche.
 
 ## Sources de données
 
