@@ -46,12 +46,14 @@ python3 build_docs.py
 
 Si le script échoue (fiche au format cassé, encodage), **ne pas insister** : remonter l'erreur exacte à l'utilisateur, suggérer la fiche probablement fautive (la dernière modifiée — `git status` la révèlera), et s'arrêter.
 
+Le build peut imprimer des avertissements `⚠ <fiche> modifiée le … après vérification du … — pastille retirée` : une fiche portant le flag `<!-- verifie: AAAA-MM-JJ nom -->` a été commitée après sa date de vérification, sa pastille « vérifié » est donc invalidée. Relayer ces avertissements tels quels à l'utilisateur dans le rapport (étape 4) — c'est à lui de re-relire la fiche et de mettre à jour la date du flag.
+
 ### 4. Calculer et présenter le diff
 
 Comparer l'avant et l'après. Présenter à l'utilisateur, en français, dans ce format :
 
 ```
-Index régénéré : N fiches (Δ +x / -y), M avec script R (Δ +a / -b)
+Index régénéré : N fiches (Δ +x / -y), M avec script R (Δ +a / -b), V vérifiées (Δ +c / -d)
 
 Nouvelles fiches (+x) :
   - indicateurs_pmsi/<cat>/<nom>   [+R si script R associé]

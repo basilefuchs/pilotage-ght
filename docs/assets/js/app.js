@@ -101,12 +101,17 @@
         <div class="result-meta">
           <span class="cat"></span>
           ${e.path_r ? '<span class="badge-r">R</span>' : ""}
+          ${e.verified ? '<span class="badge-verified">✓</span>' : ""}
         </div>
         <div class="result-excerpt"></div>
       `;
       div.querySelector(".result-title").textContent = e.title;
       div.querySelector(".cat").textContent = e.category_label;
       div.querySelector(".result-excerpt").textContent = e.excerpt;
+      if (e.verified) {
+        div.querySelector(".badge-verified").title =
+          `Vérifié le ${e.verified.date}` + (e.verified.by ? ` par ${e.verified.by}` : "");
+      }
       div.addEventListener("click", () => selectEntry(e.id));
       frag.appendChild(div);
     });

@@ -19,6 +19,8 @@ Chaque indicateur suit un format standard :
 - Code en anglais si nécessaire
 - Innovation = adaptation de cadres scientifiques existants
 - Données uniquement PMSI / SNDS / référentiels officiels
+- Vérification humaine d'une fiche : flag `<!-- verifie: AAAA-MM-JJ nom -->` en première ligne, ajouté uniquement par l'utilisateur après relecture → pastille ✓ sur la GitHub Page
+- La pastille est invalidée automatiquement par `build_docs.py` si la fiche est commitée après la date du flag
 
 ## Pipeline de génération
 

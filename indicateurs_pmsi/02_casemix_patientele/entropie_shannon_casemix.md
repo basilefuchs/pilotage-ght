@@ -1,3 +1,4 @@
+<!-- verifie: 2026-06-11 fuchs -->
 # Entropie de Shannon du Casemix
 
 ## Définition
