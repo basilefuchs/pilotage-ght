@@ -35,4 +35,4 @@ Nombre de GHM rares/complexes = Somme des séjours pour les GHM identifiés comm
 
 ## Références
 - [ATIH - GHM Rares](https://www.atih.sante.fr/)
-- [Filières Maladies Rares](https://www.filières-maladiesrares.fr/)
+- [Filières Maladies Rares](https://www.filieresmaladiesrares.fr/)

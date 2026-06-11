@@ -143,4 +143,4 @@ Recette marginale des séjours supra-borne :
 - [ATIH — Manuel des GHMs : méthodologie de calcul des bornes de durée de séjour à partir des données nationales](https://www.atih.sante.fr/)
 - [Ministère de la Santé — Arrêtés tarifaires annuels (Journal Officiel) : grilles tarifaires GHS avec bornes haute et basse]
 - [DREES — Études sur la durée de séjour hospitalier et ses déterminants : variabilité inter-établissements et impact des organisations de sortie]
-- [Busse R. et al. — Diagnosis-related groups in Europe: moving towards transparency, efficiency and quality in hospitals, WHO 2011 : comparaison internationale des systèmes de corridor de durée dans les DRG](https://www.euro.who.int/en/publications/)
+- [Busse R. et al. — Diagnosis-related groups in Europe: moving towards transparency, efficiency and quality in hospitals, WHO 2011 : comparaison internationale des systèmes de corridor de durée dans les DRG](https://eurohealthobservatory.who.int/publications/m/diagnosis-related-groups-in-europe)

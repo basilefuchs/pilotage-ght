@@ -104,7 +104,7 @@ Indice de fidélisation ALD :
 
 - [CNAM — Rapport "Charges et produits" (annuel) — Statistiques des affections de longue durée](https://www.assurance-maladie.ameli.fr/etudes-et-donnees)
 - [DREES-CNAM — Cartographie des pathologies et des dépenses — Méthodes et résultats, 2019](https://www.assurance-maladie.ameli.fr/etudes-et-donnees/par-theme/pathologies/cartographie-assurance-maladie)
-- [Nolte E., McKee M. — Caring for people with chronic conditions: a health system perspective, Open University Press / WHO 2008](https://www.euro.who.int/en/publications/abstracts/caring-for-people-with-chronic-conditions)
+- [Nolte E., McKee M. — Caring for people with chronic conditions: a health system perspective, Open University Press / WHO 2008](https://eurohealthobservatory.who.int/publications/m/caring-for-people-with-chronic-conditions-a-health-system-perspective)
 - [IRDES — Parcours de soins des patients en affection de longue durée, Questions d'économie de la santé, 2017](https://www.irdes.fr/)
 - [HAS — Liste des ALD et critères médicaux d'admission (30 ALD + ALD hors liste)](https://www.has-sante.fr/jcms/c_1752130/fr/les-affections-de-longue-duree)
 - [ATIH — Guide méthodologique de production des données du PMSI MCO (version en vigueur)](https://www.atih.sante.fr/)
