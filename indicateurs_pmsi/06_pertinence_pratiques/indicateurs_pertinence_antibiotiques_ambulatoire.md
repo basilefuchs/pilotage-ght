@@ -62,6 +62,6 @@ Les antibiotiques sont identifiés dans ER_PHA_F par leur code CIP13, rattaché 
 
 ## Références
 - [Thilly N. et al. — Euro Surveillance 2020 : Proxy indicators of antibiotic appropriateness from French claims data](https://doi.org/10.2807/1560-7917.ES.2020.25.27.1900468)
-- [OMS — Classification AWaRe des antibiotiques](https://www.who.int/publications/i/item/2022-aware-classification)
+- [OMS — Classification AWaRe des antibiotiques](https://www.who.int/publications/i/item/WHO-MHP-HPS-EML-2023.04)
 - [ANSM — Consommation d'antibiotiques et résistances aux antibiotiques en France](https://www.ansm.sante.fr/)
 - [SNDS — Documentation de la table ER_PHA_F (DCIR)](https://www.snds.gouv.fr/)

@@ -79,7 +79,7 @@ Coût marginal de la comorbidité :
 - La comparaison du coût de parcours entre territoires est biaisée par les différences de démographie, d'épidémiologie et d'offre de soins — une standardisation rigoureuse est indispensable avant toute interprétation.
 
 ## Références
-- [CNAM - Cartographie des pathologies et des dépenses](https://www.ameli.fr/l-assurance-maladie/statistiques-et-publications/etudes-en-sante-publique/cartographie-des-pathologies-et-des-depenses/)
+- [CNAM - Cartographie des pathologies et des dépenses](https://www.assurance-maladie.ameli.fr/etudes-et-donnees/par-theme/pathologies/cartographie-assurance-maladie)
 - [SNDS - Système National des Données de Santé](https://www.snds.gouv.fr/)
 - [Health Data Hub - Accès aux données de parcours](https://www.health-data-hub.fr/)
 - [ATIH - Valorisation des séjours hospitaliers](https://www.atih.sante.fr/)

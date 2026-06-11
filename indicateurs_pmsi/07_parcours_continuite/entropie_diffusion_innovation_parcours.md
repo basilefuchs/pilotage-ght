@@ -141,5 +141,5 @@ Population d'analyse :
 - [Rogers E.M. — Diffusion of Innovations, 5th ed., Free Press 2003 : théorie de la diffusion de l'innovation — cadre conceptuel pour interpréter la dynamique de l'EDIP dans le temps]
 - [Atkinson S. et al. — Hospital networks, innovation and health outcomes, Journal of Health Economics 2019 : lien entre intégration hospitalière en réseau et diffusion de l'innovation thérapeutique](https://doi.org/10.1016/j.jhealeco.2019.01.005)
 - [HAS — Forfait Innovation : liste et conditions de prise en charge des actes en évaluation (article L.165-1-1 CSS)](https://www.has-sante.fr/jcms/c_2054764/fr/actes-et-prestations)
-- [ATIH — Référentiel CCAM : classification commune des actes médicaux, version mise à jour semestriellement](https://www.atih.sante.fr/les-actes-classants-non-inscrits-et-les-forfaits-innovation)
+- [ATIH — Référentiel CCAM : classification commune des actes médicaux, version mise à jour semestriellement](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)
 - [DREES — Les groupements hospitaliers de territoire : état des lieux au 1er janvier 2023 — structure et dynamique des GHT français](https://www.drees.solidarites-sante.gouv.fr/)

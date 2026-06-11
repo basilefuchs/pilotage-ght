@@ -61,7 +61,7 @@ Indice BNC (%) = ((Demande théorique − Offre réelle) / Demande théorique) �
 - Le calcul nécessite un appareil statistique et des compétences en épidémiologie et en analyse géographique qui dépassent les outils natifs de ScanSanté.
 
 ## Références
-- [INSEE - Projections de population OMPhale](https://www.insee.fr/fr/statistiques/1405555)
+- [INSEE - Projections de population OMPhale](https://www.insee.fr/fr/information/3683517)
 - [ATIH - Taux de recours nationaux standardisés](https://www.atih.sante.fr/)
 - [DREES - Besoins de santé et offre de soins](https://www.drees.solidarites-sante.gouv.fr/)
 - [ScanSanté - Analyse territoriale de l'activité hospitalière](https://www.scansante.fr/)

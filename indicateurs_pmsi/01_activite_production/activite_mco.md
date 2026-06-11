@@ -43,8 +43,8 @@ L'activité MCO peut être mesurée via plusieurs sous-indicateurs principaux :
 - Influence des politiques locales (ex : développement de l'ambulatoire, fermetures de lits).
 
 ## Références
-- [ATIH - PMSI MCO](https://www.atih.sante.fr/les-champs-du-pmsi/mco)
-- [ATIH - Tarification T2A](https://www.atih.sante.fr/tarification/la-tarification-a-l-activite)
+- [ATIH - PMSI MCO](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)
+- [ATIH - Tarification T2A](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)
 - [ScanSanté - Activité MCO par GHT](https://www.scansante.fr/groupement-hospitalier-territoire)
 - [Notice Technique PMSI MCO 2024](https://www.solimed.fr/wp/index.php/2023/12/20/notice-technique-pmsi-2024-interchamps/)
 - [ANAP - Optimisation de l'activité MCO](https://www.anap.fr/)

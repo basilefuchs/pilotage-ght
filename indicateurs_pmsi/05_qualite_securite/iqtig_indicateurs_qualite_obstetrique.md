@@ -95,4 +95,4 @@ La transposition des indicateurs IQTIG obstétricaux au PMSI français est **exc
 - [DREES - Les naissances en France : statistiques annuelles](https://www.drees.solidarites-sante.gouv.fr/)
 - [HAS - Indicateurs IQSS obstétrique (césarienne, HPP, lésions périnéales)](https://www.has-sante.fr/)
 - [ScanSanté - Taux de césarienne par établissement](https://www.scansante.fr/)
-- [Classification de Robson - OMS, 2015](https://www.who.int/publications/i/item/9789241549127)
+- [Classification de Robson - OMS, 2015](https://www.who.int/publications/i/item/9789241511216)

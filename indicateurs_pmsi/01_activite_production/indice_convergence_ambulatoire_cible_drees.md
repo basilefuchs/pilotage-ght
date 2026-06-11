@@ -172,10 +172,10 @@ Indice de convergence par CMD chirurgicale :
 
 ## Références
 
-- [ANAP — Programme national de développement de la chirurgie ambulatoire : référentiel GHM marqueurs et taux cibles (mise à jour annuelle)](https://www.anap.fr/s-informer/publications/chirurgie-ambulatoire)
+- [ANAP — Programme national de développement de la chirurgie ambulatoire : référentiel GHM marqueurs et taux cibles (mise à jour annuelle)](https://www.anap.fr/)
 - [DREES-ANAP — Tableau de bord de la chirurgie ambulatoire en France (rapport annuel)](https://www.drees.solidarites-sante.gouv.fr/)
 - [HAS — Recommandations organisationnelles : développement de la chirurgie ambulatoire](https://www.has-sante.fr/jcms/c_1754590/fr/la-chirurgie-ambulatoire)
 - [Toftgaard C. — Day surgery activities 2009 : international survey on ambulatory surgery conducted 2011, Ambulatory Surgery 2012 — benchmark international des taux de chirurgie ambulatoire par procédure](https://www.iaas-med.com/)
 - [Castoro C. et al. — Day surgery: making it happen, WHO Regional Office for Europe, Observatory Studies Series 2007](https://apps.who.int/iris/handle/10665/107869)
-- [Joël M.E. et al. — La chirurgie ambulatoire en France : bilan, perspectives et conditions du développement, Rapport IGAS 2012, n°RM2012-024P](https://www.igas.gouv.fr/IMG/pdf/RM2012-024P_-_Tome_I_-_Rapport.pdf)
-- [ATIH — Classification des GHMs v12 : guide de lecture et règles de groupage (suffixe J)](https://www.atih.sante.fr/classification-des-ghm)
+- [Joël M.E. et al. — La chirurgie ambulatoire en France : bilan, perspectives et conditions du développement, Rapport IGAS 2012, n°RM2012-024P](https://igas.gouv.fr/sites/igas/files/files-spip/pdf/TOME_1_RM2012-024P.pdf)
+- [ATIH — Classification des GHMs v12 : guide de lecture et règles de groupage (suffixe J)](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)

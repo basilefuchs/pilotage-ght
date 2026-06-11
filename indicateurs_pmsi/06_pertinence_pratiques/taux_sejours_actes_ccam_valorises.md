@@ -51,7 +51,7 @@ Un acte est considéré comme **valorisé** s'il remplit les conditions suivante
 - **Données manquantes** : Les actes réalisé en ambulatoire ou en externalisé ne sont pas inclus.
 
 ## Références
-- [ATIH - Classification CCAM](https://www.atih.sante.fr/codage-et-tarification/la-classification-commune-des-actes-medicaux-ccam)
-- [ATIH - Règles de valorisation des actes CCAM](https://www.atih.sante.fr/tarification/la-tarification-a-l-activite/les-supplements)
+- [ATIH - Classification CCAM](https://www.atih.sante.fr/thematique/nomenclatures)
+- [ATIH - Règles de valorisation des actes CCAM](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)
 - [ScanSanté - Analyse des actes CCAM](https://www.scansante.fr/groupement-hospitalier-territoire)
 - [Guide de codage CCAM - ATIH](https://www.atih.sante.fr/)

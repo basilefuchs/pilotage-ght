@@ -126,6 +126,6 @@ IPC = K_p × (1 / Gradient_social) × Densité_soins_primaires_pondérée
 - [AHRQ — Prevention Quality Indicators (PQI), Technical Specifications](https://www.qualityindicators.ahrq.gov/Modules/PQI_TechSpec_ICD10_v2024.aspx)
 - [DREES / IRDES — Accessibilité Potentielle Localisée (APL)](https://www.irdes.fr/recherche/2012/r553-construction-d-un-indicateur-de-l-accessibilite-potentielle-localisee.html)
 - [Rey G. et al. — Ecological association between a deprivation index (FDep) and mortality in France, BMC Public Health, 2009](https://doi.org/10.1186/1471-2458-9-33)
-- [CNAM — Cartographie des pathologies et des dépenses](https://assurance-maladie.ameli.fr/etudes-et-donnees/cartographie-des-pathologies-et-des-depenses)
+- [CNAM — Cartographie des pathologies et des dépenses](https://www.assurance-maladie.ameli.fr/etudes-et-donnees/par-theme/pathologies/cartographie-assurance-maladie)
 - [HAS — Hospitalisations potentiellement évitables : indicateurs et méthode](https://www.has-sante.fr/)
 - [DREES — Mortalité prématurée évitable par territoire](https://www.drees.solidarites-sante.gouv.fr/)

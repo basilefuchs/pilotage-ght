@@ -128,8 +128,8 @@ Taux d'accouchement par voie basse après césarienne (AVAC) :
 ## Références
 
 - [Robson M. — Classification of caesarean sections, Fetal and Maternal Medicine Review 2001](https://doi.org/10.1017/S0965539501000122)
-- [OMS — Déclaration sur les taux de césarienne, WHO/RHR/15.02, 2015](https://www.who.int/reproductivehealth/publications/maternal_perinatal_health/cs-statement/fr/)
-- [DREES — Enquête Nationale Périnatale 2021 — Rapport](https://www.drees.solidarites-sante.gouv.fr/publications/les-dossiers-de-la-drees/enquete-nationale-perinatale-2021-les-naissances-et-leurs)
+- [OMS — Déclaration sur les taux de césarienne, WHO/RHR/15.02, 2015](https://www.who.int/publications/i/item/WHO-RHR-15.02)
+- [DREES — Enquête Nationale Périnatale 2021 — Rapport](https://www.santepubliquefrance.fr/etudes-et-enquetes/enquete-nationale-perinatale-2021)
 - [HAS — Indicateurs de pratique clinique : Accouchement normal, 2017](https://www.has-sante.fr/)
 - [Betrán A.P. et al. — Robson classification for caesarean section audit: a systematic review, BJOG 2016](https://doi.org/10.1111/1471-0528.13758)
 - [ATIH — Guide méthodologique de production des données du PMSI MCO (version en vigueur)](https://www.atih.sante.fr/)

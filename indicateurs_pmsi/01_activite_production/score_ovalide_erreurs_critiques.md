@@ -128,7 +128,7 @@ Top-3 codes E1 par UM (unité médicale) :
 
 ## Références
 
-- [ATIH — OVALIDE, outil de validation des informations PMSI MCO : guide des contrôles et documentation technique](https://www.atih.sante.fr/ovalide-mco)
+- [ATIH — OVALIDE, outil de validation des informations PMSI MCO : guide des contrôles et documentation technique](https://www.atih.sante.fr/ovalide-mco-2025)
 - [ATIH — Guide méthodologique de production des informations relatives à l'activité médicale et à sa facturation, version annuelle](https://www.atih.sante.fr/)
 - [Ministère de la Santé — Circulaire DHOS/E1/2006/119 : organisation du contrôle de la qualité des données PMSI dans les établissements de santé]
 - [DREES — Études sur la qualité du codage PMSI : variabilité inter-établissements et impact sur la valorisation T2A]

@@ -65,7 +65,7 @@ Places ambulatoires = Séjours projetés ambulatoires / (Jours ouvrés × Rotati
 - La granularité communale des projections OMPhale est insuffisante pour des territoires de petite taille ; les intervalles de confiance sont larges pour les communes de moins de 5 000 habitants.
 
 ## Références
-- [INSEE - Projections de population OMPhale 2021-2070](https://www.insee.fr/fr/statistiques/5008564)
+- [INSEE - Projections de population OMPhale 2021-2070](https://www.insee.fr/fr/information/3683517)
 - [INCa - Projections de l'incidence et de la mortalité par cancer en France](https://www.e-cancer.fr/)
 - [ATIH - Évolutions historiques des taux de recours PMSI](https://www.atih.sante.fr/)
 - [DREES - Projections des besoins en soins de longue durée](https://www.drees.solidarites-sante.gouv.fr/)

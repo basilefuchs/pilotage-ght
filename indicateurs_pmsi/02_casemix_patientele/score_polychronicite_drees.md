@@ -104,7 +104,7 @@ Score de polychronicité par service/UM :
 
 ## Références
 
-- [DREES-CNAM — Cartographie des pathologies et des dépenses, édition 2019](https://www.drees.solidarites-sante.gouv.fr/publications/etudes-et-resultats/cartographie-des-pathologies-et-des-depenses-edition-2019)
+- [DREES-CNAM — Cartographie des pathologies et des dépenses, édition 2019](https://www.assurance-maladie.ameli.fr/etudes-et-donnees/par-theme/pathologies/cartographie-assurance-maladie)
 - [Mousquès J., Bourgueil Y. — La notion de « médecin de premier recours », IRDES Questions d'économie de la santé n°157, 2010](https://www.irdes.fr/Publications/Qes/Qes157.pdf)
 - [Barnett K. et al. — Epidemiology of multimorbidity and implications for health care, research, and medical education: a cross-sectional study, Lancet 2012](https://doi.org/10.1016/S0140-6736(12)60240-2)
 - [ATIH — Guide méthodologique de production du PMSI MCO (version en vigueur)](https://www.atih.sante.fr/)

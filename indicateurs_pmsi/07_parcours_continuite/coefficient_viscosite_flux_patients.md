@@ -103,8 +103,8 @@ Profil vectoriel : V = [ν_urgences→MCO, ν_MCO→SSR, ν_MCO→HAD,
 
 ## Références
 
-- [Hagen-Poiseuille, loi fondamentale de l'écoulement visqueux — analogie avec les flux patients](https://fr.wikipedia.org/wiki/Loi_de_Hagen-Poiseuille)
-- [ANAP — Gestion des lits et fluidité des parcours hospitaliers](https://www.anap.fr/s-informer/publications/detail/actualites/gestion-des-lits)
+- [Hagen-Poiseuille, loi fondamentale de l'écoulement visqueux — analogie avec les flux patients](https://fr.wikipedia.org/wiki/Loi_de_Poiseuille)
+- [ANAP — Gestion des lits et fluidité des parcours hospitaliers](https://www.anap.fr/)
 - [ATIH — PMSI MCO : modes de sortie et filières](https://www.atih.sante.fr/)
 - [SNDS — Chaînage longitudinal des séjours PMSI](https://www.snds.gouv.fr/)
 - [HAS — Parcours de soins : continuité et coordination](https://www.has-sante.fr/jcms/c_1742367/fr/parcours-de-soins)

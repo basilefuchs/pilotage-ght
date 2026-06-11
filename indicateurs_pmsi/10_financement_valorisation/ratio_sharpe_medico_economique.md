@@ -117,8 +117,8 @@ Matrice de pilotage (4 quadrants) :
 ## Références
 
 - [Sharpe W.F., *Mutual Fund Performance*, Journal of Business, 1966](https://doi.org/10.1086/294846) — article fondateur du ratio de Sharpe en finance
-- [ATIH — Arrêtés tarifaires annuels MCO](https://www.atih.sante.fr/tarification/la-tarification-a-l-activite)
-- [ATIH — OVALIDE : outil de valorisation et contrôle PMSI](https://www.atih.sante.fr/ovalide)
+- [ATIH — Arrêtés tarifaires annuels MCO](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)
+- [ATIH — OVALIDE : outil de valorisation et contrôle PMSI](https://www.atih.sante.fr/ovalide-mco-2025)
 - [ScanSanté — Valorisation par GHM et par établissement](https://www.scansante.fr/)
 - [ANAP — Comptabilité analytique et CREA hospitalier](https://www.anap.fr/)
 - [Or Z. — Implementation of DRG payment in France: issues and recent developments, Health Policy 2014](https://doi.org/10.1016/j.healthpol.2014.05.006) — risque financier de la valorisation T2A séjour par séjour

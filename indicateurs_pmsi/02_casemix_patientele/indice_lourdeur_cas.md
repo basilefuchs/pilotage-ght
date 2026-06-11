@@ -33,4 +33,4 @@ Où :
 
 ## Références
 - [ATIH - Indice de Lourdeur](https://www.atih.sante.fr/)
-- [Tarification T2A - Points ISF](https://www.atih.sante.fr/tarification)
+- [Tarification T2A - Points ISF](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)

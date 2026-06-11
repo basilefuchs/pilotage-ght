@@ -33,4 +33,4 @@ Taux de séjours avec actes lourds (%) = (Nombre de séjours avec ≥ 1 acte CCA
 
 ## Références
 - [ATIH - CCAM](https://www.atih.sante.fr/)
-- [Tarification T2A - Actes Lourds](https://www.atih.sante.fr/tarification)
+- [Tarification T2A - Actes Lourds](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)

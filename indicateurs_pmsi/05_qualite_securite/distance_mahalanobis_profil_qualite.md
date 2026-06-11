@@ -200,7 +200,7 @@ Contribution_i = ((xᵢ - μᵢ) × Σ⁻¹[i, :] %*% (x - μ))   (vrai gradient
 
 ## Références
 
-- [Mahalanobis P.C. — On the generalised distance in statistics, Proc Natl Inst Sci India 1936](https://insa.nic.in/writereaddata/UpLoadedFiles/PINSA/Vol02_1936_1_Art05.pdf) — article fondateur
+- [Mahalanobis P.C. — On the generalised distance in statistics, Proc Natl Inst Sci India 1936](https://doi.org/10.1007/s13171-019-00164-5) — article fondateur
 - [De Maesschalck R., Jouan-Rimbaud D., Massart D.L. — The Mahalanobis distance, Chemometrics and Intelligent Laboratory Systems 2000](https://doi.org/10.1016/S0169-7439(99)00047-7) — revue méthodologique
 - [Rousseeuw P.J., Van Driessen K. — A fast algorithm for the minimum covariance determinant estimator, Technometrics 1999](https://doi.org/10.1080/00401706.1999.10485670) — estimation robuste de Σ
 - [Ledoit O., Wolf M. — A well-conditioned estimator for large-dimensional covariance matrices, J Multivariate Analysis 2004](https://doi.org/10.1016/S0047-259X(03)00096-4) — régularisation pour petits n

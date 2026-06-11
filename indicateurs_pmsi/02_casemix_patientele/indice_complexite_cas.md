@@ -33,4 +33,4 @@ Où :
 
 ## Références
 - [ATIH - Indice de Complexité](https://www.atih.sante.fr/)
-- [Tarification T2A - GHM](https://www.atih.sante.fr/tarification)
+- [Tarification T2A - GHM](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)

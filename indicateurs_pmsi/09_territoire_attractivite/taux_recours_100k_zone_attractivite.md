@@ -159,10 +159,10 @@ Ratio de recours au CHU de référence :
 ## Références
 
 - [Wennberg J., Gittelsohn A. — Small area variations in health care delivery, Science 1973](https://doi.org/10.1126/science.182.4117.1102)
-- [DREES — Les établissements de santé : édition annuelle — cartographie des taux de recours par zone de santé](https://www.drees.solidarites-sante.gouv.fr/publications/panoramas-de-la-drees/les-etablissements-de-sante)
+- [DREES — Les établissements de santé : édition annuelle — cartographie des taux de recours par zone de santé](https://drees.solidarites-sante.gouv.fr/etablissements-de-sante)
 - [OCDE — Geographic Variations in Health Care: What Do We Know and What Can Be Done, OECD Health Policy Studies 2014](https://doi.org/10.1787/9789264216594-en)
 - [Bras P.L., Duhamel G. — Améliorer la prise en charge des maladies chroniques : les enseignements des expériences étrangères de disease management, Rapport IGAS 2006](https://www.igas.gouv.fr/)
 - [Comité des sages — Rapport sur le financement du système de santé, La Documentation Française 2023 — indicateurs de recours per capita pour la planification territoriale]
-- [ATIH — Guide méthodologique PMSI MCO et ScanSanté Territoire : calcul des indicateurs de recours par zone de santé](https://www.atih.sante.fr/pmsi-mco)
-- [INSEE — Omphale 2022 : projections de population 2021-2070 par département et zone d'emploi](https://www.insee.fr/fr/statistiques/5894.../omphale-2022)
-- [Dartmouth Atlas of Health Care — méthode de construction des zones d'attraction et des taux de recours per capita (référence méthodologique internationale)](https://www.dartmouthatlas.org/methods/)
+- [ATIH — Guide méthodologique PMSI MCO et ScanSanté Territoire : calcul des indicateurs de recours par zone de santé](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)
+- [INSEE — Omphale 2022 : projections de population 2021-2070 par département et zone d'emploi](https://www.insee.fr/fr/information/3683517)
+- [Dartmouth Atlas of Health Care — méthode de construction des zones d'attraction et des taux de recours per capita (référence méthodologique internationale)](https://www.dartmouthatlas.org/)

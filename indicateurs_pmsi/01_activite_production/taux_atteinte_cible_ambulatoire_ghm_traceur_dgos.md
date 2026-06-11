@@ -139,7 +139,7 @@ Matrice priorisation effort/impact :
 
 ## Références
 
-- [DGOS — Instruction relative au développement de la chirurgie et médecine ambulatoire (dernière version en vigueur) : liste des GHMs traçeurs et cibles nationales](https://solidarites.gouv.fr/dgos)
+- [DGOS — Instruction relative au développement de la chirurgie et médecine ambulatoire (dernière version en vigueur) : liste des GHMs traçeurs et cibles nationales](https://sante.gouv.fr/ministere/organisation/organisation-des-directions-et-services/article/dgos-direction-generale-de-l-offre-de-soins)
 - [ATIH — Indicateurs de suivi du développement de la chirurgie ambulatoire, tableaux de bord ScanSanté](https://www.atih.sante.fr/)
 - [HAS — Recommandations pour l'organisation et le développement de la chirurgie ambulatoire](https://www.has-sante.fr/)
 - [Castoro C. et al. — Day surgery: making it happen, WHO Europe 2007 : méthodologie internationale du suivi des cibles ambulatoires par GHM](https://www.euro.who.int/)

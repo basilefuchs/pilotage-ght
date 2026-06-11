@@ -53,8 +53,8 @@ e^H' = e^(H')
 - Ne prend pas en compte le **volume** par GHM (un GHM rare mais très fréquent compte autant qu'un GHM rare).
 
 ## Références
-- [ATIH - Clé de groupage des GHM](https://www.atih.sante.fr/tarification/la-tarification-a-l-activite/les-groupes-homogenes-de-malades-ghm)
+- [ATIH - Clé de groupage des GHM](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)
 - [ScanSanté - Analyse des volumes par GHM](https://www.scansante.fr/groupement-hospitalier-territoire)
-- [Indice de Shannon - Wikipedia](https://fr.wikipedia.org/wiki/Indice_de_diversit%C3%A9_de_Shannon)
+- [Indice de Shannon - Wikipedia](https://fr.wikipedia.org/wiki/Indice_de_Shannon)
 - [Indice de Simpson - Ecologie numérique](https://www.ecologie-numerique.fr/)
 - [Guide d'analyse PMSI - ATIH](https://www.atih.sante.fr/)

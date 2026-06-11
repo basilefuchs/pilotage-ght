@@ -53,8 +53,8 @@ Dans le PMSI, les diagnostics sont classés en :
 - **Codes CIM-10 non spécifiques** : Certains codes (ex : R68.8 - "Autres symptômes généraux") peuvent gonfler artificiellement le score.
 
 ## Références
-- [ATIH - Codage CIM-10 en PMSI](https://www.atih.sante.fr/codage-et-tarification/la-classification-internationale-des-maladies-cim-10)
-- [ATIH - Comorbidités Majeures Associées (CMA)](https://www.atih.sante.fr/tarification/la-tarification-a-l-activite/les-comorbidites-majeures-associees-cma)
+- [ATIH - Codage CIM-10 en PMSI](https://www.atih.sante.fr/nomenclatures-de-recueil-de-linformation/cim-10)
+- [ATIH - Comorbidités Majeures Associées (CMA)](https://www.atih.sante.fr/presentation-des-modalites-de-financement-mco-0)
 - [ScanSanté - Analyse des diagnostics](https://www.scansante.fr/groupement-hospitalier-territoire)
 - [Guide de codage CIM-10 - ATIH](https://www.atih.sante.fr/)
 - [OMS - Classification CIM-10](https://icd.who.int/fr)

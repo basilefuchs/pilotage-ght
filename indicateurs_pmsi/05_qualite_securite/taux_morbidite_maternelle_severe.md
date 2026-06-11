@@ -105,6 +105,6 @@ Taux de SMM par établissement (‰) ajusté sur casemix obstétrical :
 ## Références
 - [Hitti J. et al. — Contribution of hypertension to severe maternal morbidity, Am J Obstet Gynecol 2018](https://doi.org/10.1016/j.ajog.2018.07.002)
 - [Jairam J.A. et al. — Severe maternal morbidity among immigrant and Canadian-born women, JAMA Network Open 2023](https://doi.org/10.1001/jamanetworkopen.2022.56203)
-- [CDC — Severe Maternal Morbidity Indicators and Corresponding ICD Codes](https://www.cdc.gov/reproductivehealth/maternalinfanthealth/severematernalmorbidity.html)
+- [CDC — Severe Maternal Morbidity Indicators and Corresponding ICD Codes](https://www.cdc.gov/maternal-infant-health/php/severe-maternal-morbidity/index.html)
 - [DREES / INSERM — Enquête Nationale Périnatale : prévalence des complications obstétricales](https://www.drees.solidarites-sante.gouv.fr/)
 - [ATIH — PMSI MCO CMD 14 : classification des séjours obstétricaux](https://www.atih.sante.fr/)

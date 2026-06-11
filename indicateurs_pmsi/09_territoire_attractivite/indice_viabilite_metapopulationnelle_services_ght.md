@@ -124,6 +124,6 @@ Quatre profils stratégiques :
 - [Hanski I., *Metapopulation Ecology*, Oxford University Press, 1999](https://global.oup.com/academic/product/metapopulation-ecology-9780198540655) — référence théorique complète
 - [ATIH — Seuils d'activité minimale par spécialité (décrets d'autorisation)](https://www.atih.sante.fr/)
 - [Ministère de la Santé — Réforme des autorisations d'activités de soins, 2023](https://solidarites-sante.gouv.fr/)
-- [ANS — Répertoire Opérationnel des Ressources (ROR)](https://esante.gouv.fr/produits-services/ror)
+- [ANS — Répertoire Opérationnel des Ressources (ROR)](https://esante.gouv.fr/produits-services/repertoire-ror)
 - [ScanSanté — Volumes d'activité par établissement et par GHM](https://www.scansante.fr/)
 - [DREES — Dynamique des services hospitaliers et déserts médicaux spécialisés](https://www.drees.solidarites-sante.gouv.fr/)

@@ -100,8 +100,8 @@ Taux de recours urgences pediatriques :
 
 ## Références
 
-- [DREES — Les urgences hospitalières, une fréquentation toujours croissante, Études et Résultats n°1074, 2019](https://www.drees.solidarites-sante.gouv.fr/publications/etudes-et-resultats/les-urgences-hospitalieres-une-frequentation-toujours-croissante)
-- [DREES — Tableau de bord des urgences hospitalières (éditions annuelles)](https://www.drees.solidarites-sante.gouv.fr/sources-outils-et-enquetes/tableau-de-bord-des-urgences)
+- [DREES — Les urgences hospitalières, une fréquentation toujours croissante, Études et Résultats n°1074, 2019](https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/241212_ER_passages-aux-urgences)
+- [DREES — Tableau de bord des urgences hospitalières (éditions annuelles)](https://drees.solidarites-sante.gouv.fr/sources-outils-et-enquetes/enquete-urgences-2023)
 - [Coldefy M., Nestrigue C. — L'activité des urgences hospitalières en 2013, DREES Études et Résultats n°910, 2015](https://www.drees.solidarites-sante.gouv.fr/)
 - [ATIH — Guide méthodologique de production des données du PMSI MCO (version en vigueur)](https://www.atih.sante.fr/)
 - [Mousquès J., Bourgueil Y. — Impact des maisons de santé pluriprofessionnelles sur le recours aux urgences, IRDES Questions d'économie de la santé, 2018](https://www.irdes.fr/)

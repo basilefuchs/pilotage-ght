@@ -82,7 +82,7 @@ Variables PMSI clés : `DP`, `DR`, `DA`, codes `CCAM` avec **extensions PMSI** (
 ## Références
 - Robson MS. Classification of caesarean sections. *Fetal Matern Med Rev*. 2001;12(1):23-39.
 - Le Ray C, et al. Classification de Robson : un outil d'évaluation des pratiques de césarienne en France. [ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S0368231515000629)
-- [OMS — Robson Classification: Implementation Manual (2017)](https://www.who.int/reproductivehealth/publications/maternal_perinatal_health/robson-classification/en/)
+- [OMS — Robson Classification: Implementation Manual (2017)](https://www.who.int/publications/i/item/9789241513197)
 - [HAS — IQSS et indicateurs en obstétrique](https://www.has-sante.fr/jcms/c_970481/fr/iqss-recueils-des-indicateurs-de-qualite-et-de-securite-des-soins)
 - [Notice technique ATIH — Évolutions CCAM PMSI 2019](https://www.atih.sante.fr/sites/default/files/public/content/3498/notice_technique_atih_ndeg_2-790-2019_nouveautes_pmsi_2019.pdf)
 - [Réseau périnatal — Codage des situations cliniques en obstétrique](https://www.reseau-naissance.fr/data/mediashare/8k/qddspv591yl3evbbqq6wi1mdsi3hvh-org.pdf)

@@ -165,9 +165,9 @@ Indicateurs dérivés :
 ## Références
 
 - [Henderson B.D. — The Product Portfolio, BCG Perspectives 1970 : fondements de la matrice croissance-part de marché (BCG) transposée ici à la dynamique d'activité hospitalière par CMD](https://www.bcg.com/publications/1970/strategy-the-product-portfolio)
-- [DREES — Les établissements de santé : séries longues d'activité MCO par CMD (éditions annuelles)](https://www.drees.solidarites-sante.gouv.fr/publications/panoramas-de-la-drees/les-etablissements-de-sante)
-- [ATIH — PMSI MCO open data national : statistiques d'activité par établissement, CMD et année](https://www.atih.sante.fr/open-pmsi)
+- [DREES — Les établissements de santé : séries longues d'activité MCO par CMD (éditions annuelles)](https://drees.solidarites-sante.gouv.fr/etablissements-de-sante)
+- [ATIH — PMSI MCO open data national : statistiques d'activité par établissement, CMD et année](https://www.scansante.fr/)
 - [Véga A. et al. — Analyse des variations de l'activité hospitalière en France, Questions d'économie de la santé IRDES 2021](https://www.irdes.fr/)
 - [Goldstein H., Spiegelhalter D.J. — League tables and their limitations: statistical issues in comparisons of institutional performance, Journal of the Royal Statistical Society A, 1996](https://doi.org/10.2307/2983325)
-- [ANAP — Tableau de bord de pilotage médico-économique : indicateurs d'évolution d'activité et de part de marché](https://www.anap.fr/s-informer/publications/tableau-de-bord-de-pilotage-medico-economique)
+- [ANAP — Tableau de bord de pilotage médico-économique : indicateurs d'évolution d'activité et de part de marché](https://www.anap.fr/)
 - [Porter M.E. — Competitive Strategy: Techniques for Analyzing Industries and Competitors, Free Press 1980 — fondements de l'analyse dynamique de positionnement concurrentiel]

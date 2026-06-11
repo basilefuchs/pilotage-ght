@@ -102,7 +102,7 @@ Taux de corticothérapie anténatale documentée :
 
 ## Références
 
-- [DREES — Enquête Nationale Périnatale 2021 — Rapport complet](https://www.drees.solidarites-sante.gouv.fr/publications/les-dossiers-de-la-drees/enquete-nationale-perinatale-2021-les-naissances-et-leurs)
+- [DREES — Enquête Nationale Périnatale 2021 — Rapport complet](https://www.santepubliquefrance.fr/etudes-et-enquetes/enquete-nationale-perinatale-2021)
 - [Ancel P.Y. et al. — EPIPAGE-2: a preterm birth cohort in France in 2011, BMC Pediatrics 2014](https://doi.org/10.1186/1471-2431-14-97)
 - [OMS — Born too soon: the global action report on preterm birth, 2012](https://www.who.int/publications/i/item/9789241503433)
 - [HAS — Indicateurs IPAQSS Périnatalité — Corticothérapie anténatale, 2020](https://www.has-sante.fr/)

@@ -63,7 +63,7 @@ Sous-indicateurs :
 - **Délai de disponibilité** : les données DCIR sont disponibles avec un délai de 3 à 6 mois après l'acte ; un suivi en temps réel de cet indicateur n'est pas possible depuis le SNDS standard.
 
 ## Références
-- [CNAM - Rapport Charges et Produits : suivi post-hospitalier](https://www.ameli.fr/l-assurance-maladie/statistiques-et-publications/rapports-et-conventions/)
+- [CNAM - Rapport Charges et Produits : suivi post-hospitalier](https://www.assurance-maladie.ameli.fr/etudes-et-donnees)
 - [HAS - Recommandations sur la consultation post-hospitalisation](https://www.has-sante.fr/)
 - [SNDS - Système National des Données de Santé](https://www.snds.gouv.fr/)
 - [Health Data Hub - Accès aux données de santé](https://www.health-data-hub.fr/)

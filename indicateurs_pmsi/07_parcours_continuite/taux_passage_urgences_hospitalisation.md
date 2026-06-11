@@ -49,4 +49,4 @@ Taux d'hospitalisation depuis les urgences (%) = (Nombre de passages aux urgence
 - [ATIH - Résumés de Passage aux Urgences (RPU)](https://www.atih.sante.fr/)
 - [DREES - Les urgences hospitalières en France](https://www.drees.solidarites-sante.gouv.fr/)
 - [ScanSanté - Analyse des urgences et modes d'admission](https://www.scansante.fr/)
-- [SAMU-Urgences de France - Observatoire des passages aux urgences](https://www.samu-urgences-de-france.fr/)
+- [SAMU-Urgences de France - Observatoire des passages aux urgences](https://www.samu-urgences-de-france.fr)
