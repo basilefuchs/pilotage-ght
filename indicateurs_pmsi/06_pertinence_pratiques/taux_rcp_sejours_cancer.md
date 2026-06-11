@@ -132,4 +132,4 @@ Délai médian RCP → hospitalisation :
 - [Circulaire DHOS/SDO n°2005-101 du 22 février 2005 relative à l'organisation des soins en cancérologie : définition et obligation de la RCP](https://solidarites.gouv.fr/)
 - [INCa — Référentiel organisationnel des Réunions de Concertation Pluridisciplinaire en cancérologie](https://www.e-cancer.fr/)
 - [ATIH — Classification CCAM, acte YYYY001 : concertation pluridisciplinaire pour patient atteint de cancer](https://www.atih.sante.fr/)
-- [Lamb B.W. et al. — Multidisciplinary team working across different tumour types: analysis of a prospective database, Annals of Surgery 2012 : impact des RCP sur la qualité des décisions thérapeutiques en cancérologie](https://doi.org/10.1097/SLA.0b013e3182535589)
+- [Lamb B.W. et al. — Multidisciplinary team working across different tumour types: analysis of a prospective database, Annals of Surgery 2012 : impact des RCP sur la qualité des décisions thérapeutiques en cancérologie](https://doi.org/10.1093/annonc/mdr453)

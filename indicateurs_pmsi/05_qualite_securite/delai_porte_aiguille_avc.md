@@ -78,8 +78,8 @@ Taux de thrombolyse des AVC ischémiques éligibles (%) :
 
 ## Références
 
-- [Fonarow G.C. et al. — Door-to-needle times for tissue plasminogen activator administration and clinical outcomes in acute ischemic stroke before and after a quality improvement initiative, JAMA 2014](https://doi.org/10.1001/jama.2014.13985)
+- [Fonarow G.C. et al. — Door-to-needle times for tissue plasminogen activator administration and clinical outcomes in acute ischemic stroke before and after a quality improvement initiative, JAMA 2014](https://doi.org/10.1001/jama.2014.3203)
 - [SFNV — Registre RoPAS : indicateurs qualité des UNV françaises](https://www.sfnv.net/)
 - [HAS — Indicateurs IQSS AVC : taux de thrombolyse et délai porte-aiguille](https://www.has-sante.fr/)
-- [ESO (European Stroke Organisation) — Guidelines for management of ischaemic stroke 2021](https://doi.org/10.1177/23969873211042948)
+- [ESO (European Stroke Organisation) — Guidelines for management of ischaemic stroke 2021](https://doi.org/10.1177/2396987321989865)
 - [ATIH — PMSI MCO : actes CCAM thrombolyse et thrombectomie cérébrale](https://www.atih.sante.fr/)

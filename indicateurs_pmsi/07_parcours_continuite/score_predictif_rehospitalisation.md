@@ -63,7 +63,7 @@ Score de risque individuel = P(réadmission à 30 j)
 - Des biais éthiques peuvent émerger si le score est utilisé pour orienter des décisions de soins (ex. : prolonger un séjour pour réduire le score) plutôt que pour déclencher des interventions de coordination.
 
 ## Références
-- [Donzé J. et al., HOSPITAL score, JAMA Internal Medicine, 2013](https://doi.org/10.1001/jamainternmed.2013.6233)
+- [Donzé J. et al., HOSPITAL score, JAMA Internal Medicine, 2013](https://doi.org/10.1001/jamainternmed.2013.3023)
 - [van Walraven C. et al., LACE index, CMAJ, 2010](https://doi.org/10.1503/cmaj.091117)
 - [HAS - Réadmissions non programmées et qualité des soins](https://www.has-sante.fr/)
 - [SNDS - Données longitudinales pour la prédiction du risque](https://www.snds.gouv.fr/)

@@ -146,4 +146,4 @@ Tension quotidienne estimée :
 - [Décret n°2022-691 du 26 avril 2022 relatif aux conditions techniques de fonctionnement applicables aux activités de soins intensifs et de surveillance continue (DGOS)](https://www.legifrance.gouv.fr/)
 - [DREES — Statistique Annuelle des Établissements de santé (SAE) : volet soins critiques, lits autorisés et installés](https://www.drees.solidarites-sante.gouv.fr/)
 - [ATIH — Guide de production PMSI MCO, RSS et types d'unités médicales](https://www.atih.sante.fr/)
-- [Rhodes A. et al. — Variability between countries in the definition and availability of ICU beds, Intensive Care Medicine 2012 : méthodologie internationale de mesure de la capacité de soins critiques](https://doi.org/10.1007/s00134-012-2492-1)
+- [Rhodes A. et al. — Variability between countries in the definition and availability of ICU beds, Intensive Care Medicine 2012 : méthodologie internationale de mesure de la capacité de soins critiques](https://doi.org/10.1007/s00134-012-2627-8)

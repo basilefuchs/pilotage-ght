@@ -110,6 +110,6 @@ Carte de chaleur territoire × GHM :
 
 - [Herfindahl O.C. — Concentration in the Steel Industry, Columbia University PhD thesis 1950 : définition originale de l'indice HHI]
 - [U.S. Department of Justice — Horizontal Merger Guidelines 2010 : seuils IHH pour l'évaluation de la concurrence (IHH < 1500 / 1500-2500 / > 2500)](https://www.justice.gov/atr/horizontal-merger-guidelines-08192010)
-- [Capps C. et al. — The silent majority fallacy of the Elzinga-Hogarty criteria: a critique and new approach to analyzing hospital mergers, Int J Industrial Org 2002](https://doi.org/10.1016/S0167-7187(02)00057-9)
+- [Capps C. et al. — The silent majority fallacy of the Elzinga-Hogarty criteria: a critique and new approach to analyzing hospital mergers, Int J Industrial Org 2002](https://doi.org/10.3386/w8216)
 - [ATIH — Statistiques d'activité hospitalière par établissement et territoire (portail ATIH)](https://www.atih.sante.fr/)
 - [Dranove D., White W.D. — Recent theory and evidence on competition in hospital markets, J Econ Management Strategy 1994 : application de l'IHH aux marchés hospitaliers]
