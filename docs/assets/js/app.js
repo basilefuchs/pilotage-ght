@@ -5,6 +5,7 @@
   const $search = document.getElementById("search");
   const $category = document.getElementById("category");
   const $onlyR = document.getElementById("only-r");
+  const $onlyVerified = document.getElementById("only-verified");
   const $results = document.getElementById("results");
   const $detail = document.getElementById("detail");
   const $count = document.getElementById("count");
@@ -57,9 +58,11 @@
   function currentFilter(list) {
     const cat = $category.value;
     const onlyR = $onlyR.checked;
+    const onlyVerified = $onlyVerified.checked;
     return list.filter(e =>
       (!cat || e.category === cat) &&
-      (!onlyR || e.path_r)
+      (!onlyR || e.path_r) &&
+      (!onlyVerified || e.verified)
     );
   }
 
@@ -205,6 +208,7 @@
     $search.addEventListener("input", search);
     $category.addEventListener("change", search);
     $onlyR.addEventListener("change", search);
+    $onlyVerified.addEventListener("change", search);
     window.addEventListener("hashchange", () => {
       const h = readHash();
       if (h && h.id !== CURRENT_ID) selectEntry(h.id, h.tab);
