@@ -20,6 +20,27 @@ indicateurs_pmsi/
 
 Chaque fiche documente : définition, formule de calcul, sources de données, exemple de valeurs, limites et références.
 
+## Site web (GitHub Pages)
+
+Une page de recherche statique est publiée depuis `docs/` :
+**https://basilefuchs.github.io/pilotage-ght/**
+
+Elle permet de chercher parmi les 248 fiches par mots-clés, filtrer par catégorie, et consulter le script R associé quand il existe.
+
+Après ajout/modification de fiches, régénérer l'index :
+
+```
+python3 build_docs.py
+```
+
+Aperçu local :
+
+```
+cd docs && python3 -m http.server 8000
+```
+
+> Activation initiale : *Settings → Pages → Source : Deploy from branch → `main` / `/docs`*.
+
 ## Indicateurs innovants
 
 Une trentaine d'indicateurs adaptent des cadres théoriques d'autres disciplines scientifiques à l'analyse hospitalière. Quelques exemples :
