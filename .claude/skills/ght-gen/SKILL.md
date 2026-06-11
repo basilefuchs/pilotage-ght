@@ -38,7 +38,7 @@ Avant toute génération, exécuter une veille ciblée et produire une synthèse
 
 **Cache de session** : ne pas relancer la veille si un appel `/ght-gen` sur le même `<domaine>` a déjà eu lieu dans la session courante — réutiliser la synthèse existante.
 
-**Règle anti-hallucination** : aucune URL ni PMID ne doit être cité sans avoir été obtenu via `WebFetch`/`WebSearch`/MCP PubMed dans la session. Pas de citation « de tête ».
+**Règle anti-hallucination** : aucune URL, PMID ni attribution `auteur année` ne doit être cité sans avoir été obtenu et confirmé via `WebSearch`/MCP PubMed dans la session — pas de citation « de tête ». Si la veille n'a rien donné sur un candidat, son `t:` reste générique (cadre théorique) et son `s:` vaut `interne`. Note : `WebFetch` est souvent bloqué (403) sur les sites institutionnels FR (dont `atih.sante.fr`) — utiliser `WebSearch` pour localiser l'info ; un 403/timeout ne signifie pas que la page est morte.
 
 ## Format de sortie
 
@@ -48,9 +48,15 @@ Chaque indicateur sur une ligne numérotée :
 N. [i:<nom_snake_case>] [d:<définition 1 phrase>] [c:<formule compacte>] [u:<usage clé>] [l:<limite principale>] [t:<auteur année>] [s:<URL courte | PMID:xxxxx | interne>]
 ```
 
+Champ `t:` (origine conceptuelle) :
+- Par défaut, nommer le **cadre théorique / la discipline source** (ex. `t:théorie de l'information`, `t:files d'attente`), **pas** un article précis.
+- N'écrire un `t:<auteur année>` spécifique que si ce papier a été **confirmé pendant la veille** (PubMed/Crossref) — et dans ce cas le champ `s:` doit porter le PMID/DOI vérifié correspondant. **Jamais d'« auteur année » de mémoire** : c'est la source n°1 des citations fantômes qui se propagent ensuite dans `/ght-dev`.
+
 Champ `s:` :
-- `s:interne` → candidat issu des connaissances modèle uniquement
-- `s:<url>` ou `s:PMID:12345` → candidat dérivé/inspiré d'une source identifiée pendant la veille
+- `s:interne` → candidat issu des connaissances modèle uniquement (aucune attribution `t:` à un article précis dans ce cas)
+- `s:<url>` ou `s:PMID:12345` → candidat dérivé d'une source **identifiée et vérifiée** pendant la veille (PMID confirmé via `mcp__claude_ai_PubMed__get_article_metadata`, URL confirmée)
+
+⚠️ Les champs `t:`/`s:` d'un candidat sont **provisoires** : `/ght-dev` re-validera chaque DOI/PMID via `doi.org/api/handles` (responseCode 1) avant de l'inscrire dans une fiche. Ne pas présenter ici une attribution comme établie ; en cas de doute, rester sur le cadre théorique générique.
 
 ## Règles de génération
 
@@ -69,6 +75,7 @@ Champ `s:` :
 - Formule vague ou non opérationnelle → rejeté
 - Doublon conceptuel avec existant → rejeté
 - Citation d'une source non vérifiée (URL ou PMID inventé) → rejeté
+- `t:<auteur année>` spécifique non confirmé par la veille (au lieu du cadre théorique générique) → rejeté
 - Veille omise sans flag `--no-web` → rejeté
 
 ## Workflow recommandé
