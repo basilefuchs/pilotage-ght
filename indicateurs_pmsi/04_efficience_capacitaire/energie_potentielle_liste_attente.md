@@ -107,7 +107,7 @@ Gradient d'EPLA (vitesse d'accumulation du risque) :
 ## Références
 
 - [Griffiths J.D. et al. — Modelling waiting times in a hospital emergency department, Health Care Management Science 2010 : modélisation du risque accumulé en liste d'attente]
-- [Kreindler S.A. — Lifting the burden of waiting: strategies for reducing patient wait times, Journal of Health Services Research & Policy 2010](https://doi.org/10.1258/jhsrp.2009.009013)
+- [Kreindler S.A. — Watching your wait: evidence-informed strategies for reducing health care wait times, Qual Manag Health Care 2008](https://doi.org/10.1097/01.QMH.0000316990.48673.9f)
 - [Ramsay C.R. et al. — Impact of waiting time targets on waiting times for arthroplasty surgery, JAMA 2004]
 - [HAS — Délais de prise en charge et gestion des listes d'attente en chirurgie programmée (2019)](https://www.has-sante.fr/)
 - [DGOS — Répertoire opérationnel des ressources et gestion des listes d'attente en établissements de santé](https://solidarites-sante.gouv.fr/)

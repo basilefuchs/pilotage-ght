@@ -118,6 +118,6 @@ Seuils d'alerte opérationnels :
 - [ATIH — Classification des GHMs, guide méthodologique MCO (version en vigueur) : définition des types de séjours J, T, 1-4](https://www.atih.sante.fr/)
 - [DGOS — Programme national de développement de la chirurgie ambulatoire 2020-2025 (Virage Ambulatoire) : objectifs nationaux par spécialité](https://solidarites-sante.gouv.fr/)
 - [ANAP — Guide de déploiement de la chirurgie ambulatoire, 2019 : indicateurs de pilotage et benchmarks GHM](https://www.anap.fr/)
-- [Or Z., Häkkinen U. — DRGs and quality: For better or worse? Health Policy 2011 : effets des systèmes de tarification à l'activité sur la substitution ambulatoire](https://doi.org/10.1016/j.healthpol.2011.01.010)
+- Or Z., Häkkinen U. — DRGs and quality: for better or worse?, in Busse R., Geissler A., Quentin W., Wiley M. (eds), *Diagnosis-Related Groups in Europe*, Open University Press / WHO 2011 (chapitre 8) : effets des systèmes de tarification à l'activité sur la substitution ambulatoire
 - [Ministère de la Santé / DREES — Panorama des établissements de santé 2023 : données nationales taux ambulatoire par spécialité](https://www.drees.solidarites-sante.gouv.fr/)
 - [Fung V. et al. — Understanding variation in outpatient procedure use: the contribution of case mix, Health Services Research 2004](https://doi.org/10.1111/j.1475-6773.2004.00270.x)

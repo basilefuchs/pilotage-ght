@@ -96,7 +96,7 @@ Indicateur sentinelle de sécurité SSR :
 ## Références
 
 - [Crotty M. et al. — Unplanned transfers from residential aged care to hospital: a systematic review, Age Ageing 2002](https://doi.org/10.1093/ageing/31.6.422)
-- [Mahomed N. et al. — Rates and predictors of hospital readmission after total hip and knee replacement, CMAJ 2008](https://doi.org/10.1503/cmaj.070873)
+- Mahomed N. et al. — Rates and predictors of hospital readmission after total hip and knee replacement, CMAJ 2008 *(référence à vérifier — DOI introuvable, citation possiblement erronée)*
 - [ATIH — Guide méthodologique PMSI SSR : codage des modes de sortie/entrée et chaînage inter-champs](https://www.atih.sante.fr/)
 - [HAS — Critères de certification V2020 relatifs à la sécurité des soins en SSR (critère 8.2, 8.3)](https://www.has-sante.fr/)
 - [SFGG — Recommandations sur la prévention des complications en SSR gériatrique (2020)](https://www.sfgg.fr/)

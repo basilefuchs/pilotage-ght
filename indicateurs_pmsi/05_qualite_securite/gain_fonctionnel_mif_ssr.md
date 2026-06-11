@@ -102,7 +102,7 @@ Sous-indicateurs par domaine :
 ## Références
 
 - [Dodds T.A. et al. — A validation of the functional independence measure and its performance among rehabilitation inpatients, Arch Phys Med Rehabil 1993](https://doi.org/10.1016/0003-9993(93)90119-U)
-- [Granger C.V. et al. — Functional Assessment Scales: a study of persons with multiple sclerosis, Arch Phys Med Rehabil 1990](https://doi.org/10.1016/0003-9993(90)90090-A)
+- [Granger C.V. et al. — Functional Assessment Scales: a study of persons with multiple sclerosis, Arch Phys Med Rehabil 1990 (PMID 2222154)](https://pubmed.ncbi.nlm.nih.gov/2222154/)
 - [ATIH — Guide méthodologique du recueil d'informations médicalisé en SSR (PMSI RHS, cotation MIF)](https://www.atih.sante.fr/)
 - [HAS — Recommandations de bonne pratique : rééducation après AVC, évaluation fonctionnelle et MIF (2012)](https://www.has-sante.fr/)
 - [Prvu Bettger J., Stineman M.G. — Effectiveness of multidisciplinary rehabilitation services in postacute care, Arch Phys Med Rehabil 2007](https://doi.org/10.1016/j.apmr.2007.06.768)

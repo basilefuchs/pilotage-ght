@@ -109,4 +109,4 @@ Profil vectoriel : V = [ν_urgences→MCO, ν_MCO→SSR, ν_MCO→HAD,
 - [SNDS — Chaînage longitudinal des séjours PMSI](https://www.snds.gouv.fr/)
 - [HAS — Parcours de soins : continuité et coordination](https://www.has-sante.fr/jcms/c_1742367/fr/parcours-de-soins)
 - [Bittencourt R.J. et al., *Patient flow in emergency departments: a conceptual model*, 2013](https://doi.org/10.1097/PTS.0b013e318294b4ad)
-- [Proudlove N.C. et al., *Bed management and patient flow*, Health Care Management Science, 2003](https://doi.org/10.1023/A:1023313212829)
+- [Proudlove N.C. et al. — Can good bed management solve the overcrowding in accident and emergency departments?, Emerg Med J 2003](https://doi.org/10.1136/emj.20.2.149)
