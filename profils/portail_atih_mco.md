@@ -106,6 +106,32 @@ Jointure : `code_com` côté INSEE, `code_geo` à apparier sur `fixe.codegeo`.
 Permet d'agréger la population INSEE au niveau `codegeo` PMSI (utile pour
 TRHS, taux de recours, zones d'attraction).
 
+## `nom_gen.finess_codegeo_distance_tps` — distancier FINESS × code géo PMSI
+
+| Concept                            | Colonne      |
+|------------------------------------|--------------|
+| FINESS établissement               | `finess`     |
+| Code géographique PMSI             | `codegeo`    |
+| Distance routière (km) [à confirmer] | `distance` |
+| Temps de trajet (min) [à confirmer]  | `tps_trajet` |
+| Début de validité (année)          | `annee_deb`  |
+| Fin de validité (année)            | `annee_fin`  |
+
+Jointure : `(finess, codegeo)` après filtre de validité
+`filter(an >= annee_deb, an <= annee_fin)`. Distance directe
+domicile (codegeo) → établissement : pas besoin de passer par les communes.
+
+## `nom_gen.geolocalisation_finess` — implantation des établissements
+
+| Concept                            | Colonne        |
+|------------------------------------|----------------|
+| FINESS établissement (clé)         | `finess`       |
+| Commune INSEE d'implantation       | `code_commune` |
+| Début de validité (année)          | `annee_deb`    |
+| Fin de validité (année)            | `annee_fin`    |
+
+Jointure : `finess` + filtre de validité `annee_deb`/`annee_fin`.
+
 ## `prd_vue_nomgen.finessgeo` — référentiel (annuel, hors schéma MCO)
 
 | Concept                                   | Colonne        |
@@ -126,6 +152,8 @@ Jointure : `(annee, finessgeo)`. Filtre département recommandé :
 | Doublons sur jointure `diag` / `acte`        | `distinct(ident, ...)` avant comptage  |
 | Décès intra-séjour fausse ré-hospi           | `modesortie != "9"`                    |
 | FINESS juridique vs géographique             | Benchmarking = `finessgeodp`           |
+| Tables `nom_gen` à période de validité       | `filter(an >= annee_deb, an <= annee_fin)` avant jointure |
+| Tarifs GHS ex-DG                             | Indisponibles en base nationale → fichier campagne ATIH local (CSV `ghs, annee, tarif`), joint après `collect()` |
 
 ## Défauts recommandés
 
