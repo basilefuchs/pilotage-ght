@@ -115,7 +115,7 @@ Indice de maturité du portefeuille :
 ## Références
 
 - [Clements F.E. — Plant Succession: An Analysis of the Development of Vegetation, Carnegie Institution 1916 : théorie originale de la succession écologique par stades]
-- [Horn H.S. — Markovian properties of forest succession, in Ecology and Evolution of Communities, Harvard UP 1975 : modélisation des transitions entre stades comme chaîne de Markov](https://doi.org/10.4159/harvard.9780674353459.c16)
+- Horn H.S. — Markovian properties of forest succession, in Cody M.L., Diamond J.M. (eds), *Ecology and Evolution of Communities*, Harvard University Press 1975 (chapitre) : modélisation des transitions entre stades comme chaîne de Markov
 - [Henderson B.D. — The product portfolio, BCG Perspectives 1970 : application des stades de cycle de vie à la gestion de portefeuille stratégique]
 - [Tilman D. — Secondary succession and the pattern of plant dominance, American Naturalist 1985 : mécanismes compétitifs dans les dynamiques de succession](https://doi.org/10.1086/284400)
 - [ATIH — Base nationale PMSI MCO, publications annuelles des données d'activité par GHM et par établissement](https://www.atih.sante.fr/)

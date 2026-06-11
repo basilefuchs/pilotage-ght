@@ -139,7 +139,7 @@ TUL = L_observé / Capacité_installée (nombre de lits ouverts)
 
 - [Little J.D.C. — A proof for the queuing formula L = λW, Operations Research 1961](https://doi.org/10.1287/opre.9.3.383) — démonstration originale, article de 3 pages
 - [Hopp W.J., Spearman M.L. — Factory Physics, McGraw-Hill 2001 : application industrielle de la loi de Little aux systèmes de production]
-- [Fieldston E.S. et al. — Application of Little's law to measure census variability in a pediatric hospital, Pediatrics 2010](https://doi.org/10.1542/peds.2009-2093) — première application hospitalière pédiatrique
+- [Fieldston E.S. et al. — Scheduled admissions and high occupancy at a children's hospital, J Hosp Med 2011](https://doi.org/10.1002/jhm.819) — variabilité du taux d'occupation (census) en hôpital pédiatrique
 - [Litvak E., Bisognano M. — More patients, less payment: increasing hospital efficiency in the aftermath of health reform, Health Affairs 2011](https://doi.org/10.1377/hlthaff.2011.0073)
 - [ANAP — Gestion des lits et flux de patients : outils et méthodes (2013)](https://www.anap.fr/)
 - [Erlang A.K. — The theory of probabilities and telephone conversations, Nyt Tidsskrift for Matematik 1909 : fondements de la théorie des files d'attente dont dérive la loi de Little]

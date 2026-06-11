@@ -126,5 +126,5 @@ Si la dégradation est progressive (pas de rupture franche) :
 - [Muggeo V.M.R. — Estimating regression models with unknown break-points, Statistics in Medicine 2003](https://doi.org/10.1002/sim.1545) — algorithme de référence pour l'estimation des breakpoints (package R segmented)
 - [Davies R.B. — Hypothesis testing when a nuisance parameter is present only under the alternative, Biometrika 1987](https://doi.org/10.1093/biomet/74.1.33) — test de Davies pour la détection de breakpoints
 - [Needleman J. et al. — Nurse-staffing levels and the quality of care in hospitals, NEJM 2002](https://doi.org/10.1056/NEJMsa012247) — démonstration empirique de la relation non-linéaire entre charge et qualité en soins infirmiers
-- [Weissman J.S. et al. — Gatekeeping and the quality of care, JAMA 1999](https://doi.org/10.1001/jama.282.3.242)
+- [Madsen F. et al. — High levels of bed occupancy associated with increased inpatient and thirty-day hospital mortality, Health Aff 2014](https://doi.org/10.1377/hlthaff.2013.1303) — effet de seuil empirique du taux d'occupation sur la mortalité
 - [ATIH — Statistiques d'activité hospitalière MCO : taux d'occupation et indicateurs de qualité par GHM (rapports annuels)](https://www.atih.sante.fr/)

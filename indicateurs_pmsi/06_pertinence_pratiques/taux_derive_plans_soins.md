@@ -111,6 +111,6 @@ Pour une cohorte de K patients suivant le même protocole :
 - [Shewhart W.A. — Economic Control of Quality of Manufactured Product, Van Nostrand 1931 : fondements du contrôle statistique de processus]
 - [Deming W.E. — Out of the Crisis, MIT Press 1986 : application du SPC aux processus de service]
 - [Bonadonna G. et al. — Dose-response effect of adjuvant chemotherapy for breast cancer, NEJM 1981](https://doi.org/10.1056/NEJM198102053040601) — première démonstration que la dérive protocolaire (dose intensity) impacte la survie
-- [Lyman G.H. et al. — Relative dose intensity of chemotherapy and survival in patients with early-stage breast cancer, J Clin Oncol 2011](https://doi.org/10.1200/JCO.2010.32.3014)
+- [Lyman G.H. et al. — Incidence and predictors of low dose-intensity in adjuvant breast cancer chemotherapy, J Clin Oncol 2003](https://doi.org/10.1200/JCO.2003.05.002) — déterminants de la dérive de dose-intensité (RDI)
 - [INCa — Référentiel de chimiothérapie et protocoles validés par pathologie](https://www.e-cancer.fr/)
 - [HAS — Évaluation des pratiques professionnelles en oncologie : indicateurs de suivi des protocoles (2020)](https://www.has-sante.fr/)

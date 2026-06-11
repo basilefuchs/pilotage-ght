@@ -121,4 +121,4 @@ Matrice de pilotage (4 quadrants) :
 - [ATIH — OVALIDE : outil de valorisation et contrôle PMSI](https://www.atih.sante.fr/ovalide)
 - [ScanSanté — Valorisation par GHM et par établissement](https://www.scansante.fr/)
 - [ANAP — Comptabilité analytique et CREA hospitalier](https://www.anap.fr/)
-- [Nguyen J.M. et al., *Case-mix and financial performance in French hospitals*, Health Policy, 2011](https://doi.org/10.1016/j.healthpol.2011.01.008)
+- [Or Z. — Implementation of DRG payment in France: issues and recent developments, Health Policy 2014](https://doi.org/10.1016/j.healthpol.2014.05.006) — risque financier de la valorisation T2A séjour par séjour

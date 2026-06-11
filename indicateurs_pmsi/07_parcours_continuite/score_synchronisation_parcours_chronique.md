@@ -112,7 +112,7 @@ un d_AB élevé (> 60j) indique deux filières de soins entièrement séparées.
 ## Références
 
 - [Kuramoto Y. — Self-entrainment of a population of coupled non-linear oscillators, Lecture Notes in Physics 1975 : modèle mathématique de synchronisation dans les systèmes couplés]
-- [Peasah S.K. et al. — Medicare Part D medication adherence, Am J Manag Care 2022 : PDC et risque d'hospitalisation](https://doi.org/10.37765/ajmc.2022.89116)
+- [Peasah S.K. et al. — Long-term medication adherence and preventive vs reactive care utilization, Am J Manag Care 2022 : PDC et risque d'hospitalisation](https://doi.org/10.37765/ajmc.2022.89255)
 - [Pham Nguyen T.P. et al. — Effect of medication adherence on healthcare resource utilization, PLoS One 2020](https://doi.org/10.1371/journal.pone.0234543)
 - [CNAM — Programme Sophia : évaluation de l'impact sur le suivi des patients diabétiques, rapport 2021](https://www.ameli.fr/)
 - [HAS — Recommandations de suivi pour les principales ALD : rythme des consultations, bilans biologiques et traitements](https://www.has-sante.fr/)

@@ -199,7 +199,7 @@ Interprétation :
 
 - [Gini C. — Variabilità e mutabilità, Studi Economico-Giuridici Università di Cagliari 1912] — article fondateur
 - [Atkinson A.B. — On the measurement of inequality, J Economic Theory 1970](https://doi.org/10.1016/0022-0531(70)90039-6) — alternative paramétrable
-- [Nicholson S., Pauly M.V. et al. — Measuring the effects of work overload on quality of patient care, Health Affairs 2005](https://doi.org/10.1377/hlthaff.24.5.1303) — application Gini en santé
+- [De Maio F.G. — Income inequality measures, J Epidemiol Community Health 2007](https://doi.org/10.1136/jech.2006.052969) — mesures d'inégalité (Gini, Atkinson, entropie) appliquées à la santé
 - [Asada Y. — Health Inequality: Morality and Measurement, Univ. of Toronto Press 2007] — application aux indicateurs qualité
 - [Cobham A., Sumner A. — Is It All About the Tails? The Palma Measure of Income Inequality, CGD Working Paper 2013] — ratio Palma
 - [HAS — Indicateurs Qualité et Sécurité des Soins (IQSS), portail Scope Santé](https://www.scopesante.fr/)

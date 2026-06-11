@@ -108,5 +108,5 @@ Profil vectoriel : V = [ν_urgences→MCO, ν_MCO→SSR, ν_MCO→HAD,
 - [ATIH — PMSI MCO : modes de sortie et filières](https://www.atih.sante.fr/)
 - [SNDS — Chaînage longitudinal des séjours PMSI](https://www.snds.gouv.fr/)
 - [HAS — Parcours de soins : continuité et coordination](https://www.has-sante.fr/jcms/c_1742367/fr/parcours-de-soins)
-- [Bittencourt R.J. et al., *Patient flow in emergency departments: a conceptual model*, 2013](https://doi.org/10.1097/PTS.0b013e318294b4ad)
+- [Asplin B.R. et al. — A conceptual model of emergency department crowding, Ann Emerg Med 2003](https://doi.org/10.1067/mem.2003.302) — modèle conceptuel input/throughput/output du flux aux urgences
 - [Proudlove N.C. et al. — Can good bed management solve the overcrowding in accident and emergency departments?, Emerg Med J 2003](https://doi.org/10.1136/emj.20.2.149)

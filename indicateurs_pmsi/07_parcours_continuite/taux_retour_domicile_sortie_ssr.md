@@ -114,7 +114,7 @@ Taux de réhospitalisation MCO à 30j post-retour domicile (%) =
 
 ## Références
 
-- [Prvu Bettger J. et al. — Stroke rehabilitation: it's about time, Stroke 2012](https://doi.org/10.1161/STROKEAHA.111.641738)
+- [Prvu Bettger J. et al. — Transitional care after hospitalization for acute stroke or myocardial infarction: a systematic review, Ann Intern Med 2012](https://doi.org/10.7326/0003-4819-157-6-201209180-00004)
 - [HAS — Recommandations de bonne pratique post-AVC : rééducation et retour à domicile (2012)](https://www.has-sante.fr/)
 - [SFGG — Recommandations sur la prise en charge SSR gériatrique et les critères de retour à domicile (2019)](https://www.sfgg.fr/)
 - [ATIH — Statistiques nationales PMSI SSR : taux de retour à domicile par GME (données annuelles)](https://www.atih.sante.fr/)
