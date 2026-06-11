@@ -8,7 +8,7 @@ trigger: /ght-page-refresh
 
 Met à jour l'index de recherche de la GitHub Page `docs/data/index.json` à partir du contenu courant du repo. Indispensable après avoir ajouté/modifié/supprimé une fiche `indicateurs_pmsi/**/*.md` ou un script `scripts_r/**/*.R`, sinon la page web continue de servir l'ancien index.
 
-**Important : cette skill ne commit pas, ne push pas, ne modifie rien d'autre que `docs/data/index.json`.** L'utilisateur décide quand publier.
+**Important : cette skill ne commit pas, ne push pas, ne modifie rien d'autre que `docs/data/index.json` — et éventuellement `docs/index.html` si `build_docs.py` y rafraîchit les versions d'assets (`?v=<hash>`, cache-busting).** L'utilisateur décide quand publier.
 
 ## Usage
 
@@ -103,7 +103,7 @@ Index régénéré localement. Pour publier sur la page :
 ## À ne pas faire
 
 - Ne pas modifier `build_docs.py` « pour faire mieux » au passage. Si le script semble bogué, le signaler, ne pas le réécrire silencieusement.
-- Ne pas toucher aux fiches `indicateurs_pmsi/`, aux scripts `scripts_r/`, ni aux fichiers `docs/` autres que `docs/data/index.json`.
+- Ne pas toucher aux fiches `indicateurs_pmsi/`, aux scripts `scripts_r/`, ni aux fichiers `docs/` autres que `docs/data/index.json` (et `docs/index.html`, modifié uniquement par `build_docs.py` lui-même pour les versions d'assets). Si `git status` montre `docs/index.html` modifié après le build, l'inclure dans le rappel de publication.
 - Ne pas committer, ne pas pusher, ne pas créer de branche.
 - Ne pas proposer d'ouvrir une PR.
 

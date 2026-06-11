@@ -18,7 +18,7 @@
   const fileCache = new Map();
   async function fetchText(relPath) {
     if (fileCache.has(relPath)) return fileCache.get(relPath);
-    const p = fetch(RAW_BASE + relPath).then(r => {
+    const p = fetch(RAW_BASE + relPath, { cache: "no-cache" }).then(r => {
       if (!r.ok) throw new Error(`HTTP ${r.status} sur ${relPath}`);
       return r.text();
     });
@@ -194,7 +194,7 @@
 
   async function main() {
     try {
-      const resp = await fetch("data/index.json");
+      const resp = await fetch("data/index.json", { cache: "no-cache" });
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       DATA = await resp.json();
     } catch (e) {

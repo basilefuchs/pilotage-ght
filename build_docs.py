@@ -2,6 +2,7 @@
 """Régénère docs/data/index.json à partir des fiches indicateurs_pmsi/ et scripts_r/."""
 from __future__ import annotations
 import datetime as dt
+import hashlib
 import json
 import os
 import re
@@ -12,6 +13,9 @@ ROOT = Path(__file__).resolve().parent
 FICHES_DIR = ROOT / "indicateurs_pmsi"
 SCRIPTS_DIR = ROOT / "scripts_r"
 OUT = ROOT / "docs" / "data" / "index.json"
+DOCS_HTML = ROOT / "docs" / "index.html"
+# Assets versionnés par hash de contenu (cache-busting GitHub Pages)
+VERSIONED_ASSETS = ("assets/css/style.css", "assets/js/app.js")
 
 CATEGORY_LABELS = {
     "01_activite_production": "Activité & production",
@@ -60,6 +64,21 @@ def check_verification(rel_path: str, verified: dict | None) -> dict | None:
               f"du {verified['date']} — pastille retirée")
         return None
     return verified
+
+
+def bust_asset_versions() -> None:
+    """Réécrit ?v=<hash de contenu> sur les assets dans docs/index.html.
+
+    Idempotent : index.html n'est modifié que si un asset a changé."""
+    html = DOCS_HTML.read_text(encoding="utf-8")
+    new_html = html
+    for rel in VERSIONED_ASSETS:
+        digest = hashlib.md5((ROOT / "docs" / rel).read_bytes()).hexdigest()[:8]
+        new_html = re.sub(re.escape(rel) + r"(?:\?v=[0-9a-f]*)?",
+                          f"{rel}?v={digest}", new_html)
+    if new_html != html:
+        DOCS_HTML.write_text(new_html, encoding="utf-8")
+        print("Updated asset versions in docs/index.html")
 
 
 def extract_title(text: str, fallback: str) -> str:
@@ -114,6 +133,7 @@ def main() -> None:
     print(f"Wrote {len(entries)} entries → {OUT.relative_to(ROOT)}")
     print(f"  with R script: {sum(1 for e in entries if e['path_r'])}")
     print(f"  with human verification: {sum(1 for e in entries if e['verified'])}")
+    bust_asset_versions()
 
 
 if __name__ == "__main__":
