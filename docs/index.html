@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Indicateurs PMSI / GHT — recherche</title>
+  <link rel="stylesheet" href="assets/vendor/github.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>Indicateurs PMSI / GHT</h1>
+      <p>Base de connaissance d'indicateurs calculables PMSI / SNDS</p>
+    </div>
+    <a class="repo-link" href="https://github.com/basilefuchs/pilotage-ght" target="_blank" rel="noopener">Voir le repo ↗</a>
+  </header>
+
+  <section class="controls">
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher (ex. shannon, cusum, réadmission, …)" autocomplete="off" autofocus />
+    </div>
+    <select id="category" aria-label="Filtrer par catégorie">
+      <option value="">Toutes les catégories</option>
+    </select>
+    <label class="r-toggle"><input id="only-r" type="checkbox" /> Avec script R uniquement</label>
+    <span id="count" class="count"></span>
+  </section>
+
+  <main class="layout">
+    <aside id="results" class="results" aria-label="Résultats"></aside>
+    <article id="detail" class="detail">
+      <div class="empty">Sélectionnez un indicateur pour afficher la fiche.</div>
+    </article>
+  </main>
+
+  <script>
+    window.__REPO__ = {
+      owner: "basilefuchs",
+      name: "pilotage-ght",
+      branch: "main",
+    };
+  </script>
+  <script src="assets/vendor/lunr.min.js"></script>
+  <script src="assets/vendor/lunr.stemmer.support.js"></script>
+  <script src="assets/vendor/lunr.fr.js"></script>
+  <script src="assets/vendor/marked.min.js"></script>
+  <script src="assets/vendor/highlight.min.js"></script>
+  <script src="assets/vendor/r.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
