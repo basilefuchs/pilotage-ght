@@ -14,8 +14,12 @@
 | Concept                    | Colonne       |
 |----------------------------|---------------|
 | Id séjour HAD (clé)        | `ident_sej`   |
+| N° chaînage anonyme (patient, commun MCO↔HAD) | `anonyme` |
+| Qualité du chaînage        | `ano_retour`  |
 | FINESS géographique        | `finessgeo`   |
 | Durée du séjour (journées) | `duree`       |
+| Date entrée                | `date_entree` |
+| Année sortie               | `annee`       |
 
 ## `fixe` — table patient HAD, jointe à `fixe_sej` sur `ident_sej`
 
@@ -29,6 +33,9 @@
 | Piège                                         | Traitement                            |
 |-----------------------------------------------|---------------------------------------|
 | 1 séjour HAD = N journées (pas 1 jour = 1 RSA)| Sommer `duree` pour total journées    |
+| `date_entree`/`date_sortie` indisponibles avant 2019 | Plage d'années ≥ 2019 pour les dates réelles |
+| Séjour rattaché à son **année de sortie**     | Chaînage fin d'année : balayer aussi le schéma N+1 |
+| Chaînage non exploitable                      | Filtrer `ano_retour == "000000000"` (9 codes à zéro) |
 
 ## Défauts recommandés
 

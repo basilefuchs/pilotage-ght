@@ -14,7 +14,8 @@
 | Concept                    | Colonne         |
 |----------------------------|-----------------|
 | Id séjour (clé)            | `ident`         |
-| N° chaînage anonyme (patient, commun MCO↔SMR) | `anonyme` |
+| N° chaînage anonyme (patient, commun MCO↔SMR↔HAD) | `anonyme` |
+| Qualité du chaînage        | `ano_retour`    |
 | FINESS juridique           | `finess`        |
 | GHM (6 car)                | `ghm2`          |
 | Racine GHM (5 car)         | `substr(ghm2, 1, 5)` |
@@ -155,6 +156,8 @@ Jointure : `(annee, finessgeo)`. Filtre département recommandé :
 | FINESS juridique vs géographique             | Benchmarking = `finessgeodp`           |
 | Tables `nom_gen` à période de validité       | `filter(an >= annee_deb, an <= annee_fin)` avant jointure |
 | Tarifs GHS ex-DG                             | Indisponibles en base nationale → fichier campagne ATIH local (CSV `ghs, annee, tarif`), joint après `collect()` |
+| `date_entree`/`date_sortie` indisponibles avant 2019 | Plage d'années ≥ 2019 pour les dates réelles |
+| Chaînage non exploitable                     | Filtrer `ano_retour == "000000000"` (9 codes à zéro) |
 
 ## Défauts recommandés
 
