@@ -68,7 +68,8 @@ sejours_perim <- purrr::map_dfr(annees, function(an) {
   tbl_acte <- tbl(conn, I(paste0("prd_vue_mco_", an, ".acte")))
 
   ident_ccam <- tbl_acte %>%
-    filter(acte %in% perim_ccam) %>%
+    # acte = code CCAM + phase (8 car, cf. dictionnaire) : matcher sur 7 car
+    filter(substr(acte, 1, 7) %in% perim_ccam) %>%
     distinct(ident) %>%
     transmute(ident, a_acte = 1L)
 

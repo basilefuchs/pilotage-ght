@@ -34,6 +34,16 @@
 | Code retour chaînage NIR                 | `NIR_RET`     |
 | Codes retour chaînage complémentaires    | `NAI_RET`, `SEX_RET`, `SEJ_RET`, `FHO_RET`, `PMS_RET`, `DAT_RET` |
 
+## `T_MCOaaA` — N lignes / séjour (actes CCAM)
+
+| Concept                                  | Colonne       |
+|------------------------------------------|---------------|
+| FINESS établissement (clé)               | `ETA_NUM`     |
+| N° d'index du RSA (clé)                  | `RSA_NUM`     |
+| Code CCAM (7 car)                        | `CDC_ACT`     |
+| Phase de l'acte                          | `PHA_ACT`     |
+| Nb réalisations de l'acte                | `NBR_EXE_ACT` |
+
 ## `IR_BEN_R` — référentiel bénéficiaires (non annuel)
 
 | Concept                                  | Colonne       |
@@ -57,6 +67,8 @@ Jointure : `T_MCOaaC.NIR_ANO_17 = IR_BEN_R.BEN_NIR_PSA`.
 | CMD 28 (séances) et CMD 90 (erreurs)            | `substr(GRG_GHM, 1, 2) ∉ {"28", "90"}`       |
 | Millésime N-1 partiellement consolidé           | Suivi à 30 j : s'arrêter à N-2 en fin d'année |
 | Pas de référentiel raison sociale sur le portail | Facets par `ETA_NUM`, ou référentiel FINESS local après `collect()` |
+| CCAM : `CDC_ACT` = 7 car, phase séparée (`PHA_ACT`) | Différent du portail ATIH (`acte.acte` = CCAM+phase, 8 car) |
+| Séjour du périmètre postérieur au décès `IR_BEN_R` | Clé de chaînage défaillante → exclure le candidat |
 
 ## Défauts recommandés
 
