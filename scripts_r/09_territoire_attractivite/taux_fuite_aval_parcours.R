@@ -17,7 +17,7 @@
 # Code géographique patient     : fixe.codegeo
 # FINESS géographique du DP     : finessgeo_umdudp.finessgeodp
 # IPP chaîné inter-séjours      : id_hospit_ipp.ipp_c
-# Actes CCAM                    : acte.acte (7 car), clé ident
+# Actes CCAM                    : acte.acte (8 car : CCAM + phase), clé ident
 # ==========================================
 
 library(dplyr)
@@ -28,7 +28,7 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees      <- 2016:2025
+annees      <- 2019:2025  # table id_hospit_ipp (chaînage IPP) inexistante avant 2019 (dico ATIH)
 finess_ght  <- c("<TODO: liste des FINESS géographiques du GHT>")
 codegeo_ght <- c("<TODO: liste des codes géographiques PMSI du territoire>")
 
@@ -76,7 +76,8 @@ sejours <- purrr::map_dfr(annees, function(an) {
   purrr::map_dfr(names(filieres), function(f) {
 
     actes_cibles <- tbl_acte %>%
-      filter(acte %in% filieres[[f]]$ccam_traitement) %>%
+      # acte = CCAM + phase (8 car, dico ATIH) : matcher sur 7 car
+    filter(substr(acte, 1, 7) %in% filieres[[f]]$ccam_traitement) %>%
       distinct(ident) %>%
       mutate(acte_cible = 1L)
 

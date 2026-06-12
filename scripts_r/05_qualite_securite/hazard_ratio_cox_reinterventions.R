@@ -23,7 +23,7 @@
 # FINESS juridique      : fixe.finess
 # FINESS géographique   : finessgeo_umdudp.finessgeodp
 # Diagnostics           : diag.diag (CIM-10) — pour Charlson
-# Actes CCAM            : acte.acte (7 car) — racine = substr(acte, 1, 4)
+# Actes CCAM            : acte.acte (8 car : CCAM + phase) — racine = substr(acte, 1, 4)
 # Chaînage patient      : id_hospit_ipp.ipp_c
 # ==========================================
 
@@ -103,11 +103,23 @@ extraire_an <- function(an) {
   # <TODO>: LISTAGG est Teradata-spécifique. Sur PostgreSQL utiliser
   # string_agg ; sur SQLite group_concat. Adapter si besoin.
 
-  fixe_filt %>%
+  sejours <- fixe_filt %>%
     inner_join(tbl_geo %>% select(ident, finessgeodp), by = "ident") %>%
     inner_join(tbl_ipp  %>% select(ident, ipp_c),       by = "ident") %>%
     left_join(charlson,                                  by = "ident") %>%
-    left_join(actes_index,                               by = "ident") %>%
+    left_join(actes_index,                               by = "ident")
+
+  # passage_urg absent des vues < 2023 (dico ATIH) : la covariable mode_urg
+  # repose sur modeentree seul avant 2023 (légère sous-détection des urgences)
+  if (an >= 2023) {
+    sejours <- sejours %>%
+      mutate(p_urg = coalesce(as.integer(passage_urg), 0L))
+  } else {
+    sejours <- sejours %>%
+      mutate(p_urg = 0L)
+  }
+
+  sejours %>%
     transmute(
       ident,
       ipp_c,
@@ -121,7 +133,7 @@ extraire_an <- function(an) {
       severite    = substr(ghm2, 6, 1),
       mode_urg    = case_when(
         modeentree %in% c("7", "8") ~ 1L,
-        passage_urg == 1L            ~ 1L,
+        p_urg == 1L                  ~ 1L,
         TRUE                         ~ 0L
       ),
       charlson_n  = coalesce(charlson_n, 0L),

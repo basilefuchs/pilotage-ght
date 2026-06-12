@@ -27,7 +27,7 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees       <- 2018:2025
+annees       <- 2019:2025  # dates réelles indisponibles avant 2019 (dico ATIH)
 dep          <- "29"        # filtre département (FINESS commençant par)
 seuil_volume <- 30          # séjours minimum / trimestre pour TCAT interprétable
 K_tcam       <- 3           # horizon en années du TCAM

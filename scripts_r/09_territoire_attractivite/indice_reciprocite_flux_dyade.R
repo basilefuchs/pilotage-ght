@@ -26,7 +26,7 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees   <- 2016:2025
+annees   <- 2019:2025  # dates réelles indisponibles avant 2019 (dico ATIH)
 finess_A <- c("<TODO: FINESS géographiques de l'établissement A>")
 finess_B <- c("<TODO: FINESS géographiques de l'établissement B>")
 

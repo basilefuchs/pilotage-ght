@@ -31,7 +31,7 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees          <- 2016:2025
+annees          <- 2019:2025  # dates réelles indisponibles avant 2019 (dico ATIH)
 dep             <- "29"         # Finistère (filtre FINESS juridique)
 granularite     <- 5L           # racine GHM (5 car) — fiche ; 6 = complet, 2 = CMD
 seuil_pareto    <- 0.80         # Top-N défini comme Top-80% de l'activité

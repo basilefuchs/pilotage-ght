@@ -28,7 +28,7 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees      <- 2016:2025
+annees      <- 2019:2025  # table id_hospit_ipp (chaînage IPP) inexistante avant 2019 (dico ATIH)
 dep         <- "29"
 age_min     <- 15L
 seuil_min   <- 30L            # robustesse minimale par établissement
@@ -93,7 +93,8 @@ numerateur <- purrr::map_dfr(annees, function(an) {
     filter(age >= age_min, substr(ghm2, 1, 2) != "90") %>%
     select(ident, age, sexe, codegeo) %>%
     inner_join(
-      tbl_acte %>% filter(acte %in% ccam_amputation_majeure) %>% distinct(ident),
+      tbl_acte %>% # acte = CCAM + phase (8 car, dico ATIH) : matcher sur 7 car
+    filter(substr(acte, 1, 7) %in% ccam_amputation_majeure) %>% distinct(ident),
       by = "ident"
     )
 

@@ -40,6 +40,8 @@ seuil_min_etab   <- 500L     # robustesse : ≥500 séjours/an pour interpréter
 #   BASE  : modeentree ∈ {1,2,3,5,6}  ET type GHM ∈ {C,Z,K}  ET pas de passage urg
 #   CRUE  : modeentree ∈ {7,8}        OU  passage_urg = 1
 # (ambigus : exclus du calcul ; cf <TODO> Charlson plus bas)
+# NB : passage_urg n'existe qu'à partir de 2023 (dico ATIH) — avant, la classe
+# CRUE repose sur modeentree seul (rupture de série à signaler en lecture)
 modes_base       <- c("1", "2", "3", "5", "6")
 modes_crue       <- c("7", "8")
 types_ghm_base   <- c("C", "Z", "K")
@@ -50,7 +52,7 @@ mensuel <- purrr::map_dfr(annees, function(an) {
   tbl_fixe <- tbl(conn, I(paste0("prd_vue_mco_", an, ".fixe")))
   tbl_geo  <- tbl(conn, I(paste0("prd_vue_mco_", an, ".finessgeo_umdudp")))
 
-  tbl_fixe %>%
+  sejours <- tbl_fixe %>%
     filter(
       substr(ghm2, 1, 2) != "90",          # erreurs de groupage
       substr(ghm2, 1, 2) != "28",          # CMD 28 séances — hors flux d'admission
@@ -60,7 +62,18 @@ mensuel <- purrr::map_dfr(annees, function(an) {
     inner_join(
       tbl_geo %>% select(ident, finessgeodp),
       by = "ident"
-    ) %>%
+    )
+
+  # passage_urg absent des vues < 2023 : ne le référencer que si disponible
+  if (an >= 2023) {
+    sejours <- sejours %>%
+      mutate(p_urg = coalesce(as.integer(passage_urg), 0L))
+  } else {
+    sejours <- sejours %>%
+      mutate(p_urg = 0L)
+  }
+
+  sejours %>%
     transmute(
       finessgeo = finessgeodp,
       ident,
@@ -68,12 +81,12 @@ mensuel <- purrr::map_dfr(annees, function(an) {
       mois,
       type_ghm  = substr(ghm2, 3, 1),
       modeentree = as.character(modeentree),
-      passage_urg
+      p_urg
     ) %>%
     mutate(
       classe = case_when(
         modeentree %in% modes_crue                                ~ "CRUE",
-        passage_urg == 1L                                         ~ "CRUE",
+        p_urg == 1L                                               ~ "CRUE",
         modeentree %in% modes_base & type_ghm %in% types_ghm_base ~ "BASE",
         TRUE                                                      ~ "AMBIGU"
       )

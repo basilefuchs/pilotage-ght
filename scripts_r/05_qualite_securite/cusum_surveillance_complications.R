@@ -73,9 +73,20 @@ mensuel <- purrr::map_dfr(annees, function(an) {
     distinct(ident) %>%
     mutate(complication = 1L)
 
-  fixe_chir %>%
+  sejours <- fixe_chir %>%
     inner_join(tbl_geo  %>% select(ident, finessgeodp), by = "ident") %>%
-    left_join(flag_compl,                                 by = "ident") %>%
+    left_join(flag_compl,                                 by = "ident")
+
+  # passage_urg absent des vues < 2023 (dico ATIH) : modeentree seul avant
+  if (an >= 2023) {
+    sejours <- sejours %>%
+      mutate(p_urg = coalesce(as.integer(passage_urg), 0L))
+  } else {
+    sejours <- sejours %>%
+      mutate(p_urg = 0L)
+  }
+
+  sejours %>%
     transmute(
       ident,
       finessgeo  = finessgeodp,
@@ -85,7 +96,7 @@ mensuel <- purrr::map_dfr(annees, function(an) {
       sexe,
       mode_urg   = case_when(
         modeentree %in% c("7", "8") ~ 1L,
-        passage_urg == 1L            ~ 1L,
+        p_urg == 1L                  ~ 1L,
         TRUE                         ~ 0L
       ),
       ghm_racine = substr(ghm2, 1, 5),

@@ -28,7 +28,7 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees           <- 2018:2025
+annees           <- 2019:2025  # dates réelles indisponibles avant 2019 (dico ATIH)
 dep              <- "29"          # filtre département (FINESS commençant par)
 fenetre_trim     <- 8             # nb de trimestres dans la fenêtre glissante
 fenetre_pente    <- 4             # nb de trimestres pour la régression de pente

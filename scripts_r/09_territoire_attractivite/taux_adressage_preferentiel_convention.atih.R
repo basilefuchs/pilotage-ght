@@ -13,7 +13,7 @@
 # Patient chaîné (national)   : fixe.anonyme
 # GHM (6 car) → racine / CMD  : substr(fixe.ghm2, 1, 5) / substr(fixe.ghm2, 1, 2)
 # Dates entrée / sortie       : fixe.date_entree / fixe.date_sortie
-# Actes CCAM (7 car)          : acte.acte, clé ident
+# Actes CCAM (8 car : CCAM + phase)          : acte.acte, clé ident
 # FINESS géographique du DP   : finessgeo_umdudp.finessgeodp
 # ==========================================
 
@@ -25,7 +25,7 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees   <- 2016:2025
+annees   <- 2019:2025  # dates réelles indisponibles avant 2019 (dico ATIH)
 finess_A <- c("<TODO: FINESS géographiques de l'établissement adresseur A>")
 finess_B <- c("<TODO: FINESS géographiques de l'établissement de recours B>")
 

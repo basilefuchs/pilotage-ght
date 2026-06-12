@@ -26,7 +26,7 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees           <- 2016:2025
+annees           <- 2019:2025  # dates réelles indisponibles avant 2019 (dico ATIH)
 dep              <- "75"            # département à filtrer pour le référentiel rs
 fenetre_baseline <- 24              # mois de baseline pré-perturbation
 seuil_retour_k   <- 0.5             # |X_t - mu_baseline| < seuil_retour_k * sigma_baseline

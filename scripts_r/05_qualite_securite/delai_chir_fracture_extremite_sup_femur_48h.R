@@ -27,7 +27,7 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees <- 2016:2025
+annees <- 2019:2025  # dates réelles indisponibles avant 2019 (dico ATIH)
 dep    <- "29"
 
 age_min         <- 65L
@@ -64,7 +64,8 @@ resultat <- purrr::map_dfr(annees, function(an) {
 
   # Délai minimum (premier acte chir qualifiant) par séjour
   delai_chir <- tbl_acte %>%
-    filter(acte %in% ccam_chir_fracture) %>%
+    # acte = CCAM + phase (8 car, dico ATIH) : matcher sur 7 car
+    filter(substr(acte, 1, 7) %in% ccam_chir_fracture) %>%
     semi_join(cohorte, by = "ident") %>%
     group_by(ident) %>%
     summarise(delai_min = min(acte_delai, na.rm = TRUE), .groups = "drop")

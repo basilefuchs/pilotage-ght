@@ -31,7 +31,7 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees   <- 2016:2025
+annees   <- 2019:2025  # dates réelles indisponibles avant 2019 (dico ATIH)
 finess_A <- c("<TODO: FINESS géographiques de l'établissement adresseur A (MCO + SMR)>")
 finess_B <- c("<TODO: FINESS géographiques de l'établissement de recours B>")
 
@@ -73,7 +73,8 @@ sejours_b <- purrr::map_dfr(annees, function(an) {
   tbl_acte <- tbl(conn, I(paste0("prd_vue_mco_", an, ".acte")))
 
   ident_ccam <- tbl_acte %>%
-    filter(acte %in% perim_ccam) %>%
+    # acte = CCAM + phase (8 car, dico ATIH) : matcher sur 7 car
+    filter(substr(acte, 1, 7) %in% perim_ccam) %>%
     distinct(ident) %>%
     transmute(ident, a_acte = 1L)
 
