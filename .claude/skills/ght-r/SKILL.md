@@ -26,10 +26,13 @@ le style dplyr/purrr du projet, avec demande de mapping à l'utilisateur.
 
 ## Principe directeur
 
-**La skill ne connaît pas la base de l'utilisateur.** Elle connaît les
-concepts PMSI (GHM, DP, CCAM, FINESS, chaînage...) et les méthodes
-statistiques classiques. Elle demande à l'utilisateur le mapping
-concepts → (table, colonne) avant de finaliser le code.
+**Aucun mapping n'est inventé.** La skill connaît les concepts PMSI
+(GHM, DP, CCAM, FINESS, chaînage...) et les méthodes statistiques
+classiques. Pour le schéma réel, elle résout chaque concept dans cet
+ordre : **profil curaté** (`profils/*.md`, utilisé d'office) →
+**dictionnaire complet** (`profils/dictionnaires/*.csv`, candidats
+présentés à l'utilisateur pour confirmation) → **question libre**.
+Tout mapping confirmé est persisté dans le profil.
 
 ## Workflow — 4 étapes
 
@@ -96,16 +99,54 @@ Avant de poser les questions, lister `profils/*.md` à la racine du repo
 et identifier les profils couvrant le **champ PMSI** de la fiche
 (MCO/SSR/HAD/Psy, déduit du nom de fichier `<base>_<champ>.md`) :
 
-- **0 profil candidat** → poser les questions de mapping comme avant.
+- **0 profil candidat** → chercher tous les concepts dans les
+  dictionnaires (§3.0.1) avant de poser les questions de mapping.
 - **1 profil candidat couvrant tous les concepts requis** → le charger
   d'office, sauter le mapping, ne poser que les questions
   méthodologiques. Annoncer dans le message : "Profil détecté et
   utilisé : `profils/portail_atih_mco.md`".
 - **1 profil candidat couvrant partiellement** → l'utiliser pour les
-  concepts couverts, ne poser que les concepts manquants + questions
-  méthodologiques.
+  concepts couverts ; pour les concepts manquants, chercher des
+  candidats dans les dictionnaires (§3.0.1) et les soumettre avec les
+  questions méthodologiques.
 - **Plusieurs candidats** → les lister dans le message et demander
   lequel utiliser, en même temps que les questions méthodologiques.
+
+#### 3.0.1 — Recherche dans les dictionnaires complets
+
+`profils/dictionnaires/` contient le schéma **complet** des bases,
+généré depuis les sources officielles (voir `profils/source/README.md`) :
+
+- `portail_atih.csv` — base nationale ATIH, format
+  `champ;schema_teradata;table;colonne;libelle;type;longueur;annees;jointure;commentaire;schema_sas`.
+  `champ` ∈ {mco, smr, had, psy, rpu, ref}. Les schémas sont **déjà
+  traduits** du nommage SAS vers Teradata (`prd_vue_mco_AAAA`, …) ;
+  `prd_vue_rpu_AAAA` reste à confirmer à l'usage.
+- `snds.csv` — SNDS complet, format
+  `domaine;table;libelle_table;variable;libelle;type;longueur;remarques`.
+  `domaine` ∈ {DCIR, PMSI, CARTOGRAPHIE, CAUSE_DECES, AUTRE, VALEUR}.
+
+Recherche par grep (insensible à la casse, sur libellé ou nom de
+colonne), en filtrant par champ/domaine :
+
+```sh
+grep -i "^mco;" profils/dictionnaires/portail_atih.csv | grep -i "urgence"
+grep -i ";ER_PRS_F;" profils/dictionnaires/snds.csv
+```
+
+Règles :
+
+- **Jamais d'insertion silencieuse** : tout candidat issu du
+  dictionnaire est présenté à l'utilisateur (table, colonne, libellé,
+  années de disponibilité) et confirmé en chat avant usage.
+- **Un seul candidat évident** → le proposer pré-rempli dans le tableau
+  de l'étape 3.1 (l'utilisateur valide d'un mot). **Plusieurs
+  candidats** → les lister et demander le bon. **Aucun** → question
+  libre comme avant.
+- La colonne `annees` (ATIH) borne la disponibilité : alerter si la
+  plage d'années du script déborde (ex. `passage_urg` : 2023-2026).
+- Les mappings confirmés suivent le circuit normal de **persistance
+  dans `profils/`** (section "Persistance des profils").
 
 #### 3.1 — Format des questions
 
@@ -342,7 +383,9 @@ profil partagé.
 
 ## Ce que la skill NE fait PAS
 
-- Ne connaît pas les noms de colonnes/tables d'une base particulière
+- Ne valide jamais seule un mapping hors profil : les candidats trouvés
+  dans `profils/dictionnaires/` sont systématiquement confirmés par
+  l'utilisateur avant d'entrer dans le script ou le profil
 - N'exécute pas le code R (génération uniquement)
 - Ne valide pas statistiquement les résultats
 - Ne rédige pas de rapport final (juste le calcul + viz de base)

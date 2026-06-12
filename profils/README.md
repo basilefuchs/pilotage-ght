@@ -4,6 +4,27 @@ Profils de mapping concepts PMSI ↔ schéma réel, consommés **et
 enrichis** par la skill `/ght-r` pour éviter de redemander le mapping à
 chaque génération.
 
+## Trois couches de connaissance du schéma
+
+| Couche                | Contenu                                            | Statut |
+|-----------------------|----------------------------------------------------|--------|
+| `source/`             | Sources brutes (Excel ATIH, zip Kwikly SNDS) + script de conversion | committé tel quel |
+| `dictionnaires/`      | Dictionnaires complets greppables (CSV `;`) générés depuis `source/` | généré, régénérable |
+| `*.md` (cette racine) | Profils curatés concept → colonne, **vérifiés à l'usage** | capital métier |
+
+Résolution d'un concept par `/ght-r` : **profil d'abord**, puis grep
+dans `dictionnaires/` avec confirmation utilisateur, puis question
+libre. Tout mapping confirmé remonte dans le profil (couche 3).
+
+```sh
+# Rechercher un concept dans les dictionnaires
+grep -i "urgence" profils/dictionnaires/portail_atih.csv
+grep -i ";ER_PRS_F;" profils/dictionnaires/snds.csv
+```
+
+Régénération : `Rscript profils/source/build_dictionnaires.R`
+(voir `source/README.md`, notamment la règle de nommage SAS → Teradata).
+
 ## Utilisation
 
 | Mode                          | Commande                                            |
