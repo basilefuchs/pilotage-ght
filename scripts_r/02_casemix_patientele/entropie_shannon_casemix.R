@@ -1,15 +1,37 @@
+# ==============================================================================
+# Indicateur : Entropie de Shannon du casemix — diversité vs spécialisation
+# Source     : Shannon 1948 (théorie de l'information)
+# Pattern    : §4 — mesure_diversite (distribution des codes → entropie normalisée)
+# Fiche      : indicateurs_pmsi/02_casemix_patientele/entropie_shannon_casemix.md
+# ==============================================================================
+
+# ==== PROFIL DE BASE (mapping utilisé) ====
+# Base       : Portail ATIH (Teradata via dbplyr)
+# Connexion  : pRatihque::connection_database()
+# Schémas    : prd_vue_mco_AAAA / prd_vue_smr_AAAA
+#
+# Séjour MCO (1 ligne)        : fixe.ident
+# Séjour SMR (1 ligne)        : fixe.ident_sej
+# Racine GHM (5 car)          : substr(fixe.ghm2, 1, 5)
+# GN GME (4 car)              : substr(fixe.gme, 1, 4)
+# FINESS géo. (DP) MCO        : finessgeo_umdudp.finessgeodp
+# FINESS géo. SMR             : fixe.finessgeo
+# Référentiel établisst.      : prd_vue_nomgen.finessgeo (rs)
+# Nomenclatures (H_max)       : prd_vue_nompmsi.all_classif_pmsi
+# ==========================================
+
 library(dplyr)
+library(ggplot2)
 
-
-# Paramètres
+# ==== PARAMÈTRES ====
 annees <- 2016:2025
-dep <- "29"
+dep    <- "29"        # filtre département du GHT (substr finess 1-2)
 
 # Connexion
 conn <- pRatihque::connection_database()
 
-
-# Référentiels
+# ==== RÉFÉRENTIELS ====
+# Libellés établissements
 ref_finessgeo <- tbl(conn, I("prd_vue_nomgen.finessgeo")) %>%
   filter(
     substr(finessgeo, 1, 2) == dep,
@@ -24,6 +46,7 @@ ref_finessgeo <- tbl(conn, I("prd_vue_nomgen.finessgeo")) %>%
     .groups = "drop"
   )
 
+# Nombre de codes possibles par classification et par année (dénominateur H_max)
 nb_code_par_annee <- tbl(conn, I("prd_vue_nompmsi.all_classif_pmsi")) %>%
   mutate(annee = year(date_deb)) %>%
   filter(annee %in% annees) %>%
@@ -33,21 +56,21 @@ nb_code_par_annee <- tbl(conn, I("prd_vue_nompmsi.all_classif_pmsi")) %>%
   summarise(N_TOTAL_CODE = n_distinct(code)) %>%
   distinct()
 
+# ==== EXTRACTION : N_i = nb séjours par (annee, finessgeo, code) ====
 
-# Activité
-## MCO
+## MCO — racine de GHM (5 car), hors CMD 90
 mco <- purrr::map_dfr(annees, function(an) {
-  
+
   fixe_tbl <- tbl(conn, I(paste0("prd_vue_mco_", an, ".fixe")))
   geo_tbl  <- tbl(conn, I(paste0("prd_vue_mco_", an, ".finessgeo_umdudp")))
-  
+
   fixe_tbl %>%
     filter(
       substr(ghm2, 1, 2) != "90",
       substr(finess, 1, 2) == dep
     ) %>%
     inner_join(
-      geo_tbl %>% 
+      geo_tbl %>%
       select(ident, finessgeodp),
       by = "ident"
     ) %>%
@@ -65,11 +88,11 @@ mco <- purrr::map_dfr(annees, function(an) {
     collect()
 })
 
-## SMR
+## SMR — groupe nosologique de GME (4 car), hors CM 90
 smr <- purrr::map_dfr(annees, function(an) {
-  
+
   fixe_tbl <- tbl(conn, I(paste0("prd_vue_smr_", an, ".fixe")))
-  
+
   fixe_tbl %>%
     filter(
       substr(gme, 1, 2) != "90",
@@ -89,14 +112,13 @@ smr <- purrr::map_dfr(annees, function(an) {
     collect()
 })
 
-
-# Entropie
+# ==== CALCUL : H = −Σ p_i log₂(p_i), normalisée par H_max = log₂(N_codes) ====
 calcul_entropie <- function(df, x) {
-    
+
   df <- df %>%
   inner_join(ref_finessgeo, by = c("finessgeo", "annee")) %>%
   inner_join(
-    nb_code_par_annee %>% 
+    nb_code_par_annee %>%
     filter(type_code == x),
     by = "annee"
   ) %>%
@@ -111,19 +133,16 @@ calcul_entropie <- function(df, x) {
   ) %>%
   distinct() %>%
   mutate(rs = factor(rs, levels = sort(unique(rs))))
-  
+
   return(df)
 
 }
 
+# ==== RÉSULTAT ====
 df <- calcul_entropie(mco, "racine")
 # df <- calcul_entropie(smr, "gn")
 
-
-# Visualisation
-library(ggplot2)
-
-
+# ==== VISUALISATION : H' par établissement, série temporelle ====
 ggplot(df, aes(x = annee, y = H_norm, color = rs)) +
   geom_smooth(se = FALSE, method = "loess") +
   geom_point() +
@@ -132,3 +151,6 @@ ggplot(df, aes(x = annee, y = H_norm, color = rs)) +
   scale_y_continuous(limits = c(0, 1)) +
   theme_minimal() +
   theme(legend.position = "none")
+
+# ==== EXPORT (décommenter si besoin) ====
+# readr::write_csv(df, "entropie_shannon_casemix.csv")
