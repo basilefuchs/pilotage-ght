@@ -68,7 +68,7 @@ G_severite = mean_sev_Q5 / mean_sev_Q1
 
 ```
 Modèle mixte :
-  log(DUREE_SEJOUR) ~ racine_GHM + sévérité + age + sexe + Charlson + (1|FINESSGEO)
+  log(`duree`) ~ racine_GHM + sévérité + age + sexe + Charlson + (1|FINESSGEO)
 DMS_ajustée_Q = exponentielle des effets fixes attribuables à Q
 G_DMS_aj = DMS_aj(Q5) / DMS_aj(Q1)
 ```
@@ -117,7 +117,7 @@ Intervalles de confiance par bootstrap (B = 1000).
 
 ## Sources de Données
 
-- **PMSI MCO — RSA** : `GHM`, sévérité, `DUREE_SEJOUR`, `SOR_MOD`, `MODE_ENTREE`, `AGE_AN`, `SEXE`, `DAS` (Charlson), `FINESSGEO`, identifiant chaîné ANO
+- **PMSI MCO — RSA** : `GHM`, sévérité, `duree`, `SOR_MOD`, `modeentree`, `age`, `SEXE`, `DAS` (Charlson), `FINESSGEO`, identifiant chaîné ANO
 - **RPU urgences** : pour `TX_RU7J`
 - **SNDS — DCIR** :
   - `IR_BEN_R` : commune/IRIS résidence (lien avec FDep)

@@ -77,7 +77,7 @@ Positionnement vs indicateurs existants : différent du PSI (événements iatrog
   (France entière ou population européenne standard).
 ```
 
-Variables PMSI clés : `DP`, `AGE_ANNEES`, `SEXE`, `CODE_GEO` (résidence du patient — code commune ou département), `MODE_ENTREE`, `MODE_SORTIE`. Données INSEE pour le dénominateur populationnel.
+Variables PMSI clés : `DP`, `age`, `SEXE`, `CODE_GEO` (résidence du patient — code commune ou département), `modeentree`, `MODE_SORTIE`. Données INSEE pour le dénominateur populationnel.
 
 ## Utilité
 - **Pilotage GHT — coordination ville-hôpital** : taux ACSC élevé sur le territoire = signal d'insuffisance des soins primaires, à articuler avec la CPTS et le projet médical partagé.

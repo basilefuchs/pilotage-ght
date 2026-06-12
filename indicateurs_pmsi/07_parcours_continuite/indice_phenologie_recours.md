@@ -68,7 +68,7 @@ Population : patients avec ALD active ou GHM index MCO dans la période
 ## Sources de Données
 
 - **SNDS — `ER_PRS_F`** : date de soin (`EXE_SOI_DTD`), code prestation (`PRS_NAT_REF`), identifiant bénéficiaire pseudonymisé (`BEN_NIR_PSA`), code exécutant (`EXE_PRO_NAT`) — extraction mensuelle ou annuelle selon la granularité
-- **SNDS — `IR_ALD_R`** : table des ALD actives par bénéficiaire, pour stratifier la population par groupe nosologique (`ALD_TYP` 1-30)
+- **SNDS — `IR_IMB_R`** : table des ALD actives par bénéficiaire, pour stratifier la population par groupe nosologique (`IMB_ALD_NUM` 1-30)
 - **SNDS — `IR_BEN_R`** : référentiel bénéficiaires pour les attributs démographiques (âge, sexe, commune de résidence `BEN_RES_COM`) permettant la stratification géographique
 - **PMSI MCO** : dates d'hospitalisation (`ENT_DAT`, `SOR_DAT`) pour exclure les périodes intra-hospitalières du calcul des intervalles ambulatoires
 

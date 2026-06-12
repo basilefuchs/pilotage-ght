@@ -101,7 +101,7 @@ Score de fluidité de filière (SFF) :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : mode de sortie (MODE_SORTIE = 6 pour transfert SSR), DATE_SOR, code FINESS de l'établissement de destination — pour identifier les transferts et calculer la date de sortie MCO
+- **PMSI MCO RSA** : mode de sortie (MODE_SORTIE = 6 pour transfert SSR), `date_sortie`, code FINESS de l'établissement de destination — pour identifier les transferts et calculer la date de sortie MCO
 - **PMSI SSR RHS** : DATE_ENT_SSR, code FINESS de l'établissement MCO d'origine (FINESS_ET_ORIGINE dans le RHS) — pour calculer le délai Δᵢ = DATE_ENT_SSR − DATE_SOR_MCO ; le chaînage par NIR crypté est nécessaire pour les transferts inter-établissements
 - **Algorithme d'analyse de survie** : Python (lifelines : KaplanMeierFitter, ExponentialFitter), R (survival : survfit, survreg) — estimation de k par maximum de vraisemblance et tests de la forme de H(t)
 - **Référentiels de délais cibles** (HAS, DGOS) : délais recommandés de transfert par filière — pour calculer k_cible et le Score de Fluidité de Filière ; publications SOFMER (Société Française de Médecine Physique et de Réadaptation) pour les filières SSR neurologiques et locomotrices

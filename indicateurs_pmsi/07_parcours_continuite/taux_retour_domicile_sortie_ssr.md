@@ -90,7 +90,7 @@ Taux de réhospitalisation MCO à 30j post-retour domicile (%) =
 
 ## Sources de Données
 
-- **PMSI SSR RHS** : mode_sort, GME, FP (finalité principale), scores MIF_ENT/MIF_SOR, dates d'entrée/sortie, NIR crypté
+- **PMSI SMR RHS** : `modesortie`, GME, FP (finalité principale), cotations de dépendance AVQ (`dep_phys`, `dep_cogn` — pas de MIF dans la base nationale), dates d'entrée/sortie, chaînage `anonyme`
 - **PMSI HAD** : chaînage NIR post-sortie SSR pour identifier les retours domicile avec HAD dans les 7 jours
 - **PMSI MCO RSA** : chaînage NIR post-sortie SSR pour détecter les réhospitalisations MCO à 30 jours (solidité du retour domicile)
 - **DCIR ER_PRS_F** : actes SSIAD (codes NGAP infirmiers) dans les 30 jours post-sortie SSR — permet d'identifier les retours domicile avec aide infirmière à domicile

@@ -46,7 +46,7 @@ Positionnement vs indicateurs existants : différent du compteur de séjours (`n
     → comptés une seule fois pour la FA tous secteurs
 ```
 
-Variables PMSI clés : `N°ANONYME` (chaînage), `DATE_ENTREE`, `DATE_SORTIE`, `FINESS` (établissement), `CODGEO` (résidence patient), `AGE_ANNEES`, `SEXE`, type de format (RSA / RHA / RAPSS / RPSA).
+Variables PMSI clés : `N°ANONYME` (chaînage), `DATE_ENTREE`, `DATE_SORTIE`, `FINESS` (établissement), `CODGEO` (résidence patient), `age`, `SEXE`, type de format (RSA / RHA / RAPSS / RPSA).
 
 ## Utilité
 - **Suivi DREES Panorama** : alignement national avec l'indicateur structurant publié annuellement (13,2 M en 2023).

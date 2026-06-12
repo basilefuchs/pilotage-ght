@@ -31,7 +31,7 @@ Proxy TOS PMSI = (Nombre de séjours avec actes CCAM réalisés / Capacité thé
 
 **Précisions méthodologiques** :
 - Les données précises du bloc (horodatages d'entrée/sortie de salle) sont issues des logiciels de gestion du bloc (DIANE, BOW, Axya) et non directement du PMSI.
-- Le PMSI permet néanmoins des proxies robustes : nombre d'actes CCAM par jour et par établissement, répartition programmé/urgences via le mode d'entrée (code 8 = urgences), distribution hebdomadaire et mensuelle des actes.
+- Le PMSI permet néanmoins des proxies robustes : nombre d'actes CCAM par jour et par établissement, répartition programmé/urgences via `modeentree` = 8 et `provenance` = 5 (urgences), distribution hebdomadaire et mensuelle des actes.
 - L'analyse PMSI permet également d'identifier les « séjours sans acte » (séjours MCO sans code CCAM associé) pouvant signaler des dysfonctionnements de codage ou des annulations non tracées.
 - L'indice composite peut être calculé en agrégeant les sous-indicateurs pondérés selon les priorités du GHT.
 

@@ -27,7 +27,7 @@ Positionnement vs `coefficient_variation_pondere_recours_irdes.md` :
 
 **Source PMSI** : RSA MCO + table actes CCAM.
 
-**Variables PMSI mobilisées** : identiques à `coefficient_variation_pondere_recours_irdes.md` — `CODE_GEO_RESIDENCE`, `AGE_ANNEE`, `SEXE`, `CODE_ACTE_CCAM`, `DP`, `DAS`.
+**Variables PMSI mobilisées** : identiques à `coefficient_variation_pondere_recours_irdes.md` — `CODE_GEO_RESIDENCE`, `AGE_ANNEE`, `SEXE`, `acte`, `DP`, `DAS`.
 
 **Liste des 11 interventions IRDES** : voir `coefficient_variation_pondere_recours_irdes.md` § Calcul.
 

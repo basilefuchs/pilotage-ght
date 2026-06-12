@@ -29,7 +29,7 @@ Aucun indicateur ne capture la **fragilité gériatrique au sens du phénotype F
 ```
 Inclusion :
   - RSA MCO complet
-  - AGE_AN >= 75
+  - `age` >= 75
   - Patient avec ≥ 24 mois d'historique SNDS exploitable (sinon
     sous-cohorte « historique insuffisant »)
 
@@ -94,7 +94,7 @@ Mesure de la couverture EMG sur la population cible.
 
 ## Sources de Données
 
-- **PMSI MCO — RSA** : `AGE_AN`, `SEXE`, `GHM`, `DP`, `DAS`, `DUREE_SEJOUR`, `SOR_MOD`, `FINESSGEO`, identifiant patient chaîné (fichier ANO)
+- **PMSI MCO — RSA** : `age`, `SEXE`, `GHM`, `DP`, `DAS`, `duree`, `SOR_MOD`, `FINESSGEO`, identifiant patient chaîné (fichier ANO)
 - **SNDS — DCIR** : tables `ER_PHA_F` (médicaments), `ER_PRS_F` (prestations spécialistes/IDE/kiné), `IR_BEN_R` (caractéristiques bénéficiaire)
 - **SNDS — Historique PMSI** : séjours antérieurs sur 24 mois
 - **Référentiel ALD CNAM** : table `IR_IMB_R` (ALD actives)

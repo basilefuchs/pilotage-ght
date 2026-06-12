@@ -58,17 +58,17 @@ Sources : PMSI MCO RSA (ATIH) + Référentiel GHM marqueurs et taux cibles ANAP 
 Étape 2 — Extraction des RSA par racine GHM marqueur :
   Pour chaque g ∈ G_marqueurs :
     RSA_total_{(g)}  = COUNT(RSA)
-      WHERE FINESS_GEO = etab
+      WHERE `finessgeo` = etab
         AND GHM_racine = g
         AND SUBSTR(GHM, 6, 1) NOT IN ('T','Z')  -- exclure décès et séjours indéterminés
 
     RSA_ambu_{(g)}   = COUNT(RSA)
-      WHERE FINESS_GEO = etab
+      WHERE `finessgeo` = etab
         AND GHM_racine = g
         AND SUBSTR(GHM, 6, 1) = 'J'             -- suffixe J = niveau ambulatoire
 
   Variables PMSI utilisées :
-    FINESS_GEO : identifiant établissement géographique
+    `finessgeo` : identifiant établissement géographique
     GHM        : code GHM complet 8 caractères (ex. 07C051J)
                  → GHM_racine = SUBSTR(GHM, 1, 5) = '07C05'
                  → Suffixe     = SUBSTR(GHM, 6, 1) ∈ {1,2,3,4,J,T,Z,E,A,B,C,D}
@@ -129,7 +129,7 @@ Indice de convergence par CMD chirurgicale :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** (ATIH) : variable `GHM` (8 caractères) — le 6ème caractère (suffixe) détermine le niveau de sévérité : `J` = ambulatoire. Extraction annuelle ou trimestrielle selon la granularité souhaitée.
+- **PMSI MCO RSA** (ATIH) : variable `ghm2` (6 caractères) — le 6e caractère détermine le niveau de sévérité : `J` = ambulatoire. Extraction annuelle ou trimestrielle selon la granularité souhaitée.
 - **Référentiel GHM marqueurs ANAP** : liste des racines GHM éligibles et taux cibles associés, mise à jour annuellement. Disponible :
   - Sur le portail ANAP (www.anap.fr) dans le programme « Développement de la chirurgie ambulatoire »
   - En annexe des CPOM ARS (déclinaison régionale des objectifs nationaux)

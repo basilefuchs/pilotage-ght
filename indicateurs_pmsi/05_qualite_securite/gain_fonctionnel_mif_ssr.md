@@ -2,7 +2,7 @@
 
 ## Définition
 
-La MIF (Mesure de l'Indépendance Fonctionnelle), version française du FIM (Functional Independence Measure), est un score standardisé évaluant le niveau d'autonomie fonctionnelle du patient. Elle est codée dans le PMSI SSR (Résumé Hebdomadaire Standardisé — RHS) à l'entrée et à la sortie du séjour. Score total : 18 à 126 points, composé de 18 items répartis en deux domaines :
+La MIF (Mesure de l'Indépendance Fonctionnelle), version française du FIM (Functional Independence Measure), est un score standardisé évaluant le niveau d'autonomie fonctionnelle du patient. **Attention : la MIF n'est pas recueillie dans la base nationale PMSI SMR** (aucune variable MIF au dictionnaire ATIH) — elle n'est disponible que si l'établissement la cote dans son dossier de rééducation. Le RHS recueille en revanche les **dépendances AVQ** (6 items cotés 1-4, score 6-24 : `alim`, `comport`, `conti`, `habill`, `loco`, `rel`, agrégés en `dep_phys`/`dep_cogn`), à chaque séquence hebdomadaire — elles fournissent l'équivalent calculable du gain fonctionnel sur la base nationale. Score MIF total : 18 à 126 points, composé de 18 items répartis en deux domaines :
 
 - **Domaine moteur** (13 items, max 91 points) : soins personnels (alimentation, hygiène, habillage, toilette périnéale), contrôle sphinctérien, mobilité/transferts, locomotion
 - **Domaine cognitif** (5 items, max 35 points) : compréhension, expression, conscience sociale, résolution de problèmes, mémoire
@@ -13,7 +13,10 @@ Le **gain fonctionnel MIF** = MIF_sortie − MIF_entrée mesure la valeur ajout�
 
 ## Calcul
 
-Sources PMSI SSR : variables MIF_ENT (score MIF total à l'entrée, présent dans le 1er RHS du séjour) et MIF_SOR (score MIF total à la sortie, présent dans le dernier RHS du séjour).
+Deux modes de calcul selon la source :
+
+- **Données locales** (MIF cotée dans le dossier de rééducation) : MIF_entrée (1er RHS du séjour) et MIF_sortie (dernier RHS) — les formules ci-dessous s'appliquent telles quelles.
+- **Base nationale ATIH** (pas de MIF) : équivalent AVQ — score de dépendance = somme des 6 cotations AVQ (6-24) ou agrégats `dep_phys` + `dep_cogn`, comparé entre la première et la dernière séquence du séjour (delta négatif = gain d'autonomie, l'échelle AVQ croît avec la dépendance). Transposer les formules en remplaçant MIF par le score AVQ inversé.
 
 Population éligible :
 
@@ -79,8 +82,9 @@ Sous-indicateurs par domaine :
 
 ## Sources de Données
 
-- **PMSI SSR RHS** : variables MIF_ENT et MIF_SOR (scores MIF total à l'entrée et à la sortie), GME (Groupe Médico-Économique), FP (finalité principale de prise en charge), dates d'entrée/sortie du séjour, NIR crypté
-- **Référentiel ATIH** : normes nationales de MIF_ENT et MIF_SOR par GME, ainsi que normes d'efficience rééducative (points MIF/jour) publiées dans les statistiques annuelles SSR
+- **PMSI SMR RHS (base nationale)** : cotations de dépendance AVQ par séquence (`alim`, `comport`, `conti`, `habill`, `loco`, `rel`, `dep_phys`, `dep_cogn`), GME, FP (finalité principale de prise en charge), dates d'entrée/sortie du séjour, chaînage `anonyme` — **pas de variable MIF**
+- **Dossier de rééducation local** : scores MIF entrée/sortie si l'établissement les cote (mode MIF des formules)
+- **Référentiel ATIH** : distributions nationales de dépendance AVQ par GME publiées dans les statistiques annuelles SMR
 - **Guide méthodologique ATIH PMSI SSR** : définition précise des 18 items MIF, modalités de cotation dans le RHS, règles de complétude
 
 ## Exemple de Valeurs
@@ -98,6 +102,7 @@ Sous-indicateurs par domaine :
 - La MIF ne capture pas la qualité de vie, la douleur, la fatigue, ni la récupération cognitive fine pour les AVC (aphasie, héminégligence, syndrome dysexécutif) — indicateur à compléter par des outils spécifiques (NIHSS, Rankin, MoCA) dans les filières neurologiques
 - Le score MIF à l'entrée SSR est influencé par le délai MCO→SSR : une admission SSR tardive (> J7) laisse une récupération spontanée précoce déjà intégrée dans le score d'entrée, réduisant artificiellement le delta SSR apparent — le délai MCO→SSR (indicateur SSR-1) doit être lu conjointement
 - Complétude variable selon les établissements : le renseignement des MIF entrée et sortie n'est pas exhaustif dans tous les SSR ; un taux de complétude < 80% doit conduire à interpréter l'indicateur avec prudence
+- **L'équivalent AVQ de la base nationale est moins sensible que la MIF** : 6 items cotés 1-4 (score 6-24) contre 18 items cotés 1-7 (18-126) — les seuils cliniques de la littérature MIF (Dodds, retour domicile ≥ 80) ne se transposent pas directement ; comparer en distribution (quartiles de delta AVQ par GME) plutôt qu'en seuils absolus
 
 ## Références
 

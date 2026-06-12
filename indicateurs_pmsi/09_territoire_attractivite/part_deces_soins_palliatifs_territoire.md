@@ -29,8 +29,8 @@ Positionnement vs existants : aucun indicateur du projet ne croise actuellement 
 - `DP` (diagnostic principal, CIM-10)
 - `DA` ou `DAS` (diagnostics associés / significatifs — Z51.5 peut être codé en DP **ou** DA selon le motif principal du séjour)
 - `MODE_SORTIE` : code 9 = décès
-- `DUREE_SEJOUR` (pour analyse complémentaire de précocité)
-- `NUM_FINESS_GEO` → mapping GHT
+- `duree` (pour analyse complémentaire de précocité)
+- `finessgeo` → mapping GHT
 
 **Codage Z51.5** : « Soins palliatifs » — peut être :
 - **DP** : séjour dont le motif principal est la prise en charge palliative,
@@ -92,7 +92,7 @@ result <- part_deces %>%
 
 ## Sources de Données
 
-- **PMSI MCO** : RSA, variables `DP`, `DAS`, `MODE_SORTIE`, `NUM_FINESS_GEO`. Guide méthodologique MCO en vigueur, ATIH.
+- **PMSI MCO** : RSA, variables `DP`, `DAS`, `MODE_SORTIE`, `finessgeo`. Guide méthodologique MCO en vigueur, ATIH.
 - **CIM-10** : code Z51.5 « Soins palliatifs ». Mise à jour annuelle du référentiel CIM-10 par l'ATIH.
 - **Référentiel GHT** : ATIH / DGOS.
 - **Restitution publique équivalente** : ScanSanté → « Caractériser et suivre un GHT » → caractéristique « part de décès en soins palliatifs ».

@@ -93,7 +93,7 @@ Carte de chaleur hebdomadaire-annuelle :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : date et heure d'entrée effective pour chaque séjour (variable DATE_ENT + HEURE_ENT du RSA) — principale source pour calculer les flux quotidiens et intra-journaliers d'admissions sur les 12 mois glissants
+- **PMSI MCO RSA** : date et heure d'entrée effective pour chaque séjour (variable `date_entree` + HEURE_ENT du RSA) — principale source pour calculer les flux quotidiens et intra-journaliers d'admissions sur les 12 mois glissants
 - **Données de gestion interne** (logiciel de planification : DxCare, SilverSurfer, Crossway) : distinctions programmé/non programmé, type de chirurgie, spécialité — pour la décomposition du flux par type d'admission et le calcul de l'IHH_programmé
 - **Planning des blocs opératoires** (logiciel de gestion des blocs : Opusline, Uranos, BO Management) : vacations ouvertes par jour et par spécialité — pour analyser l'offre programmée et la comparer au flux réel (taux de remplissage vs lissage)
 - **Données RH** (logiciel de planification des soignants) : effectifs présents par jour et par unité — pour mettre en regard l'IHH des admissions avec la dotation en personnel et calculer l'écart charge/capacité journalier

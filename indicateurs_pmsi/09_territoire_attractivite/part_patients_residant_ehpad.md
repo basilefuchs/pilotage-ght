@@ -22,11 +22,11 @@ Positionnement :
 **Source PMSI** : RSA MCO, format en vigueur de la campagne (cf. guide méthodologique ATIH).
 
 **Variables PMSI mobilisées** :
-- `MODE_ENTREE` : code 6 = mutation, 7 = transfert, 8 = domicile (incluant médico-social selon convention historique — **à confirmer sur la campagne en cours**)
+- `modeentree` : code 6 = mutation, 7 = transfert, 8 = domicile (incluant médico-social selon convention historique — **à confirmer sur la campagne en cours**)
 - `PROVENANCE` : code 6 = établissement médico-social (EHPAD, USLD, FAM, MAS, etc.) — variable conjointe au mode d'entrée
 - `MODE_SORTIE` (symétrique) : 6 = mutation, 7 = transfert, 8 = domicile, 9 = décès
 - `DESTINATION` : code 6 = médico-social
-- `NUM_FINESS_GEO` → mapping GHT
+- `finessgeo` → mapping GHT
 
 > ⚠️ Les conventions de codage de la provenance EHPAD ont évolué : sur certaines campagnes, la provenance médico-sociale est codée via le couple (mode_entrée = 8 ou 6, provenance = 6), sur d'autres elle utilise un code dédié. **Toujours se référer au guide méthodologique de la campagne PMSI en vigueur** pour la combinaison exacte.
 
@@ -76,7 +76,7 @@ part_ehpad <- sej_ms %>%
 
 ## Sources de Données
 
-- **PMSI MCO** : RSA ATIH, variables `MODE_ENTREE`, `PROVENANCE`, `MODE_SORTIE`, `DESTINATION`. Guide méthodologique MCO en vigueur — codes et conventions susceptibles d'évoluer entre campagnes.
+- **PMSI MCO** : RSA ATIH, variables `modeentree`, `PROVENANCE`, `MODE_SORTIE`, `DESTINATION`. Guide méthodologique MCO en vigueur — codes et conventions susceptibles d'évoluer entre campagnes.
 - **Référentiel GHT** : ATIH / DGOS — https://www.atih.sante.fr/organisation-territoriale-des-soins/groupements-hospitaliers-de-territoire
 - **Référentiel FINESS** : extraction FINESS pour identification des établissements médico-sociaux d'origine (si analyse fine par établissement médico-social source).
 

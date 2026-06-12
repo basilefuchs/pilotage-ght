@@ -1,18 +1,18 @@
 # Taux d'Activité Non Programmée
 
 ## Définition
-Le taux d'activité non programmée mesure la proportion des séjours MCO dont l'admission n'était pas planifiée à l'avance, c'est-à-dire issus d'un passage aux urgences, d'un transfert non anticipé ou d'une admission directe en urgence. Identifié dans le PMSI par le mode d'entrée (code 8 = urgences, code 6 = transfert), cet indicateur reflète la pression exercée par l'activité urgente et non planifiée sur l'organisation hospitalière du GHT. Un taux élevé contraint la capacité à programmer de l'activité chirurgicale et médicale élective, pèse sur les ressources humaines et matérielles, et est associé à une moindre efficience (DMS plus longue, taux d'ambulatoire plus faible, IP-DMS plus élevé). À l'inverse, un taux très faible peut signaler un établissement peu accessible pour les urgences de son territoire. Cet indicateur macro est déclinable par CMD, par GHM, par service ou par établissement du GHT.
+Le taux d'activité non programmée mesure la proportion des séjours MCO dont l'admission n'était pas planifiée à l'avance, c'est-à-dire issus d'un passage aux urgences, d'un transfert non anticipé ou d'une admission directe en urgence. Identifié dans le PMSI par les champs `modeentree` + `provenance` (urgences = 8 + provenance 5 ; mutation/transfert = 6/7), cet indicateur reflète la pression exercée par l'activité urgente et non planifiée sur l'organisation hospitalière du GHT. Un taux élevé contraint la capacité à programmer de l'activité chirurgicale et médicale élective, pèse sur les ressources humaines et matérielles, et est associé à une moindre efficience (DMS plus longue, taux d'ambulatoire plus faible, IP-DMS plus élevé). À l'inverse, un taux très faible peut signaler un établissement peu accessible pour les urgences de son territoire. Cet indicateur macro est déclinable par CMD, par GHM, par service ou par établissement du GHT.
 
 ## Calcul
 Le taux d'activité non programmée est calculé comme suit :
 
 ```
-Taux d'activité non programmée (%) = (Séjours MCO avec mode d'entrée = 8 (urgences) ou = 6 (transfert non planifié) / Total des séjours MCO) × 100
+Taux d'activité non programmée (%) = (Séjours MCO entrés par les urgences (`modeentree` = 8 et `provenance` = 5) ou par mutation/transfert (`modeentree` 6/7) / Total des séjours MCO) × 100
 ```
 
 **Sous-indicateurs dérivés :**
 ```
-Taux d'admissions directes urgences (%) = Séjours mode d'entrée = 8 / Total séjours MCO × 100
+Taux d'admissions directes urgences (%) = Séjours avec `modeentree` = 8 et `provenance` = 5 / Total séjours MCO × 100
   → Mesure strictement les admissions via le service des urgences de l'établissement
 
 Taux de transferts entrants non programmés (%) = Séjours mode d'entrée = 6 sans programmation documentée / Total séjours MCO × 100
@@ -40,7 +40,7 @@ Taux de chirurgie non programmée (%) = Séjours chirurgicaux (CMD avec acte CCA
 - **Impact sur l'efficience** : l'activité non programmée est systématiquement associée à une DMS plus longue, un CMI plus élevé et un IP-DMS plus dégradé — quantifier sa part permet de contextualiser les indicateurs d'efficience.
 
 ## Sources de Données
-- **PMSI MCO** : champ « mode d'entrée » du RSS (code 8 = urgences, code 6 = transfert, autres codes = programmé) — disponible pour chaque séjour sans traitement supplémentaire.
+- **PMSI MCO** : champs `modeentree` + `provenance` du RSA (urgences = 8 + provenance 5 ; mutation = 6 ; transfert = 7 ; domicile sans provenance 5 = programmé) — complétés par `passage_urg` depuis 2023 — disponible pour chaque séjour sans traitement supplémentaire.
 - **ScanSanté** : module d'analyse des modes d'admission par établissement, disponible directement sans accès aux fichiers bruts.
 - **ATIH - Tableaux de bord PMSI** : répartition des séjours par mode d'entrée agrégée par établissement et par CMD.
 - **RPU (Résumés de Passage aux Urgences)** : complément pour l'analyse des passages aux urgences non suivis d'hospitalisation (activité urgentiste non capturée par le mode d'entrée MCO).

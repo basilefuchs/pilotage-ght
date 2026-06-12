@@ -77,7 +77,7 @@ Indice de fidélisation ALD :
 ## Sources de Données
 
 - **PMSI MCO RSA** : codes CIM-10 (DP, DR, DA), identifiant patient (NIR pseudonymisé ATIH), FINESS, code de résidence patient
-- **SNDS/DCIR** : table des ALD actives (NUM_ENQ, codeTT, date début/fin ALD) — nécessaire pour la méthode A (couplage direct) ; accès via CASD ou portail SNDS
+- **SNDS/DCIR** : table des ALD actives `IR_IMB_R` (`BEN_NIR_PSA`, `IMB_ALD_NUM`, `IMB_ALD_DTD`/`IMB_ALD_DTF`) — nécessaire pour la méthode A (couplage direct) ; accès via CASD ou portail SNDS
 - **CNAM — Rapport "Charges et produits"** : prévalence des ALD par département, tranche d'âge et type d'ALD — publié annuellement (données N-1)
 - **DREES — Cartographie des pathologies** : source alternative pour la prévalence chronique attendue si les données CNAM ne sont pas accessibles au niveau infra-départemental
 

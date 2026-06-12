@@ -58,7 +58,7 @@ Positionnement vs indicateurs existants : différent du REH3-CA (réhospitalisat
   Restitution : ratio + IC 95% (Byar)
 ```
 
-Variables PMSI clés : `NUM_RSA`, `N°ANONYME` (chaînage inter-séjours), `DATE_ENTREE`, `DATE_SORTIE`, `MODE_ENTREE`, `MODE_SORTIE`, `GHM`, `RACINE_GHM`, codes `CCAM`.
+Variables PMSI clés : `ident`, `N°ANONYME` (chaînage inter-séjours), `DATE_ENTREE`, `DATE_SORTIE`, `modeentree`, `MODE_SORTIE`, `GHM`, `RACINE_GHM`, codes `CCAM`.
 
 ## Utilité
 - **Pilotage qualité chirurgie GHT** : indicateur transversal couvrant toutes les disciplines chirurgicales ; complète les indicateurs spécialisés (ISO-ORTHO, REH3-CA).

@@ -2,7 +2,7 @@
 
 ## Définition
 
-Ratio entre la durée de séjour (DMS) observée dans un établissement SSR et la DMS nationale de référence ATIH pour le même GME (Groupe Médico-Économique). Le GME est le groupage tarifaire du PMSI SSR, équivalent fonctionnel du GHM en MCO : il classe les séjours SSR selon la finalité principale de prise en charge (FP), le groupe nosologique (GN), et le niveau de dépendance MIF à l'entrée. Un ratio > 1 indique une DMS supérieure à la moyenne nationale pour le même profil de patient (possible inefficience ou complexité non capturée par le GME) ; un ratio < 1 indique une DMS inférieure à la référence (efficience ou risque de sortie prématurée).
+Ratio entre la durée de séjour (DMS) observée dans un établissement SSR et la DMS nationale de référence ATIH pour le même GME (Groupe Médico-Économique). Le GME est le groupage tarifaire du PMSI SSR, équivalent fonctionnel du GHM en MCO : il classe les séjours SSR selon la finalité principale de prise en charge (FP), le groupe nosologique (GN), et le niveau de dépendance (cotations AVQ — la MIF n'est pas recueillie dans la base nationale). Un ratio > 1 indique une DMS supérieure à la moyenne nationale pour le même profil de patient (possible inefficience ou complexité non capturée par le GME) ; un ratio < 1 indique une DMS inférieure à la référence (efficience ou risque de sortie prématurée).
 
 Cet indicateur permet un benchmarking équitable entre établissements SSR en neutralisant l'effet du casemix — un SSR spécialisé en neurologie lourde (AVC sévères, DMS nationale ~55 jours pour ce GME) ne peut pas être comparé brut à un SSR locomoteur (PTH, DMS nationale ~18 jours). L'indicateur est l'équivalent SSR de l'IPDMS (Indice de Performance de la Durée Moyenne de Séjour) déjà utilisé en MCO, et s'inscrit dans la même logique de mesure de l'efficience de production hospitalière par rapport à une norme nationale.
 
@@ -16,7 +16,7 @@ Sources de données :
      calculée depuis la séquence complète des RHS d'un séjour (1er au dernier RHS)
    → GME du séjour : issu du groupage ATIH sur les variables RHS
      (FP = finalité principale, GN = groupe nosologique,
-      niveau MIF entrée codé en quintiles ATIH)
+      niveau de dépendance AVQ à l'entrée — la MIF n'est pas dans la base nationale)
 
 2. Fichiers de référence ATIH (données nationales) :
    → DMS_nationale_GME : durée de séjour nationale pour chaque GME,
@@ -54,13 +54,13 @@ Sous-indicateurs complémentaires :
 Analyse de la distribution des séjours par rapport à la norme :
   → Proportion de séjours avec DMS_obs/DMS_att < 0.75 (séjours très courts)
   → Proportion de séjours avec DMS_obs/DMS_att > 1.5 (séjours très longs)
-  → Corrélation DMS × gain MIF : les séjours longs avec faible delta MIF
+  → Corrélation DMS × gain AVQ : les séjours longs avec faible delta de dépendance
     (ΔMif < 5 après 30j) sont les candidates prioritaires à l'optimisation
 
 Stratification :
   → IPS par GME principal de l'établissement SSR
   → IPS par tranche d'âge (< 65, 65-74, 75-84, ≥ 85 ans)
-  → IPS par niveau MIF entrée (dépendance totale vs modérée vs légère)
+  → IPS par niveau de dépendance AVQ à l'entrée (totale vs modérée vs légère)
   → Évolution trimestrielle de l'IPS (trend sur 2 ans)
 ```
 
@@ -75,7 +75,7 @@ Stratification :
 
 ## Sources de Données
 
-- **PMSI SSR RHS** : GME (issu du groupage ATIH), dates d'entrée/sortie du séjour SSR, MIF_ENT (pour vérification du groupe MIF), FP et GN (pour reconstitution du GME si nécessaire), NIR crypté
+- **PMSI SSR RHS** : GME (issu du groupage ATIH), dates d'entrée/sortie du séjour SSR, cotations de dépendance AVQ (`dep_phys`, `dep_cogn` — pas de MIF dans la base nationale), FP et GN (pour reconstitution du GME si nécessaire), chaînage `anonyme`
 - **Fichiers de référence ATIH** : statistiques nationales SSR par GME publiées annuellement — contiennent la DMS nationale, l'écart-type, les percentiles P25/P75 et P10/P90 par GME ; disponibles sur le portail ATIH (données publiques)
 - **PMSI MCO RSA** : chaînage NIR pour corréler l'IPS avec le taux de réhospitalisation MCO post-SSR et le taux de bed-blocking
 

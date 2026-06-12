@@ -62,7 +62,7 @@ Population : séjours MCO index avec SOR_DAT dans la période d'analyse
 
 Étape 5 — Indicateurs dérivés :
   TRRSH_MT (médecin traitant seul) : appliquer la même formule uniquement aux actes
-    des médecins généralistes (EXE_PRO_SPE = 01) — indicateur de continuité ville
+    des médecins généralistes (`PSE_SPE_COD` = 01) — indicateur de continuité ville
   TRRSH_spe (spécialistes ambulatoires) : idem pour spécialistes
   Délai médian de retour à I₀ ± 20 % : nombre de jours médian pour retrouver la baseline
     (calculé sur les patients résilients — mesure de la vitesse de résilience)
@@ -84,10 +84,10 @@ Population : séjours MCO index avec SOR_DAT dans la période d'analyse
 
 ## Sources de Données
 
-- **SNDS — `ER_PRS_F`** : `EXE_SOI_DTD` (date de soin), `PRS_NAT_REF` (nature de la prestation), `BEN_NIR_PSA` (identifiant pseudonymisé), `EXE_PRO_SPE` (spécialité du prestataire) — extraction sur 9 mois par patient (J−180 à J+90)
+- **SNDS — `ER_PRS_F`** : `EXE_SOI_DTD` (date de soin), `PRS_NAT_REF` (nature de la prestation), `BEN_NIR_PSA` (identifiant pseudonymisé), `PSE_SPE_COD` (spécialité du PS exécutant) — extraction sur 9 mois par patient (J−180 à J+90)
 - **SNDS — `IR_BEN_R`** : date de décès (`BEN_DCD_DTE`) pour exclure les patients décédés dans les 90j post-sortie
-- **PMSI MCO — RSA** : `ENT_DAT`, `SOR_DAT`, `MODE_SORTIE`, racine GHM, CMD, `FINESS_GEO`, NIR pseudonymisé
-- **SNDS — `IR_ALD_R`** : ALD actives pour stratification pathologique et pour identifier les changements d'ALD pendant l'hospitalisation (signalant une modification du régime habituel attendu)
+- **PMSI MCO — RSA** : `ENT_DAT`, `SOR_DAT`, `MODE_SORTIE`, racine GHM, CMD, `finessgeo`, NIR pseudonymisé
+- **SNDS — `IR_IMB_R`** : ALD actives pour stratification pathologique et pour identifier les changements d'ALD pendant l'hospitalisation (signalant une modification du régime habituel attendu)
 
 ## Exemple de Valeurs
 

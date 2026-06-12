@@ -113,7 +113,7 @@ Top 3 molécules par gain économique atteignable :
 
 ## Sources de Données
 
-- **FICHCOMP MED** : fichier complémentaire médicaments ATIH — variables `NUM_RSA`, `UCD` (code 7 chiffres), `NB_UCD`, `MONTANT_TOTAL`, `DATE_DISPENSATION` — transmission mensuelle à l'ATIH
+- **FICHCOMP MED (table `med` de la base nationale)** : variables `ident`, `code` (UCD 7 chiffres), `nbre` (quantité = NB_UCD des formules), `delai`/`adm_annee`/`adm_mois` ; montants dans les tables `med_valo_*`
 - **Répertoire ANSM des biosimilaires** : liste officielle des médicaments biologiques similaires autorisés en France, avec statut (biosimilaire vs originator) par spécialité — téléchargeable sur le site ANSM, mis à jour régulièrement
 - **Arrêté CAQES** : annexe listant les molécules biologiques éligibles à substitution biosimilaire et les cibles contractuelles — transmis par l'ARS avec le contrat CAQES de l'établissement
 - **Base Claude / THÉRIAQUE** : correspondance UCD → DCI → code ATC → statut biosimilaire — ressource pharmacologique de référence pour construire la table de classification des UCD

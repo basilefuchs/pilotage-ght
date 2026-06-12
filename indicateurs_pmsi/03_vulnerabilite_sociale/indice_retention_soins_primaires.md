@@ -34,7 +34,7 @@ Source de référence : liste AHRQ PQI (Prevention Quality Indicators),
 adaptée au contexte français par la DREES/HAS
 
 HPE = séjours MCO avec DP ∈ {liste ACSC}
-  ET MODE_ENTREE = 8 (urgences) — hospitalisations non programmées
+  ET `modeentree` = 8 et `provenance` = 5 (urgences) — hospitalisations non programmées
   ET âge ≥ 18 ans (les ACSC pédiatriques ont une définition spécifique)
 ```
 
@@ -42,7 +42,7 @@ Calcul de l'IRSP par territoire :
 
 ```
 Dénominateur de référence :
-  N_aiguës = total des hospitalisations MCO avec MODE_ENTREE = 8 sur le territoire
+  N_aiguës = total des hospitalisations MCO avec `modeentree` = 8 sur le territoire
   (hospitalisations non programmées, entrée par urgences)
 
 IRSP = 1 − (N_HPE / N_aiguës)
@@ -89,7 +89,7 @@ Délai consultation MG → hospitalisation (proxy de la filière) :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : DP du séjour (pour identifier les ACSC), MODE_ENTREE = 8 (urgences), âge, sexe, commune de résidence — pour calculer N_HPE et N_aiguës par territoire (commune, IRIS, canton) via le code postal du patient dans le RSA
+- **PMSI MCO RSA** : DP du séjour (pour identifier les ACSC), `modeentree` = 8 et `provenance` = 5 (urgences), âge, sexe, commune de résidence — pour calculer N_HPE et N_aiguës par territoire (commune, IRIS, canton) via le code postal du patient dans le RSA
 - **DCIR IR_BEN_R** : médecin traitant déclaré (RPPS) et commune de résidence — pour le taux de MT déclaré et la stratification des patients HPE selon leur suivi ambulatoire
 - **DCIR ER_PRS_F** : consultations de MG dans les 3 mois pré-hospitalisation (pour les patients HPE) — pour calculer le délai consultation-hospitalisation et distinguer "ruissellement direct" de "filière fonctionnelle mais insuffisante"
 - **INSEE (données publiques)** : population par commune, âge, sexe — pour le dénominateur de standardisation et le calcul des taux de recours par IRIS

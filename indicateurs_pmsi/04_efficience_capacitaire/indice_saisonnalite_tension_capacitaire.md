@@ -30,7 +30,7 @@ ITC(période P) = IS(période P) × (1 / Taux de disponibilité des lits en pér
 
 **Précisions méthodologiques** :
 - Les dates d'entrée et de sortie des RSS sont disponibles directement dans le PMSI MCO pour l'ensemble des établissements.
-- L'analyse distingue les séjours programmés (mode d'entrée ≠ 8) des séjours non programmés (urgences, mode d'entrée = 8) : la saisonnalité des urgences est structurelle (épidémies hivernales, accidents estivaux) tandis que celle de la chirurgie programmée est partiellement maîtrisable.
+- L'analyse distingue les séjours programmés des séjours non programmés (urgences : `modeentree` = 8 et `provenance` = 5) : la saisonnalité des urgences est structurelle (épidémies hivernales, accidents estivaux) tandis que celle de la chirurgie programmée est partiellement maîtrisable.
 - La décomposition par CMD permet d'identifier les spécialités portant la saisonnalité (CMD 4 pneumologie en hiver, CMD 8 orthopédie en été, CMD 5 cardiologie en hiver).
 - Le calcul sur plusieurs années (3-5 ans) permet de lisser les aléas et de dégager les tendances structurelles.
 

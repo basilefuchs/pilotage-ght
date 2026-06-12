@@ -34,12 +34,12 @@ Paramètres :
   N-K = N − 3 = exercice de référence (ex. 2020)
 
 Étape 1 — Extraction des RSA de l'établissement par CMD sur N et N-K :
-  RSA_etab_{(c,N)}   = COUNT(RSA) WHERE FINESS_GEO = etab AND CMD = c AND ANNEE = N
-  RSA_etab_{(c,N-K)} = COUNT(RSA) WHERE FINESS_GEO = etab AND CMD = c AND ANNEE = N-K
+  RSA_etab_{(c,N)}   = COUNT(RSA) WHERE `finessgeo` = etab AND CMD = c AND ANNEE = N
+  RSA_etab_{(c,N-K)} = COUNT(RSA) WHERE `finessgeo` = etab AND CMD = c AND ANNEE = N-K
 
   Variables PMSI utilisées :
-    FINESS_GEO : identifiant établissement géographique
-    GHM        : code GHM (8 car.) → CMD = SUBSTR(GHM, 1, 2)
+    `finessgeo` : identifiant établissement géographique
+    ghm2       : code GHM (6 car.) → CMD = SUBSTR(ghm2, 1, 2)
     ANNEE      : année de sortie du séjour (dérivée de DATE_SORTIE)
 
   Convention : exclure CMD 90 (séances isolées si non pertinent) et CMD 28 (séances de dialyse)
@@ -126,10 +126,10 @@ Indicateurs dérivés :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** (ATIH) : variables `FINESS_GEO`, `GHM` (8 car. → CMD sur 2 car.), `DATE_SORTIE` (→ ANNEE) — extractions sur 4 exercices complets (N-3, N-2, N-1, N) pour calculer K=3 et vérifier la stabilité.
+- **PMSI MCO RSA** (ATIH) : variables `finessgeo`, `ghm2` (6 car. → CMD sur 2 car.), `annee` (année de sortie) — extractions sur 4 exercices complets (N-3, N-2, N-1, N) pour calculer K=3 et vérifier la stabilité.
 - **PMSI national ATIH open data** : fichiers de statistiques nationales MCO par CMD et par année — source recommandée pour `RSA_national_(c,N)` et `RSA_national_(c,N-K)`. Disponible sur opendata.atih.sante.fr avec un délai de publication de 12-18 mois.
 - **SAE DREES séries longues** : tableau « séjours MCO par CMD » sur plusieurs années, disponible sur data.drees.fr — source alternative si l'open data ATIH n'est pas encore disponible pour l'exercice le plus récent. Hétérogénéité possible avec le PMSI local pour les séjours de séances.
-- **Référentiel GHM ATIH** : table de correspondance GHM (8 car.) → CMD (2 car.) → libellé — indispensable pour le regroupement et la présentation médicale des résultats par spécialité.
+- **Référentiel GHM ATIH** : table de correspondance GHM (6 car.) → CMD (2 car.) → libellé — indispensable pour le regroupement et la présentation médicale des résultats par spécialité.
 
 ## Exemple de Valeurs
 

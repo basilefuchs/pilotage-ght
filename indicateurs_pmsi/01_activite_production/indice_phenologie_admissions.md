@@ -25,7 +25,7 @@ Un indicateur de synthèse est le **Pheno-Score** : corrélation de Pearson entr
 
 ## Calcul
 
-Source : PMSI MCO RSA — variables `GHM` (8 caractères), `date_entree` (mois/année), `FINESS_GEO`.
+Source : PMSI MCO RSA — variables `ghm2` (6 caractères), `date_entree` (mois/année), `finessgeo`.
 
 ```
 Population : tous séjours MCO d'un établissement sur une période ≥ 3 ans
@@ -93,7 +93,7 @@ Indice de désynchronisation GHT :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable `GHM` (8 caractères — racine GHM = 5 premiers), `DATE_ENTREE` (AAAAMM ou AAAAMMJJ selon format ATIH), `FINESS_GEO` — extraction trimestrielle ou mensuelle
+- **PMSI MCO RSA** : variable `ghm2` (6 caractères — racine GHM = 5 premiers), `date_entree` (disponible 2019+ ; sinon `mois` + `annee`), `finessgeo` — extraction trimestrielle ou mensuelle
 - **Référentiel ATIH des GHMs** : correspondance GHM racine → CMD → libellé, pour l'agrégation par famille nosologique cohérente
 - **Série nationale de référence** : construite depuis la base nationale PMSI MCO ATIH (5 ans glissants) — agrégation mensuelle par racine GHM, normalisée par nombre d'établissements actifs sur la famille
 

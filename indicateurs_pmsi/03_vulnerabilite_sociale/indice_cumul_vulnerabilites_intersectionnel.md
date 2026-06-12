@@ -47,7 +47,7 @@ Aucun indicateur ne **croise systématiquement** ces axes et ne quantifie le **c
 V1 = 1 si IRIS_résidence(i) appartient au quintile Q5 FDep national
 V2 = 1 si CMU_C ou AME active dans IR_BEN_R sur [j-365, j]
 V3 = 1 si FISH-PIC_positif (algorithme IRDES rapport 592)
-V4 = 1 si AGE_AN >= 75 ET probabilité_fragilité_SPF >= seuil (Lahbib 2025)
+V4 = 1 si `age` >= 75 ET probabilité_fragilité_SPF >= seuil (Lahbib 2025)
 V5 = 1 si au moins un DAS ∈ {Z60.x, Z63.x, Z74.x, Z75.1} sur le séjour
         index OU sur séjour antérieur dans la fenêtre 24 mois
 V6 = 1 si patient avec ≥ 1 ALD active ET aucune déclaration MT active sur

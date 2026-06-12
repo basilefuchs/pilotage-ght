@@ -25,7 +25,7 @@ Pour chaque service i du GHT, construire une série temporelle à résolution jo
     → DMS moyenne des séjours actifs
     → Nombre de patients en attente de transfert aval
 
-  Source : PMSI RSA agrégé par UM/service et par jour (DATE_ENT, DATE_SOR)
+  Source : PMSI RSA agrégé par UM/service et par jour (`date_entree`, `date_sortie`)
   Fenêtre : 2-3 ans (730-1095 jours) pour une estimation robuste
   Granularité : journalière (hebdomadaire si volume insuffisant)
 
@@ -106,7 +106,7 @@ Graphe orienté de propagation :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : DATE_ENT et DATE_SOR par unité médicale (UM) et par jour calendaire — pour construire les séries temporelles X_service(t) d'admissions et d'occupation ; la variable UM du RSA permet de descendre au niveau du service dans les établissements qui codent à ce niveau de granularité
+- **PMSI MCO RSA** : `date_entree` et `date_sortie` par unité médicale (UM) et par jour calendaire — pour construire les séries temporelles X_service(t) d'admissions et d'occupation ; la variable UM du RSA permet de descendre au niveau du service dans les établissements qui codent à ce niveau de granularité
 - **PMSI SSR RHS et PMSI HAD** : mêmes séries temporelles pour les services de SSR et HAD — permettant de modéliser les dépendances MCO→SSR et MCO→HAD
 - **Données de gestion des urgences** (RPU — Résumé de Passage aux Urgences, OSCOUR) : flux horaire aux urgences — résolution supérieure au PMSI pour le service des urgences, permettant des délais τ < 1 jour dans la matrice ETIS
 - **Implémentation** : Python (pyinform pour TE, statsmodels pour le détrending STL, networkx pour la visualisation du graphe) ; R (RTransferEntropy, vars pour les tests de causalité de Granger comme validation) — calcul typiquement en quelques minutes sur 2-3 ans de données journalières pour un GHT de 5-10 services

@@ -39,7 +39,7 @@ Aucun indicateur n'isole spécifiquement la **dimension isolement social en gér
 ```
 Inclusion :
   - RSA MCO complet
-  - AGE_AN >= 75
+  - `age` >= 75
   - Tout mode d'entrée et destination (sauf décès intra-séjour pour
     sous-indicateur de sortie)
 
@@ -99,7 +99,7 @@ Capacité de l'établissement à activer l'aval social. Nécessite un croisement
 
 - **PMSI MCO — RSA** :
   - `DP`, `DR`, `DAS` (Z60.x, Z63.x, Z74.x, Z75.x — vérifier liste à figer par le DIM)
-  - `AGE_AN`, `SEXE`, `MODE_ENTREE`, `SOR_MOD`, `SOR_DEST`, `UM`, `FINESSGEO`, identifiant chaîné ANO
+  - `age`, `SEXE`, `modeentree`, `SOR_MOD`, `destination`, `UM`, `FINESSGEO`, identifiant chaîné ANO
 - **Référentiel CIM-10** :
   - Version ATIH en vigueur (V016 2025 / V017 2026 [à confirmer dans la notice ATIH-31-1-2025])
   - [ATIH — Notice technique PMSI 2025](https://www.atih.sante.fr/sites/default/files/public/content/4903/notice_technique_atih-mco-had-smr-psy-2025_2eme_modif.pdf)

@@ -15,7 +15,7 @@ La différence fondamentale avec le `taux_activite_non_programmee` est que ce de
 
 ## Calcul
 
-Source : PMSI MCO RSS (interne) — variables `DATE_ENTREE` (date complète, jour+mois+année), `MODE_ENTREE`, `PROVENANCE`, `DUREE`, GHM, FINESS.
+Source : PMSI MCO RSS (interne) — variables `DATE_ENTREE` (date complète, jour+mois+année), `modeentree`, `PROVENANCE`, `DUREE`, GHM, FINESS.
 
 **Contrainte d'accès** : la date d'entrée complète (avec le jour) est disponible dans les RSS internes à l'établissement. Les extraits anonymisés nationaux (RSA publics) ne contiennent que le mois et l'année — cet indicateur n'est donc pas calculable directement sur ScanSanté mais est pleinement exploitable dans le système d'information hospitalier.
 
@@ -82,7 +82,7 @@ TAJNO par service (UM) :
 
 ## Sources de Données
 
-- **PMSI MCO RSS (extraction interne)** : champs `DATE_ENTREE` (date complète J/M/A), `MODE_ENTREE`, `PROVENANCE`, `DUREE`, `GHM` (6 caractères), `FINESS`, `UM` — l'accès à la date complète avec le jour est indispensable et disponible uniquement dans les extractions internes (non disponible dans les RSA anonymisés publics ATIH)
+- **PMSI MCO RSS (extraction interne)** : champs `DATE_ENTREE` (date complète J/M/A), `modeentree`, `PROVENANCE`, `DUREE`, `GHM` (6 caractères), `FINESS`, `UM` — l'accès à la date complète avec le jour est indispensable et disponible uniquement dans les extractions internes (non disponible dans les RSA anonymisés publics ATIH)
 - **Calendrier des jours fériés légaux français** : à construire par année (11 jours fixes ou mobiles) — l'algorithme de calcul de Pâques (méthode de Meeus/Jones/Butcher) est disponible dans tous les langages de traitement de données ; intégrer une table de référence par année de 2015 à N+1
 - **Données bloc opératoire (optionnel)** : actes CCAM opératoires du PMSI MCO (champ `CCAM` du RSA) avec date de réalisation, pour calculer le TAJNO_op et détecter les pré-admissions hôtelières — disponible dans le fichier RSA avec date d'acte selon le format d'extraction
 

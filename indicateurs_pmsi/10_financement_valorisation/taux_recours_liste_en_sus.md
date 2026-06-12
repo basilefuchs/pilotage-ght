@@ -26,12 +26,12 @@ Population : tous RSA transmis pour un FINESS/période
 
 Étape 1 — Chargement du FICHCOMP :
   FICHCOMP_MED : fichier des médicaments en sus
-    Variables clés : NOFINESS, NUM_RSA (clé de jointure avec le RSA),
-                     UCD (code médicament), NB_UCD (quantité), MONTANT_TOTAL
+    Variables clés : NOFINESS, `ident` (clé de jointure avec le RSA),
+                     code (UCD), nbre (quantité), montants dans med_valo_*
   FICHCOMP_DMI : fichier des DMI en sus
-    Variables clés : NOFINESS, NUM_RSA, COD_LPP (code DMI), MONTANT_TOTAL
+    Variables clés : finessgeo, `ident`, code LPP du DMI (table dmip), montants dans dmi_valo_*
 
-Étape 2 — Jointure FICHCOMP × RSA par NUM_RSA :
+Étape 2 — Jointure FICHCOMP × RSA par `ident` :
   RSA_avec_LES_MED = RSA distincts ayant ≥ 1 ligne dans FICHCOMP_MED
   RSA_avec_LES_DMI = RSA distincts ayant ≥ 1 ligne dans FICHCOMP_DMI
   RSA_avec_LES     = union(RSA_avec_LES_MED, RSA_avec_LES_DMI)
@@ -99,9 +99,9 @@ Taux LES par CMD (carte de chaleur) :
 
 ## Sources de Données
 
-- **FICHCOMP MED** : fichier complémentaire médicaments en sus — variables `NOFINESS`, `NUM_RSA`, `UCD` (code médicament 7 caractères), `NB_UCD` (quantité), `MONTANT_TOTAL` (€), `DATE_DISPENSATION` — transmission mensuelle à l'ATIH
-- **FICHCOMP DMI** : fichier complémentaire DMI en sus — variables `NOFINESS`, `NUM_RSA`, `COD_LPP` (code LPP), `MONTANT_TOTAL` (€) — transmission mensuelle à l'ATIH
-- **PMSI MCO RSA** : pour le dénominateur `nb_RSA_total`, la jointure par `NUM_RSA`, et la ventilation par CMD/GHM
+- **FICHCOMP MED (table `med`)** : variables `finessgeo`, `ident`, `code` (UCD 7 caractères), `nbre` (quantité), `delai`/`adm_annee`/`adm_mois` ; montants (€) dans `med_valo_dgf`/`med_valo_oqn`
+- **FICHCOMP DMI (table `dmip`)** : variables `ident`, code LPP ; montants (€) dans `dmi_valo_dgf`/`dmi_valo_oqn`
+- **PMSI MCO RSA** : pour le dénominateur `nb_RSA_total`, la jointure par `ident`, et la ventilation par CMD/GHM
 - **Arrêtés liste en sus** (Journal Officiel) : liste officielle des UCD et LPP en sus, révisée par arrêté ministériel — téléchargeable sur le site ATIH et sur Légifrance
 
 ## Exemple de Valeurs

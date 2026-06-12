@@ -83,7 +83,7 @@ Convention C — Top quartile établissements RAAC labellisés :
      exclure : décès (SOR_MOD = 9), durée < 0, séjours en court extrême
      (très courte durée ambulatoire « en J » — déjà capturés par autre
      indicateur), CMA / complications sévères majeures (sévérité 3-4)
-2. DMS_obs_r = mean(DUREE_SEJOUR) sur les RSA filtrés
+2. DMS_obs_r = mean(`duree`) sur les RSA filtrés
 3. ISR_r = max(0, 1 − (DMS_obs_r − DMS_cible_r) / DMS_cible_r)
 4. ISR = Σ_r n_r × ISR_r / Σ_r n_r
 ```
@@ -92,7 +92,7 @@ Convention C — Top quartile établissements RAAC labellisés :
 
 ```
 Modèle linéaire mixte :
-  DUREE_SEJOUR ~ racine_GHM + sévérité + age + sexe + ALD +
+  `duree` ~ racine_GHM + sévérité + age + sexe + ALD +
                  score_Charlson + (1 | FINESSGEO)
 DMS_ajustée_r par établissement = effet aléatoire + DMS racine moyenne
 ISR_ajusté calculé sur DMS_ajustée plutôt que DMS_obs brute.
@@ -119,10 +119,10 @@ ISR_ajusté calculé sur DMS_ajustée plutôt que DMS_obs brute.
 
 - **PMSI MCO — RSA complet** :
   - `GHM` (racine extractible : caractères 1-5)
-  - `DUREE_SEJOUR`
-  - `SOR_MOD`, `SOR_DEST`
-  - `AGE_AN`, `SEXE`, sévérité (4ᵉ caractère du GHM), `DP`, `DAS`, `ALD`
-  - `MODE_ENTREE` (8 = domicile = programmé)
+  - `duree`
+  - `SOR_MOD`, `destination`
+  - `age`, `SEXE`, sévérité (4ᵉ caractère du GHM), `DP`, `DAS`, `ALD`
+  - `modeentree` (8 = domicile = programmé)
   - `FINESSGEO`, `FINESSJUR`
 - **Référentiels** :
   - Manuel des GHM V2026 (à confirmer version en vigueur, [ATIH Notice technique 2026](https://www.atih.sante.fr/notice-technique-nouveautes-pmsi-mco-had-smr-psychiatrie-2026-0))

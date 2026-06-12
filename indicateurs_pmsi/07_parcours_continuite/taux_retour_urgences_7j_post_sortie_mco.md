@@ -33,13 +33,13 @@ Aucun indicateur du projet ne couvre les **passages aux urgences sans hospitalis
 Inclusion (séjour index) :
   - RSA MCO complet
   - Adulte (>= 18 ans) — pédiatrie en sous-cohorte séparée
-  - Sortie vers le domicile (SOR_DEST = "D" / domicile)
+  - Sortie vers le domicile (`destination` = "D" / domicile)
   - Durée séjour >= 1 jour (exclusion de l'hospitalisation de jour pure HJ
     si étude ciblée hospit. complète)
 
 Exclusion :
   - Décès intra-séjour (SOR_MOD = 9)
-  - Sorties vers SSR/HAD/USLD (SOR_DEST != "D") : transfert direct, pas une
+  - Sorties vers SSR/HAD/USLD (`destination` != "D") : transfert direct, pas une
     sortie domicile
   - Soins palliatifs en DP (Z51.5) ou en mode de prise en charge palliatif
   - Séjours d'obstétrique pour accouchement (CMD 14)
@@ -99,15 +99,15 @@ GLM logistique sur âge, sexe, score Charlson via DAS, GHM-racine, niveau de sé
 Variables PMSI MCO et RPU (sources ATIH 2024–2025 confirmées dans la session) :
 
 - **RSA / RSS MCO** :
-  - `DATE_ENTREE`, `DUREE_SEJOUR` → date de sortie calculée
+  - `DATE_ENTREE`, `duree` → date de sortie calculée
   - `SOR_MOD` (mode de sortie ; 6 = domicile, 9 = décès, 7 = transfert, 8 = mutation)
-  - `SOR_DEST` (destination de sortie)
-  - `DP`, `DR`, `DAS`, `GHM`, niveau de sévérité, `AGE_AN`, `SEXE`, `FINESSGEO`
+  - `destination` (destination de sortie)
+  - `DP`, `DR`, `DAS`, `GHM`, niveau de sévérité, `age`, `SEXE`, `FINESSGEO`
 - **RPU (Résumé de Passage aux Urgences)** : recueil national obligatoire depuis 2016, transmis via DRUIDES depuis M3 2023 ([atih.sante.fr/varia_rpu.pdf](https://www.atih.sante.fr/sites/default/files/public/content/1098/varia_rpu.pdf), [consignes recueil RPU](https://www.atih.sante.fr/sites/default/files/public/content/1102/consignes_recueil_rpu.pdf))
-  - `DATE_ADM_URG`, `HEURE_ADM_URG`
-  - `MODE_SORTIE_URG` (retour domicile / hospit / décès)
+  - `date_entree`, `HEURE_ADM_URG`
+  - `orientation` (devenir du passage : retour domicile / hospitalisation / décès) — table `passage` RPU
   - `DIAG_PRINC_URG` (CIM-10)
-  - `FINESSGEO_URG`
+  - `finessgeo`
   - clé de chaînage compatible ANO
 - **Fichier ANO PMSI** : permet le chaînage inter-séjours et inter-champs (MCO ↔ RPU ↔ SSR ↔ HAD) sur le même patient (NIR haché + sexe + date de naissance) ([ATIH — Utiliser le PMSI pour analyser les parcours de soins, EMOIS 2023](https://www.atih.sante.fr/sites/default/files/public/content/4512/emois_2023_utiliser_le_pmsi_pour_analyser_les_parcours_de_soins.pdf))
 - **Référentiels** :

@@ -105,11 +105,11 @@ INT90 = (présence_HAD + présence_HDJ_chronique + présence_SSR) /
 
 ## Sources de Données
 
-- **PMSI MCO** : RSA, `nature_séjour` (J vs non-J), `DATE_ENTREE`, `DUREE_SEJOUR`, GHM, FINESSGEO
+- **PMSI MCO** : RSA, `nature_séjour` (J vs non-J), `DATE_ENTREE`, `duree`, GHM, FINESSGEO
 - **PMSI SSR / SMR** : RHA, séquences de soins SSR
 - **PMSI HAD** : RPSA, dates de séquence
 - **PMSI Psy** : RPS / R3A
-- **RPU urgences** : `DATE_ADM_URG`, `MODE_SORTIE_URG`, `FINESSGEO_URG`
+- **RPU urgences** : `date_entree`, `orientation` (devenir du passage), `finessgeo` — table `passage`
 - **ACE PMSI MCO** : prestations chimio (`Z51.1`), dialyse (`Z49.x`) pour distinguer les HDJ itératifs structurels
 - **Fichier ANO** : chaînage inter-champs PMSI
 - **DCIR SNDS** (optionnel) : pour intégrer les soins de ville (consultations spécialistes, kinésithérapie) en élargissement de la définition des modalités

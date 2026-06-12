@@ -28,11 +28,11 @@ Positionnement vs indicateurs existants : indicateur de **pertinence des modalit
 Étape 2 — Distinguer ambulatoire vs hospitalisation complète
   Mode ambulatoire (numérateur) :
     GHM en J (ex : 02C05J, 06C04J, ...) OU
-    DUREE_SEJOUR = 0 (entrée et sortie le même jour) avec mode hospitalisation 0
+    `duree` = 0 (entrée et sortie le même jour) avec mode hospitalisation 0
     (séjour de jour MCO)
 
   Hospitalisation complète (au dénominateur) :
-    GHM en niveau 1, 2, 3, 4 (T) ou DUREE_SEJOUR ≥ 1
+    GHM en niveau 1, 2, 3, 4 (T) ou `duree` ≥ 1
 
 Étape 3 — Calcul
   Taux global = (Σ séjours GM ambu) / (Σ séjours GM total) × 100
@@ -48,7 +48,7 @@ Positionnement vs indicateurs existants : indicateur de **pertinence des modalit
 - L'indicateur HAS IQSS-CA (processus en chirurgie ambulatoire) est distinct : il évalue l'organisation et la qualité du parcours en ambulatoire, pas le taux.
 - Visuchir produit également un **taux substitutif théorique** (potentiel d'ambulatorisation supplémentaire) à partir d'un benchmark des 10 % d'établissements les plus performants.
 
-Variables PMSI clés : `NUM_RSA`, `GHM`, `DUREE_SEJOUR`, `MODE_HOSPITALISATION`, codes `CCAM` (table A), table de référence GM ATIH.
+Variables PMSI clés : `ident`, `GHM`, `duree`, `MODE_HOSPITALISATION`, codes `CCAM` (table A), table de référence GM ATIH.
 
 ## Utilité
 - **Pilotage stratégique GHT** : suivi de la trajectoire vers la cible 75 % (CPOM 2024–2028) et 80 % long terme.

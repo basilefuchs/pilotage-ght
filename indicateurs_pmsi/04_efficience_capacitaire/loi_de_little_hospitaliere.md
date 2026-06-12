@@ -24,12 +24,12 @@ Mesure des trois composantes sur une fenêtre temporelle T (semaine, mois) :
 λ (taux d'admissions) :
   λ = Nombre total d'admissions MCO sur la période T / T (en jours)
   → Unité : admissions/jour
-  → Source : PMSI RSA, variable DATE_ENT, agrégé par unité (UM ou service)
+  → Source : PMSI RSA, variable `date_entree`, agrégé par unité (UM ou service)
 
 W (durée moyenne de séjour) :
   W = Σᵢ (DATE_SOR_i − DATE_ENT_i) / N_séjours
   → DMS observée en jours sur la période T
-  → Source : PMSI RSA, variables DATE_ENT et DATE_SOR
+  → Source : PMSI RSA, variables `date_entree` et `date_sortie`
 
 L_prédit (occupation théorique selon Little) :
   L_prédit = λ × W
@@ -105,7 +105,7 @@ TUL = L_observé / Capacité_installée (nombre de lits ouverts)
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : DATE_ENT et DATE_SOR pour le calcul de la DMS (W) et du flux d'admissions (λ), par unité médicale (UM) ou service — base principale
+- **PMSI MCO RSA** : `date_entree` et `date_sortie` pour le calcul de la DMS (W) et du flux d'admissions (λ), par unité médicale (UM) ou service — base principale
 - **Données de gestion interne** : capacité installée (nombre de lits ouverts par période, C), journées réelles (pour L_observé indépendant du PMSI) — permet de vérifier la cohérence PMSI/gestion
 - **PMSI SSR, HAD** : pour analyser la loi de Little sur les filières aval et comprendre si un IVLL MCO positif est causé par une saturation SSR (λ_SSR insuffisant pour absorber les sorties MCO)
 - **Tableau de bord de gestion des lits** (ICOS, Orbis Bed Management, TrakCare) : si disponible, données en temps réel du nombre de patients présents — permet un IVLL calculé quotidiennement plutôt que sur données PMSI avec lag

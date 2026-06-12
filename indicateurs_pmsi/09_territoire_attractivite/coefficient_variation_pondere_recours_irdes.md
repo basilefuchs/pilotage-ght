@@ -43,11 +43,11 @@ Positionnement vs indicateurs existants :
 Chaque intervention est définie par une combinaison spécifique de codes CCAM (et parfois CIM-10 pour exclure les indications hors champ). **Reprendre les listes opérationnelles de l'Atlas IRDES** plutôt que de les redéfinir.
 
 **Variables PMSI mobilisées** :
-- `CODE_GEO_RESIDENCE` → mapping territoire (département ou zone d'attractivité ATIH)
-- `AGE_ANNEE`, `SEXE`
-- `CODE_ACTE_CCAM` (table actes) → identification de l'intervention *k*
+- `codegeo` → mapping territoire (département ou zone d'attractivité ATIH)
+- `age`, `sexe`
+- `acte` (table actes) → identification de l'intervention *k*
 - `DP`, `DAS` → exclusion d'indications hors champ pour certaines interventions
-- `NUM_FINESS_GEO` → uniquement pour vérifier publique/privée si on veut décliner
+- `finessgeo` → uniquement pour vérifier publique/privée si on veut décliner
 
 **Pseudocode** :
 
@@ -94,7 +94,7 @@ result <- tr_std %>%
 
 ## Sources de Données
 
-- **PMSI MCO** : RSA + table actes CCAM. Variables `CODE_GEO_RESIDENCE`, `AGE_ANNEE`, `SEXE`, `CODE_ACTE_CCAM`, `DP`, `DAS`. Guide méthodologique MCO ATIH en vigueur.
+- **PMSI MCO** : RSA + table actes CCAM. Variables `codegeo`, `age`, `sexe`, `acte`, `dp`, DAS (table `diag`). Guide méthodologique MCO ATIH en vigueur.
 - **INSEE** : populations municipales par âge × sexe (millésime cohérent).
 - **Listes opérationnelles IRDES** : codes CCAM et CIM-10 définissant chacune des 11 interventions. À récupérer dans la publication IRDES ou ses annexes méthodologiques.
 - **Zonage géographique** : zones d'attractivité hospitalière ATIH (option) ou départements (publication IRDES principale).

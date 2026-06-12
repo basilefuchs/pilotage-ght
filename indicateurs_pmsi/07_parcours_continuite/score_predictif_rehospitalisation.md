@@ -14,7 +14,7 @@ Le score prédictif est construit par régression logistique (ou modèle de grad
 | Séjour pour cancer actif | DP/DA (C00-C97) | +2 |
 | Nombre de séjours dans les 12 mois (proxy : réadmissions antérieures) | Chaînage PMSI | +5 si ≥ 5 séjours |
 | Procédure spécialisée durant le séjour (acte CCAM lourd) | CCAM | +1 |
-| Admission aux urgences (mode d'entrée = 8) | Mode d'entrée MCO | +1 |
+| Admission aux urgences (`modeentree` = 8 et `provenance` = 5) | Mode d'entrée MCO | +1 |
 | Durée de séjour ≥ 5 jours | DMS séjour | +2 |
 | Type de sortie (transfert, sortie contre avis médical) | Mode de sortie MCO | +1 |
 

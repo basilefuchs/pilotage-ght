@@ -99,7 +99,7 @@ Intervalle de confiance à 95 % : calculé sur le log-ratio
 ## Sources de Données
 
 - **RPU (Résumé de Passage aux Urgences)** : recueil national obligatoire transmis via DRUIDES depuis M3 2023 ([ATIH variables RPU](https://www.atih.sante.fr/sites/default/files/public/content/1098/varia_rpu.pdf))
-  - `DATE_ADM_URG`, `HEURE_ADM_URG`, `MODE_SORTIE_URG`, `DIAG_PRINC_URG`, `FINESSGEO_URG`, identifiant chaîné
+  - `date_entree`, `heure_entree`, `orientation` (devenir du passage), `dp`, `finessgeo` — table `passage` du RPU — et identifiant chaîné
 - **SNDS — IR_BEN_R** : commune de résidence, code IRIS si disponible ; à défaut, géocodage à partir de l'adresse PMSI
 - **FDep — INSERM/CépiDc** : indice publié par IRIS, mise à jour quinquennale (cohérent recensement INSEE) — diffusion via Inserm UMR1136 et listes de partage Cépidc
 - **INSEE — Recensement de la Population** : populations IRIS par âge × sexe, table de référence pour la standardisation
@@ -125,7 +125,7 @@ Ordres de grandeur experts calibrés sur la littérature française d'inégalit�
 - **FDep est un indice écologique IRIS** : tous les habitants d'un IRIS Q5 ne sont pas individuellement défavorisés (biais d'agrégation, fallacy écologique). RSUR mesure un gradient territorial, pas un effet individuel.
 - **Mises à jour FDep** : l'indice repose sur les recensements INSEE — décalage potentiel de 2-5 ans avec la situation réelle.
 - **Bassin de recrutement** : à définir explicitement et de façon stable ; un patient résidant hors bassin mais consultant aux urgences GHT pollue le ratio.
-- **Recueil RPU** : qualité hétérogène, en particulier `DIAG_PRINC_URG` (CIM-10) souvent incomplet ; le sous-indicateur par motif perd alors en fiabilité.
+- **Recueil RPU** : qualité hétérogène, en particulier `dp` (CIM-10) souvent incomplet ; le sous-indicateur par motif perd alors en fiabilité.
 - **Standardisation** : les structures d'âge des IRIS Q5 et Q1 sont très différentes (plus jeunes et plus enfants en Q5). La standardisation est obligatoire ; les ratios bruts sont trompeurs.
 - **Effet offre confondu** : un IRIS Q5 mal desservi par les médecins libéraux a un sur-recours urgences ; on ne peut pas dissocier facilement effet demande (besoin) et effet offre (manque MG). Croiser avec densité MG (DREES) pour décomposer.
 - **Saisonnalité** : épidémies hivernales augmentent les passages urgences ; comparer en cohortes annuelles ou rolling 12 mois.

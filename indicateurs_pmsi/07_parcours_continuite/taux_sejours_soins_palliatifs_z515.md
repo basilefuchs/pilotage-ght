@@ -54,7 +54,7 @@ Positionnement vs indicateurs existants : différent du taux de mortalité et du
   - Part des séjours SP3 (hors structure) / total SP — marqueur du sous-équipement
 ```
 
-Variables PMSI clés : `DP`, `DR`, `DA`, `GHM`, `MODE_SORTIE`, `UM` (unité médicale), table d'autorisations UM (USP/LISP), `AGE_ANNEES`.
+Variables PMSI clés : `DP`, `DR`, `DA`, `GHM`, `MODE_SORTIE`, `UM` (unité médicale), table d'autorisations UM (USP/LISP), `age`.
 
 ## Utilité
 - **Pilotage GHT du Plan soins palliatifs** : suivi de la cible nationale de développement des LISP et USP (au moins 1 USP / 200 000 hab. visée).

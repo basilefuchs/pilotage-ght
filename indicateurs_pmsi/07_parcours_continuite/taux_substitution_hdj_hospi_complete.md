@@ -99,7 +99,7 @@ comparaison inter-sites à casemix et conditions sociales ajustés.
 
 ## Sources de Données
 
-- **PMSI MCO** : RSA, racine GHM (5 caractères), niveau de sévérité (4ᵉ caractère), nature de séjour (`J` vs autre), `DUREE_SEJOUR`, `MODE_ENTREE`, `SOR_DEST`, `DP`, `DAS`, `AGE_AN`, `FINESSGEO`
+- **PMSI MCO** : RSA, racine GHM (5 caractères), niveau de sévérité (4ᵉ caractère), nature de séjour (`J` vs autre), `duree`, `modeentree`, `destination`, `DP`, `DAS`, `age`, `FINESSGEO`
 - **Référentiels classification** :
   - [ATIH — Notice technique PMSI 2025 MCO-HAD-SMR-Psy](https://www.atih.sante.fr/sites/default/files/public/content/4903/notice_technique_atih-mco-had-smr-psy-2025_2eme_modif.pdf)
   - [ATIH — Notice technique 2026](https://www.atih.sante.fr/notice-technique-nouveautes-pmsi-mco-had-smr-psychiatrie-2026-0)

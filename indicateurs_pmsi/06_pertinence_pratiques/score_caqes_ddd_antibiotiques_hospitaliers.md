@@ -26,10 +26,10 @@ Population : tous séjours MCO d'un établissement sur une période (trimestre o
 Étape 1 — Extraction des dispensations antibiotiques depuis FICHCOMP MED :
   Filtrer les lignes FICHCOMP MED sur la classe ATC J01 (antibactériens systémiques)
   Variables FICHCOMP MED utilisées :
-    NUM_RSA    : clé de jointure avec le RSA (identifiant du séjour)
+    `ident`    : clé de jointure avec le RSA (identifiant du séjour)
     UCD        : code UCD à 7 chiffres (identifiant unique de la spécialité)
-    NB_UCD     : quantité de boîtes/unités dispensées
-    DATE_DISPENSATION : date de la dispensation
+    nbre       : nombre d'unités (UCD) administrées — table med (FICHCOMP)
+    delai + adm_annee/adm_mois : délai depuis l'entrée et période d'administration
 
   Table de correspondance nécessaire : UCD → code ATC (disponible sur la base Claude)
     ou via le répertoire des médicaments ANSM / base THÉRIAQUE / FICHCOMP annexe ATIH
@@ -46,7 +46,7 @@ Population : tous séjours MCO d'un établissement sur une période (trimestre o
     Mise à jour annuelle — utiliser la version correspondant à l'année des données
 
 Étape 3 — Calcul des DDD par dispensation :
-  DDD_dispensées_j_RSA = NB_UCD × mg_par_UCD_j / DDD_OMS_j
+  DDD_dispensées_j_RSA = nbre × mg_par_UCD_j / DDD_OMS_j
   DDD_totales_ATB = Σ DDD_dispensées_j_RSA   [sur tous les antibiotiques J01 et tous les RSA]
 
   Regroupements utiles :
@@ -57,7 +57,7 @@ Population : tous séjours MCO d'un établissement sur une période (trimestre o
     DDD_J01X  = antibiotiques de dernier recours (glycopeptides, colistine, linézolide)
 
 Étape 4 — Calcul des journées d'hospitalisation :
-  Journées_MCO = Σ DUREE_RSA + 1   [par convention PMSI : journées = durée + 1 nuit]
+  Journées_MCO = Σ (duree + 1)   [par convention PMSI : journées = durée + 1 nuit]
     ou
   Journées_MCO = Σ(DATE_SORTIE − DATE_ENTREE + 1) pour les séjours > 0 jour
   Journées_séances (DUREE = 0) : exclure ou compter comme 0,5 journée selon convention
@@ -77,7 +77,7 @@ Population : tous séjours MCO d'un établissement sur une période (trimestre o
 Cas limites :
   - UCD sans code ATC ou sans DDD OMS : reporter comme "non classifiable" — ne pas inclure
     dans le numérateur mais documenter le % de dispensations non classifiables
-  - NB_UCD = 0 ou MONTANT_TOTAL = 0 : ligne erreur FICHCOMP → exclure
+  - nbre = 0 ou montant nul (tables med_valo_*) : ligne erreur FICHCOMP → exclure
   - FICHCOMP indisponible pour une période : Score = NA — documenter la cause
   - DDD OMS révisée en cours d'année : utiliser la version en vigueur au 1er janvier de l'année N
 ```
@@ -109,7 +109,7 @@ Tendance CAQES (objectif de réduction annuelle) :
 
 ## Sources de Données
 
-- **FICHCOMP MED** : fichier complémentaire médicaments ATIH — variables `NUM_RSA`, `UCD` (7 chiffres), `NB_UCD`, `DATE_DISPENSATION`, `MONTANT_TOTAL` — transmission mensuelle à l'ATIH
+- **FICHCOMP MED (table `med` de la base nationale)** : variables `ident`, `code` (UCD 7 chiffres), `nbre` (quantité administrée), `delai` + `adm_annee`/`adm_mois` (chronologie) ; montants dans les tables `med_valo_*`
 - **Table UCD → ATC** : correspondance UCD → code ATC (J01*) → DCI → voie d'administration — disponible via la base Claude (ANSM), THÉRIAQUE, ou l'annexe technique ATIH du FICHCOMP
 - **Table DDD OMS (ATC/DDD Index)** : doses définies journalières par molécule et voie d'administration — mise à jour annuelle, téléchargeable sur le site du WHO Collaborating Centre for Drug Statistics Methodology (whocc.no)
 - **PMSI MCO RSA** : variable `DUREE`, `DATE_ENTREE`, `DATE_SORTIE`, `NOFINESS` — pour le calcul des journées d'hospitalisation dénominateur

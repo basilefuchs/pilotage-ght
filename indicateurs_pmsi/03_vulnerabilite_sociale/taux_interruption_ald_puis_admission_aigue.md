@@ -12,7 +12,7 @@ Ce schéma de **« gap puis décompensation »** est un proxy administratif du *
 
 avec :
 - gap 12m : aucune trace de prise en charge spécifique à l'ALD (consultation spécialiste filière + délivrance médicamenteuse marqueur) sur ≥ 12 mois calendaires consécutifs avant l'admission
-- admission aiguë : RSA MCO non programmé (MODE_ENTREE = 7 ou via urgences) dont DP/DR est cohérent avec l'ALD du patient
+- admission aiguë : RSA MCO non programmé (`modeentree` = 7 ou via urgences) dont DP/DR est cohérent avec l'ALD du patient
 
 ## Positionnement vs indicateurs existants
 
@@ -68,7 +68,7 @@ Pour chaque patient i, ALD a :
 ```
 Pour chaque patient i avec GAP_i_a = 1 :
   Chercher la première admission MCO post-gap telle que :
-    - MODE_ENTREE ∈ {7 mutation/transfert ; 8 domicile ET passage RPU
+    - `modeentree` ∈ {7 mutation/transfert ; 8 domicile ET passage RPU
       dans les 24h précédant l'admission}  (non programmé)
     - DP ou DR du RSA cohérent avec ALD a (mapping ALD ↔ CIM-10
       à figer ; ex. ALD 5 IC → DP I50.x I11.0 ; ALD 8 diabète →
@@ -103,7 +103,7 @@ TIAA = Σ_(i,a) GAP_PUIS_ADM_i_a / N_patients_ALD_éligibles
 
 ## Sources de Données
 
-- **PMSI MCO — RSA** : `MODE_ENTREE`, `DP`, `DR`, `DAS`, GHM, sévérité, `DATE_ENTREE`, `FINESSGEO`, identifiant chaîné
+- **PMSI MCO — RSA** : `modeentree`, `DP`, `DR`, `DAS`, GHM, sévérité, `DATE_ENTREE`, `FINESSGEO`, identifiant chaîné
 - **RPU urgences** : pour qualifier le caractère non programmé (passage urgences pré-admission)
 - **SNDS — DCIR** :
   - `IR_IMB_R` — ALD actives par patient

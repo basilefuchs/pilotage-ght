@@ -38,7 +38,7 @@ Inclusion (séjour index MCO) :
     « modes de prise en charge HAD » MPP/MPA — guide PMSI HAD ATIH 2025)
 
 Exclusion :
-  - Sortie vers SSR / USLD / EHPAD (SOR_DEST en clair non-domicile, hors HAD)
+  - Sortie vers SSR / USLD / EHPAD (`destination` en clair non-domicile, hors HAD)
   - Transferts intra-MCO ou mutations vers un autre établissement MCO
   - Séjours de moins de 24 h hors urgence
   - Séjours obstétricaux d'accouchement sans complication (sous-cohorte HAD
@@ -91,12 +91,12 @@ où le dénominateur est estimé par un modèle prédictif (logistique ou XGBoos
 Variables PMSI confirmées dans la session ATIH 2025 :
 
 - **RSA / RSS MCO** :
-  - `DATE_ENTREE`, `DUREE_SEJOUR` → date de sortie calculée
-  - `SOR_MOD` (mode de sortie), `SOR_DEST` (destination), notamment mutation/transfert vers HAD
-  - `GHM`, niveau de sévérité, `DP`, `DAS`, `AGE_AN`, `SEXE`, `FINESSGEO`
+  - `DATE_ENTREE`, `duree` → date de sortie calculée
+  - `SOR_MOD` (mode de sortie), `destination` (destination), notamment mutation/transfert vers HAD
+  - `GHM`, niveau de sévérité, `DP`, `DAS`, `age`, `SEXE`, `FINESSGEO`
 - **RPSA HAD** (résumé par sous-séquence HAD) :
   - `DATE_DEBUT_SEQUENCE` (date de prise en charge HAD) [à confirmer libellé exact format RPSA 2025]
-  - `MODE_PRISE_EN_CHARGE_PRINCIPAL` (MPP) et `MODE_PRISE_EN_CHARGE_ASSOCIE` (MPA)
+  - `mpp` (mode de prise en charge principal) et `mpa` (mode de prise en charge associé) — table `fixe` HAD
   - `FINESS_HAD`, durée de séquence
 - **Fichier ANO PMSI** : chaînage inter-champs (MCO ↔ HAD ↔ SSR) par NIR haché + sexe + date de naissance — [ATIH EMOIS 2023 « Utiliser le PMSI pour analyser les parcours de soins »](https://www.atih.sante.fr/sites/default/files/public/content/4512/emois_2023_utiliser_le_pmsi_pour_analyser_les_parcours_de_soins.pdf)
 - **Référentiels** :

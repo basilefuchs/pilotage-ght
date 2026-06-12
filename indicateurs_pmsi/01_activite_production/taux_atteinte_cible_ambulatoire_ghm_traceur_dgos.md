@@ -49,7 +49,7 @@ Population : tous RSA MCO pour un FINESS/période annuelle ou semestrielle
   selon la version de l'instruction — vérifier le niveau de granularité retenu par la DGOS
 
 Étape 2 — Identification des séjours ambulatoires :
-  RSA_ambulatoire : DUREE = 0 (entrée et sortie le même jour) ET MODE_ENTREE normal
+  RSA_ambulatoire : DUREE = 0 (entrée et sortie le même jour) ET `modeentree` normal
     OU
   RSA_ambulatoire : GHM de niveau J (4e caractère = 'J' dans le GHM à 8 caractères)
 
@@ -117,7 +117,7 @@ Matrice priorisation effort/impact :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable `GHM` (8 caractères — racine = 5 premiers, niveau = 4e caractère : 'J' pour ambulatoire), `DUREE`, `NOFINESS`, `DATE_SORTIE` — extraction annuelle ou trimestrielle
+- **PMSI MCO RSA** : variable `ghm2` (6 caractères — racine = 5 premiers, niveau = 6e caractère : 'J' pour ambulatoire), `duree`, `finessgeo`, `annee`/`mois` de sortie — extraction annuelle ou trimestrielle
 - **Instruction DGOS relative au développement de la chirurgie ambulatoire** : liste des GHMs traçeurs et cibles nationales, publiée annuellement par la DGOS — téléchargeable sur le site du Ministère de la Santé ou transmise par l'ARS dans le cadre des CPOM
 - **Référentiel ATIH des GHMs** : correspondance GHM racine → libellé, niveau (J/T/U/E/A/Z), CMD — nécessaire pour identifier les niveaux ambulatoires et les libellés des GHMs traçeurs
 

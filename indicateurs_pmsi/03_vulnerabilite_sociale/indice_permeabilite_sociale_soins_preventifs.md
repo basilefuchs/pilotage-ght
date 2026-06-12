@@ -101,7 +101,7 @@ IPC = K_p × (1 / Gradient_social) × Densité_soins_primaires_pondérée
 - **[[taux_recours_ajuste_fdep|FDep9]] (Rey et al., INSERM / ORS)** : indice de défavorisation sociale à l'échelon de la commune ou de l'IRIS, disponible via les ORS régionaux et la DREES — pour le calcul du gradient social.
 - **APL — Accessibilité Potentielle Localisée (DREES/IRDES)** : indicateur d'accès aux médecins généralistes par commune, intégrant distance et disponibilité — pour la composante structurelle de l'IPC.
 - **RPPS / ADELI (DREES)** : effectifs géolocalisés des professionnels de santé libéraux (médecins, infirmiers, kinésithérapeutes) par commune — pour la densité de soins primaires.
-- **PMSI MCO — mode d'entrée** : part des séjours entrant par les urgences (mode d'entrée = 8) par commune de résidence — indicateur satellite de l'imperméabilité (entrée par défaut par les urgences = barrière aux soins ambulatoires).
+- **PMSI MCO — mode d'entrée** : part des séjours entrant par les urgences (`modeentree` = 8 et `provenance` = 5) par commune de résidence — indicateur satellite de l'imperméabilité (entrée par défaut par les urgences = barrière aux soins ambulatoires).
 
 ## Exemple de Valeurs
 

@@ -76,7 +76,7 @@ Score de polychronicité par service/UM :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : codes CIM-10 (DP, DR, DA), identifiant patient anonymisé (NUM_ENQ ou NIR pseudonymisé ATIH)
+- **PMSI MCO RSA** : codes CIM-10 (DP, DR, DA), identifiant patient anonymisé (`NIR_ANO_17`/`NUM_ENQ` côté SNDS ; `anonyme` ou `ipp_c` côté portail ATIH)
 - **Table de correspondance CIM-10 → 58 groupes DREES** : publiée en open data sur data.drees.solidarites-sante.gouv.fr (fichier "Cartographie des pathologies — table de codage")
 - **SNDS/DCIR** (optionnel, enrichissement) : codes ALD, remboursements médicaments (ATC) pour compléter les groupes non détectables en PMSI seul (ex. diabète traité uniquement en ambulatoire)
 - **Population ATIH / INSEE** : pour le calcul de la prévalence attendue dans la zone d'attraction en comparaison

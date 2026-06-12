@@ -26,7 +26,7 @@ Positionnement vs indicateurs existants :
 **Source PMSI** : table des RSA (PMSI MCO) consolidée au niveau GHT (somme sur tous les FINESS-GEO membres du GHT).
 
 **Variables PMSI mobilisées** :
-- `NUM_FINESS_GEO` → mapping vers `CODE_GHT` (table ATIH des GHT à jour)
+- `finessgeo` → mapping vers `CODE_GHT` (table ATIH des GHT à jour)
 - `GHM` (6 caractères) → extraire les 2 premiers caractères = **CMD**
 - `NUM_SEJ_ANO` (anonymisation séjour, comptage)
 
@@ -79,7 +79,7 @@ polyvalence <- agg %>%
 
 ## Sources de Données
 
-- **PMSI MCO** : table RSA (ATIH), 1 ligne par séjour. Champs : `NUM_FINESS_GEO`, `GHM`, `ANNEE`.
+- **PMSI MCO** : table RSA (ATIH), 1 ligne par séjour. Champs : `finessgeo`, `GHM`, `ANNEE`.
 - **Référentiel GHT** : table de correspondance FINESS géographique → GHT, publiée annuellement par la DGOS / ATIH. URL : https://www.atih.sante.fr/organisation-territoriale-des-soins/groupements-hospitaliers-de-territoire
 - **Référentiel CMD** : nomenclature des 28 CMD du PMSI MCO, guide méthodologique ATIH en vigueur.
 

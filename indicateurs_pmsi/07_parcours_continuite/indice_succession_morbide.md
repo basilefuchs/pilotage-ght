@@ -31,7 +31,7 @@ Cet indicateur est distinct des indicateurs de sévérité instantanée (score d
 **Sources :** SNDS chaîné (DCIR + PMSI MCO + PMSI SSR + PMSI HAD), horizon de suivi minimum 24 mois par patient.
 
 ```
-Population : patients porteurs d'une ALD active (IR_ALD_R) dans la période,
+Population : patients porteurs d'une ALD active (`IR_IMB_R`) dans la période,
              âge ≥ 18 ans, suivi documenté ≥ 24 mois dans le SNDS
 
 Étape 1 — Définition de la pathologie index par patient :
@@ -88,8 +88,8 @@ Population : patients porteurs d'une ALD active (IR_ALD_R) dans la période,
 
 ## Sources de Données
 
-- **SNDS — `IR_ALD_R`** : date de début et de fin d'ALD par type (`ALD_TYP`), identifiant bénéficiaire — définition du groupe pathologique et de la période de suivi
-- **PMSI MCO — RSA** : `MODE_ENTREE` (programmé vs non programmé), `DP` et `DR` CIM-10, CMD, GHM, `ENT_DAT`, `SOR_DAT` — détection des stades 1, 2 et 3
+- **SNDS — `IR_IMB_R`** : date de début et de fin d'ALD par type (`ALD_TYP`), identifiant bénéficiaire — définition du groupe pathologique et de la période de suivi
+- **PMSI MCO — RSA** : `modeentree` (programmé vs non programmé), `DP` et `DR` CIM-10, CMD, GHM, `ENT_DAT`, `SOR_DAT` — détection des stades 1, 2 et 3
 - **PMSI SSR — RHS** : présence de séjour SSR dans la période de suivi — détection du stade 2
 - **PMSI HAD** : `MPP` (motif principal de prise en charge, code 01 = soins palliatifs), `ENT_DAT` — détection des stades 2 et 3
 - **Table de mapping pathologique** : correspondance ALD ↔ CIM-10 ↔ GHM construite en interne avec validation médicale pour chaque groupe nosologique (à produire et maintenir par l'équipe d'analyse)

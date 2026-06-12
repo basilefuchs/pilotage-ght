@@ -85,7 +85,7 @@ TASMT = Σ_i Sans_MT_i / Σ_i 1{ALD admis}
 
 ## Sources de Données
 
-- **PMSI MCO — RSA** : `AGE_AN`, `SEXE`, `GHM`, `DP`, `DAS`, `MODE_ENTREE`, `SOR_MOD`, `FINESSGEO`, identifiant chaîné via fichier ANO
+- **PMSI MCO — RSA** : `age`, `SEXE`, `GHM`, `DP`, `DAS`, `modeentree`, `SOR_MOD`, `FINESSGEO`, identifiant chaîné via fichier ANO
 - **SNDS — DCIR** :
   - `IR_BEN_R` — table bénéficiaires : variable de médecin traitant (RAMU MTT)
   - `IR_IMB_R` — table affections longue durée (ALD actives)

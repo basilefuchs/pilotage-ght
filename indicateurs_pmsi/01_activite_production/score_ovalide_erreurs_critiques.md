@@ -42,7 +42,7 @@ Population : tous RSA transmis à l'ATIH pour un FINESS/période
 
   Note : un RSA peut déclencher plusieurs codes d'erreur E1 différents ;
   il ne compte qu'une fois dans nb_RSA_E1
-  → utiliser la colonne NB_RSA_TOUCHES et dédupliquer par NUM_RSA
+  → utiliser la colonne NB_RSA_TOUCHES et dédupliquer par `ident`
 
 Étape 3 — Score principal :
   nb_RSA_total = count(RSA transmis intégrés)
@@ -106,7 +106,7 @@ Top-3 codes E1 par UM (unité médicale) :
 
 - **OVALIDE ATIH** : application web accessible depuis l'espace sécurisé ATIH de chaque établissement après transmission PMSI — exportation des états au format Excel/CSV — variables : `CODE_CONTROLE`, `TYPE_CONTROLE` (E1/E2/A/I), `NB_RSA_TOUCHES`, `NB_OCCURRENCES`
 - **Guide des contrôles OVALIDE** : document officiel ATIH décrivant chaque code de contrôle, sa définition, son niveau de gravité et les actions correctives attendues — mis à jour à chaque version du groupeur
-- **PMSI MCO RSA** : pour calculer le dénominateur `nb_RSA_total` et pour ventiler le Score_E1 par UM (`UM` ou `CODE_UM` dans le RSA)
+- **PMSI MCO RSA** : pour calculer le dénominateur `nb_RSA_total` et pour ventiler le Score_E1 par UM (`num_um` et `type` de la table `um`)
 
 ## Exemple de Valeurs
 

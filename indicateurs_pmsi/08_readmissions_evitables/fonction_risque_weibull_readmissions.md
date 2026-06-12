@@ -21,11 +21,11 @@ Construction de la cohorte de réadmission :
 ```
 Cohorte : séjours MCO index sur une période d'analyse (12-24 mois)
   → Chaînage PMSI par NIR crypté : séjour index S_i + éventuel séjour de réadmission R_i
-  → Délai de réadmission : Δᵢ = DATE_ENT(R_i) − DATE_SOR(S_i)   (en jours)
+  → Délai de réadmission : Δᵢ = `date_entree`(R_i) − `date_sortie`(S_i)   (en jours)
 
 Critères de définition de la réadmission (à préciser selon l'objectif) :
   → Réadmission toutes causes : tout séjour MCO dans les 30j post-sortie
-  → Réadmission potentiellement évitable : séjour avec MODE_ENTREE = 8 (urgences)
+  → Réadmission potentiellement évitable : séjour avec `modeentree` = 8 et `provenance` = 5 (urgences)
     ET diagnostic de réadmission lié au diagnostic du séjour index
     (même CMD ou codes CIM-10 apparentés)
   → Réadmission précoce (J0-J7) vs tardive (J8-J30) : selon le délai Δᵢ
@@ -97,7 +97,7 @@ Score de criticité post-sortie (SCP) :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** (chaîné par NIR crypté sur 12-24 mois) : DATE_SOR du séjour index, DATE_ENT du séjour de réadmission, MODE_ENTREE (urgences = 8 pour les réadmissions non programmées), DP du séjour index et de réadmission pour la classification étiologique — base suffisante pour le calcul intra-GHT
+- **PMSI MCO RSA** (chaîné par NIR crypté sur 12-24 mois) : `date_sortie` du séjour index, `date_entree` du séjour de réadmission, `modeentree` (urgences = 8 pour les réadmissions non programmées), DP du séjour index et de réadmission pour la classification étiologique — base suffisante pour le calcul intra-GHT
 - **SNDS (PMSI multi-établissements)** : pour capturer les réadmissions dans des établissements hors GHT — sans accès SNDS, les réadmissions dans des établissements concurrents sont manquantes, sous-estimant le taux réel et biaisant potentiellement k̂
 
 ## Exemple de Valeurs

@@ -73,7 +73,7 @@ Tous les autres cas sont étiquetés **acquis** (HAC) — proxy imparfait, voir 
 
 ```
 Pour chaque séjour s :
-  Si DUREE_SEJOUR(s) < 2 OU DP(s) ∈ liste_HAC OU DP(s) = "Z51.5"
+  Si `duree`(s) < 2 OU DP(s) ∈ liste_HAC OU DP(s) = "Z51.5"
     → exclu
 
   Sinon :
@@ -123,9 +123,9 @@ Variables PMSI MCO (Guide méthodologique ATIH 2025) :
   - `DP` (diagnostic principal du séjour, après groupage)
   - `DR` (diagnostic relié)
   - `DAS` (diagnostics associés significatifs) — table empilée
-  - `DUREE_SEJOUR`
+  - `duree`
   - `SOR_MOD` (mode de sortie ; 9 = décès)
-  - `AGE_AN`, `SEXE`, `GHM`, niveau de sévérité GHM
+  - `age`, `SEXE`, `GHM`, niveau de sévérité GHM
   - `FINESSGEO`
 - **RUM** (résumé d'unité médicale, avant groupage en RSS/RSA) — **clé pour le proxy POA** : permet d'identifier le DA du **premier** RUM du séjour, marqueur fort que la condition était présente à l'entrée.
   - `RUM_NUM_ORDRE` ou rang du RUM dans le séjour

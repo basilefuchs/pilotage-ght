@@ -46,7 +46,7 @@ Positionnement vs indicateurs existants : contrairement au PSI (AHRQ) qui détec
   Restitution : ratio standardisé (observé / attendu) avec IC 95%
 ```
 
-Variables PMSI clés : `NUM_RSA`, `N°ANONYME` (chaînage), `DATE_SORTIE`, `DATE_ENTREE`, `DP`, `DR`, `DA`, codes `CCAM` (table A), `AGE_ANNEES`, `SEXE`.
+Variables PMSI clés : `ident`, `N°ANONYME` (chaînage), `DATE_SORTIE`, `DATE_ENTREE`, `DP`, `DR`, `DA`, codes `CCAM` (table A), `age`, `SEXE`.
 
 ## Utilité
 - **Pilotage qualité chirurgie orthopédique GHT** : positionnement comparatif des établissements pratiquant la PTH/PTG, identification des centres en alerte (IC 95% au-dessus de la moyenne nationale).

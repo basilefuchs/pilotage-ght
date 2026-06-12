@@ -1,7 +1,7 @@
 # Taux de Non-Recours aux Soins Ambulatoires Pré-Hospitalisation
 
 ## Définition
-Le taux de non-recours aux soins ambulatoires pré-hospitalisation mesure la proportion d'admissions hospitalières urgentes (mode d'entrée = 8, provenance = domicile) pour des pathologies ambulatory care-sensitive (ACS), également appelées hospitalisations potentiellement évitables (HPE), chez des patients n'ayant eu aucun contact avec le système de soins ambulatoires au cours des 6 mois précédant l'admission. Le calcul repose sur un chaînage entre le PMSI MCO (mode d'entrée, GHM et diagnostic principal de la pathologie ACS) et le DCIR (consultations médecin généraliste et spécialistes, actes CCAM tracés dans ER_PRS_F) via le NIR crypté. Cet indicateur capture la barrière « invisible » à l'accès aux soins : des patients qui n'atteignent l'hôpital que lorsque leur état s'est décompensé, sans aucune prise en charge ambulatoire préalable. Il se distingue du taux d'HPE lui-même (qui comptabilise l'ensemble des admissions évitables) en isolant le sous-groupe pour lequel le problème est l'absence d'accès aux soins primaires, et non une mauvaise gestion d'un suivi existant.
+Le taux de non-recours aux soins ambulatoires pré-hospitalisation mesure la proportion d'admissions hospitalières urgentes (`modeentree` = 8 et `provenance` = 5 — entrée du domicile par les urgences) pour des pathologies ambulatory care-sensitive (ACS), également appelées hospitalisations potentiellement évitables (HPE), chez des patients n'ayant eu aucun contact avec le système de soins ambulatoires au cours des 6 mois précédant l'admission. Le calcul repose sur un chaînage entre le PMSI MCO (mode d'entrée, GHM et diagnostic principal de la pathologie ACS) et le DCIR (consultations médecin généraliste et spécialistes, actes CCAM tracés dans ER_PRS_F) via le NIR crypté. Cet indicateur capture la barrière « invisible » à l'accès aux soins : des patients qui n'atteignent l'hôpital que lorsque leur état s'est décompensé, sans aucune prise en charge ambulatoire préalable. Il se distingue du taux d'HPE lui-même (qui comptabilise l'ensemble des admissions évitables) en isolant le sous-groupe pour lequel le problème est l'absence d'accès aux soins primaires, et non une mauvaise gestion d'un suivi existant.
 
 ## Calcul
 Le taux de non-recours est calculé comme suit :
@@ -10,9 +10,9 @@ Le taux de non-recours est calculé comme suit :
 Taux non-recours (%) = (Admissions urgentes ACS sans contact ambulatoire préalable / Total admissions urgentes ACS) × 100
 ```
 
-**Numérateur** : admissions urgentes (mode d'entrée = 8) pour pathologies ACS (sélection par GHM de la liste HPE ATIH/HAS) pour lesquelles le DCIR ne retrace aucune consultation médecin généraliste ni spécialiste sur la fenêtre J-180 à J-1 avant la date d'entrée.
+**Numérateur** : admissions urgentes (`modeentree` = 8 et `provenance` = 5) pour pathologies ACS (sélection par GHM de la liste HPE ATIH/HAS) pour lesquelles le DCIR ne retrace aucune consultation médecin généraliste ni spécialiste sur la fenêtre J-180 à J-1 avant la date d'entrée.
 
-**Dénominateur** : ensemble des admissions urgentes (mode d'entrée = 8, provenance = domicile) pour les mêmes pathologies ACS (même liste de GHM).
+**Dénominateur** : ensemble des admissions urgentes (`modeentree` = 8 et `provenance` = 5 — entrée du domicile par les urgences) pour les mêmes pathologies ACS (même liste de GHM).
 
 **Chaînage PMSI-DCIR** :
 
@@ -58,7 +58,7 @@ WHERE prs.prs_nat_ref IN (<codes_actes_consultation_mg_sp>)
 - **Dialogue ARS / CPAM** : cet indicateur croise données PMSI (hospitalisation) et DCIR (accès ambulatoire) pour offrir une vision 360° du parcours patient, mobilisable dans les CPOM et les Contrats Locaux de Santé.
 
 ## Sources de Données
-- **PMSI MCO RSA** : mode d'entrée (= 8 pour urgences), provenance (domicile), diagnostic principal (DP) en CIM-10, GHM pour identification des pathologies ACS/HPE.
+- **PMSI MCO RSA** : `modeentree` + `provenance` (urgences = 8 + provenance 5), diagnostic principal (DP) en CIM-10, GHM pour identification des pathologies ACS/HPE.
 - **DCIR ER_PRS_F** : consultations médecin généraliste et spécialistes (actes remboursés), actes CCAM tracés, permettant de reconstituer les contacts ambulatoires sur la fenêtre de 6 mois pré-admission.
 - **NIR crypté** : identifiant patient pseudonymisé commun au PMSI et au DCIR, permettant le chaînage longitudinal des séjours et des actes ambulatoires.
 - **ATIH — liste GHM des HPE** : liste officielle des GHM correspondant aux 17 conditions traceurs d'hospitalisations potentiellement évitables, référence pour la sélection des séjours ACS.

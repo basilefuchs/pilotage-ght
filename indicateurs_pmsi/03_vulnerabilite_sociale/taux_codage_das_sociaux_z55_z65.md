@@ -97,7 +97,7 @@ mesure l'effet d'un plan d'action de codage (formation DIM, lettre à direction,
 
 - **PMSI MCO — RSA** :
   - `DP`, `DR`, `DAS` (multiples) — chercher les codes commençant par Z55 à Z65
-  - `AGE_AN`, `SEXE`, `FINESSGEO`, `UM`
+  - `age`, `SEXE`, `FINESSGEO`, `UM`
   - Identifiant chaîné via fichier ANO
 - **SNDS — DCIR** :
   - `IR_BEN_R` — bénéficiaire (CMU-C, AME, date d'ouverture des droits)

@@ -38,7 +38,7 @@ Source : PMSI MCO RSA — séjours du nouveau-né (type de séjour = NN) et séj
 
   Critère 2 (indirect — via séjour maternel) :
     DP ou DA O60.1x (travail prématuré avec accouchement) sur le RSA de la mère
-    Chaîner avec RSA nouveau-né correspondant (même DATE_ENT ± 1 jour, même FINESS)
+    Chaîner avec RSA nouveau-né correspondant (même `date_entree` ± 1 jour, même FINESS)
 
   Critère 3 (faible poids comme proxy) :
     P07.0x (< 1000g — extrême prématurité probable) et P07.1x (1000–2499g)

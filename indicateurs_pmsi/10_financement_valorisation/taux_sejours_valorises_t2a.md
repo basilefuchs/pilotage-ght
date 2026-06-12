@@ -96,7 +96,7 @@ Taux de valorisation par CMD :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable `GHM` (8 caractères — CMD = 2 premiers), `NOFINESS`, `DATE_SORTIE` — extraction annuelle depuis espace ATIH ou SIH local
+- **PMSI MCO RSA** : variable `ghm2` (6 caractères — CMD = 2 premiers), `finessgeo`, `annee`/`mois` de sortie — extraction annuelle depuis espace ATIH ou SIH local
 - **Grilles tarifaires ATIH** : fichiers CSV/XLS publiés annuellement par arrêté ministériel (grille ex-DGF et grille ex-OQN) — téléchargeables sur le site ATIH, rubriques «tarification MCO» — variables : `GHM`, `GHS`, `tarif_base`, `borne_basse`, `borne_haute`
 - **VID-HOSP (optionnel)** : fichier de facturation individuelle des séjours — permet d'identifier les séjours facturés en dehors du GHS (MIG, MERRI) et de les exclure du dénominateur
 

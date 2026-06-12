@@ -32,10 +32,10 @@ Positionnement vs existants :
 **Source PMSI** : RSA MCO. **Source dénominateur** : externe (CNSA, ARS, EHPAD via SI médico-social).
 
 **Variables PMSI mobilisées** :
-- `MODE_ENTREE` : 8 = domicile (incluant EHPAD selon convention) + provenance EHPAD ; 5 = mutation depuis SSR ; 7 = transfert. **Non programmé** = entrée via urgences (`PASSAGE_UHCD` ou présence d'un séjour SU dans les 24 h).
+- `modeentree` : 8 = domicile (incluant EHPAD selon convention) + provenance EHPAD ; 5 = mutation depuis SSR ; 7 = transfert. **Non programmé** = entrée via urgences (`PASSAGE_UHCD` ou présence d'un séjour SU dans les 24 h).
 - `PROVENANCE` : code 6 = établissement médico-social (EHPAD/USLD).
-- `DUREE_SEJOUR`, `DP`, `MODE_SORTIE`
-- `NUM_FINESS_GEO` → mapping GHT
+- `duree`, `DP`, `MODE_SORTIE`
+- `finessgeo` → mapping GHT
 
 **Variables externes (dénominateur file active EHPAD)** :
 - **CNSA / ARS** : capacité installée et file active EHPAD par département/territoire.
@@ -104,7 +104,7 @@ hnp_acsc <- sej_ehpad_hnp %>%
 
 ## Sources de Données
 
-- **PMSI MCO** : RSA. Variables `MODE_ENTREE`, `PROVENANCE`, `DESTINATION`, `MODE_SORTIE`, `NUM_FINESS_GEO`, `DP`. Guide méthodologique ATIH.
+- **PMSI MCO** : RSA. Variables `modeentree`, `PROVENANCE`, `DESTINATION`, `MODE_SORTIE`, `finessgeo`, `DP`. Guide méthodologique ATIH.
 - **RPU** (option) : pour confirmer l'entrée via urgences avec horodatage et CCMU.
 - **CNSA** : files actives EHPAD par département. URL : https://www.cnsa.fr
 - **SAE médico-sociale** : DREES, capacités et activités EHPAD.

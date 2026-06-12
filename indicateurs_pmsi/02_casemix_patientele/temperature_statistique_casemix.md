@@ -101,7 +101,7 @@ Fraction de variance expliquée par les "super-longs séjours" (P95+) :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : DMS individuelle de chaque séjour (DATE_SOR − DATE_ENT) par GHM, CMD ou service — base suffisante pour tous les calculs ; fenêtre de 12-24 mois pour un ajustement robuste des paramètres de distribution
+- **PMSI MCO RSA** : DMS individuelle de chaque séjour (`date_sortie` − `date_entree`) par GHM, CMD ou service — base suffisante pour tous les calculs ; fenêtre de 12-24 mois pour un ajustement robuste des paramètres de distribution
 - **Base nationale ATIH** : distribution des DMS par GHM au niveau national — pour calculer τ_national et les paramètres de Weibull de référence ; permettent le calcul du Ratio_T et la détection des services statistiquement hors norme
 - **Implémentation** : Python (scipy.stats : expon.fit, weibull_min.fit, pareto.fit ; powerlaw pour l'exposant de Pareto), R (fitdistrplus : fitdist avec "exp", "weibull", "pareto") — calcul rapide même sur plusieurs années de données
 

@@ -28,10 +28,10 @@ C'est la **caractéristique « croissance des modes de prise en charge »** dans
 
 **Variables PMSI mobilisées** :
 - `GHM` (pour filtrer chirurgie : 1ère lettre = C)
-- `DUREE_SEJOUR` (= 0 ou hospitalisation de jour : combiné au mode entrée/sortie 8 = ambu)
-- `MODE_ENTREE` / `MODE_SORTIE` : codes 6 (mutation) ou 8 (domicile, dont jour)
-- `CODE_ACTE_CCAM` : un séjour est classé sur un GM si l'un de ses actes CCAM appartient à la liste de référence
-- `NUM_FINESS_GEO` → mapping GHT
+- `duree` (= 0 ou hospitalisation de jour : combiné au mode entrée/sortie 8 = ambu)
+- `modeentree` / `MODE_SORTIE` : codes 6 (mutation) ou 8 (domicile, dont jour)
+- `acte` : un séjour est classé sur un GM si l'un de ses actes CCAM appartient à la liste de référence
+- `finessgeo` → mapping GHT
 
 **Liste des GM** : référentiels à charger annuellement :
 - **18 GM** : liste CNAM/AFCA, intégrée à Hospi-Diag (P13).
@@ -105,7 +105,7 @@ ipa <- taux_obs %>%
 
 ## Sources de Données
 
-- **PMSI MCO** : RSA, table des actes CCAM. Variables `GHM`, `DUREE_SEJOUR`, `MODE_ENTREE`, `MODE_SORTIE`, `CODE_ACTE_CCAM`, `NUM_FINESS_GEO`. Guide méthodologique MCO ATIH.
+- **PMSI MCO** : RSA, table des actes CCAM. Variables `GHM`, `duree`, `modeentree`, `MODE_SORTIE`, `acte`, `finessgeo`. Guide méthodologique MCO ATIH.
 - **CCAM descriptive à usage PMSI** — version annuelle ATIH. URL : https://www.atih.sante.fr (rubrique CCAM).
 - **Liste des gestes marqueurs** :
   - 18 GM Hospi-Diag (P13) : https://hospidiag.atih.sante.fr (indicateur P13)

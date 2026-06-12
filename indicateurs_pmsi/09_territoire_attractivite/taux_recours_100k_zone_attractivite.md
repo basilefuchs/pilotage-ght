@@ -45,14 +45,14 @@ Sources : PMSI MCO RSA (ATIH) + Référentiel Zones d'attraction ATIH + INSEE Re
 
 Étape 2 — Extraction des RSA de l'établissement pour les patients de la zone :
   RSA_etab = COUNT(RSA)
-    WHERE FINESS_GEO = etab
+    WHERE `finessgeo` = etab
       AND CODE_INSEE_COMMUNE_PATIENT ∈ zone_attraction   -- ou CODE_POSTAL si INSEE indisponible
       AND MODE_SORTIE NOT IN ('9')                       -- exclure les transferts sans sortie
     Optionnel : AND NBSEANCES = 0                        -- exclure les séjours de séances
                                                           -- selon l'objectif d'analyse
 
   Variables PMSI utilisées :
-    FINESS_GEO              : identifiant établissement géographique (9 chiffres)
+    `finessgeo`              : identifiant établissement géographique (9 chiffres)
     CODE_INSEE_COMMUNE_PAT  : commune de résidence du patient (disponible en RSA depuis 2012)
     CODE_POSTAL             : alternative si commune INSEE non fiable (rural fragmenté)
     NBSEANCES               : nombre de séances (0 pour les séjours avec nuitée ou ambulatoire)
@@ -116,7 +116,7 @@ Ratio de recours au CHU de référence :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** (ATIH) : variables `FINESS_GEO`, `CODE_INSEE_COMMUNE_PAT` (ou `CODE_POSTAL`), `NBSEANCES`, `MODE_SORTIE`, `CMD` — extraction annuelle sur exercice complet.
+- **PMSI MCO RSA** (ATIH) : variables `finessgeo`, `CODE_INSEE_COMMUNE_PAT` (ou `CODE_POSTAL`), `NBSEANCES`, `MODE_SORTIE`, `CMD` — extraction annuelle sur exercice complet.
 - **Référentiel Zones d'attraction des établissements** (ATIH) : fichier de correspondance commune → établissement principal, mis à jour annuellement et publié sur le portail ATIH. Disponible également sur ScanSanté (onglet Territoire).
 - **INSEE Recensement de la Population (RP)** : fichier « Populations légales » par commune — millésime N-2 (dernier disponible au moment du calcul). Téléchargeable sur insee.fr. Utiliser la table de correspondance COG pour les communes fusionnées.
 - **INSEE Omphale** (pour les dérivés prospectifs) : projections de population par commune à l'horizon 2030-2050, nécessaires pour le calcul des RSA prévisionnels.

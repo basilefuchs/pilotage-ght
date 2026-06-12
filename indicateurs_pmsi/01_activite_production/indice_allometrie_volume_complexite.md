@@ -20,14 +20,14 @@ Cet indicateur est absent des outils PMSI actuels : le CMI (Case Mix Index) mesu
 
 ## Calcul
 
-Source : PMSI MCO RSA — variables `GHM` (8 caractères), `FINESS_GEO`, période annuelle.
+Source : PMSI MCO RSA — variables `ghm2` (6 caractères), `finessgeo`, période annuelle.
 
 ```
 Population : panel d'établissements MCO sur une année civile
              (minimum 20 établissements avec activité non nulle sur la famille f)
 
 Étape 1 — Construction de la variable de sévérité :
-  Sévérité CMA : utiliser le niveau de sévérité GHM (4e caractère numérique du GHM à 8 car.)
+  Sévérité CMA : utiliser le niveau de sévérité GHM (6e caractère du GHM à 6 car.)
   score_sev_RSA ∈ {1, 2, 3, 4} (niveaux J, T, U, E pour les GHMs à 4 niveaux)
   Pour GHMs sans niveau (chirurgie ambulatoire, séances) : score_sev = 1 par convention
 
@@ -92,7 +92,7 @@ Score de surcharge allométrique d'un établissement :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable `GHM` (8 caractères — 4e caractère pour le niveau de sévérité), `FINESS_GEO`, période annuelle — extraction sur panel national (base nationale ATIH ou données régionales ARS)
+- **PMSI MCO RSA** : variable `ghm2` (6 caractères — 6e caractère pour le niveau de sévérité), `finessgeo`, période annuelle — extraction sur panel national (base nationale ATIH ou données régionales ARS)
 - **Référentiel ATIH des GHMs** : correspondance GHM → niveau de sévérité (J/T/U/E) → poids relatif — nécessaire pour vérifier que les niveaux de sévérité sont comparables entre versions de classification
 - **Base nationale PMSI ATIH** : pour construire le panel d'établissements (minimum 20 établissements actifs par famille GHM) et calculer les paramètres allométriques nationaux de référence
 

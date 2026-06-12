@@ -96,7 +96,7 @@ Taux de rejet transmission :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : fichier RSA transmis à l'ATIH — variable `NOFINESS` (FINESS géographique), `GHM` (8 caractères — CMD 90 = erreurs), `DATE_SORTIE` (AAAAMM) — extraction annuelle depuis l'espace ATIH de l'établissement
+- **PMSI MCO RSA** : fichier RSA transmis à l'ATIH — variable `finessgeo` (FINESS géographique), `ghm2` (6 caractères — CMD 90 = erreurs), `annee`/`mois` de sortie — extraction annuelle depuis l'espace ATIH de l'établissement
 - **SAE (Statistique Annuelle des Établissements)** : questionnaire DREES annuel, volet MCO, rubrique «séjours terminés» — accessible via l'espace SAE DREES ou directement depuis le rapport d'activité SAE validé par la direction
 - **Accusé de réception ATIH** : document transmis par l'ATIH après chaque transmission PMSI, indiquant le nombre de RSA intégrés et le nombre rejetés — conservé par le DIM
 

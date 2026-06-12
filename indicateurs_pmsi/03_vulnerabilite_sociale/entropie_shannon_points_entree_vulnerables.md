@@ -14,12 +14,12 @@ avec convention 0 · log(0) = 0. H est borné dans [0, log_2(K)] : 0 si concentr
 
 ```
 MODES_ENTREE = {
-  M1 : domicile programmé           (MODE_ENTREE = 8)
-  M2 : urgences (UF d'urgences)     (MODE_ENTREE = 8, passage UHCD avant)
+  M1 : domicile programmé           (`modeentree` = 8)
+  M2 : urgences (UF d'urgences)     (`modeentree` = 8 et `provenance` = 5, passage UHCD via `top_uhcd`)
         — détectable par chaînage RPU-RSA ou par GHM 06Z02 / UF d'urgences
-  M3 : transfert depuis autre établissement MCO (MODE_ENTREE = 7)
-  M4 : mutation interne (MODE_ENTREE = 6)
-  M5 : entrée depuis SSR/HAD/USLD (MODE_ENTREE = 0 ou autre)
+  M3 : transfert depuis autre établissement MCO (`modeentree` = 7)
+  M4 : mutation interne (`modeentree` = 6)
+  M5 : entrée depuis SSR/HAD/USLD (`modeentree` = 0 ou autre)
   [partition exacte à figer en utilisant les guides ATIH en vigueur ;
    les codes ci-dessus illustrent la logique]
 }
@@ -109,7 +109,7 @@ Bootstrap (B = 1000) pour intervalles de confiance.
 
 ## Sources de Données
 
-- **PMSI MCO — RSA** : `MODE_ENTREE`, `DATE_ENTREE`, `FINESSGEO`, `UM_admission`, identifiant chaîné ANO
+- **PMSI MCO — RSA** : `modeentree`, `DATE_ENTREE`, `FINESSGEO`, `UM_admission`, identifiant chaîné ANO
 - **RPU urgences** : pour distinguer M2 (urgences) de M1 (programmé), chaînage RPU-RSA via `IDENTIFIANT_CHAINE` + date d'admission
 - **SNDS — DCIR** : `IR_BEN_R` (CMU-C, AME, médecin traitant), `IR_IMB_R` (ALD)
 - **FDep INSERM/CépiDc** : IRIS résidence → quintile
@@ -140,7 +140,7 @@ Ordres de grandeur experts, partition à K = 5 modes ; H_max = log_2(5) ≈ 2,32
 - **Sensibilité au volume** : H sur petits effectifs (N_C < 100) instable ; bootstrap obligatoire.
 - **Pas de direction de causalité** : H faible chez Q5 traduit autant un défaut d'amont (pas de MG) qu'un comportement (recours préférentiel aux urgences) ou un effet offre (pas de filière courte) ; ne désigne pas le coupable.
 - **CMD-dépendance** : obstétrique a une entropie naturelle basse (programmé dominant) ; comparaison inter-CMD trompeuse, à standardiser ou cloisonner.
-- **Chaînage RPU-RSA** : indispensable pour distinguer M1 (programmé via domicile) de M2 (admission post-urgences) ; sans ce chaînage, M1 et M2 sont confondus dans le `MODE_ENTREE = 8`. Documenter le taux de chaînage.
+- **Chaînage RPU-RSA** : indispensable pour distinguer M1 (programmé via domicile) de M2 (admission post-urgences) ; sans ce chaînage, M1 et M2 sont confondus dans le ``modeentree` = 8`. Documenter le taux de chaînage.
 - **Accès SNDS** : pour ALD_sansMT et CMU-C, accès SNDS nécessaire ; à défaut, restreindre aux cohortes FDep.
 - **Lecture pédagogique** : H n'est pas intuitive pour des non-statisticiens ; préférer H_norm ∈ [0,1] et présenter avec des visualisations (distribution empirique p_k).
 - **Comparaison inter-établissement** : la partition étant établissement-dépendante (par exemple présence d'une CPTS, d'une PASS), comparer prudemment avec partition strictement identique et codage harmonisé.

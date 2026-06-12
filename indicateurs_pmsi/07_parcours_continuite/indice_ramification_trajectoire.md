@@ -20,7 +20,7 @@ Population : tous les séjours MCO d'une période (séjour index)
 
 Étape 1 — Identification du séjour index :
   Séjour MCO de référence : RSA avec date de sortie SOR_DAT dans la période
-  FINESS_GEO, NIR, SOR_DAT constituent la clé d'appariement
+  `finessgeo`, NIR, SOR_DAT constituent la clé d'appariement
   Exclure : séjours obstétricaux (CMD 14), séances (NAT_ASS = 1), nouveau-nés (CMD 15)
 
 Étape 2 — Fenêtre de suivi post-sortie :
@@ -30,9 +30,9 @@ Population : tous les séjours MCO d'une période (séjour index)
     - PMSI SSR : séjour SSR avec ENT_DAT ∈ [J1, J90] pour le même NIR
     - PMSI PSY : séjour PSY avec DAT_DEB ∈ [J1, J90] pour le même NIR
     - PMSI HAD : séjour HAD avec ENT_DAT ∈ [J1, J90] pour le même NIR
-    - PMSI MCO : réadmission MCO non programmée (MODE_ENTREE = 8 ou 6) ∈ [J1, J30]
+    - PMSI MCO : réadmission MCO non programmée (`modeentree` = 8 ou 6) ∈ [J1, J30]
     - SNDS ER_PRS_F : consultations de spécialistes distincts ∈ [J1, J30]
-      → compter les spécialités distinctes (PRS_PRE_SPE ou EXE_PRO_SPE)
+      → compter les spécialités distinctes (`PSE_SPE_COD` exécutant, `PSP_SPE_COD` prescripteur)
       → si ≥ 3 spécialités distinctes en 30j : compter comme 1 branche "ambulatoire intensif"
 
 Étape 3 — Comptage des transitions inter-champs :
@@ -60,7 +60,7 @@ Population : tous les séjours MCO d'une période (séjour index)
 **Cas limites :**
 - Séjour index suivi d'un décès intra-hospitalier dans les 90j : le séjour MCO de décès est compté comme transition si survenu dans un autre établissement que l'index
 - Patients hors SNDS (régimes spéciaux non couverts) : exclus du calcul ambulatoire, IRT partiel possible
-- Réadmissions programmées (chimiothérapie en séances) : exclure les réadmissions en MODE_ENTREE = 7 (transfert programmé) pour les séjours en séances
+- Réadmissions programmées (chimiothérapie en séances) : exclure les réadmissions en `modeentree` = 7 (transfert programmé) pour les séjours en séances
 
 ## Utilité
 
@@ -73,11 +73,11 @@ Population : tous les séjours MCO d'une période (séjour index)
 
 ## Sources de Données
 
-- **PMSI MCO — RSA** : `SOR_DAT` (date de sortie), `MODE_SORTIE` (destination), `FINESS_GEO`, racine GHM, NIR pseudonymisé — extraction ATIH annuelle
-- **PMSI SSR — RHS** : `ENT_DAT`, `NIR_PSA`, `FINESS_GEO` — pour détecter les séjours SSR post-index
-- **PMSI PSY — RPS** : `DAT_DEB`, `NIR_PSA`, `FINESS_GEO` — pour les séjours psychiatriques post-index
-- **PMSI HAD** : `ENT_DAT`, `NIR_PSA`, `FINESS_GEO` — pour les séjours d'hospitalisation à domicile
-- **SNDS — `ER_PRS_F`** : `EXE_SOI_DTD`, `EXE_PRO_SPE` (spécialité du prestataire), `BEN_NIR_PSA` — pour détecter la ramification ambulatoire intensive
+- **PMSI MCO — RSA** : `SOR_DAT` (date de sortie), `MODE_SORTIE` (destination), `finessgeo`, racine GHM, NIR pseudonymisé — extraction ATIH annuelle
+- **PMSI SSR — RHS** : `ENT_DAT`, `NIR_ANO_17`, `finessgeo` — pour détecter les séjours SSR post-index
+- **PMSI PSY — RPS** : `DAT_DEB`, `NIR_ANO_17`, `finessgeo` — pour les séjours psychiatriques post-index
+- **PMSI HAD** : `ENT_DAT`, `NIR_ANO_17`, `finessgeo` — pour les séjours d'hospitalisation à domicile
+- **SNDS — `ER_PRS_F`** : `EXE_SOI_DTD`, `PSE_SPE_COD` (spécialité du PS exécutant), `BEN_NIR_PSA` — pour détecter la ramification ambulatoire intensive
 - **Référentiel ATIH GHMs** : pour la stratification par CMD et racine GHM
 
 ## Exemple de Valeurs

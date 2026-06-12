@@ -8,7 +8,7 @@ Cet indicateur est suivi par la DREES (Panorama des établissements de santé : 
 Formule :
 
 ```
-Taux Hospi-Urgences = (RSA hospi complète avec MODE_ENTREE = 8 OU
+Taux Hospi-Urgences = (RSA hospi complète avec `modeentree` = 8 OU
                        RUM précédent en UF urgences/UHCD)
                       / (RSA hospi complète total)
 
@@ -25,15 +25,15 @@ Positionnement vs indicateurs existants : complète `taux_recours_urgences_pour_
 ```
 Étape 1 — Identification des hospitalisations complètes MCO
   RSA en hospitalisation complète :
-    DUREE_SEJOUR ≥ 1 jour OU GHM hors niveau J (hors ambu)
+    `duree` ≥ 1 jour OU GHM hors niveau J (hors ambu)
   Exclusions :
     - CMD 28 (séances)
     - CMD 14 (obstétrique — flux distinct)
     - GHM ambulatoire (J)
 
 Étape 2 — Détection de la provenance urgences
-  Méthode 1 — MODE_ENTREE :
-    MODE_ENTREE = 8 (« par les urgences »)
+  Méthode 1 — `modeentree` :
+    `modeentree` = 8 et `provenance` = 5 (« par les urgences » ; ou `passage_urg` = 1 depuis 2023)
   Méthode 2 — Analyse RUM (plus précis) :
     Existe-t-il un RUM antérieur dans le même séjour avec UF urgences/UHCD ?
     (UF de type 35 = UHCD, UF de type 24 = urgences générales selon nomenclature
@@ -56,7 +56,7 @@ Positionnement vs indicateurs existants : complète `taux_recours_urgences_pour_
   - Par mode de sortie : retour domicile vs SSR (nécessité d'aval)
 ```
 
-Variables PMSI clés : `MODE_ENTREE`, `MODE_SORTIE`, `UF` (unité fonctionnelle), `TYPE_AUTORISATION_UM`, `DUREE_SEJOUR`, `GHM`, `CMD`. Optionnellement, données RPU pour chaînage urgences.
+Variables PMSI clés : `modeentree`, `MODE_SORTIE`, `UF` (unité fonctionnelle), `TYPE_AUTORISATION_UM`, `duree`, `GHM`, `CMD`. Optionnellement, données RPU pour chaînage urgences.
 
 ## Utilité
 - **Pilotage de l'aval des urgences** : un taux élevé d'hospitalisations post-urgences signale une dépendance à l'aval, levier de tension capacitaire.
@@ -69,7 +69,7 @@ Variables PMSI clés : `MODE_ENTREE`, `MODE_SORTIE`, `UF` (unité fonctionnelle)
 - **Pilotage personnes âgées** : la part chez ≥75 ans est particulièrement élevée, marqueur de l'efficacité des dispositifs PAERPA et filières gériatriques directes.
 
 ## Sources de Données
-- **PMSI MCO** : RSA + RUM, MODE_ENTREE, UF, type d'autorisation UM.
+- **PMSI MCO** : RSA + RUM, `modeentree`, UF, type d'autorisation UM.
 - **RPU (Résumé de Passage aux Urgences)** : si disponible, pour chaînage robuste.
 - **Référentiel ATIH des UF / unités fonctionnelles** : nomenclature des UF urgences (24) et UHCD (35) (mise à jour annuelle).
 - **DREES Panorama** : volumétrie nationale des passages urgences (21,6 M en 2022).
@@ -93,7 +93,7 @@ Variables PMSI clés : `MODE_ENTREE`, `MODE_SORTIE`, `UF` (unité fonctionnelle)
 - **Évolution récente** : tendance lente à la baisse via développement des admissions directes gériatriques (-1 à -2 pts/an dans les GHT structurés).
 
 ## Limites
-- **Hétérogénéité du codage MODE_ENTREE** : certains établissements sous-codent ou sur-codent le mode 8 ; valeur 8 vs UF urgences peut diverger de plusieurs points.
+- **Hétérogénéité du codage `modeentree`** : certains établissements sous-codent ou sur-codent le mode 8 ; valeur 8 vs UF urgences peut diverger de plusieurs points.
 - **UHCD inégalement déclarée** : certains établissements n'ont pas d'UHCD formelle, les passages prolongés sont alors codés différemment.
 - **Confusion avec mode entrée 7 (transfert)** : un patient admis aux urgences puis transféré dans un autre établissement compte différemment selon le périmètre.
 - **Pas de chaînage RPU systématique** : sans RPU, on perd la durée du passage urgences (heure d'arrivée → admission MCO), indicateur clé.

@@ -110,7 +110,7 @@ Pour un indicateur continu x̄_m (DMS mensuelle) :
 ## Sources de Données
 
 - **PMSI MCO RSA** : numérateurs (réadmissions, décès, complications identifiées par les codes CIM-10 en DA) et dénominateurs (séjours éligibles par GHM ou CMD) pour les indicateurs de proportion — calcul de n_m et r_m par mois sur 24-36 mois glissants
-- **PMSI MCO RSA (DMS, coût)** : variables DATE_ENT, DATE_SOR, GHS pour les indicateurs continus — calcul de x̄_m et s² par mois et par groupe
+- **PMSI MCO RSA (DMS, coût)** : variables `date_entree`, `date_sortie`, GHS pour les indicateurs continus — calcul de x̄_m et s² par mois et par groupe
 - **PMSI SSR RHS** : pour les indicateurs SSR (gain MIF, DMS SSR, taux de retour à domicile) — mêmes méthodes que MCO
 - **Base nationale ATIH** : taux de référence nationaux p̂_ref par GHM — pour centrer les funnel plots sur la référence nationale plutôt que sur la moyenne locale (comparaison externe)
 

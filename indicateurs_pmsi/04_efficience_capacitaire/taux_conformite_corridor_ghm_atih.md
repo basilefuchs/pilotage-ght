@@ -29,7 +29,7 @@ Population : tous RSA MCO pour un FINESS/période, hors GHMs sans bornes défini
 
 Étape 1 — Chargement des bornes GHM ATIH :
   Fichier ATIH : grille tarifaire annuelle (ex : "tarifs_GHS_MCO_AAAA.csv")
-    Variables : GHM (8 caractères), BORNE_BASSE (jours), BORNE_HAUTE (jours)
+    Variables : ghm2 (6 caractères), bornes basse/haute du corridor (jours, référentiel ATIH)
 
   GHMs sans bornes à exclure du dénominateur :
     - GHMs en mode ambulatoire pur (DUREE = 0 autorisée, pas de borne significative)
@@ -37,25 +37,25 @@ Population : tous RSA MCO pour un FINESS/période, hors GHMs sans bornes défini
     - GHMs sans borne définie dans la grille (BORNE_BASSE = NA ou BORNE_HAUTE = NA)
 
 Étape 2 — Calcul de la durée de chaque RSA :
-  DUREE_RSA = DATE_SORTIE − DATE_ENTREE   [en jours entiers]
+  duree (nuitées, fournie directement par le RSA)
   Convention PMSI : séjour de 0 jour (entrée et sortie le même jour) = DUREE = 0
   Source variable PMSI : champ DUREE directement disponible dans le RSA MCO
 
 Étape 3 — Jointure RSA × bornes GHM :
   Pour chaque RSA :
-    B_inf = BORNE_BASSE du GHM_RSA (grille ATIH de l'année de sortie)
-    B_sup = BORNE_HAUTE du GHM_RSA
+    B_inf = borne basse du ghm2 (grille ATIH de l'année de sortie)
+    B_sup = borne haute du ghm2
 
   Catégorisation :
-    Infra-borne  : DUREE_RSA < B_inf
-    Dans corridor: B_inf ≤ DUREE_RSA ≤ B_sup    ← conformes
-    Supra-borne  : DUREE_RSA > B_sup
+    Infra-borne  : duree < B_inf
+    Dans corridor: B_inf ≤ duree ≤ B_sup    ← conformes
+    Supra-borne  : duree > B_sup
 
 Étape 4 — Calcul du taux de conformité :
   nb_RSA_eligible = count(RSA | GHM avec bornes définies)
-  nb_RSA_corridor = count(RSA | B_inf ≤ DUREE_RSA ≤ B_sup)
-  nb_RSA_infra    = count(RSA | DUREE_RSA < B_inf)
-  nb_RSA_supra    = count(RSA | DUREE_RSA > B_sup)
+  nb_RSA_corridor = count(RSA | B_inf ≤ duree ≤ B_sup)
+  nb_RSA_infra    = count(RSA | duree < B_inf)
+  nb_RSA_supra    = count(RSA | duree > B_sup)
 
   Taux_corridor  = nb_RSA_corridor / nb_RSA_eligible × 100
   Taux_infra     = nb_RSA_infra    / nb_RSA_eligible × 100
@@ -117,7 +117,7 @@ Recette marginale des séjours supra-borne :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable `GHM` (8 caractères), `DUREE` (durée de séjour en jours, directement disponible dans le RSA MCO), `NOFINESS`, `DATE_SORTIE` — extraction trimestrielle ou annuelle
+- **PMSI MCO RSA** : variable `ghm2` (6 caractères), `duree` (durée de séjour en nuitées), `finessgeo`, `annee`/`mois` de sortie — extraction trimestrielle ou annuelle
 - **Grilles tarifaires ATIH** : fichiers CSV/XLS publiés annuellement (ex : «tarifs_MCO_exDGF_AAAA.xlsx») — variables `GHM`, `BORNE_BASSE`, `BORNE_HAUTE`, `TARIF_JOURNALIER_EXH` — téléchargeables sur le site ATIH, rubriques «tarification MCO» — les bornes sont définies pour chaque GHM à 8 caractères
 
 ## Exemple de Valeurs

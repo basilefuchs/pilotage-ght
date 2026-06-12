@@ -17,7 +17,7 @@ Sources : PMSI MCO UHCD/ATU (passages urgences) + SAE (capacités SAU) + INSEE (
 ```
 Étape 1 — Dénombrement des passages urgences depuis le PMSI
   Population : tous les RSA MCO avec :
-    - mode_entree = 8 (entrée par les urgences)    OU
+    - `modeentree` = 8 et `provenance` = 5 (entrée par les urgences)    OU
     - GHM en série 90Z* (consultations et passages non suivis d'hospitalisation) OU
     - UM de type UHCD (unité d'hospitalisation de courte durée) + durée = 0 ou 1 jour
   Exclure : transferts inter-établissements, accouchements, dialyses récurrentes
@@ -94,7 +94,7 @@ Taux de recours urgences pediatriques :
 
 - **Doublon SAE/PMSI** : le nombre de passages enregistrés en PMSI (RSA) peut sous-estimer le flux SAE si certains passages courts ne génèrent pas de RSA (passages sans acte ni diagnostic facturables) ; la SAE reste la source de référence pour le volume total de passages.
 - **Délimitation de la zone d'attraction** : la zone d'attraction DREES est définie à partir des flux de soins historiques et peut ne pas refléter les changements récents d'offre (ouverture d'un SAU concurrent, fermeture d'un SAU proche) — révision recommandée tous les 5 ans.
-- **Hétérogénéité de codage entre établissements** : les pratiques de codage du mode d'entrée (8 = urgences) varient selon les établissements du GHT, pouvant créer des artefacts dans les comparaisons internes.
+- **Hétérogénéité de codage entre établissements** : les pratiques de codage de l'entrée par les urgences (`modeentree` 8 + `provenance` 5) varient selon les établissements du GHT, pouvant créer des artefacts dans les comparaisons internes.
 - **Non-couverture des urgences libérales** : les consultations non programmées chez les médecins généralistes et SOS Médecins ne sont pas incluses dans le TRU PMSI — le taux mesure la pression sur le système hospitalier, pas la demande totale de soins non programmés.
 - **Effets COVID** : les TRU 2020–2021 sont non comparables aux autres années sans correction (baisse de 20–30% des passages en 2020).
 

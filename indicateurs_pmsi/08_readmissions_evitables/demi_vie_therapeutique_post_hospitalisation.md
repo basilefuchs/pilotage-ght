@@ -21,7 +21,7 @@ Estimation empirique (Kaplan-Meier) :
   → médiane de la courbe de survie sans événement aigu post-sortie
 
 Événements comptabilisés comme "désintégration" :
-  - Réhospitalisation MCO non programmée (mode d'entrée = 8 ou transfert urgent)
+  - Réhospitalisation MCO non programmée (urgences : `modeentree` = 8 et `provenance` = 5 ; ou transfert)
   - Passage aux urgences sans hospitalisation (RPU)
   - Consultation non programmée en médecine de ville dans les 48h suivant la sortie (DCIR)
 ```

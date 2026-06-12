@@ -56,11 +56,11 @@ Sources : PMSI MCO RSA (ATIH) + PMSI national ATIH open data + SAE DREES (strati
     (supprimer le critère C, puis B) pour garantir la stabilité du benchmark
 
 Étape 2 — Extraction des RSA de l'établissement par racine GHM :
-  RSA_etab_{(g)} = COUNT(RSA) WHERE FINESS_GEO = etab AND GHM_racine = g
+  RSA_etab_{(g)} = COUNT(RSA) WHERE `finessgeo` = etab AND GHM_racine = g
   Calculé pour toutes les racines GHM avec au moins 1 RSA sur la période
 
   Variables PMSI utilisées :
-    - FINESS_GEO : identifiant établissement géographique
+    - `finessgeo` : identifiant établissement géographique
     - GHM        : code GHM complet (8 caractères) → racine = 5 premiers caractères
     - NBSEANCES  : exclure les séjours de séances (nbseances > 0) si analyse séjours seuls
 
@@ -120,7 +120,7 @@ Indice de convergence vers les pairs (ICP) :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** (ATIH) : variables `FINESS_GEO`, `GHM` (8 car.), `NBSEANCES` — extraction annuelle sur exercice complet.
+- **PMSI MCO RSA** (ATIH) : variables `finessgeo`, `ghm2` (6 car.), `nbseance` — extraction annuelle sur exercice complet.
 - **PMSI national ATIH open data** : fichiers de statistiques nationales MCO par établissement, GHM et CMD, disponibles sur opendata.atih.sante.fr — utilisés pour construire la distribution de strate (μ, médiane, σ, quartiles) par racine GHM.
 - **SAE DREES** : fichier établissements avec statut juridique, nombre de lits MCO, spécialités déclarées — sert exclusivement à la construction et l'affectation des strates. Disponible sur data.drees.fr (millésime N-1).
 - **Référentiel GHM ATIH** : table de correspondance GHM complet (8 car.) → racine (5 car.) → CMD (2 car.) → libellé — indispensable pour l'agrégation et la présentation médicale des résultats.

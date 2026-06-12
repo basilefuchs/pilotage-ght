@@ -12,7 +12,7 @@ Taux d'hospitalisation depuis les urgences (%) = (Nombre de passages aux urgence
 
 **Précisions méthodologiques** :
 - Les passages aux urgences sont issus du PMSI MCO via les Résumés de Passage aux Urgences (RPU), obligatoires pour tous les services d'urgence.
-- Le mode d'entrée du séjour MCO (code 8 = urgences) permet d'identifier les hospitalisations en provenance des urgences sans nécessiter le chaînage des RPU.
+- Les champs `modeentree` + `provenance` du séjour MCO (urgences = 8 + provenance 5) permettent d'identifier les hospitalisations en provenance des urgences sans nécessiter le chaînage des RPU.
 - L'analyse distingue les hospitalisations directes depuis les urgences (même établissement) des transferts vers un autre établissement après passage aux urgences.
 - L'indicateur est segmenté par tranche d'âge, par pathologie (CIM-10 du RPU ou DP du séjour MCO), par plage horaire et par jour de semaine pour identifier les tensions spécifiques.
 - Un indicateur complémentaire est le **taux d'hospitalisation non programmée** (mode d'entrée 8 dans le séjour MCO rapporté au total des séjours MCO).

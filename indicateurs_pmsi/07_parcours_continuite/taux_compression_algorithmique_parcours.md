@@ -101,7 +101,7 @@ Corrélation TCAP avec les indicateurs de qualité :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : séquences CCAM + GHM + DP par séjour, ordonnées chronologiquement par DATE_ENT — version "PMSI seul" du TCAP, calculable sans accès SNDS
+- **PMSI MCO RSA** : séquences CCAM + GHM + DP par séjour, ordonnées chronologiquement par `date_entree` — version "PMSI seul" du TCAP, calculable sans accès SNDS
 - **DCIR ER_PRS_F + ER_PHA_F + ER_BIO_F** (SNDS) : enrichissement de la séquence avec les actes ambulatoires, les dispensations et la biologie — version "SNDS" du TCAP, plus riche et représentative du parcours total
 
 ## Exemple de Valeurs

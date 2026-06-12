@@ -60,9 +60,9 @@ Population : tous RSA MCO pour un FINESS/période dont le DP est un cancer (CIM-
 Étape 5 — Identification des séjours sans RCP tracée (pour audit) :
   RSA_cancer_sans_RCP = RSA_cancer \ RSA_avec_RCP
   → liste exportable par service/UM pour audit ciblé de la traçabilité
-  → croiser avec MODE_ENTREE pour distinguer :
-    - Entrées urgentes (MODE_ENTREE = 8) : RCP peut légitimement être différée
-    - Hospitalisations programmées (MODE_ENTREE = 6,7) : RCP préalable attendue
+  → croiser avec `modeentree` pour distinguer :
+    - Entrées urgentes (`modeentree` = 8 et `provenance` = 5) : RCP peut légitimement être différée
+    - Hospitalisations programmées (`modeentree` = 6,7) : RCP préalable attendue
 
 Cas limites :
   - Acte YYYY001 absent mais RCP tenue : sous-codage — identifiable par audits dossiers
@@ -79,7 +79,7 @@ Indicateurs dérivés :
 
 ```
 Taux de non-traçabilité RCP par mode d'entrée :
-  = RSA_cancer_sans_RCP | MODE_ENTREE = 6 (programmé) / RSA_cancer_programmé × 100
+  = RSA_cancer_sans_RCP | `modeentree` = 6 (programmé) / RSA_cancer_programmé × 100
   → Les entrées programmées sans RCP sont le signal le plus alarmant
     (entrée urgente sans RCP = plus acceptable cliniquement)
 
@@ -101,11 +101,11 @@ Délai médian RCP → hospitalisation :
 - **Audit de sous-codage CCAM** : un établissement avec activité de cancérologie connue (nombreux RSA C*) mais Taux_RCP < 40% est très probablement confronté à un sous-codage de l'acte YYYY001 — des RCP sont tenues mais non codées dans le RSA ; cet audit est moins coûteux et plus ciblé que la revue exhaustive des dossiers
 - **Benchmark intra-GHT en cancérologie** : si le GHT dispose d'un réseau de cancérologie inter-établissements, comparer les Taux_RCP entre sites permet d'identifier les établissements où la participation aux RCP du réseau est à renforcer
 - **Évaluation de l'impact des réorganisations RCP** : mesurer le Taux_RCP avant et après une réorganisation (visioconférence pour les RCP multi-sites, outil de traçabilité RCP connecté au SIH, nouvelle secrétaire médicale dédiée) pour objectiver l'impact sur la traçabilité
-- **Identification des séjours urgents de cancer sans RCP différée** : les RSA_cancer_sans_RCP avec MODE_ENTREE urgent permettent de cibler les patients pour lesquels la RCP doit être organisée rapidement en post-hospitalisation — liste nominative exportable pour le médecin coordinateur de parcours
+- **Identification des séjours urgents de cancer sans RCP différée** : les RSA_cancer_sans_RCP avec `modeentree` urgent permettent de cibler les patients pour lesquels la RCP doit être organisée rapidement en post-hospitalisation — liste nominative exportable pour le médecin coordinateur de parcours
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable `DP` (diagnostic principal CIM-10, filtrer sur C*), `DR` (diagnostic relié), liste des actes CCAM codés dans le séjour (champ CCAM du RSA, jusqu'à 20 actes), `MODE_ENTREE`, `NOFINESS`, `DATE_ENTREE`, `CODE_UM`
+- **PMSI MCO RSA** : variable `DP` (diagnostic principal CIM-10, filtrer sur C*), `DR` (diagnostic relié), liste des actes CCAM codés dans le séjour (champ CCAM du RSA, jusqu'à 20 actes), `modeentree`, `NOFINESS`, `DATE_ENTREE`, `CODE_UM`
 - **Référentiel CCAM ATIH** : libellé de l'acte YYYY001 et ses éventuels actes complémentaires de RCP — vérifier la version CCAM en vigueur pour les codes exacts de concertation pluridisciplinaire
 - **Référentiel CIM-10 FR** : liste des codes C00–C97 (tumeurs malignes), D00–D09 (carcinomes in situ) — disponible sur le site de l'ATIH ou dans les référentiels OMS
 
@@ -116,7 +116,7 @@ Délai médian RCP → hospitalisation :
 - **Clinique chirurgicale privée** : Taux_RCP_global = 82% — séjours programmés dominants, bonne traçabilité
 - **Seuil INCa de vigilance** : Taux_RCP < 75% sur les 5 localisations principales → audit obligatoire des dossiers + plan d'amélioration du codage
 - **Cible Plan Cancer 2021-2030** : 100% des patients atteints de cancer présentés en RCP avant traitement — le Taux_RCP PMSI mesure la traçabilité, pas le taux réel (toujours inférieur au taux réel)
-- **Séjours urgents sans RCP** : un Taux_RCP < 30% sur les entrées programmées (MODE_ENTREE ∈ {6,7}) est un signal sérieux de défaut de coordination pré-hospitalisation
+- **Séjours urgents sans RCP** : un Taux_RCP < 30% sur les entrées programmées (`modeentree` ∈ {6,7}) est un signal sérieux de défaut de coordination pré-hospitalisation
 
 ## Limites
 
