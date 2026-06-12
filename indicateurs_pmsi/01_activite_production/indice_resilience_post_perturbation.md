@@ -23,13 +23,13 @@ Le CUSUM (Cumulative Sum Control Chart) d'activité existant dans certains étab
 
 ## Calcul
 
-Source : PMSI MCO RSA — variable `DATE_ENTREE` (mois/année), `FINESS_GEO` — série mensuelle d'admissions sur 5 ans minimum.
+Source : PMSI MCO RSA — variable `date_entree` (mois/année), `finessgeo` — série mensuelle d'admissions sur 5 ans minimum.
 
 ```
 Population : tous séjours MCO d'un établissement, agrégés par mois
 
 Étape 1 — Série temporelle mensuelle :
-  X_t = count(RSA | FINESS_GEO = e, mois = t)
+  X_t = count(RSA | finessgeo = e, mois = t)
   t ∈ {T0, T0+1, ..., T0+N}  (N ≥ 60 mois recommandé)
 
 Étape 2 — Détection du point de rupture par CUSUM :
@@ -106,7 +106,7 @@ Indice de rebond tardif :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable `DATE_ENTREE` (AAAAMMJJ ou AAAAMM), `FINESS_GEO` — série mensuelle construite en interne depuis le SIH ou extraite des tableaux de bord ATIH
+- **PMSI MCO RSA** : variable `date_entree` (AAAAMMJJ ou AAAAMM), `finessgeo` — série mensuelle construite en interne depuis le SIH ou extraite des tableaux de bord ATIH
 - **Registre interne des perturbations** : liste datée des événements perturbateurs (grèves avec dates, fermetures d'urgence, travaux, réorganisations, crises sanitaires) — sans ce registre, seul le mode automatique CUSUM est utilisable
 - **Base nationale ATIH** : pour calculer l'IRPP_ref_national de référence sur le même type de perturbation et le même type d'établissement
 

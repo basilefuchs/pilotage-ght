@@ -131,10 +131,11 @@ extraire_an <- function(an) {
       sexe,
       ghm_racine  = substr(ghm2, 1, 5),
       severite    = substr(ghm2, 6, 1),
+      # urgences = modeentree 8 (domicile) + provenance 5, ou passage_urg ≥ 2023
       mode_urg    = case_when(
-        modeentree %in% c("7", "8") ~ 1L,
-        p_urg == 1L                  ~ 1L,
-        TRUE                         ~ 0L
+        modeentree == "8" & provenance == "5" ~ 1L,
+        p_urg == 1L                            ~ 1L,
+        TRUE                                   ~ 0L
       ),
       charlson_n  = coalesce(charlson_n, 0L),
       racines

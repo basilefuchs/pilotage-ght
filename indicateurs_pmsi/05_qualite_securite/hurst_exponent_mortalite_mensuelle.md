@@ -26,7 +26,7 @@ Méthode alternative recommandée : **DFA (Detrended Fluctuation Analysis)** de 
 ```
 Étape 1 — Construction de la série mensuelle ajustée :
   Pour chaque mois m de la période d'observation (recommandé : 36 à 60 mois) :
-    - Numérateur : nombre de décès intra-hospitaliers (mode_sort = 9) du mois m
+    - Numérateur : nombre de décès intra-hospitaliers (modesortie = 9) du mois m
     - Dénominateur : somme des probabilités de décès attendues par séjour
       (modèle logistique pré-calibré sur GHM, âge, Charlson, mode d'entrée)
     - SMR_m = Σ décès_observés / Σ décès_attendus
@@ -62,7 +62,7 @@ Implémentation R disponible via le package `pracma::hurstexp()` ou `nonlinearTs
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : mode de sortie (`MODE_SORT = 9` pour décès), dates de sortie pour le calage mensuel, GHM, âge, sexe et diagnostics (DP + DAS) pour le calcul du SMR attendu
+- **PMSI MCO RSA** : mode de sortie (`modesortie = 9` pour décès), dates de sortie pour le calage mensuel, GHM, âge, sexe et diagnostics (DP + DAS) pour le calcul du SMR attendu
 - **Historique 36 à 60 mois minimum** : la fiabilité de l'estimation de H dégrade en deçà ; idéalement 60 mois pour stabilité statistique de la régression log-log
 - **Modèle d'ajustement du SMR** : régression logistique pré-calibrée sur la base nationale (ATIH ou benchmark GHT), variables au minimum : GHM (ou CMD), âge en classes, score de Charlson dérivé des DAS, mode d'entrée, durée de séjour
 - **Référentiel CIM-10 ATIH** en vigueur sur la période — toute mise à jour majeure du codage doit faire l'objet d'une harmonisation rétroactive avant calcul de H

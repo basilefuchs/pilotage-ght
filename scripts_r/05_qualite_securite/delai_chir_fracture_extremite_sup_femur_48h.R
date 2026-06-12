@@ -57,7 +57,8 @@ resultat <- purrr::map_dfr(annees, function(an) {
     filter(
       age >= age_min,
       substr(dp, 1, 4) %in% dp_fracture,
-      modeentree == "8",
+      # admission non programmée : urgences (8 + provenance 5) ou transfert (6,7)
+      (modeentree == "8" & provenance == "5") | modeentree %in% c("6", "7"),
       substr(ghm2, 1, 2) != "90"
     ) %>%
     select(ident)

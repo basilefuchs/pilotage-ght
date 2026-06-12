@@ -58,10 +58,10 @@ Positionnement vs autres indicateurs du projet :
 **Sources** : RSA MCO (ou RHA SSR, RPSA HAD, RIM-P Psy) — agrégés par lieu de **résidence** du patient (pas par lieu de prise en charge) + INSEE RP + tables de référence ATIH.
 
 **Variables PMSI mobilisées** :
-- `CODE_GEO_RESIDENCE` (PMSI 5 caractères) → mapping zone *z* (territoire de santé, département, GHT, zone d'attraction ATIH)
-- `AGE_ANNEE` (ou `AGE_JOUR` pour nouveau-nés)
+- `codegeo` (PMSI 5 caractères) → mapping zone *z* (territoire de santé, département, GHT, zone d'attraction ATIH)
+- `age` (ou `agejour` pour nouveau-nés)
 - `SEXE` (1 = M, 2 = F)
-- `NUM_SEJ_ANO` (comptage)
+- `ident` (comptage)
 
 **Population de référence** : INSEE RP par âge × sexe (millésime cohérent avec l'année PMSI, souvent N-2) ou table de population diffusée par l'ATIH.
 
@@ -171,13 +171,13 @@ TRHS tendanciel sur 3 ans :
 
 ## Sources de Données
 
-- **PMSI MCO** : RSA — variables `CODE_GEO_RESIDENCE`, `AGE_ANNEE`, `SEXE`, `NUM_SEJ_ANO`, `CMD`, `GHM`. Guide méthodologique MCO ATIH en vigueur.
+- **PMSI MCO** : RSA — variables `codegeo`, `age`, `SEXE`, `ident`, `CMD`, `GHM`. Guide méthodologique MCO ATIH en vigueur.
 - **PMSI SSR/SMR (RHA)**, **HAD (RPSA)**, **RIM-P (Psy)** : variables équivalentes.
 - **INSEE Recensement de la Population** : populations légales par commune × tranche d'âge quinquennale × sexe — millésime N-1 ou N-2 (Filosofi pour communes < 2 000 hab.).
 - **SAE DREES** : tableaux nationaux de séjours MCO par âge × sexe — disponibles dans *Les établissements de santé* et sur data.drees.fr.
 - **ATIH Open Data** (préféré pour TauxNat car homogène avec PMSI local) : opendata.atih.sante.fr.
 - **Référentiel Zones d'attraction ATIH** : correspondance commune → établissement de rattachement (méthode pluralité des séjours par commune).
-- **Référentiel ATIH** : table de correspondance `CODE_GEO_PMSI ↔ commune ↔ territoire de santé ↔ département ↔ région ↔ GHT`.
+- **Référentiel ATIH** : table de correspondance `corresp_code_com_geo_ts_pop` (`code_geo` ↔ commune ↔ territoire de santé ↔ département ↔ région ↔ GHT`.
 
 **Restitutions publiques équivalentes** :
 - ScanSanté → application *Taux de recours par région ou par territoire de santé* (méthode directe).

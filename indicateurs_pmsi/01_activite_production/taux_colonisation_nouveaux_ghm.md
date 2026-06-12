@@ -29,7 +29,7 @@ L'intérêt est fondamentalement distinct du score de succession (qui classe cha
 
 ## Calcul
 
-Source : PMSI MCO RSA — variables `GHM` (8 caractères, racine = 5 premiers), `FINESS_GEO`, `DATE_ENTREE` agrégée par trimestre.
+Source : PMSI MCO RSA — variables `ghm2` (6 caractères, racine = 5 premiers), `finessgeo`, `date_entree` agrégée par trimestre.
 
 ```
 Population : tous séjours MCO d'un établissement
@@ -102,7 +102,7 @@ Indice de fidélité de la famille GHM :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable `GHM` (8 caractères — racine 5 premiers), `FINESS_GEO`, `DATE_ENTREE` agrégée par trimestre — 8 trimestres consécutifs minimum (deux fenêtres de 4)
+- **PMSI MCO RSA** : variable `GHM` (8 caractères — racine 5 premiers), `finessgeo`, `date_entree` agrégée par trimestre — 8 trimestres consécutifs minimum (deux fenêtres de 4)
 - **Référentiel ATIH des GHMs** : correspondance GHM racine → CMD → libellé, pour l'interprétation clinique des colonisateurs et extinctions (quelle spécialité entre/sort ?)
 - **Base nationale ATIH** : pour calculer les taux de colonisation et d'extinction de référence nationale par type d'établissement (CHU, CH, clinique), permettant de contextualiser un turnover élevé ou faible
 

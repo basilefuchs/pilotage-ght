@@ -27,7 +27,8 @@ Positionnement vs indicateurs existants : différent du `delai_porte_aiguille_av
          S72.1  Fracture pertrochantérienne
          S72.2  Fracture sous-trochantérienne
          (S72.3, S72.4 — diaphyse, exclues car non « extrémité supérieure »)
-    c) Mode d'entrée = 8 (urgences) OU 6/7 transfert pour cause urgente
+    c) Admission non programmée : modeentree 8 + provenance 5 (urgences)
+       OU modeentree 6/7 (mutation/transfert)
        (exclusion des admissions programmées : refixation programmée, etc.)
     d) Acte CCAM chirurgical réalisé dans le séjour, dans la liste :
          NZCA001/002/003/004  Ostéosynthèse de l'extrémité supérieure du fémur
@@ -37,7 +38,8 @@ Positionnement vs indicateurs existants : différent du `delai_porte_aiguille_av
 
 Étape 2 — Détection du délai
   Pour chaque RSA cible :
-    Délai = DATE_REALISATION_ACTE - DATE_ENTREE_SEJOUR (en jours)
+    Délai = acte_delai (jours entre la date d'entrée et la réalisation
+            de l'acte — fourni directement par la table acte)
     Inclus si Délai ≤ 2 (i.e. réalisé J0, J1 ou J2)
 
 Étape 3 — Calcul
@@ -59,7 +61,7 @@ Positionnement vs indicateurs existants : différent du `delai_porte_aiguille_av
   - Polytraumatisés (autres atteintes interférant avec la priorité chirurgicale)
 ```
 
-Variables PMSI clés : `DP`, `AGE_ANNEES`, `MODE_ENTREE`, `DATE_ENTREE`, `DATE_REALISATION_ACTE` (date de réalisation de l'acte CCAM, présente dans les RSA récents), codes `CCAM`, `MODE_SORTIE`.
+Variables PMSI clés : `DP`, `age`, `modeentree`, `date_entree`, `acte_delai` (délai de réalisation de l'acte CCAM en jours depuis l'entrée), codes `CCAM`, `modesortie`.
 
 ## Utilité
 - **Pilotage filière urgences–ortho–gériatrie GHT** : indicateur synthétique de la coordination des trois disciplines pour le « parcours fracture du col » (filière thématique de référence).
@@ -71,7 +73,7 @@ Variables PMSI clés : `DP`, `AGE_ANNEES`, `MODE_ENTREE`, `DATE_ENTREE`, `DATE_R
 - **Indicateur GHT mutualisation** : un GHT avec maillage ortho concentré sur l'établissement pivot doit garantir le délai pour les patients adressés par les CH périphériques.
 
 ## Sources de Données
-- **PMSI MCO** : RSA, DP, âge, MODE_ENTREE, dates d'entrée et de réalisation des actes CCAM.
+- **PMSI MCO** : RSA, DP, âge, `modeentree`, dates d'entrée et de réalisation des actes CCAM.
 - **Référentiel CIM-10 FR** : codes S72.0, S72.1, S72.2.
 - **Référentiel CCAM** (mise à jour annuelle ATIH) : actes d'ostéosynthèse et d'arthroplastie de hanche.
 - **OCDE — HCQO Definitions** : spécifications standardisées (numérateur, dénominateur, exclusions).
@@ -92,7 +94,7 @@ Variables PMSI clés : `DP`, `AGE_ANNEES`, `MODE_ENTREE`, `DATE_ENTREE`, `DATE_R
 
 ## Limites
 - **Datation des actes** : la date de réalisation de l'acte CCAM doit être renseignée dans le RSA ; les versions anciennes ou un sous-codage peuvent rendre le délai imprécis.
-- **Définition « urgent »** : la distinction MODE_ENTREE = 8 vs admission programmée n'est pas toujours fiable, certains patients reclassés.
+- **Définition « urgent »** : la distinction urgences (`modeentree` 8 + `provenance` 5) vs admission programmée n'est pas toujours fiable, certains patients reclassés.
 - **Exclusion des transferts** : la méthodologie OCDE exclut les patients transférés vers un autre établissement pour chirurgie, ce qui peut sous-estimer la performance des CH non-chirurgicaux qui adressent rapidement.
 - **Anticoagulation** : info absente du PMSI ; certains délais > 48h sont médicalement justifiés (réversion AOD), non distinguables.
 - **Bornes calendaires** : J0 = admission, J+2 = 48h calendaires ; un patient admis vendredi soir et opéré lundi matin est à 60h mais codé J+3 → faux négatif.

@@ -32,7 +32,7 @@ Positionnement vs indicateurs existants : version **plus spécifique** de `ocde_
 
 Étape 2 — Détection du décès à 30 jours
   Méthode 1 — Mortalité intra-hospitalière (OCDE classique) :
-    Décès durant le séjour index avec MODE_SORTIE = 9
+    Décès durant le séjour index avec `modesortie` = 9
   Méthode 2 — Mortalité 30j post-admission (OCDE actualisée 2025) :
     Décès dans les 30 jours suivant la date d'admission, qu'il soit
     intra-hospitalier ou post-sortie (nécessite chaînage SNDS pour
@@ -59,7 +59,7 @@ Positionnement vs indicateurs existants : version **plus spécifique** de `ocde_
   - Par établissement / GHT
 ```
 
-Variables PMSI clés : `DP`, `DR`, `DA`, `MODE_ENTREE`, `MODE_SORTIE`, `AGE_ANNEES`, `SEXE`, `DATE_ENTREE`, `DATE_SORTIE`, `N°ANONYME`. Pour version 30j post-admission : chaînage avec données de mortalité SNDS (table BENEFICIAIRE, `BEN_DCD_DTE`).
+Variables PMSI clés : `DP`, `DR`, `DA`, `modeentree`, `modesortie`, `age`, `sexe`, `date_entree`, `date_sortie`, `anonyme`. Pour version 30j post-admission : chaînage avec le référentiel bénéficiaires SNDS (`IR_BEN_R`, `BEN_DCD_DTE`).
 
 ## Utilité
 - **Pilotage filière neurovasculaire GHT** : positionnement comparatif pour les UNV et les établissements participant à la filière AVC.
@@ -73,7 +73,7 @@ Variables PMSI clés : `DP`, `DR`, `DA`, `MODE_ENTREE`, `MODE_SORTIE`, `AGE_ANNE
 
 ## Sources de Données
 - **PMSI MCO** : RSA avec DP I63, dates d'entrée/sortie, mode de sortie.
-- **SNDS** : chaînage avec table mortalité INSEE (`DC` ou `DCD_DTE`) pour mortalité 30j post-sortie.
+- **SNDS** : chaînage avec le référentiel bénéficiaires `IR_BEN_R` (`BEN_DCD_DTE`) pour mortalité 30j post-sortie.
 - **Référentiel CIM-10 FR** : codes I63 (versus I61, I60, I62, I64).
 - **OCDE Health at a Glance 2025** : référence méthodologique et benchmark.
 - **OCDE HCQO Definitions** : spécifications du numérateur, dénominateur, ajustements.

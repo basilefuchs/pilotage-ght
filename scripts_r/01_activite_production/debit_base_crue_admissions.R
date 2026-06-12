@@ -36,14 +36,13 @@ annees           <- 2016:2025
 dep              <- "29"     # Finistère (filtre FINESS juridique)
 seuil_min_mois   <- 30L      # robustesse : pas de calcul sur mois < 30 séjours
 seuil_min_etab   <- 500L     # robustesse : ≥500 séjours/an pour interpréter IBH
-# Modes d'entrée — fiche §Calcul (règle simplifiée PMSI seul) :
-#   BASE  : modeentree ∈ {1,2,3,5,6}  ET type GHM ∈ {C,Z,K}  ET pas de passage urg
-#   CRUE  : modeentree ∈ {7,8}        OU  passage_urg = 1
-# (ambigus : exclus du calcul ; cf <TODO> Charlson plus bas)
-# NB : passage_urg n'existe qu'à partir de 2023 (dico ATIH) — avant, la classe
-# CRUE repose sur modeentree seul (rupture de série à signaler en lecture)
-modes_base       <- c("1", "2", "3", "5", "6")
-modes_crue       <- c("7", "8")
+# Modes d'entrée — nomenclature ATIH : 6 = mutation, 7 = transfert,
+# 8 = domicile ; entrée par les urgences = modeentree 8 ET provenance 5
+# (complétée par passage_urg = 1 à partir de 2023).
+#   CRUE   : entrée par les urgences
+#   BASE   : entrée domicile non urgente ET type GHM ∈ {C,Z,K}
+#   AMBIGU : mutations/transferts (6,7) et autres — exclus du calcul
+modes_transfert  <- c("6", "7")
 types_ghm_base   <- c("C", "Z", "K")
 
 # ==== EXTRACTION — comptages mensuels par finessgeo × classe (BASE/CRUE) ====
@@ -64,7 +63,7 @@ mensuel <- purrr::map_dfr(annees, function(an) {
       by = "ident"
     )
 
-  # passage_urg absent des vues < 2023 : ne le référencer que si disponible
+  # passage_urg absent des vues < 2023 : complément urgences si disponible
   if (an >= 2023) {
     sejours <- sejours %>%
       mutate(p_urg = coalesce(as.integer(passage_urg), 0L))
@@ -81,14 +80,17 @@ mensuel <- purrr::map_dfr(annees, function(an) {
       mois,
       type_ghm  = substr(ghm2, 3, 1),
       modeentree = as.character(modeentree),
+      provenance = as.character(provenance),
       p_urg
     ) %>%
     mutate(
+      urgence = if_else((modeentree == "8" & provenance == "5") | p_urg == 1L,
+                        1L, 0L, missing = 0L),
       classe = case_when(
-        modeentree %in% modes_crue                                ~ "CRUE",
-        p_urg == 1L                                               ~ "CRUE",
-        modeentree %in% modes_base & type_ghm %in% types_ghm_base ~ "BASE",
-        TRUE                                                      ~ "AMBIGU"
+        urgence == 1L                                    ~ "CRUE",
+        modeentree %in% modes_transfert                  ~ "AMBIGU",
+        modeentree == "8" & type_ghm %in% types_ghm_base ~ "BASE",
+        TRUE                                             ~ "AMBIGU"
       )
     ) %>%
     filter(classe != "AMBIGU") %>%

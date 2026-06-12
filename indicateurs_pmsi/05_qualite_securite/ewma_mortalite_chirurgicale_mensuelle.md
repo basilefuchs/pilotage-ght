@@ -36,9 +36,9 @@ L'EWMA comble un trou méthodologique : **détection mensuelle des dérives de f
 ### 1. Définition de l'événement et du périmètre
 
 ```
-Événement : décès intra-séjour (SOR_MOD = 9 dans le RSA)
+Événement : décès intra-séjour (modesortie = 9 dans le RSA)
 Périmètre : séjours chirurgicaux programmés
-            (ENT_MOD ≠ 8 c.-à-d. hors urgence, présence d'un acte CCAM
+            (hors entrée par les urgences — modeentree 8 + provenance 5, présence d'un acte CCAM
              chirurgical du chapitre ATIH activité 1)
 Stratification : par GHM-racine ou par grand groupe (CMD 05 cardio,
                  CMD 08 ostéo-articulaire, etc.)
@@ -68,7 +68,7 @@ Pour chaque mois t :
   Pour chaque séjour i : calculer p_i via le modèle pré-entraîné
   E_t = Σ_i p_i
   V_t = Σ_i p_i (1 - p_i)
-  O_t = nombre de séjours avec SOR_MOD = 9
+  O_t = nombre de séjours avec modesortie = 9
   u_t = (O_t - E_t) / sqrt(V_t)             # écart standardisé
   z_t = lambda * u_t + (1 - lambda) * z_{t-1}
 
@@ -116,12 +116,12 @@ Graphique :
 Variables PMSI MCO confirmées dans le *Guide méthodologique de production des informations relatives à l'activité médicale et à sa facturation en MCO*, ATIH 2025 :
 
 - **RSA** :
-  - `SOR_MOD` (mode de sortie) — code 9 = décès
-  - `ENT_MOD` (mode d'entrée) — pour exclure entrées urgentes si périmètre = chirurgie programmée
+  - `modesortie` (mode de sortie) — code 9 = décès
+  - `modeentree` + `provenance` (urgences = 8 + provenance 5) — pour exclure les entrées urgentes si périmètre = chirurgie programmée
   - `GHM` / `GHM_RACINE` / niveau de sévérité (4ᵉ caractère du GHM)
-  - `AGE_AN`, `SEXE`
+  - `age`, `SEXE`
   - `DAS` (diagnostics associés) — calcul du score Charlson
-  - `DUREE_SEJOUR`
+  - `duree`
 - **Actes CCAM** : présence d'au moins un acte chirurgical (chapitre ATIH activité 1) pour qualifier la cohorte.
 - **FINESS géographique** (`FINESSGEO`) pour stratification par site dans un GHT multi-FINESS.
 - **Référentiel GHM en vigueur** (V2025 / V2026 selon période) — table de correspondance ATIH publiée dans le scope du fichier `rsa203` ou équivalent en cours.
@@ -158,5 +158,5 @@ Ordres de grandeur experts, à recalibrer localement avec les données du GHT.
 - [Cook D.A., Coory M., Webster R.A. — Exponentially weighted moving average charts to compare observed and expected values for monitoring risk-adjusted hospital indicators, BMJ Qual Saf 2011](https://doi.org/10.1136/bmjqs.2008.031831) — implémentation hospitalière. PMID 19908262
 - [Woodall W.H. — The use of control charts in health-care and public-health surveillance, J Quality Technology 2006](https://doi.org/10.1080/00224065.2006.11918593) — revue de référence.
 - [Crowder S.V. — Design of exponentially weighted moving average schemes, J Quality Technology 1989](https://doi.org/10.1080/00224065.1989.11979139) — tables de calibration ARL.
-- [ATIH — Guide méthodologique de production des informations PMSI MCO, version 2025](https://www.atih.sante.fr/sites/default/files/public/content/4935/guide_methodo_mco_2025_version_provisoire_040225_0.pdf) — variables RSA, codage SOR_MOD, format en vigueur.
+- [ATIH — Guide méthodologique de production des informations PMSI MCO, version 2025](https://www.atih.sante.fr/sites/default/files/public/content/4935/guide_methodo_mco_2025_version_provisoire_040225_0.pdf) — variables RSA, codage modesortie, format en vigueur.
 - [ATIH — Notice technique ATIH-294-9-2025 du 21 novembre 2025 — Nouveautés PMSI 2026](https://www.atih.sante.fr/sites/default/files/public/content/5108/notice_technique_pmsi_2026.pdf) — passage au format V016, refonte sévérité prévue 2028.

@@ -18,17 +18,18 @@ Positionnement vs indicateurs existants : complémentaire de `activite_psy.md` (
 Étape 1 — Identification des journées de psychiatrie
   Source : RPSA (Résumé par Séquence d'Activité — PMSI Psy)
   Variables clés :
-    MODE_PRISE_EN_CHARGE (MPEC) :
-      01-04 = temps plein (hospitalisation complète, accueil familial thérapeutique,
-              centre de post-cure, appartement thérapeutique...)
+    fa — forme d'activité (ex-nature de prise en charge NPEC) :
+      01-07 = temps plein (hospitalisation complète, accueil familial thérapeutique,
+              centre de post-cure, appartement thérapeutique... — définition ATIH
+              de l'hospitalisation complète, cf. remarque nbjpres)
       20-26 = temps partiel (hospitalisation de jour, de nuit, atelier thérapeutique,
               CATTP — centre d'accueil thérapeutique à temps partiel)
-      16-17 = ambulatoire (hors périmètre de cet indicateur)
+      (l'ambulatoire relève des actes R3A, hors périmètre de cet indicateur)
 
 Étape 2 — Comptage des journées de présence
-  Pour chaque RPSA :
-    journées_TPlein = nb journées avec MPEC ∈ {01..04}
-    journées_TPartiel = nb journées avec MPEC ∈ {20..26}
+  Pour chaque séquence RPSA (table fixe) :
+    journées_TPlein = Σ nbjseq pour fa ∈ {01..07}
+    journées_TPartiel = Σ (nbjseq + 0,5 × nbdemijseq) pour fa ∈ {20..26}
 
 Étape 3 — Calcul
   Part_TP_psy = Σ journées_TPartiel / (Σ journées_TPlein + Σ journées_TPartiel)
@@ -41,7 +42,7 @@ Positionnement vs indicateurs existants : complémentaire de `activite_psy.md` (
   - Évolution annuelle (suivi de la trajectoire)
 ```
 
-Variables PMSI clés : `MODE_PRISE_EN_CHARGE` (MPEC), `NB_JOURNEES`, `FINESS_ETAB`, `DP` (CIM-10), `AGE_ANNEES`. Format : RPSA (PMSI Psychiatrie) — guide ATIH en vigueur.
+Variables PMSI clés : `fa` (forme d'activité, ex-NPEC), `nbjseq` + `nbdemijseq` (journées et demi-journées de présence), `finessgeo`, `dp` (CIM-10), `age`. Format : RPSA (PMSI Psychiatrie, table `fixe`) — guide ATIH en vigueur.
 
 ## Utilité
 - **Pilotage virage ambulatoire psy GHT** : indicateur central de la conversion des capacités temps plein vers temps partiel, alignement sur la trajectoire DREES nationale.
@@ -50,13 +51,13 @@ Variables PMSI clés : `MODE_PRISE_EN_CHARGE` (MPEC), `NB_JOURNEES`, `FINESS_ETA
 - **Adaptation aux pathologies chroniques** : la psychiatrie chronique se prête particulièrement au temps partiel (suivi régulier sans hébergement complet).
 - **Comparaison inter-établissements** : forte hétérogénéité historique entre établissements spécialisés psy (CHS) et services de psychiatrie générale.
 - **Suivi pédopsychiatrie** : la pédopsychiatrie présente structurellement une part TP plus élevée (CATTP scolaire, HDJ enfant).
-- **Articulation avec ambulatoire** : à coupler avec l'évolution de l'activité ambulatoire (MPEC 16-17) pour vue complète de la stratégie de désinstitutionalisation.
+- **Articulation avec ambulatoire** : à coupler avec l'évolution de l'activité ambulatoire (actes ambulatoires R3A) pour vue complète de la stratégie de désinstitutionalisation.
 
 ## Sources de Données
-- **PMSI Psy (RPSA)** : variable MPEC, nombre de journées de présence par séquence.
+- **PMSI Psy (RPSA)** : variable `fa`, journées de présence par séquence (`nbjseq`, `nbdemijseq`).
 - **DREES — Études et Résultats** : référence nationale (ER 1344 juillet 2025).
 - **DREES Panorama Établissements de santé** : volumétrie globale du secteur psychiatrique.
-- **ATIH — Guide méthodologique PMSI Psychiatrie** : nomenclature MPEC en vigueur, mise à jour annuelle.
+- **ATIH — Guide méthodologique PMSI Psychiatrie** : nomenclature des formes d'activité en vigueur, mise à jour annuelle.
 - **SAE (Statistique Annuelle des Établissements)** : capacités installées par mode de prise en charge.
 
 ## Exemple de Valeurs
@@ -71,12 +72,12 @@ Variables PMSI clés : `MODE_PRISE_EN_CHARGE` (MPEC), `NB_JOURNEES`, `FINESS_ETA
 - **Personnes âgées psy** : 15-25 % en temps partiel (recours plus fort au temps plein).
 
 ## Limites
-- **Hétérogénéité du codage MPEC** : le périmètre temps partiel inclut des modalités très diverses (HDJ médicalisée, CATTP éducatif), comparabilité limitée si déséquilibre du mix.
+- **Hétérogénéité du codage des formes d'activité** : le périmètre temps partiel inclut des modalités très diverses (HDJ médicalisée, CATTP éducatif), comparabilité limitée si déséquilibre du mix.
 - **Activité ambulatoire externe** : les actes ambulatoires (CMP, consultations) ne sont pas dans le numérateur ni au dénominateur, malgré leur rôle structurant en santé mentale.
 - **Non-codage des journées TP** : avant 2014, certaines structures sous-codaient les journées TP, biais à la baisse en analyse rétrospective.
 - **Capacité installée vs activité** : un fort taux de TP peut traduire une sur-capacité TP non saturée (utiliser conjointement le taux d'occupation TP).
 - **Pas un indicateur de qualité** : ne mesure pas la pertinence du choix temps plein/partiel pour chaque patient.
-- **Évolutions réglementaires** : la nomenclature MPEC peut évoluer (notice ATIH annuelle), impact sur la comparabilité longitudinale.
+- **Évolutions réglementaires** : la nomenclature des formes d'activité peut évoluer (notice ATIH annuelle), impact sur la comparabilité longitudinale.
 - **Effet de structure** : un établissement spécialisé pédopsychiatrie aura mécaniquement un taux TP supérieur indépendamment de sa pratique.
 
 ## Références

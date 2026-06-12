@@ -18,7 +18,7 @@ L'intérêt analytique est fondamentalement différent des indicateurs de divers
 
 ## Calcul
 
-Source : PMSI MCO RSA — variables `GHM` (8 caractères, racine = 5 premiers), `FINESS_GEO`, date d'entrée agrégée par trimestre.
+Source : PMSI MCO RSA — variables `ghm2` (6 caractères, racine = 5 premiers), `finessgeo`, date d'entrée agrégée par trimestre.
 
 ```
 Population : tous séjours MCO d'un établissement sur les 8 derniers trimestres
@@ -92,7 +92,7 @@ Indice de maturité du portefeuille :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable `GHM` (8 caractères — racine 5 premiers), `FINESS_GEO`, `DATE_ENTREE` agrégée par trimestre (ATIH transmet trimestriellement) — 8 trimestres consécutifs minimum
+- **PMSI MCO RSA** : variable `GHM` (8 caractères — racine 5 premiers), `finessgeo`, `DATE_ENTREE` agrégée par trimestre (ATIH transmet trimestriellement) — 8 trimestres consécutifs minimum
 - **Référentiel ATIH des GHMs** : correspondance GHM racine → CMD → libellé, nécessaire pour l'interprétation clinique des stades et la communication aux équipes médicales
 - **Médiane nationale par famille GHM** : extraite de la base nationale ATIH (part médiane de la famille f dans les établissements du même type) — utilisée comme seuil dans la classification Croissance
 

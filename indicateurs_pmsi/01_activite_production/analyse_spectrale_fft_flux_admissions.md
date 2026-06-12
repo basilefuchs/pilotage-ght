@@ -16,7 +16,7 @@ Préparation de la série temporelle :
 
 ```
 Série d'entrée : x(t) = nombre d'admissions MCO le jour t
-  → Source : PMSI RSA, variable DATE_ENT, agrégée par jour calendaire
+  → Source : PMSI RSA, variable `date_entree`, agrégée par jour calendaire
   → Fenêtre recommandée : 2-3 ans (730-1095 jours) pour résoudre les cycles annuels
   → Par unité médicale (UM), service ou établissement selon l'objectif
 
@@ -87,7 +87,7 @@ Ratio basse fréquence / haute fréquence (BF/HF) :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable DATE_ENT (date d'entrée effective) agrégée par jour calendaire sur 2-3 ans — source unique suffisante pour le calcul ; la résolution journalière est indispensable (une agrégation hebdomadaire efface le cycle à 7j)
+- **PMSI MCO RSA** : variable `date_entree` (date d'entrée effective) agrégée par jour calendaire sur 2-3 ans — source unique suffisante pour le calcul ; la résolution journalière est indispensable (une agrégation hebdomadaire efface le cycle à 7j)
 - **Calendrier des jours fériés et fermetures** (données publiques INSEE) : pour le prétraitement des valeurs aberrantes et l'interprétation des pics spectraux coïncidant avec les jours fériés
 - **Données de gestion des blocs opératoires** (logiciel planning) : pour interpréter les cycles identifiés — un pic à f = 1/7 peut correspondre à une fermeture systématique des blocs le lundi ; la comparaison spectre/planning confirme l'origine organisationnelle des cycles
 - **Implémentation** : Python (numpy.fft, scipy.signal.periodogram, matplotlib.pyplot.psd), R (stats::spectrum, astsa::mvspec) — calcul rapide même sur des séries de plusieurs années

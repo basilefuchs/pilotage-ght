@@ -23,17 +23,17 @@ Positionnement vs indicateurs existants : différent de `taux_ambulatoire.md` (c
 ```
 Étape 1 — Comptabilisation des journées d'alternatives
   a) Hospitalisation de jour MCO (HJ) :
-     RSA avec GHM en niveau J (DUREE_SEJOUR = 0, ambu)
+     RSA avec GHM en niveau J (`duree` = 0, ambu)
      1 séjour = 1 journée HJ par convention
   b) Hospitalisation à domicile (HAD) :
-     Source : RAPSS — somme des journées HAD (variable NB_JOURNEES par sub-séquence)
+     Source : RAPSS — somme des journées HAD (variable `nbjsej` de la table `fixe_sej`)
   c) Chirurgie ambulatoire (CA) :
      Sous-ensemble des HJ MCO avec acte CCAM chirurgical
      (peut faire double comptage avec HJ — préciser le périmètre)
 
 Étape 2 — Comptabilisation des journées d'hospitalisation complète
   Journées HC MCO :
-    Σ DUREE_SEJOUR pour RSA en hospitalisation complète
+    Σ `duree` pour RSA en hospitalisation complète
     Exclusions : séances (CMD 28), GHM J (ambu)
 
 Étape 3 — Choix de la formule
@@ -50,7 +50,7 @@ Positionnement vs indicateurs existants : différent de `taux_ambulatoire.md` (c
   - Évolution annuelle : suivi de la pente
 ```
 
-Variables PMSI clés : `GHM`, `DUREE_SEJOUR`, `MODE_HOSPITALISATION`, `NB_JOURNEES` (RAPSS HAD), `CMD`, `FINESS`. Sources hétérogènes : RSA (MCO), RAPSS (HAD), RHA (SSR), RPSA (Psy).
+Variables PMSI clés : `ghm2`, `duree` (MCO), type d'hospitalisation selon le champ (niveau J du GHM en MCO, `fa` en psy), `nbjsej` (HAD, table `fixe_sej`), `CMD`, `finessgeo`. Sources hétérogènes : RSA (MCO), RAPSS (HAD), RHA (SSR), RPSA (Psy).
 
 ## Utilité
 - **Pilotage stratégique GHT** : marqueur synthétique de la transformation capacitaire du GHT, alignement sur la trajectoire DREES nationale.

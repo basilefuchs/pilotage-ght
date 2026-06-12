@@ -58,7 +58,7 @@ Positionnement vs indicateurs existants : différent du composite ACSC (`taux_ho
   - Évolution temporelle annuelle
 ```
 
-Variables PMSI clés : `DP`, `DR`, `DA`, codes `CCAM` (table A — actes), `N°ANONYME` (chaînage), `CODGEO` (résidence), `AGE_ANNEES`, `SEXE`. Données INSEE pour population résidente.
+Variables PMSI clés : `DP`, `DR`, `DA`, codes `CCAM` (table `acte`), `anonyme` (chaînage), `codegeo` (résidence), `age`, `sexe`. Données INSEE pour population résidente.
 
 ## Utilité
 - **Marqueur traceur OCDE** : indicateur officiel HCQO long-term diabetes complications, comparable internationalement.

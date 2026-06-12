@@ -94,10 +94,11 @@ mensuel <- purrr::map_dfr(annees, function(an) {
       mois,
       age,
       sexe,
+      # urgences = modeentree 8 (domicile) + provenance 5, ou passage_urg ≥ 2023
       mode_urg   = case_when(
-        modeentree %in% c("7", "8") ~ 1L,
-        p_urg == 1L                  ~ 1L,
-        TRUE                         ~ 0L
+        modeentree == "8" & provenance == "5" ~ 1L,
+        p_urg == 1L                            ~ 1L,
+        TRUE                                   ~ 0L
       ),
       ghm_racine = substr(ghm2, 1, 5),
       compl      = coalesce(complication, 0L)

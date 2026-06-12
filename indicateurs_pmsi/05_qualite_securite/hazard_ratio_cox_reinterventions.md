@@ -68,7 +68,7 @@ Covariables :
   - charlson      : score de Charlson calculé depuis DA/DAS (Quan 2005)
   - ghm_racine    : 5 premiers caractères de ghm2 (effet fixe)
   - severite      : niveau 1-4 (4ᵉ caractère du GHM ≥ 2)
-  - mode_entree   : binaire (urgence : modeentree ∈ {7,8} ou passage_urg=1)
+  - mode_entree   : binaire (urgence : modeentree 8 + provenance 5, ou passage_urg = 1 à partir de 2023)
   - finess_etab   : effet fixe établissement (K-1 dummies)
   - annee         : effet d'année (continu ou facteur)
 ```

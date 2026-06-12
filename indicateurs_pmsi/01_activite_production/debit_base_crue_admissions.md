@@ -19,25 +19,22 @@ Un IBH élevé (> 0,6) signifie que la majorité des admissions est programmée 
 Identification du type d'admission depuis le PMSI MCO RSA :
 
 ```
-Variable MODE_ENTREE (RSA champ MCO) :
-  Valeur 8 : entrée par les urgences → CRUE
-  Valeur 7 : transfert depuis un autre établissement → CRUE (non programmé)
-  Valeur 6 : mutation depuis une autre UM du même établissement → ambigu
+Variables modeentree + provenance (RSA champ MCO — nomenclature ATIH) :
+  modeentree 8 : entrée depuis le domicile
+      → avec provenance 5 (passage par les urgences) : CRUE
+      → sans provenance 5 : admission directe/programmée → BASE potentielle
+  modeentree 7 : transfert depuis un autre établissement → ambigu
+  modeentree 6 : mutation depuis une autre UM du même établissement → ambigu
               (peut être programmé ou non selon le contexte)
-  Valeurs 1, 2, 3 : entrée directe (médecin, consultation externe, autre) → BASE
-  Valeur R (domicile, médecin traitant, spécialiste) : BASE si GHM chirurgical,
-              CRUE potentielle si GHM médical sévère
 
 Règle de classification simplifiée (PMSI seul) :
-  BASE = séjours avec MODE_ENTREE ∈ {1, 2, 3, 5}
-         ET MODE_SORTIE ≠ 9 (décès)
+  CRUE = entrée par les urgences :
+         (modeentree = 8 ET provenance = 5)
+         OU passage_urg = 1 (variable disponible à partir de 2023)
+  BASE = séjours avec modeentree = 8 ET provenance ≠ 5
+         ET modesortie ≠ 9 (décès)
          ET type_GHM ∈ {C (chirurgical), Z (acte technique), K (ambulatoire)}
-  CRUE = séjours avec MODE_ENTREE = 8
-         OU (MODE_ENTREE = 7 et provenance = urgences)
-         OU séjours médicaux (type_GHM = M) avec Charlson_DA ≥ 3
-
-  → Alternative robuste : utiliser le champ PROVENANCE pour distinguer
-    les entrées depuis la salle d'accueil des urgences
+  AMBIGU (exclus) = mutations/transferts (modeentree 6, 7) et autres cas
 ```
 
 Calcul des indicateurs de décomposition :
@@ -98,7 +95,7 @@ IBH par complexité de casemix :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable MODE_ENTREE (mode d'entrée), PROVENANCE, TYPE_GHM (chirurgical C, médical M, technique Z, ambulatoire K), DA pour le calcul du Charlson — entièrement disponibles dans les extractions RSA standard ; agrégation par UM/service et par mois calendaire sur 24-36 mois
+- **PMSI MCO RSA** : variables `modeentree` + `provenance` (urgences = 8 + provenance 5), type de GHM (chirurgical C, médical M, technique Z, ambulatoire K), DA pour le calcul du Charlson — entièrement disponibles dans les extractions RSA standard ; agrégation par UM/service et par mois calendaire sur 24-36 mois
 
 ## Exemple de Valeurs
 
@@ -123,9 +120,9 @@ IBH par complexité de casemix :
 
 ## Limites
 
-- La classification BASE/CRUE depuis le MODE_ENTREE est une **approximation** — certains séjours avec MODE_ENTREE = 1 (médecin traitant) sont des hospitalisations de semi-urgence planifiées dans la journée, que l'on classe en BASE alors qu'elles partagent les caractéristiques de la CRUE ; une validation sur les données d'agenda (logiciel de programmation) améliore la classification mais n'est pas disponible dans le PMSI
+- La classification BASE/CRUE depuis `modeentree`/`provenance` est une **approximation** — certaines entrées directes du domicile adressées par le médecin traitant sont des hospitalisations de semi-urgence planifiées dans la journée, que l'on classe en BASE alors qu'elles partagent les caractéristiques de la CRUE ; une validation sur les données d'agenda (logiciel de programmation) améliore la classification mais n'est pas disponible dans le PMSI
 - Le PMSI ne distingue pas la **programmation réellement anticipée** (rendez-vous planifié plusieurs semaines à l'avance) de la **programmation du jour même** (consultation du matin conduisant à une hospitalisation dans l'après-midi) — or ces deux types de BASE ont des implications très différentes pour la gestion des capacités
-- L'IBH calculé depuis le PMSI inclut les **mutations internes** (UM → UM au sein du même établissement) qui n'ont pas de MODE_ENTREE standard : elles sont souvent classées en flux ambigu et peuvent biaiser l'IBH si elles sont nombreuses dans certains services à forte activité d'aval
+- L'IBH calculé depuis le PMSI inclut les **mutations internes** (UM → UM au sein du même établissement) qui n'ont pas de mode d'entrée standard : elles sont souvent classées en flux ambigu et peuvent biaiser l'IBH si elles sont nombreuses dans certains services à forte activité d'aval
 
 ## Références
 
@@ -133,4 +130,4 @@ IBH par complexité de casemix :
 - [Nathan R.J., McMahon T.A. — Evaluation of automated techniques for base flow and recession analyses, Water Resources Research 1990](https://doi.org/10.1029/WR026i007p01465)
 - [Litvak E., Long M.C. — Cost and quality under managed care: irreconcilable differences?, Am J Manag Care 2000]
 - [DGOS — Instruction relative à la mise en place du programme PACES (Parcours patients, Accès direct, Coordination) : flux programmés vs non programmés (2022)](https://solidarites-sante.gouv.fr/)
-- [ATIH — Variables du RSA MCO : description du champ MODE_ENTREE et PROVENANCE](https://www.atih.sante.fr/)
+- [ATIH — Variables du RSA MCO : description des champs mode d'entrée et provenance](https://www.atih.sante.fr/)

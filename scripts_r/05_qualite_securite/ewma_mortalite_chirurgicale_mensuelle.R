@@ -40,7 +40,7 @@ L        <- 2.7     # multiplicateur bornes : 2.7 → ARL0 ≈ 250 ; 3.0 plus co
 agg_temp <- "mois"  # "mois" ou "trimestre"
 
 # --- Périmètre ---
-exclure_entree_urgence <- TRUE     # modeentree == "8" → entrée par urgences
+exclure_entree_urgence <- TRUE     # urgences = modeentree 8 (domicile) + provenance 5
 seuil_volume_mois      <- 5        # mois avec n_t < seuil → carte non publiée
 
 # --- Stratification ---
@@ -68,7 +68,9 @@ extraire_cohorte <- function(an) {
     )
 
   if (exclure_entree_urgence) {
-    cohorte <- cohorte %>% filter(modeentree != "8")
+    # ne PAS exclure modeentree == "8" seul : 8 = domicile (inclut le programmé)
+    cohorte <- cohorte %>%
+      filter(!(modeentree == "8" & provenance == "5") | is.na(provenance))
   }
 
   # 2. Charlson via DAS+DP — approximation Quan 2005 (placeholder)

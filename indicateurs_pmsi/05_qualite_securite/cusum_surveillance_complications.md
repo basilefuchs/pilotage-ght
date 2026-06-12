@@ -111,7 +111,7 @@ Tableau de bord GHT :
 
 ## Sources de Données
 
-- **PMSI MCO RSA** : variable AUTGRM (autorité de groupage), DAS (diagnostics associés) pour identifier les complications selon les codes CIM-10 PSI ATIH ; dates `date_entree`/`date_sortie` pour la chronologie ; `ghm2` pour le GHM-racine et niveau de sévérité ; `finess`, `finessgeodp` pour la granularité établissement ; `age`, `sexe` pour l'ajustement risque
+- **PMSI MCO RSA** : DAS (diagnostics associés, table `diag`) pour identifier les complications selon les codes CIM-10 PSI ATIH ; dates `date_entree`/`date_sortie` pour la chronologie ; `ghm2` pour le GHM-racine et niveau de sévérité ; `finess`, `finessgeodp` pour la granularité établissement ; `age`, `sexe` pour l'ajustement risque
 - **Référentiel PSI ATIH** : liste des codes CIM-10 et CCAM identifiant les complications post-opératoires (PSI 03, 09, 11, 12, 13, 14, 15) — disponible sur scansante.fr et atih.sante.fr
 - **PMSI MCO chaîné (id_hospit_ipp)** : variable `ipp_c` pour le suivi des réinterventions à J<30 sur séjours ultérieurs
 - **Modèle de risque** : à entraîner localement sur 3 ans d'historique avec GLM logistique (covariables : age, sexe, Charlson via DAS, GHM, modeentree) — package `glm` R ou `statsmodels` Python
