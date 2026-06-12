@@ -147,7 +147,8 @@
   function renderDetail(entry, tab) {
     const scripts = entryScripts(entry);
     const rTabs = scripts.map((s, i) => {
-      const label = s.base ? `R · ${s.base}` : "Script R";
+      // sans suffixe = portail ATIH (convention de nommage des scripts)
+      const label = `R · ${s.base || "ATIH"}`;
       const cls = tab === `r${i}` ? "active" : "";
       return `<button data-tab="r${i}" class="${cls}">${label}</button>`;
     }).join("");
