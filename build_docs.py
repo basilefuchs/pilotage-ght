@@ -81,6 +81,25 @@ def bust_asset_versions() -> None:
         print("Updated asset versions in docs/index.html")
 
 
+def find_scripts(category: str, base: str) -> list[dict]:
+    """Scripts R d'une fiche : `<base>.R` et/ou variantes `<base>.<suffixe>.R`.
+
+    Le suffixe identifie la base de données (atih, snds, ...). Match strict
+    sur `<base>.` pour éviter qu'une fiche capte les scripts d'une autre
+    dont le nom est un préfixe du sien (les noms de fiches ne contiennent
+    jamais de point)."""
+    cat_dir = SCRIPTS_DIR / category
+    scripts = []
+    exact = cat_dir / f"{base}.R"
+    if exact.exists():
+        scripts.append({"path": exact.relative_to(ROOT).as_posix(), "base": None})
+    for f in sorted(cat_dir.glob(f"{base}.*.R")):
+        suffix = f.name[len(base) + 1:-2]
+        scripts.append({"path": f.relative_to(ROOT).as_posix(),
+                        "base": suffix.upper()})
+    return scripts
+
+
 def extract_title(text: str, fallback: str) -> str:
     m = TITLE_RE.search(text)
     return m.group(1).strip() if m else fallback
@@ -110,15 +129,17 @@ def main() -> None:
         category = parts[1]
         base = f.stem
         text = f.read_text(encoding="utf-8")
-        r_rel = f"scripts_r/{category}/{base}.R"
-        has_r = (ROOT / r_rel).exists()
+        scripts = find_scripts(category, base)
         entries.append({
             "id": rel[:-3],
             "title": extract_title(text, base),
             "category": category,
             "category_label": CATEGORY_LABELS.get(category, category),
             "path_md": rel,
-            "path_r": r_rel if has_r else None,
+            # path_r conservé pour rétrocompatibilité (app.js en cache) :
+            # pointe sur le premier script ; scripts_r porte toutes les variantes
+            "path_r": scripts[0]["path"] if scripts else None,
+            "scripts_r": scripts,
             "verified": check_verification(rel, extract_verification(text)),
             "excerpt": extract_excerpt(text),
             "text": text,
@@ -131,7 +152,9 @@ def main() -> None:
     }
     OUT.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
     print(f"Wrote {len(entries)} entries → {OUT.relative_to(ROOT)}")
-    print(f"  with R script: {sum(1 for e in entries if e['path_r'])}")
+    n_scripts = sum(len(e["scripts_r"]) for e in entries)
+    print(f"  with R script: {sum(1 for e in entries if e['scripts_r'])}"
+          f" ({n_scripts} scripts)")
     print(f"  with human verification: {sum(1 for e in entries if e['verified'])}")
     bust_asset_versions()
 

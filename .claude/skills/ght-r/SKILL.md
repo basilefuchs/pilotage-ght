@@ -240,8 +240,20 @@ Une fois la réponse reçue (ou immédiatement si `--dry-run`) :
 ## Chemin de fichier
 
 ```
-scripts_r/<NN>_<categorie>/<nom_snake_case>.R
+scripts_r/<NN>_<categorie>/<nom_snake_case>.R          # base unique
+scripts_r/<NN>_<categorie>/<nom_snake_case>.<base>.R   # variantes multi-bases
 ```
+
+**Variantes multi-bases** : un même indicateur peut avoir un script par
+base de données (`.atih.R`, `.snds.R`, `.datamart_chu_<nom>.R`...). Le
+suffixe reprend le préfixe du profil utilisé. Règles :
+
+- Premier script d'un indicateur → nom nu `<nom>.R`, **sauf** si la base
+  n'est pas le portail ATIH (alors suffixer d'emblée, ex. `.snds.R`).
+- Ajout d'une variante alors qu'un script nu existe → renommer le script
+  nu avec son suffixe de base (`git mv`) puis créer la variante. La
+  GitHub Page affiche un onglet par variante (`build_docs.py` matche
+  `<nom>.R` et `<nom>.<suffixe>.R`).
 
 Catégories (alignées sur `indicateurs_pmsi/`) :
 

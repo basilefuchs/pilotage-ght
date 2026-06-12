@@ -121,11 +121,22 @@
     $results.replaceChildren(frag);
   }
 
+  // Variantes de script R d'une fiche (un script par base de données).
+  // Repli sur path_r si l'index en cache est antérieur au champ scripts_r.
+  function entryScripts(entry) {
+    if (entry.scripts_r && entry.scripts_r.length) return entry.scripts_r;
+    return entry.path_r ? [{ path: entry.path_r, base: null }] : [];
+  }
+
   async function selectEntry(id, tab) {
     const entry = BY_ID.get(id);
     if (!entry) return;
     CURRENT_ID = id;
-    const wantTab = (tab === "r" && entry.path_r) ? "r" : "md";
+    const scripts = entryScripts(entry);
+    // "r" (anciens liens partagés) = alias du premier onglet R
+    if (tab === "r") tab = "r0";
+    const m = /^r(\d+)$/.exec(tab || "");
+    const wantTab = (m && scripts[+m[1]]) ? tab : "md";
     updateHash(id, wantTab);
     document.querySelectorAll(".result").forEach(el =>
       el.classList.toggle("active", el.dataset.id === id)
@@ -134,11 +145,16 @@
   }
 
   function renderDetail(entry, tab) {
-    const hasR = !!entry.path_r;
+    const scripts = entryScripts(entry);
+    const rTabs = scripts.map((s, i) => {
+      const label = s.base ? `R · ${s.base}` : "Script R";
+      const cls = tab === `r${i}` ? "active" : "";
+      return `<button data-tab="r${i}" class="${cls}">${label}</button>`;
+    }).join("");
     const tabsHtml = `
       <div class="tabs">
         <button data-tab="md" class="${tab === "md" ? "active" : ""}">Fiche</button>
-        ${hasR ? `<button data-tab="r" class="${tab === "r" ? "active" : ""}">Script R</button>` : ""}
+        ${rTabs}
         <a class="gh-link"
            href="https://github.com/${REPO.owner}/${REPO.name}/blob/${REPO.branch}/${entry.path_md}"
            target="_blank" rel="noopener">Ouvrir sur GitHub ↗</a>
@@ -160,7 +176,8 @@
         $content.innerHTML = `<div class="error">Erreur de rendu : ${e.message}</div>`;
       }
     } else {
-      fetchText(entry.path_r).then(src => {
+      const script = scripts[+tab.slice(1)];
+      fetchText(script.path).then(src => {
         const pre = document.createElement("pre");
         const code = document.createElement("code");
         code.className = "language-r";
