@@ -14,6 +14,7 @@
 | Concept                    | Colonne         |
 |----------------------------|-----------------|
 | Id séjour (clé)            | `ident`         |
+| N° chaînage anonyme (patient, commun MCO↔SMR) | `anonyme` |
 | FINESS juridique           | `finess`        |
 | GHM (6 car)                | `ghm2`          |
 | Racine GHM (5 car)         | `substr(ghm2, 1, 5)` |
