@@ -36,6 +36,8 @@
 | Passage urgences           | `passage_urg`   |
 | Type séjour                | `typ_sej`       |
 | Durée (nuitées)            | `duree`         |
+| Journées au-delà borne extrême haute | `nbexh` (proxy journées de bed-blocking) |
+| Type séjour < borne extrême basse | `exb`     |
 | Nb RUM                     | `nbrum`         |
 | Nb actes                   | `nbacte`        |
 | Nb séances                 | `nbseance`      |
@@ -158,6 +160,8 @@ Jointure : `(annee, finessgeo)`. Filtre département recommandé :
 | Tarifs GHS ex-DG                             | Indisponibles en base nationale → fichier campagne ATIH local (CSV `ghs, annee, tarif`), joint après `collect()` |
 | `date_entree`/`date_sortie` indisponibles avant 2019 | Plage d'années ≥ 2019 pour les dates réelles |
 | Chaînage non exploitable                     | Filtrer `ano_retour == "000000000"` (9 codes à zéro) |
+| Cibler un transfert vers SSR                 | `modesortie %in% c("6","7")` (mutation/transfert) **&** `destination == "2"` (SSR) — code destination à confirmer notice ATIH |
+| Codes CIM-10 dans `diag`                     | Stockés **sans point** (`Z751`, `F00`, `E440`) — matcher par `substr()`/`%in%` |
 
 ## Défauts recommandés
 
