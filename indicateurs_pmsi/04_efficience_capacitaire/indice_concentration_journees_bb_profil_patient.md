@@ -1,10 +1,11 @@
+<!-- verifie: 2026-06-19 fuchs -->
 # Indice de Concentration des Journées de Bed-Blocking par Profil Patient
 
 ## Définition
 
-Une politique de fluidification de l'aval peut être **diffuse** (accroître globalement les capacités SSR) ou **ciblée** (un dispositif dédié à un profil précis : patients déments, isolés, dépendants…). Le choix dépend d'une question empirique : les journées de bed-blocking sont-elles réparties sur l'ensemble de la patientèle, ou **concentrées sur quelques profils étroits** ? Cet indicateur répond à cette question en appliquant aux journées bloquées les outils classiques de mesure de la concentration : la **courbe de Lorenz** et l'**indice de Gini**.
+Une politique de fluidification de l'aval peut être **diffuse** (accroître globalement les capacités d'aval) ou **ciblée** (un dispositif dédié à un profil précis : patients déments, isolés, dépendants…). Le choix dépend d'une question empirique : les journées de bed-blocking sont-elles réparties sur l'ensemble de la patientèle, ou **concentrées sur quelques profils étroits** ? Cet indicateur répond à cette question en appliquant aux journées bloquées les outils classiques de mesure de la concentration : la **courbe de Lorenz** et l'**indice de Gini**.
 
-On définit des **profils patients** par croisement de variables PMSI discriminantes du risque d'aval (par exemple : Catégorie Majeure de Diagnostic × tranche d'âge × présence de démence/dépendance). Pour chaque profil `i`, on calcule le total de journées de bed-blocking `BB_i`. L'indice de Gini mesure ensuite à quel point ces journées sont inégalement réparties entre profils :
+On définit des **profils patients** par croisement de variables PMSI discriminantes du risque d'aval (par exemple : Sévérité de la prise en charge × tranche d'âge × présence de démence/dépendance x présence de facteurs socio-environnementaux). Pour chaque profil `i`, on calcule le total de journées de bed-blocking `BB_i`. L'indice de Gini mesure ensuite à quel point ces journées sont inégalement réparties entre profils :
 
 ```
 G = (Σ_i Σ_j |BB_i − BB_j|) / (2 · K · Σ_i BB_i)
@@ -21,17 +22,18 @@ Source : PMSI MCO (RSA) + bornes GHM ATIH.
 **Étape 1 — Journées de bed-blocking par séjour** (cf. `taux_bed_blocking_mco_attente_ssr`) :
 
 ```
-Population : séjours MCO avec mode_sort = 6 (ou 7, ou Z75.1 en DA)
-BB_jours(séjour) = MAX(0 ; DMS_observée − DMS_haute_GHM)
+Population : séjours MCO avec mode_sort = 6 ou 7
+BB_jours(séjour) = MAX(0 ; DMS_observée − DMS_haute_GHM) ou MAX(0 ; Nb_EXH)
 Ne conserver que les séjours avec BB_jours > 0.
 ```
 
 **Étape 2 — Construction des profils.** Définir une partition de la patientèle par croisement de variables disponibles dans le RSA :
 
 ```
-Profil = CMD (Catégorie Majeure de Diagnostic, dérivée du GHM)
+Profil = Sévérité (Niveau de sévérité, dérivée du GHM)
        × tranche d'âge {<75 ; 75–84 ; ≥85}
-       × dépendance/cognition {démence F00-F03/G30 ; dépendance Z74 ; aucune}
+       × démence {démence A810/B220/F00-F03/G30}
+       x facteurs socio-environnementaux {voir Fascicule FSE - ATIH}
 ```
 
 Le grain est paramétrable : profils plus fins = plus discriminants mais effectifs plus faibles. Recommandation : viser des profils d'au moins 20-30 séjours bloqués.
@@ -70,28 +72,26 @@ Variante — **concentration patient (et non profil)** : appliquer Gini directem
 
 ## Utilité
 
-- **Choisir entre stratégie diffuse et ciblée** : un Gini élevé (> 0,5) signe un blocage concentré → un dispositif dédié au(x) profil(s) dominant(s) est plus rentable qu'un accroissement indifférencié des capacités SSR ; un Gini bas signe un problème de masse → action systémique sur les filières.
+- **Choisir entre stratégie diffuse et ciblée** : un Gini élevé (> 0,5) signe un blocage concentré → un dispositif dédié au(x) profil(s) dominant(s) est plus rentable qu'un accroissement indifférencié des capacités d'aval ; un Gini bas signe un problème de masse → action systémique sur les filières.
 - **Désigner la cible prioritaire** : le top‑k profils nomme précisément le segment à traiter (« femmes ≥85 ans, CMD orthopédie, dépendance Z74 »), base d'un cahier des charges de filière.
 - **Dimensionner un dispositif** : la part de journées du profil cible × perte tarifaire journalière borne le retour sur investissement d'une action focalisée.
-- **Suivre le déplacement de la charge** : après ouverture d'une filière ciblée, vérifier que le Gini baisse et que le profil traité sort du top‑k (preuve d'efficacité), sans report sur un autre profil.
+- **Suivre le déplacement de la charge** : après action sur une filière ciblée, vérifier que le Gini baisse et que le profil traité sort du top‑k (preuve d'efficacité), sans report sur un autre profil.
 - **Comparer les sites du GHT** : à grille de profils identique, un établissement à Gini élevé est « ciblable », un autre à Gini bas relève d'un problème capacitaire global — deux plans d'action distincts.
 - **Prioriser l'analyse fine** : réserver les analyses causales coûteuses (fraction attribuable, modèles ajustés) aux quelques profils que la concentration désigne.
 
 ## Sources de Données
 
-- **PMSI MCO — RSA** : code GHM (et CMD dérivée), `mode_sort`, durée de séjour, âge, diagnostics associés (démence F00-F03/G30, dépendance Z74), FINESS, service/UM. Noms de champs à aligner sur le format RSA du guide méthodologique PMSI MCO en vigueur [à confirmer selon le millésime].
+- **PMSI MCO — RSA** : code GHM (et Niveau de sévérité dérivée), `modesortie`, durée de séjour, âge, diagnostics (démence F00-F03/G30, dépendance Z74), FINESSGEO.
 - **ATIH — Bornes GHM** : DMS haute par GHM (fichiers tarifaires T2A, millésime de l'année de sortie) pour le calcul des `BB_jours`.
-- **ATIH — Table de correspondance GHM → CMD** : pour la construction de l'axe diagnostic des profils.
 - **Outils statistiques** : packages R `ineq` (Gini, courbe de Lorenz), `DescTools` (`Gini`, intervalles de confiance par bootstrap).
 
 ## Exemple de Valeurs
 
 Ordres de grandeur experts (non sourcés ; à calibrer localement) :
 
-- **Gini des journées BB par profil** : 0,35-0,55 attendu sur une grille CMD × âge × cognition d'une vingtaine de profils. Un blocage typiquement « gériatrique » (concentré sur quelques CMD et le grand âge) tire le Gini vers 0,5-0,6.
 - **Top‑3 profils** : concentrent souvent 45-60 % des journées bloquées en gériatrie / médecine.
 - **Contexte de cadrage** : l'attente de transfert vers l'aval est la cause dominante du blocage et se concentre sur des profils identifiables (poids du DRG, perte d'autonomie, attente de destination), cf. Pellico-López et al. 2019 [DOI](https://doi.org/10.3390/ijerph16183304) ; 6 % des lits occupés par des patients en attente d'aval, blocage principalement lié à la coordination, cf. étude 2025 sur les transferts [DOI](https://doi.org/10.3390/healthcare13162038).
-- **Seuil d'alerte décisionnel** : Gini > 0,5 **et** top‑3 > 50 % → privilégier un dispositif ciblé documenté par fiche de profil.
+- **Seuil d'alerte décisionnel** : Gini > [0,5-0,75] **et** top‑3 > 50 % → privilégier un dispositif ciblé documenté par fiche de profil.
 
 ## Limites
 
@@ -99,7 +99,7 @@ Ordres de grandeur experts (non sourcés ; à calibrer localement) :
 - **Indicateur de forme, non de cause** : un Gini élevé indique *où* regarder, pas *pourquoi* le blocage se concentre. Il doit être suivi d'une analyse causale (fraction attribuable, entretiens filière) sur les profils désignés.
 - **Effectifs minimaux** : sous ~30 séjours bloqués par profil, les `BB_i` sont instables et le Gini bruité ; agréger à l'année et au GHT, accompagner d'un intervalle de confiance bootstrap.
 - **Dépendance aux limites du numérateur** : les `BB_jours` héritent des biais de `taux_bed_blocking_mco_attente_ssr` (une DMS longue n'est pas toujours une attente d'aval).
-- **Effet de version PMSI** : les bornes hautes GHM et les tables de groupage changent chaque campagne ; figer le référentiel pour les séries temporelles.
+- **Effet de version PMSI** : les bornes hautes GHM et les tables de groupage changent chaque campagne ; éventuellement figer le référentiel pour les séries temporelles.
 - **Interprétation politique** : un Gini bas ne signifie pas « pas de problème » mais « problème diffus » — il ne faut pas en conclure à l'absence d'enjeu, seulement à l'inadéquation d'une réponse ciblée.
 
 ## Références

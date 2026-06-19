@@ -11,10 +11,10 @@
 # Base                  : portail ATIH Teradata, schéma prd_vue_mco_AAAA
 # Séjour (1 ligne)      : fixe.ident
 # Âge (années)          : fixe.age
-# CMD                   : substr(fixe.ghm2, 1, 2)
-# Mode de sortie / dest.: fixe.modesortie (6/7) / fixe.destination (SSR "2")
+# Sévérité                   : substr(fixe.ghm2, 5, 5)
 # Journées > borne haute: fixe.nbexh  (journées de bed-blocking)
 # DAS (CIM-10)          : diag.diag  (démence F00-F03/G30 ; dépendance Z74)
+# Facteurs socio-économiques   : prd_vue_nompmsi.all_cim10_caract_patient (code, caract)
 # FINESS géographique   : finessgeo_umdudp.finessgeodp
 # Raison sociale (RS)   : prd_vue_nomgen.finessgeo (annee, finessgeo, rs)
 # ==========================================
@@ -27,15 +27,15 @@ library(ggplot2)
 conn <- pRatihque::connection_database()
 
 # ==== PARAMÈTRES ====
-annees     <- 2016:2025
+annees     <- 2019:2025
 dep        <- "29"
 modes_aval <- c("6", "7")
-dest_ssr   <- "2"            # destination SSR — code à confirmer (notice ATIH)
 seuil_sej_profil <- 20      # séjours bloqués minimum pour qu'un profil compte
 seuil_profils    <- 5       # nb minimum de profils pour calculer un Gini stable
 
-codes_demence <- c("F00", "F01", "F02", "F03", "G30")  # match 3 car.
-code_z74      <- "Z74"                                  # dépendance (match 3 car.)
+tbl_socio_eco <- tbl(conn, I(paste0("prd_vue_nompmsi.all_cim10_caract_patient"))) |>
+  filter(type_liste == "Socio_eco") |>
+  select(code, caract)
 
 # ==== EXTRACTION — journées de bed-blocking par profil patient ====
 distribution <- purrr::map_dfr(annees, function(an) {
@@ -44,53 +44,71 @@ distribution <- purrr::map_dfr(annees, function(an) {
   tbl_geo  <- tbl(conn, I(paste0("prd_vue_mco_", an, ".finessgeo_umdudp")))
   tbl_diag <- tbl(conn, I(paste0("prd_vue_mco_", an, ".diag")))
 
-  flag_dem <- tbl_diag %>%
-    filter(substr(diag, 1, 3) %in% codes_demence) %>%
-    distinct(ident) %>% mutate(dem = 1L)
-
-  flag_dep <- tbl_diag %>%
-    filter(substr(diag, 1, 3) == code_z74) %>%
-    distinct(ident) %>% mutate(dep_z74 = 1L)
-
-  tbl_fixe %>%
+  tbl_fixe <- tbl_fixe |>
     filter(
+      ano_retour == "000000000",
       substr(ghm2, 1, 2) != "90",
-      substr(finess, 1, 2) == dep
-    ) %>%
-    inner_join(tbl_geo %>% select(ident, finessgeodp), by = "ident") %>%
-    left_join(flag_dem, by = "ident") %>%
-    left_join(flag_dep, by = "ident") %>%
-    mutate(
-      dem     = coalesce(dem, 0L),
-      dep_z74 = coalesce(dep_z74, 0L),
-      nbexh   = coalesce(nbexh, 0L)
-    ) %>%
-    # Séjours bloqués : journées au-delà de la borne haute ET attente d'aval SSR
-    filter(nbexh > 0L, modesortie %in% modes_aval, destination == dest_ssr) %>%
+      substr(finess, 1, 2) %in% dep,
+      modesortie %in% modes_aval,
+      nbexh > 0
+    )
+
+  flag_dem <- tbl_fixe |>
+    inner_join(tbl_diag, by = "ident") |>
+    filter(sql("REGEXP_SIMILAR(diag, '^(F0[0-3]|G30|A810|B220).*', 'c') = 1")) |>
+    distinct(ident) |> mutate(demence = 1)
+
+  flag_socio_eco <- tbl_fixe |>
+    inner_join(tbl_diag, by = "ident") |>
+    inner_join(tbl_socio_eco, by = c("diag" = "code")) |>
+    distinct(ident) |> mutate(fse = 1)
+
+  tbl_fixe <- tbl_fixe |>
+    inner_join(tbl_geo |> select(ident, finessgeodp), by = "ident") |>
+    left_join(flag_dem, by = "ident") |>
+    left_join(flag_socio_eco, by = "ident") |>
     transmute(
       annee    = an,
       finessgeo = finessgeodp,
       ident,
       bb_jours = nbexh,
-      # Profil = CMD × tranche d'âge × cognition/dépendance
-      cmd      = substr(ghm2, 1, 2),
-      age_band = case_when(age < 75 ~ "lt75", age < 85 ~ "75_84", TRUE ~ "ge85"),
-      cognition = case_when(dem == 1L ~ "demence",
-                            dep_z74 == 1L ~ "dependance",
-                            TRUE ~ "aucune"),
-      profil   = paste(cmd, age_band, cognition, sep = "|")
-    ) %>%
-    group_by(annee, finessgeo, profil) %>%
+      sev      = case_when(
+        substr(ghm2, 5, 5) %in% c("3","4") ~ "severite",
+        TRUE ~ "absence severite"
+      ),
+      age_band = case_when(
+        age < 75  ~ "< 75 ans",
+        age < 85 ~ "75-84 ans",
+        TRUE ~ "> 85 ans"
+      ),
+      demence = case_when(
+        demence == 1 ~ "demence",
+        TRUE ~ "absence demence"
+      ),
+      fse = case_when(
+        fse == 1 ~ "fse",
+        TRUE ~ "absence fse"
+      ),
+      # Profil = Sévérité × tranche d'âge × démence x fse
+      profil   = paste(
+        sev,
+        age_band,
+        demence,
+        fse,
+        sep = " | "
+      )
+    ) |>
+    group_by(annee, finessgeo, profil) |>
     summarise(
       BB_i   = sum(bb_jours),
       n_sej  = n_distinct(ident),
       .groups = "drop"
-    ) %>%
+    ) |>
     collect()
 })
 
 # Filtre des profils à effectif suffisant (stabilité)
-distribution <- distribution %>%
+distribution <- distribution |>
   filter(n_sej >= seuil_sej_profil)
 
 # ==== CALCUL MÉTHODOLOGIQUE — Gini sur la distribution des BB_i par profil ====
@@ -109,37 +127,37 @@ part_top_k <- function(x, k) {
   sum(x[seq_len(min(k, length(x)))]) / sum(x)
 }
 
-resultat <- distribution %>%
-  group_by(annee, finessgeo) %>%
+resultat <- distribution |>
+  group_by(annee, finessgeo) |>
   summarise(
     K_profils  = n_distinct(profil),
     J_total    = sum(BB_i),
     G          = calcul_gini(BB_i),
     top3_part  = part_top_k(BB_i, 3),
     .groups    = "drop"
-  ) %>%
+  ) |>
   filter(K_profils >= seuil_profils)
 
 # Jointure raison sociale
-ref_rs <- tbl(conn, I("prd_vue_nomgen.finessgeo")) %>%
-  filter(substr(finessgeo, 1, 2) == dep) %>%
-  transmute(annee, finessgeo, rs) %>%
+ref_rs <- tbl(conn, I("prd_vue_nomgen.finessgeo")) |>
+  filter(substr(finessgeo, 1, 2) %in% dep) |>
+  select(annee, finessgeo, rs) |>
   collect()
 
-resultat <- resultat %>%
-  left_join(ref_rs, by = c("annee", "finessgeo")) %>%
+resultat <- resultat |>
+  left_join(ref_rs, by = c("annee", "finessgeo")) |>
   mutate(rs = coalesce(rs, finessgeo))
 
 # ==== Courbe de Lorenz (dernière année) — lecture opérationnelle ====
-lorenz <- distribution %>%
-  group_by(annee, finessgeo) %>%
-  arrange(BB_i, .by_group = TRUE) %>%
+lorenz <- distribution |>
+  group_by(annee, finessgeo) |>
+  arrange(BB_i, .by_group = TRUE) |>
   mutate(
     rang_pct = row_number() / n(),
     cum_pct  = cumsum(BB_i) / sum(BB_i)
-  ) %>%
-  ungroup() %>%
-  left_join(ref_rs, by = c("annee", "finessgeo")) %>%
+  ) |>
+  ungroup() |>
+  left_join(ref_rs, by = c("annee", "finessgeo")) |>
   mutate(rs = coalesce(rs, finessgeo))
 
 # ==== RÉSULTAT ====
@@ -147,7 +165,7 @@ print(resultat)
 
 # ==== VISUALISATION 1 — série temporelle du Gini par établissement ====
 ggplot2::ggplot(resultat, aes(x = annee, y = G, color = rs)) +
-  geom_smooth(se = FALSE, method = "loess") +
+  geom_smooth(method = "loess") +
   geom_point() +
   facet_wrap(~ reorder(rs, rs), scales = "free_y") +
   scale_x_continuous(breaks = annees) +
@@ -156,7 +174,7 @@ ggplot2::ggplot(resultat, aes(x = annee, y = G, color = rs)) +
   theme(legend.position = "none") +
   labs(
     title    = "Concentration (Gini) des journées de bed-blocking par profil patient",
-    subtitle = "0 = blocage diffus (action systémique) ; → 1 = blocage ciblable (dispositif dédié)",
+    subtitle = "0 = blocage diffus (action systémique) ; → 1 = blocage ciblé (dispositif dédié)",
     x = "Année", y = "Indice de Gini"
   )
 
