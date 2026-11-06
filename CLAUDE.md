@@ -2,7 +2,7 @@
 
 Base de connaissance d'indicateurs GHT calculables PMSI / SNDS, avec une page de recherche publiée (GitHub Pages depuis `docs/`).
 
-Ce dépôt est une **base d'exemple et de test** des skills ad hoc de `basilefuchs/skills` (`ght-gen`, `ght-dev`, parcours `to-protocole → pdh-schema → pdh-query`). Les skills vivent là-bas et s'installent avec `npx skills add basilefuchs/skills --skill <nom> -a claude-code -g`. Ici : les fiches, les scripts R, la page et son outillage.
+Ce dépôt est une **preuve de concept (POC)** : base d'exemple et de test des skills ad hoc de `basilefuchs/skills` (`ght-gen`, `ght-dev`, parcours `to-protocole → pdh-schema → pdh-query`). Les skills vivent là-bas et s'installent avec `npx skills add basilefuchs/skills --skill <nom> -a claude-code -g`. Ici : les fiches, les scripts R, la page et son outillage.
 
 ## Structure
 - `indicateurs_pmsi/<NN>_<categorie>/` : 10 thématiques hospitalières (activité, casemix, qualité, parcours, efficience, etc.)

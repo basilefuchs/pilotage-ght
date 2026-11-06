@@ -1,8 +1,9 @@
 # Base de connaissances — Indicateurs PMSI/GHT
 
-Base de référence d'indicateurs de pilotage hospitalier pour les GHT, calculables depuis le PMSI MCO/SMR/HAD/PSY et le SNDS, publiée sous forme de page de recherche.
+> ⚠️ **Preuve de concept (POC) — contenu de test, non validé.**
+> Ce dépôt est un jeu d'essai des skills du dépôt [basilefuchs/skills](https://github.com/basilefuchs/skills) : les fiches sont produites par `ght-gen` et `ght-dev`, les scripts R par le parcours `to-protocole → pdh-schema → pdh-query` (ou la branche SNDS), à des fins de test de ces skills. Les fiches et les scripts sont générés par un modèle de langage et n'ont pas été relus, sauf celles qui portent la pastille ✓. Aucun indicateur, aucune valeur, aucun script ne doit être utilisé pour un pilotage réel sans vérification par un professionnel du PMSI.
 
-**Ce dépôt est une base d'exemple et de test** des skills ad hoc du dépôt [basilefuchs/skills](https://github.com/basilefuchs/skills) : les fiches y sont produites par `ght-gen` et `ght-dev`, les scripts R par le parcours `to-protocole → pdh-schema → pdh-query` (ou la branche SNDS). Les skills vivent là-bas ; ici ne restent que les fiches, les scripts, la page et l'outillage de la page.
+Base d'exemple d'indicateurs de pilotage hospitalier pour les GHT, calculables depuis le PMSI MCO/SMR/HAD/PSY et le SNDS, publiée sous forme de page de recherche. Les skills vivent dans `basilefuchs/skills` ; ici ne restent que les fiches, les scripts, la page et l'outillage de la page.
 
 ## Structure
 
