@@ -31,7 +31,7 @@ Total : **262 fiches**. Chaque fiche documente : définition, calcul, utilité, 
 Page de recherche statique publiée depuis `docs/` :
 **https://basilefuchs.github.io/pilotage-ght/**
 
-Recherche par mots-clés parmi les fiches, filtre par catégorie, script R associé quand il existe (un onglet par variante de base : `<nom>.R`, `<nom>.snds.R`…).
+Recherche par mots-clés parmi les fiches, filtre par catégorie, lien vers le script R sur GitHub quand il existe (un lien par variante de base : `<nom>.R`, `<nom>.snds.R`…).
 
 Après ajout ou modification de fiches, régénérer l'index. La skill locale **`/ght-page-refresh`** (`.claude/skills/`) relance `build_docs.py`, affiche un diff lisible et ne commit ni ne push rien. À défaut :
 

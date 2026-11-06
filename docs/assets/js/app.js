@@ -1,6 +1,6 @@
 (() => {
   const REPO = window.__REPO__;
-  const RAW_BASE = `https://raw.githubusercontent.com/${REPO.owner}/${REPO.name}/${REPO.branch}/`;
+  const BLOB_BASE = `https://github.com/${REPO.owner}/${REPO.name}/blob/${REPO.branch}/`;
 
   const $search = document.getElementById("search");
   const $category = document.getElementById("category");
@@ -14,17 +14,6 @@
   let INDEX = null;
   let BY_ID = new Map();
   let CURRENT_ID = null;
-
-  const fileCache = new Map();
-  async function fetchText(relPath) {
-    if (fileCache.has(relPath)) return fileCache.get(relPath);
-    const p = fetch(RAW_BASE + relPath, { cache: "no-cache" }).then(r => {
-      if (!r.ok) throw new Error(`HTTP ${r.status} sur ${relPath}`);
-      return r.text();
-    });
-    fileCache.set(relPath, p);
-    return p;
-  }
 
   function buildLunr(entries) {
     return lunr(function () {
@@ -128,86 +117,54 @@
     return entry.path_r ? [{ path: entry.path_r, base: null }] : [];
   }
 
-  async function selectEntry(id, tab) {
+  async function selectEntry(id) {
     const entry = BY_ID.get(id);
     if (!entry) return;
     CURRENT_ID = id;
-    const scripts = entryScripts(entry);
-    // "r" (anciens liens partagés) = alias du premier onglet R
-    if (tab === "r") tab = "r0";
-    const m = /^r(\d+)$/.exec(tab || "");
-    const wantTab = (m && scripts[+m[1]]) ? tab : "md";
-    updateHash(id, wantTab);
+    updateHash(id);
     document.querySelectorAll(".result").forEach(el =>
       el.classList.toggle("active", el.dataset.id === id)
     );
-    renderDetail(entry, wantTab);
+    renderDetail(entry);
   }
 
-  function renderDetail(entry, tab) {
-    const scripts = entryScripts(entry);
-    const rTabs = scripts.map((s, i) => {
-      // sans suffixe = portail ATIH (convention de nommage des scripts)
-      const label = `R · ${s.base || "ATIH"}`;
-      const cls = tab === `r${i}` ? "active" : "";
-      return `<button data-tab="r${i}" class="${cls}">${label}</button>`;
-    }).join("");
-    const tabsHtml = `
+  // Liens vers les scripts R sur GitHub (un par base de données ;
+  // sans suffixe = portail ATIH, convention de nommage des scripts).
+  function scriptLinks(entry) {
+    return entryScripts(entry).map(s =>
+      `<a class="gh-link" href="${BLOB_BASE}${s.path}" target="_blank" rel="noopener">Script R · ${s.base || "ATIH"} ↗</a>`
+    ).join("");
+  }
+
+  function renderDetail(entry) {
+    $detail.innerHTML = `
       <div class="tabs">
-        <button data-tab="md" class="${tab === "md" ? "active" : ""}">Fiche</button>
-        ${rTabs}
-        <a class="gh-link"
-           href="https://github.com/${REPO.owner}/${REPO.name}/blob/${REPO.branch}/${entry.path_md}"
-           target="_blank" rel="noopener">Ouvrir sur GitHub ↗</a>
+        <button data-tab="md" class="active">Fiche</button>
+        ${scriptLinks(entry)}
+        <a class="gh-link" href="${BLOB_BASE}${entry.path_md}" target="_blank" rel="noopener">Ouvrir sur GitHub ↗</a>
       </div>
-      <div class="tab-content"><div class="loading">Chargement…</div></div>
+      <div class="tab-content"></div>
     `;
-    $detail.innerHTML = tabsHtml;
-    $detail.querySelectorAll(".tabs button").forEach(b => {
-      b.addEventListener("click", () => selectEntry(entry.id, b.dataset.tab));
-    });
     const $content = $detail.querySelector(".tab-content");
-
-    if (tab === "md") {
-      // text already in index — no fetch needed
-      try {
-        $content.innerHTML = marked.parse(entry.text);
-        $content.querySelectorAll("pre code").forEach(b => hljs.highlightElement(b));
-      } catch (e) {
-        $content.innerHTML = `<div class="error">Erreur de rendu : ${e.message}</div>`;
-      }
-    } else {
-      const script = scripts[+tab.slice(1)];
-      fetchText(script.path).then(src => {
-        const pre = document.createElement("pre");
-        const code = document.createElement("code");
-        code.className = "language-r";
-        code.textContent = src;
-        pre.appendChild(code);
-        $content.replaceChildren(pre);
-        hljs.highlightElement(code);
-      }).catch(err => {
-        $content.innerHTML = `<div class="error">Impossible de charger le script R : ${err.message}</div>`;
-      });
+    // text already in index — no fetch needed
+    try {
+      $content.innerHTML = marked.parse(entry.text);
+      $content.querySelectorAll("pre code").forEach(b => hljs.highlightElement(b));
+    } catch (e) {
+      $content.innerHTML = `<div class="error">Erreur de rendu : ${e.message}</div>`;
     }
-
     $detail.scrollTop = 0;
   }
 
-  function updateHash(id, tab) {
-    const params = new URLSearchParams();
-    params.set("id", id);
-    if (tab && tab !== "md") params.set("tab", tab);
-    const next = "#" + params.toString();
+  function updateHash(id) {
+    const next = "#" + new URLSearchParams({ id }).toString();
     if (location.hash !== next) history.replaceState(null, "", next);
   }
 
   function readHash() {
     if (!location.hash || location.hash.length < 2) return null;
-    const params = new URLSearchParams(location.hash.slice(1));
-    const id = params.get("id");
-    if (!id) return null;
-    return { id, tab: params.get("tab") || "md" };
+    const id = new URLSearchParams(location.hash.slice(1)).get("id");
+    return id ? { id } : null;
   }
 
   async function main() {
@@ -229,13 +186,13 @@
     $onlyVerified.addEventListener("change", search);
     window.addEventListener("hashchange", () => {
       const h = readHash();
-      if (h && h.id !== CURRENT_ID) selectEntry(h.id, h.tab);
+      if (h && h.id !== CURRENT_ID) selectEntry(h.id);
     });
 
     search();
 
     const h = readHash();
-    if (h) selectEntry(h.id, h.tab);
+    if (h) selectEntry(h.id);
   }
 
   main();
