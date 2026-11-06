@@ -1,6 +1,6 @@
 ---
 name: ght-page-refresh
-description: Régénère l'index JSON de la GitHub Page (docs/data/index.json) à partir des fiches actuelles d'indicateurs_pmsi/ et des scripts scripts_r/. Affiche un diff lisible (nouvelles fiches, fiches retirées, scripts R ajoutés). Ne fait JAMAIS de commit ni de push — l'utilisateur garde le contrôle. À déclencher avec /ght-page-refresh, ou à proposer spontanément après /ght-dev (nouvelle fiche markdown créée) et /ght-r (nouveau script R créé) pour que la page reste à jour.
+description: Régénère l'index JSON de la GitHub Page (docs/data/index.json) à partir des fiches actuelles d'indicateurs_pmsi/ et des scripts scripts_r/. Affiche un diff lisible (nouvelles fiches, fiches retirées, scripts R ajoutés). Ne fait JAMAIS de commit ni de push — l'utilisateur garde le contrôle. À déclencher avec /ght-page-refresh, ou à proposer spontanément après l'ajout d'une fiche dans indicateurs_pmsi/ ou d'un script dans scripts_r/ pour que la page reste à jour.
 trigger: /ght-page-refresh
 ---
 
@@ -109,7 +109,7 @@ Index régénéré localement. Pour publier sur la page :
 
 ## Quand la déclencher spontanément
 
-À la fin de `/ght-dev` (nouvelle fiche écrite) et `/ght-r` (nouveau script R écrit), proposer en une phrase :
+Après l'écriture d'une nouvelle fiche dans `indicateurs_pmsi/` (par exemple par `/ght-dev`) ou d'un nouveau script dans `scripts_r/`, proposer en une phrase :
 
 > Veux-tu que je régénère l'index de la page (`/ght-page-refresh`) pour que ta nouvelle fiche apparaisse dans la recherche ?
 
