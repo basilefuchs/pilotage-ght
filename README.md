@@ -19,7 +19,7 @@ indicateurs_pmsi/
 ├── 08_readmissions_evitables/    (11 fiches)
 ├── 09_territoire_attractivite/   (38 fiches)
 └── 10_financement_valorisation/  (10 fiches)
-scripts_r/<categorie>/            scripts R des indicateurs implémentés (38 scripts, 37 indicateurs)
+scripts_r/<categorie>/            scripts R hérités de l'ancienne skill ght-r (38 scripts, 37 indicateurs), plus alimentés
 helpers_r/                        briques R partagées par les scripts (ex. score de Charlson)
 docs/                             page de recherche publiée (GitHub Pages)
 build_docs.py                     génère l'index de la page depuis les fiches et les scripts
@@ -65,7 +65,7 @@ Depuis la racine de ce dépôt :
 2. `/ght-dev <nom>` : fiche complète, références vérifiées, écrite dans `indicateurs_pmsi/<categorie>/`.
 3. `/ght-page-refresh` : index de la page régénéré.
 
-Pour le script R d'un indicateur : `/to-protocole` avec la fiche comme idée d'étude, puis `/pdh-schema` et `/pdh-query` (portail ATIH) ou `/snds-schema` et `/snds-query` (Health Data Hub). Le script obtenu se range dans `scripts_r/<categorie>/<nom>.R` (suffixe `.snds.R` pour une variante SNDS) pour apparaître sur la page.
+Pour calculer un indicateur sur une base nationale : `/to-protocole` avec la fiche comme idée d'étude, puis `/pdh-schema` et `/pdh-query` (portail ATIH) ou `/snds-schema` et `/snds-query` (Health Data Hub). Ce parcours livre un dossier de scripts par étude, hors de ce dépôt. Les scripts de `scripts_r/` viennent de l'ancienne skill `ght-r`, retirée ; ils restent consultables depuis la page mais ne sont plus alimentés.
 
 ## Indicateurs innovants
 

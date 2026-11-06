@@ -6,7 +6,7 @@ Ce dépôt est une **preuve de concept (POC)** : base d'exemple et de test des s
 
 ## Structure
 - `indicateurs_pmsi/<NN>_<categorie>/` : 10 thématiques hospitalières (activité, casemix, qualité, parcours, efficience, etc.)
-- `scripts_r/<categorie>/` : scripts R des indicateurs implémentés, `<nom>.R` ou `<nom>.<base>.R` par variante de base
+- `scripts_r/<categorie>/` : scripts R hérités de l'ancienne skill `ght-r`, `<nom>.R` ou `<nom>.<base>.R` par variante de base ; plus alimentés, les nouveaux calculs passent par le parcours protocole hors du dépôt
 - `helpers_r/` : briques R partagées par les scripts
 - `docs/`, `build_docs.py` : page de recherche et son index
 - `.claude/skills/ght-page-refresh` : seule skill locale, régénère l'index de la page sans commit ni push
