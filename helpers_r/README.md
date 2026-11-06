@@ -5,9 +5,9 @@ les scripts de `scripts_r/`. Chaque fichier expose **une fonction** prenant
 des `tbl()` lazy dbplyr en entrée et retournant un `tbl()` lazy agrégé par
 `ident` (ou clef équivalente), prêt à `left_join`.
 
-La skill `/ght-r` consulte cet index à l'étape 1 pour détecter les helpers
-applicables à l'indicateur en cours et les insérer via `source()` au lieu
-d'inliner un placeholder `<TODO>`.
+Un script généré pour un indicateur (parcours `pdh-query` du dépôt
+`basilefuchs/skills`) peut consulter cet index pour réutiliser un helper via
+`source()` au lieu de recoder le calcul.
 
 ## Index
 

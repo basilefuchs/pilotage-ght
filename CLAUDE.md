@@ -1,18 +1,18 @@
 # Contexte — pilotage-ght
 
-Base de connaissance d'indicateurs GHT calculables PMSI / SNDS.
+Base de connaissance d'indicateurs GHT calculables PMSI / SNDS, avec une page de recherche publiée (GitHub Pages depuis `docs/`).
+
+Ce dépôt est une **base d'exemple et de test** des skills ad hoc de `basilefuchs/skills` (`ght-gen`, `ght-dev`, parcours `to-protocole → pdh-schema → pdh-query`). Les skills vivent là-bas et s'installent avec `npx skills add basilefuchs/skills --skill <nom> -a claude-code -g`. Ici : les fiches, les scripts R, la page et son outillage.
 
 ## Structure
-10 thématiques hospitalières (activité, casemix, qualité, parcours, efficience, etc.)
+- `indicateurs_pmsi/<NN>_<categorie>/` : 10 thématiques hospitalières (activité, casemix, qualité, parcours, efficience, etc.)
+- `scripts_r/<categorie>/` : scripts R des indicateurs implémentés, `<nom>.R` ou `<nom>.<base>.R` par variante de base
+- `helpers_r/` : briques R partagées par les scripts
+- `docs/`, `build_docs.py` : page de recherche et son index
+- `.claude/skills/ght-page-refresh` : seule skill locale, régénère l'index de la page sans commit ni push
 
-## Indicateurs
-Chaque indicateur suit un format standard :
-- Définition
-- Formule
-- Sources de données
-- Valeurs indicatives
-- Limites
-- Références
+## Fiches
+Chaque fiche suit un format standard : définition, calcul, utilité, sources de données, exemple de valeurs, limites, références.
 
 ## Règles
 - Indicateurs en français
@@ -21,20 +21,6 @@ Chaque indicateur suit un format standard :
 - Données uniquement PMSI / SNDS / référentiels officiels
 - Vérification humaine d'une fiche : flag `<!-- verifie: AAAA-MM-JJ nom -->` en première ligne, ajouté uniquement par l'utilisateur après relecture → pastille ✓ sur la GitHub Page
 - La pastille est invalidée automatiquement par `build_docs.py` si la fiche est commitée après la date du flag
-
-## Pipeline de génération
-
-3 phases pour combiner efficience token et qualité :
-
-**Phase 1 — exploration** `/ght-gen <domaine>`
-→ liste compressée `[i,d,c,u,l,t]` de candidats à sélectionner
-
-**Phase 2 — développement** `/ght-dev <nom_indicateur>`
-→ fichier markdown complet au standard du projet, écrit dans `indicateurs_pmsi/<cat>/`
-
-**Phase 3 — implémentation** `/ght-r <fiche>`
-→ script R/dplyr exécutable (portail ATIH Teradata/dbplyr, SNDS, datamarts locaux), après mapping schéma → colonnes avec l'utilisateur
-
-Dès qu'une fiche d'indicateur est finalisée (phase 2) et que l'utilisateur évoque calcul, code, requête ou implémentation, proposer `/ght-r`.
+- Après l'ajout d'une fiche ou d'un script, proposer `/ght-page-refresh`
 
 Référence qualité : `indicateurs_pmsi/02_casemix_patientele/entropie_shannon_casemix.md`, `indicateurs_pmsi/05_qualite_securite/psi90_patient_safety_indicators.md`
